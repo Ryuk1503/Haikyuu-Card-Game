@@ -1,0 +1,38 @@
+{
+    "id": "HV10-025",
+    "name": "Sugawara Koshi",
+    "nameJP": "菅原孝支",
+    "rarity": "R",
+    "school": "Karasuno",
+    "stats": {
+        "serve": 2,
+        "receive": 2,
+        "toss": 1,
+        "attack": 0,
+        "block": 1
+    },
+    "skill": {
+        "cost": 0,
+        "costType": "self-to-spirit",
+        "trigger": "activate",
+        "zone": "receive",
+        "type": "activateSpirit",
+        "description": "[Kích hoạt - đặt thẻ này vào khu vực Ý chí của nhân vật Đỡ bóng trường Karasuno] +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình.",
+        "effects": [
+            {
+                "type": "buff",
+                "target": "self-field",
+                "options": ["receive", "block"],
+                "value": 1,
+                "cost": {
+                    "type": "self-to-spirit",
+                    "zone": "receive",
+                    "requireSchool": "Karasuno"
+                }
+            }
+        ],
+        "timing": ["BLOCK", "RECEIVE"]
+    },
+    "artwork": "Card/HV10/sugawara-koshi-1.png",
+    "flavorText": "Phó đội trưởng luôn sẵn sàng hỗ trợ!"
+}

@@ -1,0 +1,36 @@
+{
+    "id": 21,
+    "cardId": "hinata-shouyo-2",
+    "name": "Hinata Shoyo",
+    "series": "HV10",
+    "rarity": "R",
+    "school": "Karasuno",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 3
+    },
+    "skill": {
+        "type": "activate",
+        "zone": "hand",
+        "cost": "discard-self",
+        "description": "[Kích hoạt - bỏ thẻ này trước khi đỡ bóng] Trừ điểm Đập của 1 thẻ ở khu vực Đập bóng đối phương bằng với điểm Chặn của thẻ này. Trong lượt này không được sử dụng kĩ năng [Kích hoạt] của Hinata Shoyo nữa.",
+        "effects": [
+            {
+                "type": "reduceOpponentAttack",
+                "target": "opponent-attack-zone",
+                "value": "this.block"
+            }
+        ],
+        "restrictions": [
+            {
+                "type": "noSameActivation",
+                "cardName": "Hinata Shoyo",
+                "duration": "turn"
+            }
+        ]
+    },
+    "artwork": "Card/HV10/hinata-shouyo-2.png"
+}

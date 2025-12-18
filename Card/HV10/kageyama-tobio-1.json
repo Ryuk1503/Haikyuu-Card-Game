@@ -1,0 +1,33 @@
+{
+    "id": "HV10-022",
+    "name": "Kageyama Tobio",
+    "nameJP": "影山飛雄",
+    "rarity": "R",
+    "school": "Karasuno",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 1,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "cost": 3,
+        "costType": "spirit",
+        "trigger": "onPlay",
+        "zone": "toss",
+        "description": "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, thêm một thẻ Nhân Vật trường Karasuno (ngoài \"Kageyama Tobio\") từ bộ bài lên tay. Xáo lại bộ bài.",
+        "effects": [
+            {
+                "type": "conditionalTutor",
+                "condition": "spiritCount >= 3",
+                "filter": "school:Karasuno AND name!=Kageyama Tobio",
+                "from": "deck",
+                "to": "hand",
+                "shuffleAfter": true
+            }
+        ]
+    },
+    "artwork": "Card/HV10/kageyama-tobio-1.png",
+    "flavor": "Vị vua đang dẫn dắt Karasuno."
+}

@@ -1,0 +1,32 @@
+{
+    "id": "HV10-ACTION-001",
+    "name": "Chuyền hết bóng cho anh.",
+    "nameJP": "全部トスしてあげる",
+    "rarity": "R",
+    "type": "action",
+    "phases": ["toss", "attack"],
+    "spiritCost": 3,
+    "skill": {
+        "cost": 3,
+        "costType": "spirit",
+        "trigger": "activate",
+        "phases": ["toss", "attack"],
+        "type": "buffShiratorizawa",
+        "description": "[Chuyền][Đập] [3 ý chí] +1 điểm bất kì cho 1 nhân vật trường Shiratorizawa trên sân mình. Sau đó, nếu nhân vật đó có 3+ Ý Chí, có thể bỏ 1 Ý Chí của 1 nhân vật trên sân đối phương vào Drop.",
+        "effects": [
+            {
+                "type": "statBoost",
+                "target": "Shiratorizawa",
+                "value": 1,
+                "chooseStat": true
+            },
+            {
+                "type": "conditionalSpiritRemove",
+                "condition": "targetSpirit >= 3",
+                "removeOpponentSpirit": 1
+            }
+        ]
+    },
+    "artwork": "Card/HV10/chuyen-het-bong-cho-anh.png",
+    "flavor": "Ushijima's absolute trust."
+}

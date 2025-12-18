@@ -1,0 +1,26 @@
+{
+    "id": "HV10-032",
+    "name": "Yamaguchi Tadashi",
+    "nameJP": "山口忠",
+    "rarity": "R",
+    "school": "Karasuno",
+    "stats": {
+        "serve": 3,
+        "receive": 4,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "cost": 2,
+        "costType": "spiritDiscard",
+        "trigger": "onPlay",
+        "zone": "any",
+        "type": "recycleKarasuno",
+        "description": "[2 Ý chí] Khi thẻ này ra sân, có thể sử dụng 2 Ý Chí của nhân vật Đỡ Bóng trên sân mình để lấy lên tay 1 thẻ Nhân Vật trường Karasuno từ khu vực Drop."
+    },
+    "flavor": "Float serve specialist",
+    "illustrator": "Haruichi Furudate",
+    "cardNumber": "HV10-032",
+    "artwork": "yamaguchi-tadashi-1.png"
+}
