@@ -9,17 +9,54 @@
 </head>
 <body>
     <!-- ============================================ -->
+    <!-- LOGIN SCREEN -->
+    <!-- ============================================ -->
+    <div class="screen login-screen" id="login-screen">
+        <div class="login-container">
+            <h1 class="login-title">🏐 Haikyuu!! Card Game 🏐</h1>
+            <p class="login-subtitle">Online Sandbox Mode</p>
+            
+            <!-- Login Form -->
+            <div class="auth-form" id="login-form">
+                <h2>Đăng nhập</h2>
+                <input type="text" id="login-username" placeholder="Tên đăng nhập" class="auth-input" autocomplete="username">
+                <input type="password" id="login-password" placeholder="Mật khẩu" class="auth-input" autocomplete="current-password">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember-me" checked>
+                    <label for="remember-me">Nhớ tài khoản</label>
+                </div>
+                <button class="btn btn-login" id="btn-login">Đăng nhập</button>
+                <p class="auth-switch">Chưa có tài khoản? <a href="#" id="show-register">Đăng ký</a></p>
+                <div class="auth-error hidden" id="login-error"></div>
+            </div>
+            
+            <!-- Register Form -->
+            <div class="auth-form hidden" id="register-form">
+                <h2>Đăng ký</h2>
+                <input type="text" id="register-username" placeholder="Tên đăng nhập (3-20 ký tự)" class="auth-input" autocomplete="username">
+                <input type="text" id="register-displayname" placeholder="Tên hiển thị (tùy chọn)" class="auth-input">
+                <input type="password" id="register-password" placeholder="Mật khẩu (ít nhất 4 ký tự)" class="auth-input" autocomplete="new-password">
+                <input type="password" id="register-password-confirm" placeholder="Xác nhận mật khẩu" class="auth-input" autocomplete="new-password">
+                <button class="btn btn-register" id="btn-register">Đăng ký</button>
+                <p class="auth-switch">Đã có tài khoản? <a href="#" id="show-login">Đăng nhập</a></p>
+                <div class="auth-error hidden" id="register-error"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
     <!-- ONLINE LOBBY SCREEN -->
     <!-- ============================================ -->
-    <div class="screen lobby-screen" id="lobby-screen">
+    <div class="screen lobby-screen hidden" id="lobby-screen">
         <div class="lobby-container">
-            <h1 class="lobby-title">🏐 Haikyuu!! Card Game 🏐</h1>
-            <p class="online-badge">🌐 Online Sandbox Mode</p>
-            
-            <!-- Name Input -->
-            <div class="name-input-section" id="name-input-section">
-                <input type="text" id="player-name-input" placeholder="Nhập tên của bạn..." maxlength="20" class="name-input">
+            <div class="lobby-header">
+                <h1 class="lobby-title">🏐 Haikyuu!! Card Game 🏐</h1>
+                <div class="user-info">
+                    <span class="user-name" id="logged-user-name">Player</span>
+                    <button class="btn btn-logout" id="btn-logout">Đăng xuất</button>
+                </div>
             </div>
+            <p class="online-badge">🌐 Online Sandbox Mode</p>
             
             <!-- Deck Selection -->
             <div class="deck-selection-section" id="deck-selection-section">
@@ -28,7 +65,6 @@
                     <select id="deck-select" class="deck-select">
                         <option value="default">Deck Karasuno (Mặc định)</option>
                         <option value="shiratorizawa">Deck Shiratorizawa</option>
-                        <option value="custom">Deck tùy chỉnh...</option>
                     </select>
                     <button class="btn btn-build-deck" id="btn-build-deck">🔧 Xây deck</button>
                 </div>
@@ -38,10 +74,16 @@
             <!-- Room Actions -->
             <div class="room-actions" id="room-actions">
                 <button class="btn btn-create-room" id="btn-create-room">🏠 Tạo phòng mới</button>
-                <div class="join-room-section">
-                    <input type="text" id="room-code-input" placeholder="Mã phòng (VD: ABC123)" maxlength="6" class="room-code-input">
-                    <button class="btn btn-join-room" id="btn-join-room">🚪 Vào phòng</button>
+                <button class="btn btn-show-rooms" id="btn-show-rooms">📋 Danh sách phòng</button>
+            </div>
+            
+            <!-- Room List -->
+            <div class="room-list-section hidden" id="room-list-section">
+                <h3>📋 Phòng đang chờ</h3>
+                <div class="room-list" id="room-list">
+                    <div class="room-list-loading">Đang tải...</div>
                 </div>
+                <button class="btn btn-refresh-rooms" id="btn-refresh-rooms">🔄 Làm mới</button>
             </div>
             
             <!-- Waiting Room (shown after creating/joining) -->
@@ -68,10 +110,11 @@
                 
                 <div class="lobby-actions">
                     <button class="btn btn-start-game" id="btn-start-game" disabled>🏐 Bắt đầu trận đấu</button>
+                    <button class="btn btn-leave-room" id="btn-leave-room">🚪 Rời phòng</button>
                 </div>
             </div>
 
-            <div class="lobby-info" id="lobby-info">Tạo phòng hoặc nhập mã để tham gia!</div>
+            <div class="lobby-info" id="lobby-info">Tạo phòng hoặc chọn từ danh sách!</div>
         </div>
     </div>
 
@@ -92,10 +135,16 @@
                 <div class="card-collection">
                     <h3>Bộ sưu tập thẻ</h3>
                     <div class="collection-filters">
+                        <input type="text" id="filter-search" placeholder="🔍 Tìm tên thẻ..." class="filter-search">
                         <select id="filter-school">
                             <option value="all">Tất cả trường</option>
                             <option value="Karasuno">Karasuno</option>
                             <option value="Shiratorizawa">Shiratorizawa</option>
+                        </select>
+                        <select id="filter-type">
+                            <option value="all">Tất cả loại</option>
+                            <option value="character">Nhân vật</option>
+                            <option value="action">Hành động</option>
                         </select>
                     </div>
                     <div class="collection-cards" id="collection-cards"></div>
@@ -104,6 +153,7 @@
                 <!-- Current Deck -->
                 <div class="current-deck">
                     <h3>Deck hiện tại</h3>
+                    <div class="saved-decks-list" id="saved-decks-list"></div>
                     <div class="deck-cards" id="deck-cards"></div>
                 </div>
             </div>
@@ -112,7 +162,7 @@
                 <input type="text" id="deck-name-input" placeholder="Tên deck..." class="deck-name-input">
                 <div class="deck-builder-buttons">
                     <button class="btn btn-cancel" id="btn-cancel-deck">Hủy</button>
-                    <button class="btn btn-confirm" id="btn-save-deck" disabled>Lưu Deck</button>
+                    <button class="btn btn-confirm" id="btn-save-deck">Lưu Deck</button>
                 </div>
             </div>
         </div>

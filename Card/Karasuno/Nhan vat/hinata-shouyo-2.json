@@ -16,7 +16,7 @@
         "type": "activate",
         "zone": "hand",
         "cost": "discard-self",
-        "description": "[Kích hoạt - bỏ thẻ này trước khi đỡ bóng] Trừ điểm Đập của 1 thẻ ở khu vực Đập bóng đối phương bằng với điểm Chặn của thẻ này. Trong lượt này không được sử dụng kĩ năng [Kích hoạt] của Hinata Shoyo nữa.",
+        "description": "[Bỏ thẻ này từ trên tay] Trừ điểm Đập của 1 thẻ ở khu vực Đập bóng đối phương bằng với điểm Chặn của thẻ này. Trong lượt này không được sử dụng kĩ năng [Kích hoạt] của Hinata Shoyo nữa.",
         "effects": [
             {
                 "type": "reduceOpponentAttack",

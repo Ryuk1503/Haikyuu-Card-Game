@@ -17,7 +17,7 @@
         "trigger": "activate",
         "zone": "receive",
         "type": "activateSpirit",
-        "description": "[Kích hoạt - đặt thẻ này vào khu vực Ý chí của nhân vật Đỡ bóng trường Karasuno] +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình.",
+        "description": "[Đặt thẻ này vào khu vực Ý chí của nhân vật Đỡ bóng trường Karasuno] +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình.",
         "effects": [
             {
                 "type": "buff",

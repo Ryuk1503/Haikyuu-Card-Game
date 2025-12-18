@@ -6,6 +6,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
+const db = require('./database');
 
 const app = express();
 const server = http.createServer(app);
@@ -16,8 +17,132 @@ const io = new Server(server, {
     }
 });
 
+// Parse JSON bodies
+app.use(express.json());
+
 // Serve static files
 app.use(express.static(path.join(__dirname)));
+
+// ============================================
+// AUTHENTICATION ROUTES
+// ============================================
+
+// Register
+app.post('/api/register', (req, res) => {
+    const { username, password, displayName } = req.body;
+    
+    if (!username || !password) {
+        return res.status(400).json({ success: false, error: 'Username và password là bắt buộc' });
+    }
+    
+    if (username.length < 3 || username.length > 20) {
+        return res.status(400).json({ success: false, error: 'Username phải từ 3-20 ký tự' });
+    }
+    
+    if (password.length < 4) {
+        return res.status(400).json({ success: false, error: 'Password phải ít nhất 4 ký tự' });
+    }
+    
+    const result = db.createUser(username, password, displayName);
+    res.json(result);
+});
+
+// Login
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+    
+    if (!username || !password) {
+        return res.status(400).json({ success: false, error: 'Username và password là bắt buộc' });
+    }
+    
+    const result = db.loginUser(username, password);
+    res.json(result);
+});
+
+// Validate session (for remember me)
+app.post('/api/validate-session', (req, res) => {
+    const { sessionToken } = req.body;
+    const user = db.validateSession(sessionToken);
+    
+    if (user) {
+        res.json({ success: true, user });
+    } else {
+        res.json({ success: false });
+    }
+});
+
+// Logout
+app.post('/api/logout', (req, res) => {
+    const { userId } = req.body;
+    const result = db.logoutUser(userId);
+    res.json(result);
+});
+
+// ============================================
+// DECK ROUTES
+// ============================================
+
+// Save deck
+app.post('/api/decks', (req, res) => {
+    const { sessionToken, deckName, cards } = req.body;
+    const user = db.validateSession(sessionToken);
+    
+    if (!user) {
+        return res.status(401).json({ success: false, error: 'Chưa đăng nhập' });
+    }
+    
+    const result = db.saveDeck(user.id, deckName, cards);
+    res.json(result);
+});
+
+// Get user's decks
+app.get('/api/decks', (req, res) => {
+    const sessionToken = req.headers['x-session-token'];
+    const user = db.validateSession(sessionToken);
+    
+    if (!user) {
+        return res.status(401).json({ success: false, error: 'Chưa đăng nhập' });
+    }
+    
+    const decks = db.getUserDecks(user.id);
+    res.json({ success: true, decks });
+});
+
+// Delete deck
+app.delete('/api/decks/:id', (req, res) => {
+    const sessionToken = req.headers['x-session-token'];
+    const user = db.validateSession(sessionToken);
+    
+    if (!user) {
+        return res.status(401).json({ success: false, error: 'Chưa đăng nhập' });
+    }
+    
+    const result = db.deleteDeck(user.id, parseInt(req.params.id));
+    res.json(result);
+});
+
+// ============================================
+// ROOM LIST API
+// ============================================
+app.get('/api/rooms', (req, res) => {
+    const roomList = [];
+    
+    for (const [roomId, room] of rooms.entries()) {
+        if (!room.gameStarted && !room.isFull()) {
+            roomList.push({
+                roomId: room.roomId,
+                playerCount: (room.players[1] ? 1 : 0) + (room.players[2] ? 1 : 0),
+                hostName: room.playerNames[1] || 'Player 1',
+                createdAt: room.createdAt
+            });
+        }
+    }
+    
+    // Sort by creation time (newest first)
+    roomList.sort((a, b) => b.createdAt - a.createdAt);
+    
+    res.json({ success: true, rooms: roomList });
+});
 
 // Serve index.html for root path
 app.get('/', (req, res) => {
@@ -25,25 +150,28 @@ app.get('/', (req, res) => {
 });
 
 // ============================================
-// CARD DATABASE
+// CARD DATABASE - Organized by School
 // ============================================
 const CARD_DATABASE = [
-    { id: 1, name: "Hinata Shoyo", cardId: "hinata-shouyo-1", school: "Karasuno", serve: 2, receive: 0, toss: 0, attack: "3+", attackBase: 3, block: 2, artwork: "Card/HV10/hinata-shouyo-1.png" },
-    { id: 21, name: "Hinata Shoyo", cardId: "hinata-shouyo-2", school: "Karasuno", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, artwork: "Card/HV10/hinata-shouyo-2.png" },
-    { id: 22, name: "Kageyama Tobio", cardId: "kageyama-tobio-1", school: "Karasuno", serve: 1, receive: 0, toss: 1, attack: 3, block: 0, artwork: "Card/HV10/kageyama-tobio-1.png" },
-    { id: 23, name: "Kageyama Tobio", cardId: "kageyama-tobio-2", school: "Karasuno", serve: 1, receive: 0, toss: 1, attack: 2, block: 2, artwork: "Card/HV10/kageyama-tobio-2.png" },
-    { id: 24, name: "Sawamura Daichi", cardId: "sawamura-daichi-1", school: "Karasuno", serve: 2, receive: 4, toss: 0, attack: 0, block: 0, artwork: "Card/HV10/sawamura-daichi-1.png" },
-    { id: 25, name: "Sugawara Koshi", cardId: "sugawara-koshi-1", school: "Karasuno", serve: 2, receive: 2, toss: 1, attack: 0, block: 1, artwork: "Card/HV10/sugawara-koshi-1.png" },
-    { id: 26, name: "Tanaka Ryunosuke", cardId: "tanaka-ryunosuke-1", school: "Karasuno", serve: 1, receive: 3, toss: 0, attack: 3, block: 1, artwork: "Card/HV10/tanaka-ryunosuke-1.png" },
-    { id: 27, name: "Tsukishima Kei", cardId: "tsukishima-kei-1", school: "Karasuno", serve: 1, receive: 2, toss: 0, attack: 2, block: 3, artwork: "Card/HV10/tsukishima-kei-1.png" },
-    { id: 28, name: "Tsukishima Kei", cardId: "tsukishima-kei-2", school: "Karasuno", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, artwork: "Card/HV10/tsukishima-kei-2.png" },
-    { id: 29, name: "Yamaguchi Tadashi", cardId: "yamaguchi-tadashi-1", school: "Karasuno", serve: 3, receive: 4, toss: 0, attack: 0, block: 0, artwork: "Card/HV10/yamaguchi-tadashi-1.png" },
-    { id: 30, name: "Nishinoya Yu", cardId: "nishinoya-yu-1", school: "Karasuno", serve: 0, receive: 4, toss: 0, attack: 0, block: 0, isLibero: true, artwork: "Card/HV10/nishinoya-yu-1.png" },
-    { id: 31, name: "Nishinoya Yu", cardId: "nishinoya-yu-2", school: "Karasuno", serve: 0, receive: 6, toss: 0, attack: 0, block: 0, isLibero: true, artwork: "Card/HV10/nishinoya-yu-2.png" },
-    { id: 32, name: "Azumane Asahi", cardId: "azumane-asahi-1", school: "Karasuno", serve: 1, receive: 0, toss: 0, attack: 3, block: "3+", blockBase: 3, artwork: "Card/HV10/azumane-asahi-1.png" },
-    { id: 33, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-1", school: "Shiratorizawa", serve: 3, receive: 0, toss: 0, attack: "3+", attackBase: 3, block: 0, artwork: "Card/HV10/ushijima-wakatoshi-1.png" },
-    { id: 34, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-2", school: "Shiratorizawa", serve: 4, receive: 0, toss: 0, attack: 3, block: 0, artwork: "Card/HV10/ushijima-wakatoshi-2.png" },
-    { id: 100, name: "Chuyền hết bóng cho anh.", cardId: "chuyen-het-bong-cho-anh", type: "action", phases: ["toss", "attack"], spiritCost: 3, serve: 0, receive: 0, toss: 0, attack: 0, block: 0, artwork: "Card/HV10/chuyen-het-bong-cho-anh.png" }
+    // KARASUNO - NHÂN VẬT
+    { id: 1, name: "Hinata Shoyo", cardId: "hinata-shouyo-1", school: "Karasuno", type: "character", serve: 2, receive: 0, toss: 0, attack: "3+", attackBase: 3, block: 2, artwork: "Card/Karasuno/Nhan vat/hinata-shouyo-1.png" },
+    { id: 21, name: "Hinata Shoyo", cardId: "hinata-shouyo-2", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, artwork: "Card/Karasuno/Nhan vat/hinata-shouyo-2.png" },
+    { id: 22, name: "Kageyama Tobio", cardId: "kageyama-tobio-1", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 1, attack: 3, block: 0, artwork: "Card/Karasuno/Nhan vat/kageyama-tobio-1.png" },
+    { id: 23, name: "Kageyama Tobio", cardId: "kageyama-tobio-2", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 1, attack: 2, block: 2, artwork: "Card/Karasuno/Nhan vat/kageyama-tobio-2.png" },
+    { id: 24, name: "Sawamura Daichi", cardId: "sawamura-daichi-1", school: "Karasuno", type: "character", serve: 2, receive: 4, toss: 0, attack: 0, block: 0, artwork: "Card/Karasuno/Nhan vat/sawamura-daichi-1.png" },
+    { id: 25, name: "Sugawara Koshi", cardId: "sugawara-koshi-1", school: "Karasuno", type: "character", serve: 2, receive: 2, toss: 1, attack: 0, block: 1, artwork: "Card/Karasuno/Nhan vat/sugawara-koshi-1.png" },
+    { id: 26, name: "Tanaka Ryunosuke", cardId: "tanaka-ryunosuke-1", school: "Karasuno", type: "character", serve: 1, receive: 3, toss: 0, attack: 3, block: 1, artwork: "Card/Karasuno/Nhan vat/tanaka-ryunosuke-1.png" },
+    { id: 27, name: "Tsukishima Kei", cardId: "tsukishima-kei-1", school: "Karasuno", type: "character", serve: 1, receive: 2, toss: 0, attack: 2, block: 3, artwork: "Card/Karasuno/Nhan vat/tsukishima-kei-1.png" },
+    { id: 28, name: "Tsukishima Kei", cardId: "tsukishima-kei-2", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, artwork: "Card/Karasuno/Nhan vat/tsukishima-kei-2.png" },
+    { id: 29, name: "Yamaguchi Tadashi", cardId: "yamaguchi-tadashi-1", school: "Karasuno", type: "character", serve: 3, receive: 4, toss: 0, attack: 0, block: 0, artwork: "Card/Karasuno/Nhan vat/yamaguchi-tadashi-1.png" },
+    { id: 30, name: "Nishinoya Yu", cardId: "nishinoya-yu-1", school: "Karasuno", type: "character", serve: 0, receive: 4, toss: 0, attack: 0, block: 0, isLibero: true, artwork: "Card/Karasuno/Nhan vat/nishinoya-yu-1.png" },
+    { id: 31, name: "Nishinoya Yu", cardId: "nishinoya-yu-2", school: "Karasuno", type: "character", serve: 0, receive: 6, toss: 0, attack: 0, block: 0, isLibero: true, artwork: "Card/Karasuno/Nhan vat/nishinoya-yu-2.png" },
+    { id: 32, name: "Azumane Asahi", cardId: "azumane-asahi-1", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: "3+", blockBase: 3, artwork: "Card/Karasuno/Nhan vat/azumane-asahi-1.png" },
+    // SHIRATORIZAWA - NHÂN VẬT
+    { id: 33, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-1", school: "Shiratorizawa", type: "character", serve: 3, receive: 0, toss: 0, attack: "3+", attackBase: 3, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-1.png" },
+    { id: 34, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-2", school: "Shiratorizawa", type: "character", serve: 4, receive: 0, toss: 0, attack: 3, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-2.png" },
+    // SHIRATORIZAWA - HÀNH ĐỘNG
+    { id: 100, name: "Chuyền hết bóng cho anh.", cardId: "chuyen-het-bong-cho-anh", school: "Shiratorizawa", type: "action", phases: ["toss", "attack"], spiritCost: 3, serve: 0, receive: 0, toss: 0, attack: 0, block: 0, artwork: "Card/Shiratorizawa/Hanh dong/chuyen-het-bong-cho-anh.png" }
 ];
 
 // ============================================

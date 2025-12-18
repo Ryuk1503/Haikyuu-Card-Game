@@ -12,13 +12,15 @@ const GamePhase = {
     GAME_END: 'game_end'
 };
 
-// Card Database - HV10 Only
+// Card Database - Organized by School
 const cardDatabase = [
+    // ============ KARASUNO - NHÂN VẬT ============
     { 
         id: 1, 
         name: "Hinata Shoyo", 
         cardId: "hinata-shouyo-1",
         school: "Karasuno",
+        type: "character",
         serve: 2, 
         receive: 0, 
         toss: 0, 
@@ -26,126 +28,136 @@ const cardDatabase = [
         attackBase: 3,
         block: 2,
         skill: "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập.",
-        artwork: "Card/HV10/hinata-shouyo-1.png"
+        artwork: "Card/Karasuno/Nhan vat/hinata-shouyo-1.png"
     },
     { 
         id: 21, 
         name: "Hinata Shoyo", 
         cardId: "hinata-shouyo-2",
         school: "Karasuno",
+        type: "character",
         serve: 1, 
         receive: 0, 
         toss: 0, 
         attack: 3, 
         block: 3,
-        artwork: "Card/HV10/hinata-shouyo-2.png"
+        artwork: "Card/Karasuno/Nhan vat/hinata-shouyo-2.png"
     },
     { 
         id: 22, 
         name: "Kageyama Tobio", 
         cardId: "kageyama-tobio-1",
         school: "Karasuno",
+        type: "character",
         serve: 1, 
         receive: 0, 
         toss: 1, 
         attack: 3, 
         block: 0,
         skill: "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể tìm 1 thẻ từ Deck và thêm vào tay.",
-        artwork: "Card/HV10/kageyama-tobio-1.png"
+        artwork: "Card/Karasuno/Nhan vat/kageyama-tobio-1.png"
     },
     { 
         id: 23, 
         name: "Kageyama Tobio", 
         cardId: "kageyama-tobio-2",
         school: "Karasuno",
+        type: "character",
         serve: 1, 
         receive: 0, 
         toss: 1, 
         attack: 2, 
         block: 2,
-        artwork: "Card/HV10/kageyama-tobio-2.png"
+        artwork: "Card/Karasuno/Nhan vat/kageyama-tobio-2.png"
     },
     { 
         id: 24, 
         name: "Sawamura Daichi", 
         cardId: "sawamura-daichi-1",
         school: "Karasuno",
+        type: "character",
         serve: 2, 
         receive: 4, 
         toss: 0, 
         attack: 0, 
         block: 0,
-        artwork: "Card/HV10/sawamura-daichi-1.png"
+        artwork: "Card/Karasuno/Nhan vat/sawamura-daichi-1.png"
     },
     { 
         id: 25, 
         name: "Sugawara Koshi", 
         cardId: "sugawara-koshi-1",
         school: "Karasuno",
+        type: "character",
         serve: 2, 
         receive: 2, 
         toss: 1, 
         attack: 0, 
         block: 1,
         skill: "[Đỡ][Chặn][Kích hoạt] +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình.",
-        artwork: "Card/HV10/sugawara-koshi-1.png"
+        artwork: "Card/Karasuno/Nhan vat/sugawara-koshi-1.png"
     },
     { 
         id: 26, 
         name: "Tanaka Ryunosuke", 
         cardId: "tanaka-ryunosuke-1",
         school: "Karasuno",
+        type: "character",
         serve: 1, 
         receive: 3, 
         toss: 0, 
         attack: 3, 
         block: 1,
         skill: "Khi thẻ này xuất hiện ở khu vực Đập Bóng, đối phương -2 điểm Chặn.",
-        artwork: "Card/HV10/tanaka-ryunosuke-1.png"
+        artwork: "Card/Karasuno/Nhan vat/tanaka-ryunosuke-1.png"
     },
     { 
         id: 27, 
         name: "Tsukishima Kei", 
         cardId: "tsukishima-kei-1",
         school: "Karasuno",
+        type: "character",
         serve: 1, 
         receive: 2, 
         toss: 0, 
         attack: 2, 
         block: 3,
         skill: "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu có 3+ Ý Chí, tự +1 điểm Chặn.",
-        artwork: "Card/HV10/tsukishima-kei-1.png"
+        artwork: "Card/Karasuno/Nhan vat/tsukishima-kei-1.png"
     },
     { 
         id: 28, 
         name: "Tsukishima Kei", 
         cardId: "tsukishima-kei-2",
         school: "Karasuno",
+        type: "character",
         serve: 1, 
         receive: 0, 
         toss: 0, 
         attack: 3, 
         block: 3,
-        artwork: "Card/HV10/tsukishima-kei-2.png"
+        artwork: "Card/Karasuno/Nhan vat/tsukishima-kei-2.png"
     },
     { 
         id: 29, 
         name: "Yamaguchi Tadashi", 
         cardId: "yamaguchi-tadashi-1",
         school: "Karasuno",
+        type: "character",
         serve: 3, 
         receive: 4, 
         toss: 0, 
         attack: 0, 
         block: 0,
         skill: "[2 Ý chí] Khi thẻ này ra sân, lấy 1 thẻ Karasuno từ Drop về tay.",
-        artwork: "Card/HV10/yamaguchi-tadashi-1.png"
+        artwork: "Card/Karasuno/Nhan vat/yamaguchi-tadashi-1.png"
     },
     { 
         id: 30, 
         name: "Nishinoya Yu", 
         cardId: "nishinoya-yu-1",
         school: "Karasuno",
+        type: "character",
         serve: 0, 
         receive: 4, 
         toss: 0, 
@@ -153,13 +165,14 @@ const cardDatabase = [
         block: 0,
         isLibero: true,
         skill: "[Libero] Không thể Giao bóng. [1 Ý chí] Tự + điểm Đỡ bằng điểm Chặn của Ý chí.",
-        artwork: "Card/HV10/nishinoya-yu-1.png"
+        artwork: "Card/Karasuno/Nhan vat/nishinoya-yu-1.png"
     },
     { 
         id: 31, 
         name: "Nishinoya Yu", 
         cardId: "nishinoya-yu-2",
         school: "Karasuno",
+        type: "character",
         serve: 0, 
         receive: 6, 
         toss: 0, 
@@ -167,13 +180,14 @@ const cardDatabase = [
         block: 0,
         isLibero: true,
         skill: "[Libero] Không thể Giao bóng.",
-        artwork: "Card/HV10/nishinoya-yu-2.png"
+        artwork: "Card/Karasuno/Nhan vat/nishinoya-yu-2.png"
     },
     { 
         id: 32, 
         name: "Azumane Asahi", 
         cardId: "azumane-asahi-1",
         school: "Karasuno",
+        type: "character",
         serve: 1, 
         receive: 0, 
         toss: 0, 
@@ -181,13 +195,15 @@ const cardDatabase = [
         block: "3+",
         blockBase: 3,
         skill: "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu có 2+ nhân vật Chặn, tự +2 điểm Chặn.",
-        artwork: "Card/HV10/azumane-asahi-1.png"
+        artwork: "Card/Karasuno/Nhan vat/azumane-asahi-1.png"
     },
+    // ============ SHIRATORIZAWA - NHÂN VẬT ============
     { 
         id: 33, 
         name: "Ushijima Wakatoshi", 
         cardId: "ushijima-wakatoshi-1",
         school: "Shiratorizawa",
+        type: "character",
         serve: 3, 
         receive: 0, 
         toss: 0, 
@@ -195,26 +211,28 @@ const cardDatabase = [
         attackBase: 3,
         block: 0,
         skill: "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu có 3+ Ý Chí và thẻ Action, tự +3 điểm Đập.",
-        artwork: "Card/HV10/ushijima-wakatoshi-1.png"
+        artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-1.png"
     },
     { 
         id: 34, 
         name: "Ushijima Wakatoshi", 
         cardId: "ushijima-wakatoshi-2",
         school: "Shiratorizawa",
+        type: "character",
         serve: 4, 
         receive: 0, 
         toss: 0, 
         attack: 3, 
         block: 0,
         skill: "Khi thẻ này xuất hiện ở khu vực Giao Bóng, có thể +2 điểm Giao.",
-        artwork: "Card/HV10/ushijima-wakatoshi-2.png"
+        artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-2.png"
     },
-    // Action Card
+    // ============ SHIRATORIZAWA - HÀNH ĐỘNG ============
     { 
         id: 100, 
         name: "Chuyền hết bóng cho anh.", 
         cardId: "chuyen-het-bong-cho-anh",
+        school: "Shiratorizawa",
         type: "action",
         phases: ["toss", "attack"],
         spiritCost: 3,
@@ -224,7 +242,7 @@ const cardDatabase = [
         attack: 0, 
         block: 0,
         skill: "[Chuyền][Đập] [3 ý chí] +1 điểm cho nhân vật Shiratorizawa.",
-        artwork: "Card/HV10/chuyen-het-bong-cho-anh.png"
+        artwork: "Card/Shiratorizawa/Hanh dong/chuyen-het-bong-cho-anh.png"
     }
 ];
 
