@@ -453,8 +453,13 @@ class OnlineGameManager {
     
     sendDeckSelection() {
         const deck = this.getCurrentDeck();
+        console.log('📤 Sending deck selection:', deck);
+        console.log('📤 Selected deck ID:', this.selectedDeck);
+        if (!deck || Object.keys(deck).length === 0) {
+            console.warn('⚠️ No deck selected or deck is empty!');
+        }
         this.socket.emit('setDeck', { deck: deck });
-        console.log('Sent deck selection');
+        console.log('✅ Sent deck selection');
     }
     
     startGame() {
@@ -834,6 +839,7 @@ class OnlineGameManager {
     
     onDeckChange(deckId) {
         this.selectedDeck = deckId;
+        console.log('🔄 Deck changed to:', deckId);
         
         if (deckId.startsWith('saved_')) {
             const id = parseInt(deckId.replace('saved_', ''));
@@ -846,6 +852,11 @@ class OnlineGameManager {
             if (presets[deckId]) {
                 this.updateDeckInfo(presets[deckId].name, 40);
             }
+        }
+        
+        // Auto-send deck selection when in room
+        if (this.roomId && this.socket) {
+            this.sendDeckSelection();
         }
     }
     
@@ -1101,10 +1112,15 @@ class OnlineGameManager {
     }
     
     getCurrentDeck() {
-        if (this.selectedDeck.startsWith('saved_')) {
+        console.log('🔍 getCurrentDeck - selectedDeck:', this.selectedDeck);
+        
+        if (this.selectedDeck && this.selectedDeck.startsWith('saved_')) {
             const id = parseInt(this.selectedDeck.replace('saved_', ''));
             const deck = this.savedDecks.find(d => d.id === id);
-            if (deck) return deck.cards;
+            if (deck) {
+                console.log('📦 Using saved deck:', deck.name, 'with', Object.keys(deck.cards || {}).length, 'card types');
+                return deck.cards;
+            }
         }
         
         const presets = this.getPresetDecks();
@@ -1113,9 +1129,11 @@ class OnlineGameManager {
             presets[this.selectedDeck].cards.forEach(c => {
                 deck[c.cardId] = c.count;
             });
+            console.log('📦 Using preset deck:', presets[this.selectedDeck].name, 'with', Object.keys(deck).length, 'card types');
             return deck;
         }
         
+        console.warn('⚠️ No deck found for selectedDeck:', this.selectedDeck);
         return null;
     }
     

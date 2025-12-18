@@ -309,10 +309,14 @@ function createDeck() {
 
 function createDeckFromSelection(deckData) {
     if (!deckData || Object.keys(deckData).length === 0) {
+        console.log('⚠️ No deck data provided, creating random deck');
         return createDeck();
     }
     
     const deck = [];
+    const missingCards = [];
+    
+    console.log(`📦 Creating deck from selection with ${Object.keys(deckData).length} card types`);
     
     Object.entries(deckData).forEach(([cardId, count]) => {
         const cardData = CARD_DATABASE.find(c => c.cardId === cardId);
@@ -323,8 +327,19 @@ function createDeckFromSelection(deckData) {
                     uniqueId: uuidv4()
                 });
             }
+        } else {
+            if (count > 0) {
+                missingCards.push(cardId);
+                console.warn(`⚠️ Card not found in database: ${cardId} (count: ${count})`);
+            }
         }
     });
+    
+    if (missingCards.length > 0) {
+        console.warn(`⚠️ Missing ${missingCards.length} cards from database:`, missingCards);
+    }
+    
+    console.log(`📦 Created ${deck.length} cards from selection`);
     
     while (deck.length < 40) {
         const randomCard = CARD_DATABASE[Math.floor(Math.random() * CARD_DATABASE.length)];
@@ -334,6 +349,7 @@ function createDeckFromSelection(deckData) {
         });
     }
     
+    console.log(`📦 Final deck size: ${deck.length} cards`);
     return shuffleArray(deck);
 }
 
@@ -573,13 +589,26 @@ io.on('connection', (socket) => {
     // Set player deck
     socket.on('setDeck', (data) => {
         const playerInfo = playerSockets.get(socket.id);
-        if (!playerInfo) return;
+        if (!playerInfo) {
+            console.warn('⚠️ setDeck: No player info found');
+            return;
+        }
         
         const room = rooms.get(playerInfo.roomId);
-        if (!room) return;
+        if (!room) {
+            console.warn('⚠️ setDeck: No room found');
+            return;
+        }
+        
+        console.log(`📥 Player ${playerInfo.playerNumber} set deck in room ${room.roomId}`);
+        console.log(`📥 Deck data:`, data.deck);
+        console.log(`📥 Deck keys count:`, data.deck ? Object.keys(data.deck).length : 0);
         
         room.setPlayerDeck(playerInfo.playerNumber, data.deck);
-        console.log(`Player ${playerInfo.playerNumber} set deck in room ${room.roomId}`);
+        console.log(`✅ Player ${playerInfo.playerNumber} deck saved. Room decks:`, {
+            p1: room.playerDecks[1] ? Object.keys(room.playerDecks[1]).length + ' cards' : 'null',
+            p2: room.playerDecks[2] ? Object.keys(room.playerDecks[2]).length + ' cards' : 'null'
+        });
     });
 
     // Start game
@@ -597,8 +626,13 @@ io.on('connection', (socket) => {
         room.gameState = createInitialGameState();
         
         // Create decks from player's selection
+        console.log(`🎮 Creating deck for Player 1:`, room.playerDecks[1]);
         room.gameState.decks[1] = createDeckFromSelection(room.playerDecks[1]);
+        console.log(`🎮 Player 1 deck size: ${room.gameState.decks[1].length}`);
+        
+        console.log(`🎮 Creating deck for Player 2:`, room.playerDecks[2]);
         room.gameState.decks[2] = createDeckFromSelection(room.playerDecks[2]);
+        console.log(`🎮 Player 2 deck size: ${room.gameState.decks[2].length}`);
         
         // Draw initial hands
         room.gameState.hands[1] = drawCards(room.gameState.decks[1], 6);
