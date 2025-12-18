@@ -154,7 +154,7 @@ app.get('/', (req, res) => {
 // ============================================
 const CARD_DATABASE = [
     // KARASUNO - NHÂN VẬT
-    { id: 1, name: "Hinata Shoyo", cardId: "hinata-shouyo-1", school: "Karasuno", type: "character", serve: 2, receive: 0, toss: 0, attack: "3+", attackBase: 3, block: 2, artwork: "Card/Karasuno/Nhan vat/hinata-shouyo-1.png" },
+    { id: 1, name: "Hinata Shoyo", cardId: "hinata-shouyo-1", school: "Karasuno", type: "character", serve: 2, receive: 0, toss: 0, attack: 3, block: 2, artwork: "Card/Karasuno/Nhan vat/hinata-shouyo-1.png" },
     { id: 21, name: "Hinata Shoyo", cardId: "hinata-shouyo-2", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, artwork: "Card/Karasuno/Nhan vat/hinata-shouyo-2.png" },
     { id: 22, name: "Kageyama Tobio", cardId: "kageyama-tobio-1", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 1, attack: 3, block: 0, artwork: "Card/Karasuno/Nhan vat/kageyama-tobio-1.png" },
     { id: 23, name: "Kageyama Tobio", cardId: "kageyama-tobio-2", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 1, attack: 2, block: 2, artwork: "Card/Karasuno/Nhan vat/kageyama-tobio-2.png" },
@@ -166,10 +166,17 @@ const CARD_DATABASE = [
     { id: 29, name: "Yamaguchi Tadashi", cardId: "yamaguchi-tadashi-1", school: "Karasuno", type: "character", serve: 3, receive: 4, toss: 0, attack: 0, block: 0, artwork: "Card/Karasuno/Nhan vat/yamaguchi-tadashi-1.png" },
     { id: 30, name: "Nishinoya Yu", cardId: "nishinoya-yu-1", school: "Karasuno", type: "character", serve: 0, receive: 4, toss: 0, attack: 0, block: 0, isLibero: true, artwork: "Card/Karasuno/Nhan vat/nishinoya-yu-1.png" },
     { id: 31, name: "Nishinoya Yu", cardId: "nishinoya-yu-2", school: "Karasuno", type: "character", serve: 0, receive: 6, toss: 0, attack: 0, block: 0, isLibero: true, artwork: "Card/Karasuno/Nhan vat/nishinoya-yu-2.png" },
-    { id: 32, name: "Azumane Asahi", cardId: "azumane-asahi-1", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: "3+", blockBase: 3, artwork: "Card/Karasuno/Nhan vat/azumane-asahi-1.png" },
+    { id: 32, name: "Azumane Asahi", cardId: "azumane-asahi-1", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, artwork: "Card/Karasuno/Nhan vat/azumane-asahi-1.png" },
     // SHIRATORIZAWA - NHÂN VẬT
-    { id: 33, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-1", school: "Shiratorizawa", type: "character", serve: 3, receive: 0, toss: 0, attack: "3+", attackBase: 3, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-1.png" },
+    { id: 33, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-1", school: "Shiratorizawa", type: "character", serve: 3, receive: 0, toss: 0, attack: 3, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-1.png" },
     { id: 34, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-2", school: "Shiratorizawa", type: "character", serve: 4, receive: 0, toss: 0, attack: 3, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-2.png" },
+    { id: 35, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-3", school: "Shiratorizawa", type: "character", serve: 2, receive: 3, toss: 0, attack: 3, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-3.png" },
+    { id: 36, name: "Tendo Satori", cardId: "tendo-satori-1", school: "Shiratorizawa", type: "character", serve: 1, receive: 0, toss: 0, attack: 1, block: 4, artwork: "Card/Shiratorizawa/Nhan vat/tendo-satori-1.png" },
+    { id: 37, name: "Tendo Satori", cardId: "tendo-satori-2", school: "Shiratorizawa", type: "character", serve: 2, receive: 0, toss: 0, attack: 3, block: 2, artwork: "Card/Shiratorizawa/Nhan vat/tendo-satori-2.png" },
+    { id: 38, name: "Tendo Satori", cardId: "tendo-satori-3", school: "Shiratorizawa", type: "character", serve: 3, receive: 1, toss: 0, attack: 3, block: 4, artwork: "Card/Shiratorizawa/Nhan vat/tendo-satori-3.png" },
+    { id: 39, name: "Goshiki Tsutomu", cardId: "goshiki-tsutomu-1", school: "Shiratorizawa", type: "character", serve: 2, receive: 2, toss: 0, attack: 3, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-1.png" },
+    { id: 40, name: "Goshiki Tsutomu", cardId: "goshiki-tsutomu-2", school: "Shiratorizawa", type: "character", serve: 4, receive: 1, toss: 0, attack: 3, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-2.png" },
+    { id: 41, name: "Goshiki Tsutomu", cardId: "goshiki-tsutomu-3", school: "Shiratorizawa", type: "character", serve: 3, receive: 4, toss: 0, attack: 3, block: 2, artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-3.png" },
     // SHIRATORIZAWA - HÀNH ĐỘNG
     { id: 100, name: "Chuyền hết bóng cho anh.", cardId: "chuyen-het-bong-cho-anh", school: "Shiratorizawa", type: "action", phases: ["toss", "attack"], spiritCost: 3, serve: 0, receive: 0, toss: 0, attack: 0, block: 0, artwork: "Card/Shiratorizawa/Hanh dong/chuyen-het-bong-cho-anh.png" }
 ];
