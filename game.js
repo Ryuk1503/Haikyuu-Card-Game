@@ -2301,17 +2301,29 @@ class HaikyuuCardGame {
     updateZoneDimming() {
         const phase = this.state.phase;
         const currentPlayer = this.state.currentPlayer;
+        const servingPlayer = this.state.servingPlayer;
         
-        // Define which zones are active for each phase
-        const activeZones = {
-            [GamePhase.SERVE]: { zone: 'serve', player: this.state.servingPlayer },
-            [GamePhase.RECEIVE]: { zone: 'receive', player: currentPlayer },
-            [GamePhase.TOSS]: { zone: 'toss', player: currentPlayer },
-            [GamePhase.ATTACK]: { zone: 'attack', player: currentPlayer },
-            [GamePhase.BLOCK]: { zone: 'block', player: currentPlayer }
-        };
+        // Determine which player's zone should be highlighted for each phase
+        // Phase cycle: SERVE A → RECEIVE B → TOSS B → ATTACK B → BLOCK A → RECEIVE A → TOSS A → ATTACK A → BLOCK B
+        let activePlayer = null;
+        let activeZone = null;
         
-        const activeConfig = activeZones[phase];
+        if (phase === GamePhase.SERVE) {
+            activePlayer = servingPlayer;
+            activeZone = 'serve';
+        } else if (phase === GamePhase.RECEIVE) {
+            activePlayer = currentPlayer;
+            activeZone = 'receive';
+        } else if (phase === GamePhase.TOSS) {
+            activePlayer = currentPlayer;
+            activeZone = 'toss';
+        } else if (phase === GamePhase.ATTACK) {
+            activePlayer = currentPlayer;
+            activeZone = 'attack';
+        } else if (phase === GamePhase.BLOCK) {
+            activePlayer = currentPlayer; // currentPlayer is the blocking player
+            activeZone = 'block';
+        }
         
         // Get all zone elements
         document.querySelectorAll('.zone').forEach(zoneEl => {
@@ -2319,31 +2331,47 @@ class HaikyuuCardGame {
             const zonePlayer = parseInt(zoneEl.dataset.player);
             
             // Skip if no phase config or during waiting
-            if (!activeConfig || phase === GamePhase.WAITING || phase === GamePhase.GAME_END) {
+            if (!activePlayer || !activeZone || phase === GamePhase.WAITING || phase === GamePhase.GAME_END) {
                 zoneEl.classList.remove('zone-dimmed');
                 return;
             }
             
             // Check if this zone should be active
-            const isActiveZone = zoneType === activeConfig.zone && zonePlayer === activeConfig.player;
+            const isActiveZone = zoneType === activeZone && zonePlayer === activePlayer;
             
             if (isActiveZone) {
                 zoneEl.classList.remove('zone-dimmed');
-        } else {
+            } else {
                 zoneEl.classList.add('zone-dimmed');
             }
         });
         
-        // Handle block zone specially (it's shared)
+        // Handle block zone specially (it's shared, but we highlight based on activePlayer)
         const blockZone = document.getElementById('p1-block-zone');
         if (blockZone) {
-            if (phase === GamePhase.BLOCK && currentPlayer) {
-                // Only highlight if it's the blocking player's turn
+            if (phase === GamePhase.BLOCK && activePlayer === 1) {
                 blockZone.classList.remove('zone-dimmed');
+            } else if (phase === GamePhase.BLOCK && activePlayer === 2) {
+                // Player 2's block zone (p2-block-zone)
+                blockZone.classList.add('zone-dimmed');
             } else if (phase !== GamePhase.WAITING && phase !== GamePhase.GAME_END) {
                 blockZone.classList.add('zone-dimmed');
-        } else {
+            } else {
                 blockZone.classList.remove('zone-dimmed');
+            }
+        }
+        
+        // Also handle p2-block-zone if it exists
+        const blockZone2 = document.getElementById('p2-block-zone');
+        if (blockZone2) {
+            if (phase === GamePhase.BLOCK && activePlayer === 2) {
+                blockZone2.classList.remove('zone-dimmed');
+            } else if (phase === GamePhase.BLOCK && activePlayer === 1) {
+                blockZone2.classList.add('zone-dimmed');
+            } else if (phase !== GamePhase.WAITING && phase !== GamePhase.GAME_END) {
+                blockZone2.classList.add('zone-dimmed');
+            } else {
+                blockZone2.classList.remove('zone-dimmed');
             }
         }
     }

@@ -1084,8 +1084,8 @@ class OnlineGameManager {
     }
     
     hideDeckCardPreview() {
-        // Optional: clear preview when leaving deck builder cards
-        // Or keep last card preview visible
+        // Keep preview visible - don't clear it
+        // This allows users to see the last hovered card
     }
     
     changeCardCount(cardId, delta) {
