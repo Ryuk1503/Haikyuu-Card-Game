@@ -1072,14 +1072,21 @@ class HaikyuuCardGame {
                     
                     const cardUniqueId = e.dataTransfer.getData('card-id');
                     const sourcePlayer = parseInt(e.dataTransfer.getData('card-player'));
+                    const sourceType = e.dataTransfer.getData('card-source') || 'unknown';
                     
                     if (!cardUniqueId) return;
                     
                     const card = this.findCardByUniqueId(cardUniqueId, sourcePlayer);
                     if (!card) return;
                     
+                    // Determine source location
+                    const sourceInfo = { source: sourceType, player: sourcePlayer };
+                    if (sourceType === 'zone') {
+                        sourceInfo.zone = e.dataTransfer.getData('card-zone');
+                    }
+                    
                     this.removeCardFromSource(card, sourcePlayer, 'any');
-                    this.placeCardAtTarget(card, player, 'discard', null);
+                    this.placeCardAtTarget(card, player, 'discard', null, sourceInfo);
                     
                     if (this.isOnline && this.onlineManager) {
                         this.onlineManager.socket.emit('moveCard', {
