@@ -1,14 +1,18 @@
 {
     "id": "HV10-ACTION-006",
     "name": "\"1 điểm bằng 100 điểm\" phải hôn!?",
-    "nameJP": "\"1点は100点\"だろ!?",
     "rarity": "R",
-    "type": "action",
-    "phases": ["receive", "toss", "attack", "block"],
-    "spiritCost": 2,
+    "stats": {
+        "serve": 0,
+        "receive": 0,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
     "skill": {
         "description": "[Đỡ][Chuyền][Đập][Chặn] [2 Ý chí] +1 điểm bất kì cho 1 nhân vật trường Karasuno trên sân mình. Sau đó, có thể sử dụng 2 Ý Chí của 1 nhân vật trường Karasuno khác để thu hồi lên tay 1 thẻ nhân vật từ khu vực Loại Bỏ."
     },
+    "school": "Karasuno",
     "artwork": "Card/Karasuno/Hanh dong/1-diem-bang-100-diem-phai-hon.png"
 }
 

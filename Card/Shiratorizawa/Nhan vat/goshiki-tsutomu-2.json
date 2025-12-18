@@ -1,9 +1,7 @@
 {
     "id": "HV10-047",
     "name": "Goshiki Tsutomu",
-    "nameJP": "五色工",
     "rarity": "R",
-    "school": "Shiratorizawa",
     "stats": {
         "serve": 4,
         "receive": 1,
@@ -14,6 +12,7 @@
     "skill": {
         "description": "Khi thẻ này xuất hiện ở khu vực Giao Bóng, có thể bỏ 1 thẻ trên tay để đặt 2 thẻ trên cùng bộ bài đối phương vào Drop."
     },
+    "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-2.png"
 }
 

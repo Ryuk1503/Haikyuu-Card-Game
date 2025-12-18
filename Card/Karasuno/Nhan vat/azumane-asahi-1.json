@@ -1,7 +1,6 @@
 {
     "id": "HV10-012",
     "name": "Azumane Asahi",
-    "nameJP": "東峰旭",
     "rarity": "R",
     "stats": {
         "serve": 1,
@@ -12,23 +11,8 @@
         "blockBase": 3
     },
     "skill": {
-        "cost": 0,
-        "costType": "none",
-        "trigger": "onPlay",
-        "zone": "block",
-        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có 2+ nhân vật Chặn Bóng (kể cả nhân vật này), tự +2 điểm Chặn.",
-        "effects": [
-            {
-                "type": "conditionalBoost",
-                "condition": "blockCardCount >= 2",
-                "target": "self",
-                "stat": "block",
-                "value": 2
-            }
-        ]
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có 2+ nhân vật Chặn Bóng (kể cả nhân vật này), tự +2 điểm Chặn."
     },
     "school": "Karasuno",
-    "position": "Wing Spiker",
-    "year": 3,
     "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-1.png"
 }

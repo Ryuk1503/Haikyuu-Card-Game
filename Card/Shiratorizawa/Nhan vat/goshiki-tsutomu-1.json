@@ -1,9 +1,7 @@
 {
     "id": "HV10-046",
     "name": "Goshiki Tsutomu",
-    "nameJP": "五色工",
     "rarity": "R",
-    "school": "Shiratorizawa",
     "stats": {
         "serve": 2,
         "receive": 2,
@@ -14,6 +12,7 @@
     "skill": {
         "description": "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập. Nếu trên sân mình có nhân vật \"Ushijima Wakatoshi\", có thể loại bỏ 1 Ý Chí của 1 nhân vật trên sân đối phương."
     },
+    "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-1.png"
 }
 

@@ -1,9 +1,7 @@
 {
     "id": "HV10-030",
     "name": "Tsukishima Kei",
-    "nameJP": "月島蛍",
     "rarity": "R",
-    "school": "Karasuno",
     "stats": {
         "serve": 1,
         "receive": 2,
@@ -12,24 +10,8 @@
         "block": 3
     },
     "skill": {
-        "cost": 3,
-        "costType": "spirit",
-        "trigger": "onPlay",
-        "zone": "block",
-        "type": "blockBoost",
-        "description": "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có thẻ với 3+ Ý Chí, tự +1 điểm Chặn. Ở lượt tiếp theo của đối phương, nhân vật Đỡ Bóng mà đối phương triển khai bị -6 điểm Đỡ.",
-        "effects": [
-            {
-                "type": "conditionalBlockBoost",
-                "condition": "anySpiritZone >= 3",
-                "blockBonus": 1
-            },
-            {
-                "type": "debuffOpponentReceive",
-                "receiveDebuff": 6
-            }
-        ]
+        "description": "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có thẻ với 3+ Ý Chí, tự +1 điểm Chặn. Ở lượt tiếp theo của đối phương, nhân vật Đỡ Bóng mà đối phương triển khai bị -6 điểm Đỡ."
     },
-    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-1.png",
-    "flavor": "Chặn bóng là nghệ thuật đọc vị đối thủ."
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-1.png"
 }

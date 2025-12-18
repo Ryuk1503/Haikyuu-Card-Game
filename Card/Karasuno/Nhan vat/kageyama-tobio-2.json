@@ -1,9 +1,7 @@
 {
     "id": "HV10-023",
     "name": "Kageyama Tobio",
-    "nameJP": "影山飛雄",
     "rarity": "C",
-    "school": "Karasuno",
     "stats": {
         "serve": 1,
         "receive": 0,
@@ -12,28 +10,8 @@
         "block": 2
     },
     "skill": {
-        "cost": 0,
-        "costType": "discard",
-        "trigger": "onPlay",
-        "zone": "toss",
-        "type": "dump",
-        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ trên tay để thực hiện Bỏ nhỏ. (Kết thúc lượt mà không cần triển khai nhân vật Đập bóng. Ở lượt tiếp theo, đối phương không thể Chặn Bóng và chỉ Đỡ Bóng thành công với điểm Đỡ từ 2 trở lên).",
-        "effects": [
-            {
-                "type": "dump",
-                "cost": {
-                    "type": "discard",
-                    "count": 1,
-                    "from": "hand"
-                },
-                "skipPhase": "attack",
-                "opponentRestrictions": {
-                    "cannotBlock": true,
-                    "minReceive": 2
-                }
-            }
-        ]
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ trên tay để thực hiện Bỏ nhỏ. (Kết thúc lượt mà không cần triển khai nhân vật Đập bóng. Ở lượt tiếp theo, đối phương không thể Chặn Bóng và chỉ Đỡ Bóng thành công với điểm Đỡ từ 2 trở lên)."
     },
-    "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-2.png",
-    "flavorText": "Bọn họ đã trúng quả lừa!"
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-2.png"
 }

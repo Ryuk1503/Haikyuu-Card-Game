@@ -1,14 +1,18 @@
 {
     "id": "HV10-ACTION-004",
     "name": "Phòng thủ tuyệt đối!!",
-    "nameJP": "絶対防御!!",
     "rarity": "R",
-    "type": "action",
-    "phases": ["receive", "block"],
-    "spiritCost": 0,
+    "stats": {
+        "serve": 0,
+        "receive": 0,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
     "skill": {
         "description": "[Đỡ][Chặn] +2 điểm Đỡ hoặc Chặn cho 1 nhân vật trường Karasuno trên sân mình. Nếu nhân vật đó là nhân vật Chặn Bóng, rút 2 thẻ từ bộ bài. Sau đó, trong lượt này không được phép sử dụng thẻ \"Phòng thủ tuyệt đối!!\" nữa."
     },
+    "school": "Karasuno",
     "artwork": "Card/Karasuno/Hanh dong/phong-thu-tuyet-doi.png"
 }
 

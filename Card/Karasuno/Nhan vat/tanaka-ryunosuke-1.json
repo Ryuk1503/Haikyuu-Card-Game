@@ -1,15 +1,17 @@
 {
-  "id": 26,
-  "name": "Tanaka Ryunosuke",
-  "cardId": "tanaka-ryunosuke-1",
-  "school": "Karasuno",
-  "serve": 1,
-  "receive": 3,
-  "toss": 0,
-  "attack": 3,
-  "block": 1,
-  "skillType": "onPlay",
-  "skillZone": "attack",
-  "skill": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, ở lượt tiếp theo của đối phương, mỗi nhân vật Chặn Bóng mà đối phương triển khai đều bị -2 điểm Chặn.",
-  "artwork": "Card/Karasuno/Nhan vat/tanaka-ryunosuke-1.png"
+    "id": "HV10-026",
+    "name": "Tanaka Ryunosuke",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 3,
+        "toss": 0,
+        "attack": 3,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, ở lượt tiếp theo của đối phương, mỗi nhân vật Chặn Bóng mà đối phương triển khai đều bị -2 điểm Chặn."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/tanaka-ryunosuke-1.png"
 }

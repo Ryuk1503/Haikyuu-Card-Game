@@ -1035,6 +1035,7 @@ class OnlineGameManager {
             attack: card.attack || 0,
             block: card.block || 0
         };
+        // Get skill description from JSON (structure: skill.description)
         const displaySkill = jsonData?.skill?.description || card.skill || '';
         
         // Convert JSON path to PNG - replace .json with .png

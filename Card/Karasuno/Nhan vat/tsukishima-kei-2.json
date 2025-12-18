@@ -1,9 +1,7 @@
 {
     "id": "HV10-031",
     "name": "Tsukishima Kei",
-    "nameJP": "月島蛍",
     "rarity": "C",
-    "school": "Karasuno",
     "stats": {
         "serve": 1,
         "receive": 0,
@@ -12,21 +10,8 @@
         "block": 3
     },
     "skill": {
-        "cost": 0,
-        "costType": "discard",
-        "trigger": "onPlay",
-        "zone": "block",
-        "type": "recycleBlock",
-        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng từ trên tay, có thể đặt thẻ này vào khu vực Ý Chí của nhân vật Đỡ Bóng để đưa 1 thẻ \"Tsukishima Kei\" từ khu vực Drop trở lại khu vực Chặn Bóng, +1 điểm Chặn cho nhân vật đó.",
-        "effects": [
-            {
-                "type": "recycleTsukishima",
-                "from": "discard",
-                "to": "block",
-                "blockBonus": 1
-            }
-        ]
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng từ trên tay, có thể đặt thẻ này vào khu vực Ý Chí của nhân vật Đỡ Bóng để đưa 1 thẻ \"Tsukishima Kei\" từ khu vực Drop trở lại khu vực Chặn Bóng, +1 điểm Chặn cho nhân vật đó."
     },
-    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-2.png",
-    "flavor": "Lạnh lùng nhưng đáng tin cậy."
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-2.png"
 }

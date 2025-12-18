@@ -1,20 +1,17 @@
 {
-    "id": 31,
+    "id": "HV10-031",
     "name": "Nishinoya Yu",
-    "cardId": "nishinoya-yu-2",
-    "school": "Karasuno",
-    "position": "Libero",
-    "serve": 0,
-    "receive": 6,
-    "toss": 0,
-    "attack": 0,
-    "block": 0,
-    "isLibero": true,
-    "skillType": "onPlay",
-    "skillZone": "receive",
-    "skillCost": 2,
-    "skill": "[2 Ý chí] Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu Ý Chí của nhân vật này không có 2+ thẻ 'Nishinoya Yu', tự -3 điểm Đỡ.",
-    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-2.png",
     "rarity": "SR",
-    "set": "HV10"
+    "stats": {
+        "serve": 0,
+        "receive": 6,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "[2 Ý chí] Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu Ý Chí của nhân vật này không có 2+ thẻ 'Nishinoya Yu', tự -3 điểm Đỡ."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-2.png"
 }
