@@ -886,73 +886,10 @@ class HaikyuuCardGame {
         // Setup drag-drop for zones
         this.setupZoneDragDrop();
         
-        // Setup drag-drop for action areas
-        this.setupActionAreaDragDrop();
+        // Action area drag-drop removed - use context menu instead
     }
     
-    setupActionAreaDragDrop() {
-        // Ensure actionAreaEls exists
-        if (!this.actionAreaEls) {
-            this.actionAreaEls = {
-                1: document.getElementById('p1-action-cards'),
-                2: document.getElementById('p2-action-cards')
-            };
-        }
-        
-        [1, 2].forEach(player => {
-            const actionEl = this.actionAreaEls[player];
-            if (!actionEl) {
-                console.warn(`⚠️ Action area element not found for player ${player}`);
-                return;
-            }
-            
-            actionEl.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                actionEl.classList.add('drag-over');
-            });
-            
-            actionEl.addEventListener('dragleave', (e) => {
-                actionEl.classList.remove('drag-over');
-            });
-            
-            actionEl.addEventListener('drop', (e) => {
-                e.preventDefault();
-                actionEl.classList.remove('drag-over');
-                
-                const cardUniqueId = e.dataTransfer.getData('card-id');
-                const sourcePlayer = parseInt(e.dataTransfer.getData('card-player'));
-                const sourceType = e.dataTransfer.getData('card-source') || 'unknown';
-                
-                if (!cardUniqueId) return;
-                
-                const card = this.findCardByUniqueId(cardUniqueId, sourcePlayer);
-                if (!card) return;
-                
-                // Only allow action cards in action area
-                if (card.type !== 'action') return;
-                
-                // Determine source location
-                const sourceInfo = { source: sourceType, player: sourcePlayer };
-                if (sourceType === 'zone') {
-                    sourceInfo.zone = e.dataTransfer.getData('card-zone');
-                }
-                
-                this.removeCardFromSource(card, sourcePlayer, 'any');
-                this.placeCardAtTarget(card, player, 'action', null, sourceInfo);
-                
-                if (this.isOnline && this.onlineManager) {
-                    this.onlineManager.socket.emit('moveCard', {
-                        cardUniqueId: card.uniqueId,
-                        player: String(player),
-                        targetType: 'action',
-                        targetZone: null
-                    });
-                }
-                
-                this.updateUI();
-            });
-        });
-    }
+    // Action area drag-drop removed - use context menu "to-action" option instead
     
     setupZoneDragDrop() {
         // Make all zones droppable
@@ -1384,6 +1321,16 @@ class HaikyuuCardGame {
             this.contextMenuTitle.textContent = card.name;
         }
         
+        // Show/hide "to-action" option based on card type
+        const toActionOption = document.getElementById('context-to-action');
+        if (toActionOption) {
+            if (card.type === 'action') {
+                toActionOption.style.display = 'block';
+            } else {
+                toActionOption.style.display = 'none';
+            }
+        }
+        
         // Show menu first to get dimensions
         this.contextMenu.classList.remove('hidden');
         this.contextMenu.style.left = '-9999px';
@@ -1519,6 +1466,9 @@ class HaikyuuCardGame {
             case 'to-block':
                 targetZone = 'block';
                 targetType = 'zone';
+                break;
+            case 'to-action':
+                targetType = 'action';
                 break;
         }
         
@@ -2325,6 +2275,9 @@ class HaikyuuCardGame {
             activeZone = 'block';
         }
         
+        // Debug logging
+        console.log(`[Zone Highlight] Phase: ${phase}, CurrentPlayer: ${currentPlayer}, ServingPlayer: ${servingPlayer}, ActivePlayer: ${activePlayer}, ActiveZone: ${activeZone}`);
+        
         // Get all zone elements
         document.querySelectorAll('.zone').forEach(zoneEl => {
             const zoneType = zoneEl.dataset.zone;
@@ -2352,7 +2305,6 @@ class HaikyuuCardGame {
             if (phase === GamePhase.BLOCK && activePlayer === 1) {
                 blockZone.classList.remove('zone-dimmed');
             } else if (phase === GamePhase.BLOCK && activePlayer === 2) {
-                // Player 2's block zone (p2-block-zone)
                 blockZone.classList.add('zone-dimmed');
             } else if (phase !== GamePhase.WAITING && phase !== GamePhase.GAME_END) {
                 blockZone.classList.add('zone-dimmed');
