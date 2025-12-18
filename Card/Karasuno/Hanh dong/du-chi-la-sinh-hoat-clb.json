@@ -1,18 +1,14 @@
 {
     "id": "HV10-ACTION-005",
     "name": "Dù chỉ là sinh hoạt CLB…",
+    "nameJP": "部活だけど…",
     "rarity": "R",
-    "stats": {
-        "serve": 0,
-        "receive": 0,
-        "toss": 0,
-        "attack": 0,
-        "block": 0
-    },
+    "type": "action",
+    "phases": ["block"],
+    "spiritCost": 3,
     "skill": {
         "description": "[Chặn] [3 Ý chí] +2 điểm Chặn cho 1 nhân vật \"Tsukishima Kei\" trên sân mình. Nếu trên sân mình có nhân vật Đỡ Bóng trường Karasuno với 3 Ý Chí trở lên, ở lượt tiếp theo của đối phương, đối phương chỉ Đỡ Bóng thành công với điểm Đỡ từ 8 trở lên."
     },
-    "school": "Karasuno",
     "artwork": "Card/Karasuno/Hanh dong/du-chi-la-sinh-hoat-clb.png"
 }
 

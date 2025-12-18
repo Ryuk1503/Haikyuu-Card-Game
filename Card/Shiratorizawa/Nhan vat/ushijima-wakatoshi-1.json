@@ -1,7 +1,9 @@
 {
     "id": "HV10-040",
     "name": "Ushijima Wakatoshi",
+    "nameJP": "牛島若利",
     "rarity": "RR",
+    "school": "Shiratorizawa",
     "stats": {
         "serve": 3,
         "receive": 0,
@@ -10,8 +12,22 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này và khu vực Hành Động có thẻ \"Chuyền hết bóng cho anh.\", tự +3 điểm Đập."
+        "cost": 0,
+        "costType": "none",
+        "trigger": "onPlay",
+        "zone": "attack",
+        "type": "attackBoost",
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này và khu vực Hành Động có thẻ \"Chuyền hết bóng cho anh.\", tự +3 điểm Đập.",
+        "effects": [
+            {
+                "type": "conditionalAttackBoost",
+                "spiritRequired": 3,
+                "zone": "attack",
+                "actionCardRequired": "Chuyền hết bóng cho anh.",
+                "attackBonus": 3
+            }
+        ]
     },
-    "school": "Shiratorizawa",
-    "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-1.png"
+    "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-1.png",
+    "flavor": "Sức mạnh tuyệt đối của Shiratorizawa."
 }

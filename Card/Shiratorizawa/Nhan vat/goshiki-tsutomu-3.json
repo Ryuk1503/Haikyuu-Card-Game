@@ -1,7 +1,9 @@
 {
     "id": "HV10-048",
     "name": "Goshiki Tsutomu",
+    "nameJP": "五色工",
     "rarity": "R",
+    "school": "Shiratorizawa",
     "stats": {
         "serve": 3,
         "receive": 4,
@@ -9,10 +11,6 @@
         "attack": 3,
         "block": 2
     },
-    "skill": {
-        "description": ""
-    },
-    "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-3.png"
 }
 

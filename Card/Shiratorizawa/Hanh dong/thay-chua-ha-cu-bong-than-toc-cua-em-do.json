@@ -1,18 +1,14 @@
 {
     "id": "HV10-ACTION-009",
     "name": "Thấy chưa hả? Cú bóng thần tốc của em đó!",
+    "nameJP": "見たか？俺の超速スパイクだ！",
     "rarity": "R",
-    "stats": {
-        "serve": 0,
-        "receive": 0,
-        "toss": 0,
-        "attack": 0,
-        "block": 0
-    },
+    "type": "action",
+    "phases": ["attack"],
+    "spiritCost": 0,
     "skill": {
         "description": "[Đập] +1 điểm Đập cho 1 nhân vật trên sân mình. Sau đó, nếu nhân vật đó là \"Goshiki Tsutomu\", ở lượt tiếp theo của đối phương, đối phương không được đưa ra nhân vật Chặn Bóng."
     },
-    "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Hanh dong/thay-chua-ha-cu-bong-than-toc-cua-em-do.png"
 }
 

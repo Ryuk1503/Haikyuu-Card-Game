@@ -1994,6 +1994,7 @@ class HaikyuuCardGame {
         
         // Use JSON data if available, otherwise fallback to card data
         const displayName = jsonData?.name || card.name;
+        // Get stats from JSON (standardized structure)
         const displayStats = jsonData?.stats || {
             serve: card.serve || 0,
             receive: card.receive || 0,
@@ -2001,7 +2002,7 @@ class HaikyuuCardGame {
             attack: card.attack || 0,
             block: card.block || 0
         };
-        // Get skill description from JSON (structure: skill.description)
+        // Get skill description from JSON (standardized structure: skill.description)
         const displaySkill = jsonData?.skill?.description || card.skill || '';
         // Convert JSON path to PNG - replace .json with .png
         let artworkPath = jsonData?.artwork || card.artwork;
@@ -2039,8 +2040,8 @@ class HaikyuuCardGame {
             }
         }
         
-        // Use stats from JSON (not modified stats) - preview only shows original stats
-        const stats = displayStats;
+        // Get current stats (with modifications)
+        const stats = this.getCardStats(card);
         
         if (previewStats) {
             previewStats.innerHTML = `
@@ -2051,7 +2052,28 @@ class HaikyuuCardGame {
                 <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${stats.block}</span></div>
             `;
             
-            // No click handlers - preview only shows stats from JSON
+            // Add click handlers for stat modification (only if not in deck builder)
+            const deckBuilderModal = document.getElementById('deck-builder-modal');
+            const isDeckBuilderOpen = deckBuilderModal && deckBuilderModal.classList.contains('show');
+            
+            if (!isDeckBuilderOpen) {
+                previewStats.querySelectorAll('.stat-value').forEach(statEl => {
+                    const statName = statEl.dataset.stat;
+                    
+                    // Left click to increase
+                    statEl.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.modifyCardStat(card, statName, 1);
+                    });
+                    
+                    // Right click to decrease
+                    statEl.addEventListener('contextmenu', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.modifyCardStat(card, statName, -1);
+            });
+        });
+            }
         }
     }
     
@@ -2255,8 +2277,7 @@ class HaikyuuCardGame {
             activeZone = 'block';
         }
         
-        // Debug logging
-        console.log(`[Zone Highlight] Phase: ${phase}, CurrentPlayer: ${currentPlayer}, ServingPlayer: ${servingPlayer}, ActivePlayer: ${activePlayer}, ActiveZone: ${activeZone}`);
+        // Debug logging removed - zone highlighting working correctly
         
         // Get all zone elements
         document.querySelectorAll('.zone').forEach(zoneEl => {

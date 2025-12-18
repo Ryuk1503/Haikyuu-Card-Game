@@ -1,7 +1,9 @@
 {
     "id": "HV10-055",
     "name": "Yamagata Hayato",
+    "nameJP": "山形隼人",
     "rarity": "R",
+    "school": "Shiratorizawa",
     "stats": {
         "serve": 0,
         "receive": 5,
@@ -9,10 +11,6 @@
         "attack": 0,
         "block": 0
     },
-    "skill": {
-        "description": ""
-    },
-    "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/yamagata-hayato.png"
 }
 

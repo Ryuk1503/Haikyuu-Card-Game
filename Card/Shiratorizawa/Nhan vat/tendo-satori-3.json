@@ -1,7 +1,9 @@
 {
     "id": "HV10-045",
     "name": "Tendo Satori",
+    "nameJP": "天童覚",
     "rarity": "R",
+    "school": "Shiratorizawa",
     "stats": {
         "serve": 3,
         "receive": 1,
@@ -9,10 +11,6 @@
         "attack": 3,
         "block": 4
     },
-    "skill": {
-        "description": ""
-    },
-    "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/tendo-satori-3.png"
 }
 

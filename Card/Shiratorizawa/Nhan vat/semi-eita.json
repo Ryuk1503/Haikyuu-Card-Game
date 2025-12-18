@@ -1,7 +1,9 @@
 {
     "id": "HV10-056",
     "name": "Semi Eita",
+    "nameJP": "瀬見英太",
     "rarity": "R",
+    "school": "Shiratorizawa",
     "stats": {
         "serve": 4,
         "receive": 2,
@@ -12,7 +14,6 @@
     "skill": {
         "description": "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có 3+ Ý Chí, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Shiratorizawa từ Drop."
     },
-    "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/semi-eita.png"
 }
 

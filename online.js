@@ -1028,6 +1028,7 @@ class OnlineGameManager {
         
         // Use JSON data if available, otherwise fallback to card data
         const displayName = jsonData?.name || card.name;
+        // Get stats from JSON (standardized structure)
         const displayStats = jsonData?.stats || {
             serve: card.serve || 0,
             receive: card.receive || 0,
@@ -1035,7 +1036,7 @@ class OnlineGameManager {
             attack: card.attack || 0,
             block: card.block || 0
         };
-        // Get skill description from JSON (structure: skill.description)
+        // Get skill description from JSON (standardized structure: skill.description)
         const displaySkill = jsonData?.skill?.description || card.skill || '';
         
         // Convert JSON path to PNG - replace .json with .png
