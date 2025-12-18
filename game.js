@@ -461,6 +461,170 @@ class HaikyuuCardGame {
                 document.getElementById('discard-modal').classList.remove('show');
             });
         }
+        
+        // Setup drag-drop for zones
+        this.setupZoneDragDrop();
+    }
+    
+    setupZoneDragDrop() {
+        // Make all zones droppable
+        document.querySelectorAll('.zone').forEach(zoneEl => {
+            const player = parseInt(zoneEl.dataset.player);
+            const zone = zoneEl.dataset.zone;
+            
+            zoneEl.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zoneEl.classList.add('drag-over');
+            });
+            
+            zoneEl.addEventListener('dragleave', (e) => {
+                zoneEl.classList.remove('drag-over');
+            });
+            
+            zoneEl.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zoneEl.classList.remove('drag-over');
+                
+                const cardUniqueId = e.dataTransfer.getData('card-id');
+                const sourcePlayer = parseInt(e.dataTransfer.getData('card-player'));
+                
+                if (!cardUniqueId) return;
+                
+                // Find the card
+                const card = this.findCardByUniqueId(cardUniqueId, sourcePlayer);
+                if (!card) return;
+                
+                // Remove from source and place in zone
+                this.removeCardFromSource(card, sourcePlayer, 'any');
+                this.placeCardAtTarget(card, player, 'zone', zone);
+                
+                if (this.isOnline && this.onlineManager) {
+                    this.onlineManager.socket.emit('moveCard', {
+                        cardUniqueId: card.uniqueId,
+                        player: String(player),
+                        targetType: 'zone',
+                        targetZone: zone
+                    });
+                }
+                
+                this.updateUI();
+            });
+        });
+        
+        // Make block zone droppable
+        const blockZone = document.getElementById('p1-block-zone');
+        if (blockZone) {
+            blockZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                blockZone.classList.add('drag-over');
+            });
+            
+            blockZone.addEventListener('dragleave', (e) => {
+                blockZone.classList.remove('drag-over');
+            });
+            
+            blockZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                blockZone.classList.remove('drag-over');
+                
+                const cardUniqueId = e.dataTransfer.getData('card-id');
+                const sourcePlayer = parseInt(e.dataTransfer.getData('card-player'));
+                
+                if (!cardUniqueId) return;
+                
+                const card = this.findCardByUniqueId(cardUniqueId, sourcePlayer);
+                if (!card) return;
+                
+                this.removeCardFromSource(card, sourcePlayer, 'any');
+                this.placeCardAtTarget(card, sourcePlayer, 'zone', 'block');
+                
+                if (this.isOnline && this.onlineManager) {
+                    this.onlineManager.socket.emit('moveCard', {
+                        cardUniqueId: card.uniqueId,
+                        player: String(sourcePlayer),
+                        targetType: 'zone',
+                        targetZone: 'block'
+                    });
+                }
+                
+                this.updateUI();
+            });
+        }
+        
+        // Make discard piles droppable
+        [1, 2].forEach(player => {
+            const discardEl = this.discardEls[player];
+            if (discardEl) {
+                discardEl.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    discardEl.classList.add('drag-over');
+                });
+                
+                discardEl.addEventListener('dragleave', (e) => {
+                    discardEl.classList.remove('drag-over');
+                });
+                
+                discardEl.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    discardEl.classList.remove('drag-over');
+                    
+                    const cardUniqueId = e.dataTransfer.getData('card-id');
+                    const sourcePlayer = parseInt(e.dataTransfer.getData('card-player'));
+                    
+                    if (!cardUniqueId) return;
+                    
+                    const card = this.findCardByUniqueId(cardUniqueId, sourcePlayer);
+                    if (!card) return;
+                    
+                    this.removeCardFromSource(card, sourcePlayer, 'any');
+                    this.placeCardAtTarget(card, player, 'discard', null);
+                    
+                    if (this.isOnline && this.onlineManager) {
+                        this.onlineManager.socket.emit('moveCard', {
+                            cardUniqueId: card.uniqueId,
+                            player: String(player),
+                            targetType: 'discard',
+                            targetZone: null
+                        });
+                    }
+                    
+                    this.updateUI();
+                });
+            }
+        });
+    }
+    
+    findCardByUniqueId(uniqueId, player) {
+        // Search in hand
+        let card = this.state.hands[player]?.find(c => c.uniqueId === uniqueId);
+        if (card) return card;
+        
+        // Search in played zones
+        for (const zone of ['serve', 'receive', 'toss', 'attack']) {
+            if (this.state.playedCards[player]?.[zone]?.uniqueId === uniqueId) {
+                return this.state.playedCards[player][zone];
+            }
+        }
+        
+        // Search in block
+        card = this.state.playedCards[player]?.block?.find(c => c.uniqueId === uniqueId);
+        if (card) return card;
+        
+        // Search in spirit zones
+        for (const zone of ['serve', 'receive', 'toss', 'attack', 'block']) {
+            card = this.state.spiritCards[player]?.[zone]?.find(c => c.uniqueId === uniqueId);
+            if (card) return card;
+        }
+        
+        // Search in discards
+        card = this.state.discards[player]?.find(c => c.uniqueId === uniqueId);
+        if (card) return card;
+        
+        // Search in deck
+        card = this.state.decks[player]?.find?.(c => c.uniqueId === uniqueId);
+        if (card) return card;
+        
+        return null;
     }
 
     bindContextMenuEvents() {
@@ -468,8 +632,23 @@ class HaikyuuCardGame {
         
         this.contextMenu.querySelectorAll('.context-menu-item').forEach(item => {
             item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const action = e.target.closest('.context-menu-item').dataset.action;
+                // Skip parent menu items (has-submenu)
+                if (action && action !== 'spirit-parent') {
+                    this.handleContextMenuAction(action);
+                }
+            });
+        });
+        
+        // Handle submenu items
+        this.contextMenu.querySelectorAll('.context-submenu .context-menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const action = e.target.dataset.action;
-                this.handleContextMenuAction(action);
+                if (action) {
+                    this.handleContextMenuAction(action);
+                }
             });
         });
     }
@@ -668,18 +847,54 @@ class HaikyuuCardGame {
             this.contextMenuTitle.textContent = card.name;
         }
         
-        this.contextMenu.style.left = e.pageX + 'px';
-        this.contextMenu.style.top = e.pageY + 'px';
+        // Show menu first to get dimensions
         this.contextMenu.classList.remove('hidden');
+        this.contextMenu.style.left = '-9999px';
+        this.contextMenu.style.top = '-9999px';
         
-        // Adjust position if menu goes off screen
+        // Get menu dimensions
         const rect = this.contextMenu.getBoundingClientRect();
-        if (rect.right > window.innerWidth) {
-            this.contextMenu.style.left = (e.pageX - rect.width) + 'px';
+        const menuHeight = rect.height;
+        const menuWidth = rect.width;
+        
+        // Calculate available space
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+        const spaceBelow = viewportHeight - e.clientY;
+        const spaceAbove = e.clientY;
+        const spaceRight = viewportWidth - e.clientX;
+        
+        // Position horizontally
+        let left = e.pageX;
+        if (spaceRight < menuWidth) {
+            left = e.pageX - menuWidth;
         }
-        if (rect.bottom > window.innerHeight) {
-            this.contextMenu.style.top = (e.pageY - rect.height) + 'px';
+        
+        // Position vertically - prefer above if not enough space below
+        let top;
+        if (spaceBelow >= menuHeight) {
+            // Enough space below - show below cursor
+            top = e.pageY;
+        } else if (spaceAbove >= menuHeight) {
+            // Not enough below, but enough above - show above cursor
+            top = e.pageY - menuHeight;
+        } else {
+            // Not enough space either way - fit to viewport
+            top = Math.max(10, viewportHeight - menuHeight - 10);
         }
+        
+        this.contextMenu.style.left = Math.max(10, left) + 'px';
+        this.contextMenu.style.top = top + 'px';
+        
+        // Adjust submenu position based on available space
+        const submenus = this.contextMenu.querySelectorAll('.context-submenu');
+        submenus.forEach(submenu => {
+            if (spaceRight < menuWidth + 150) {
+                submenu.classList.add('submenu-left');
+            } else {
+                submenu.classList.remove('submenu-left');
+            }
+        });
     }
 
     hideContextMenu() {
@@ -1091,19 +1306,10 @@ class HaikyuuCardGame {
         
         if (showFront && !card.hidden && !card.cardBack) {
             const artworkUrl = card.artwork || '';
+            // Clean card display - no overlay
             cardEl.innerHTML = `
                 <div class="card-front">
-                    ${artworkUrl ? `<img class="card-artwork" src="${artworkUrl}" alt="${card.name}">` : ''}
-                    <div class="card-info-overlay">
-                        <div class="card-name">${card.name}</div>
-                        <div class="card-stats-mini">
-                            <span>G:${card.serve}</span>
-                            <span>Đ:${card.receive}</span>
-                            <span>C:${card.toss}</span>
-                            <span>T:${card.attack}</span>
-                            <span>B:${card.block}</span>
-                        </div>
-                    </div>
+                    ${artworkUrl ? `<img class="card-artwork" src="${artworkUrl}" alt="${card.name}">` : '<div class="card-placeholder">🏐</div>'}
                 </div>
             `;
             
@@ -1178,6 +1384,30 @@ class HaikyuuCardGame {
         
         if (this.turnIndicatorEl) {
             this.turnIndicatorEl.textContent = `Lượt: ${this.getPlayerName(this.state.currentPlayer)}`;
+        }
+        
+        // Update play-area background based on phase
+        this.updatePhaseBackground();
+    }
+    
+    updatePhaseBackground() {
+        const playArea = document.querySelector('.play-area');
+        if (!playArea) return;
+        
+        // Remove all phase classes
+        playArea.classList.remove('phase-serve', 'phase-receive', 'phase-toss', 'phase-attack', 'phase-block');
+        
+        // Add current phase class
+        const phaseClass = {
+            [GamePhase.SERVE]: 'phase-serve',
+            [GamePhase.RECEIVE]: 'phase-receive',
+            [GamePhase.TOSS]: 'phase-toss',
+            [GamePhase.ATTACK]: 'phase-attack',
+            [GamePhase.BLOCK]: 'phase-block'
+        };
+        
+        if (phaseClass[this.state.phase]) {
+            playArea.classList.add(phaseClass[this.state.phase]);
         }
     }
 

@@ -348,7 +348,33 @@ body {
     border-radius: 10px;
     padding: 8px;
     border: 3px solid #8b6914;
-    transition: background 0.8s ease, border-color 0.8s ease;
+    transition: background 1.2s ease, border-color 1.2s ease;
+}
+
+/* Phase-based background colors */
+.play-area.phase-serve {
+    background: linear-gradient(180deg, #ffcccb 0%, #e74c3c 50%, #c0392b 100%);
+    border-color: #e74c3c;
+}
+
+.play-area.phase-receive {
+    background: linear-gradient(180deg, #cce5ff 0%, #3498db 50%, #2980b9 100%);
+    border-color: #3498db;
+}
+
+.play-area.phase-toss {
+    background: linear-gradient(180deg, #d4edda 0%, #2ecc71 50%, #27ae60 100%);
+    border-color: #2ecc71;
+}
+
+.play-area.phase-attack {
+    background: linear-gradient(180deg, #ffe5cc 0%, #e67e22 50%, #d35400 100%);
+    border-color: #e67e22;
+}
+
+.play-area.phase-block {
+    background: linear-gradient(180deg, #e8daef 0%, #9b59b6 50%, #8e44ad 100%);
+    border-color: #9b59b6;
 }
 
 /* Player Sides */
@@ -707,41 +733,20 @@ body {
     top: 0;
     left: 0;
     z-index: 0;
+    border-radius: 4px;
 }
 
+/* Card overlay removed - clean card display */
 .card-info-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9));
-    padding: 2px;
-    z-index: 1;
+    display: none;
 }
 
 .card-stats-mini {
-    display: flex;
-    justify-content: center;
-    gap: 2px;
-    font-size: 0.35rem;
-    color: #4ecdc4;
-}
-
-.card-stats-mini span {
-    background: rgba(0,0,0,0.5);
-    padding: 0 2px;
-    border-radius: 2px;
+    display: none;
 }
 
 .card-name {
-    font-size: 0.45rem;
-    font-weight: bold;
-    text-align: center;
-    color: #ffd700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-shadow: 1px 1px 2px black;
+    display: none;
 }
 
 .card-back {
@@ -757,13 +762,13 @@ body {
 }
 
 /* ============================================
-   CARD PREVIEW PANEL
+   CARD PREVIEW PANEL - WIDER & LARGER TEXT
    ============================================ */
 .card-preview-panel {
-    width: 220px;
+    width: 280px;
     background: rgba(0, 0, 0, 0.95);
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 12px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -771,13 +776,16 @@ body {
     overflow-y: auto;
     z-index: 3000;
     position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .preview-title {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: #4ecdc4;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .preview-card {
@@ -788,12 +796,13 @@ body {
 }
 
 .preview-full-card {
-    width: 170px;
-    height: 238px;
-    border-radius: 8px;
+    width: 220px;
+    height: 308px;
+    border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    border: 2px solid rgba(255, 215, 0, 0.3);
 }
 
 .preview-full-card img {
@@ -803,46 +812,54 @@ body {
 }
 
 .preview-name {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: #ffeb3b;
     text-align: center;
-    margin-bottom: 8px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #4ecdc4;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4ecdc4;
+    width: 100%;
 }
 
 .preview-stats {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
 }
 
 .preview-stat {
     display: flex;
     justify-content: space-between;
-    font-size: 0.7rem;
+    font-size: 0.95rem;
     color: #ccc;
-    padding: 3px 6px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 4px;
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 6px;
+}
+
+.preview-stat span:first-child {
+    font-weight: 600;
+    color: #aaa;
 }
 
 .preview-stat span:last-child {
     font-weight: bold;
     color: #4ecdc4;
+    font-size: 1rem;
 }
 
 .preview-skill {
-    font-size: 0.75rem;
-    color: #ddd;
-    margin-top: 8px;
-    padding: 8px;
+    font-size: 0.9rem;
+    color: #eee;
+    margin-top: 12px;
+    padding: 12px;
     background: rgba(255, 215, 0, 0.15);
-    border-radius: 5px;
-    border-left: 3px solid #ffd700;
-    line-height: 1.5;
+    border-radius: 8px;
+    border-left: 4px solid #ffd700;
+    line-height: 1.6;
+    width: 100%;
 }
 
 /* ============================================
@@ -875,7 +892,7 @@ body {
 }
 
 /* ============================================
-   CONTEXT MENU
+   CONTEXT MENU WITH SUBMENU
    ============================================ */
 .context-menu {
     position: fixed;
@@ -884,9 +901,9 @@ body {
     border-radius: 10px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     z-index: 5000;
-    min-width: 220px;
-    max-width: 300px;
-    overflow: hidden;
+    min-width: 180px;
+    max-width: 250px;
+    overflow: visible;
 }
 
 .context-menu.hidden {
@@ -900,6 +917,7 @@ body {
     background: rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid #4ecdc4;
     font-size: 0.9rem;
+    border-radius: 8px 8px 0 0;
 }
 
 .context-menu-section {
@@ -919,11 +937,67 @@ body {
     cursor: pointer;
     font-size: 0.85rem;
     transition: all 0.2s;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .context-menu-item:hover {
     background: rgba(78, 205, 196, 0.3);
     color: #4ecdc4;
+}
+
+.context-menu-item.has-submenu {
+    padding-right: 30px;
+}
+
+.submenu-arrow {
+    font-size: 0.7rem;
+    color: #888;
+    position: absolute;
+    right: 10px;
+}
+
+.context-menu-item:hover .submenu-arrow {
+    color: #4ecdc4;
+}
+
+/* Submenu */
+.context-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: linear-gradient(145deg, #1a2a3a, #2c3e50);
+    border: 2px solid #4ecdc4;
+    border-radius: 8px;
+    min-width: 140px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    z-index: 5001;
+}
+
+.context-menu-item.has-submenu:hover .context-submenu {
+    display: block;
+}
+
+.context-submenu .context-menu-item {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+}
+
+.context-submenu .context-menu-item:first-child {
+    border-radius: 6px 6px 0 0;
+}
+
+.context-submenu .context-menu-item:last-child {
+    border-radius: 0 0 6px 6px;
+}
+
+/* Submenu position when near right edge */
+.context-submenu.submenu-left {
+    left: auto;
+    right: 100%;
 }
 
 .context-menu-divider {
@@ -1308,9 +1382,15 @@ body {
    DRAG & DROP
    ============================================ */
 .drag-over {
-    outline: 2px solid #4ecdc4 !important;
-    background: rgba(78, 205, 196, 0.12) !important;
-    filter: brightness(1.1);
+    outline: 3px dashed #4ecdc4 !important;
+    background: rgba(78, 205, 196, 0.2) !important;
+    filter: brightness(1.15);
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
+
+.zone.drag-over {
+    box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
 }
 
 .card[draggable="true"] {
@@ -1319,4 +1399,15 @@ body {
 
 .card[draggable="true"]:active {
     cursor: grabbing;
+}
+
+.card.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+
+/* Drop zone highlights */
+.zone-cards.drop-highlight {
+    background: rgba(78, 205, 196, 0.15);
+    border-radius: 4px;
 }
