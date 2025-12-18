@@ -2039,8 +2039,8 @@ class HaikyuuCardGame {
             }
         }
         
-        // Get current stats (with modifications)
-        const stats = this.getCardStats(card);
+        // Use stats from JSON (not modified stats) - preview only shows original stats
+        const stats = displayStats;
         
         if (previewStats) {
             previewStats.innerHTML = `
@@ -2051,28 +2051,7 @@ class HaikyuuCardGame {
                 <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${stats.block}</span></div>
             `;
             
-            // Add click handlers for stat modification (only if not in deck builder)
-            const deckBuilderModal = document.getElementById('deck-builder-modal');
-            const isDeckBuilderOpen = deckBuilderModal && deckBuilderModal.classList.contains('show');
-            
-            if (!isDeckBuilderOpen) {
-                previewStats.querySelectorAll('.stat-value').forEach(statEl => {
-                    const statName = statEl.dataset.stat;
-                    
-                    // Left click to increase
-                    statEl.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        this.modifyCardStat(card, statName, 1);
-                    });
-                    
-                    // Right click to decrease
-                    statEl.addEventListener('contextmenu', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        this.modifyCardStat(card, statName, -1);
-            });
-        });
-            }
+            // No click handlers - preview only shows stats from JSON
         }
     }
     
