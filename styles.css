@@ -792,9 +792,12 @@ body {
 }
 
 /* Action card in hand - rotate vertical */
-.hand-cards .card[data-card-type="action"] {
+.hand-cards .card[data-card-type="action"],
+.hand-cards .card[data-card-type="action"] img {
     transform: rotate(90deg);
     transform-origin: center;
+    width: 72px;
+    height: 52px;
 }
 
 /* Play Zones */
