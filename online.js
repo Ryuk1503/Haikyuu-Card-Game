@@ -601,7 +601,9 @@ class OnlineGameManager {
     }
     
     onChatMessage(data) {
-        console.log(`[Chat] ${data.playerName}: ${data.message}`);
+        if (window.game && window.game.addLogMessage) {
+            window.game.addLogMessage(`${data.playerName}: ${data.message}`, 'chat');
+        }
     }
     
     // ============================================

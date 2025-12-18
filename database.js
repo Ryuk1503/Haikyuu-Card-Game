@@ -1,69 +1,94 @@
 // ============================================
-// DATABASE MODULE - SQLite with better-sqlite3
+// DATABASE MODULE - PostgreSQL
 // ============================================
-const Database = require('better-sqlite3');
+const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
-const path = require('path');
 
-// Create/open database
-const db = new Database(path.join(__dirname, 'haikyuu_game.db'));
+// Create PostgreSQL connection pool
+// Connection string format: postgresql://user:password@host:port/database
+// Or use individual environment variables
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    // Or use individual config (if DATABASE_URL not provided)
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || 5432,
+    database: process.env.DB_NAME || 'haikyuu_game',
+    user: process.env.DB_USER || 'postgres',
+    password: process.env.DB_PASSWORD || '',
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+    max: 20, // Maximum number of clients in the pool
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000,
+});
 
-// Enable foreign keys
-db.pragma('foreign_keys = ON');
+// Test connection
+pool.on('connect', () => {
+    console.log('✅ Connected to PostgreSQL database');
+});
+
+pool.on('error', (err) => {
+    console.error('❌ PostgreSQL connection error:', err);
+});
 
 // ============================================
 // INITIALIZE DATABASE SCHEMA
 // ============================================
-function initializeDatabase() {
-    // Users table
-    db.exec(`
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE NOT NULL,
-            password TEXT NOT NULL,
-            display_name TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            last_login DATETIME,
-            session_token TEXT
-        )
-    `);
-    
-    // Decks table
-    db.exec(`
-        CREATE TABLE IF NOT EXISTS decks (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            name TEXT NOT NULL,
-            cards TEXT NOT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-        )
-    `);
-    
-    // Game stats table (optional, for future)
-    db.exec(`
-        CREATE TABLE IF NOT EXISTS game_stats (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            wins INTEGER DEFAULT 0,
-            losses INTEGER DEFAULT 0,
-            games_played INTEGER DEFAULT 0,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-        )
-    `);
-    
-    console.log('✅ Database initialized successfully');
+async function initializeDatabase() {
+    try {
+        // Users table
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS users (
+                id SERIAL PRIMARY KEY,
+                username VARCHAR(255) UNIQUE NOT NULL,
+                password TEXT NOT NULL,
+                display_name VARCHAR(255),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                last_login TIMESTAMP,
+                session_token TEXT
+            )
+        `);
+        
+        // Decks table
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS decks (
+                id SERIAL PRIMARY KEY,
+                user_id INTEGER NOT NULL,
+                name VARCHAR(255) NOT NULL,
+                cards TEXT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+            )
+        `);
+        
+        // Game stats table (optional, for future)
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS game_stats (
+                id SERIAL PRIMARY KEY,
+                user_id INTEGER NOT NULL,
+                wins INTEGER DEFAULT 0,
+                losses INTEGER DEFAULT 0,
+                games_played INTEGER DEFAULT 0,
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+            )
+        `);
+        
+        console.log('✅ Database initialized successfully');
+        console.log(`📁 Using PostgreSQL database`);
+    } catch (error) {
+        console.error('❌ Error initializing database:', error);
+        throw error;
+    }
 }
 
 // ============================================
 // USER MANAGEMENT
 // ============================================
-function createUser(username, password, displayName = null) {
+async function createUser(username, password, displayName = null) {
     try {
         // Check if username already exists
-        const existing = db.prepare('SELECT id FROM users WHERE username = ?').get(username);
-        if (existing) {
+        const existingResult = await pool.query('SELECT id FROM users WHERE username = $1', [username]);
+        if (existingResult.rows.length > 0) {
             return { success: false, error: 'Username đã tồn tại' };
         }
         
@@ -71,29 +96,34 @@ function createUser(username, password, displayName = null) {
         const hashedPassword = bcrypt.hashSync(password, 10);
         
         // Insert user
-        const stmt = db.prepare(`
-            INSERT INTO users (username, password, display_name)
-            VALUES (?, ?, ?)
-        `);
-        const result = stmt.run(username, hashedPassword, displayName || username);
+        const result = await pool.query(
+            `INSERT INTO users (username, password, display_name)
+             VALUES ($1, $2, $3)
+             RETURNING id`,
+            [username, hashedPassword, displayName || username]
+        );
+        
+        const userId = result.rows[0].id;
         
         // Create initial stats
-        db.prepare('INSERT INTO game_stats (user_id) VALUES (?)').run(result.lastInsertRowid);
+        await pool.query('INSERT INTO game_stats (user_id) VALUES ($1)', [userId]);
         
-        return { success: true, userId: result.lastInsertRowid };
+        return { success: true, userId };
     } catch (error) {
         console.error('Error creating user:', error);
         return { success: false, error: 'Lỗi tạo tài khoản' };
     }
 }
 
-function loginUser(username, password) {
+async function loginUser(username, password) {
     try {
-        const user = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
+        const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
         
-        if (!user) {
+        if (result.rows.length === 0) {
             return { success: false, error: 'Tài khoản không tồn tại' };
         }
+        
+        const user = result.rows[0];
         
         if (!bcrypt.compareSync(password, user.password)) {
             return { success: false, error: 'Mật khẩu không đúng' };
@@ -103,8 +133,10 @@ function loginUser(username, password) {
         const sessionToken = generateSessionToken();
         
         // Update last login and session token
-        db.prepare('UPDATE users SET last_login = CURRENT_TIMESTAMP, session_token = ? WHERE id = ?')
-            .run(sessionToken, user.id);
+        await pool.query(
+            'UPDATE users SET last_login = CURRENT_TIMESTAMP, session_token = $1 WHERE id = $2',
+            [sessionToken, user.id]
+        );
         
         return {
             success: true,
@@ -121,14 +153,17 @@ function loginUser(username, password) {
     }
 }
 
-function validateSession(sessionToken) {
+async function validateSession(sessionToken) {
     if (!sessionToken) return null;
     
     try {
-        const user = db.prepare('SELECT id, username, display_name FROM users WHERE session_token = ?')
-            .get(sessionToken);
+        const result = await pool.query(
+            'SELECT id, username, display_name FROM users WHERE session_token = $1',
+            [sessionToken]
+        );
         
-        if (user) {
+        if (result.rows.length > 0) {
+            const user = result.rows[0];
             return {
                 id: user.id,
                 username: user.username,
@@ -142,9 +177,9 @@ function validateSession(sessionToken) {
     }
 }
 
-function logoutUser(userId) {
+async function logoutUser(userId) {
     try {
-        db.prepare('UPDATE users SET session_token = NULL WHERE id = ?').run(userId);
+        await pool.query('UPDATE users SET session_token = NULL WHERE id = $1', [userId]);
         return { success: true };
     } catch (error) {
         return { success: false, error: 'Lỗi đăng xuất' };
@@ -163,24 +198,32 @@ function generateSessionToken() {
 // ============================================
 // DECK MANAGEMENT
 // ============================================
-function saveDeck(userId, deckName, cards) {
+async function saveDeck(userId, deckName, cards) {
     try {
         const cardsJson = JSON.stringify(cards);
         
         // Check if deck with same name exists
-        const existing = db.prepare('SELECT id FROM decks WHERE user_id = ? AND name = ?')
-            .get(userId, deckName);
+        const existingResult = await pool.query(
+            'SELECT id FROM decks WHERE user_id = $1 AND name = $2',
+            [userId, deckName]
+        );
         
-        if (existing) {
+        if (existingResult.rows.length > 0) {
             // Update existing deck
-            db.prepare('UPDATE decks SET cards = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?')
-                .run(cardsJson, existing.id);
-            return { success: true, deckId: existing.id, updated: true };
+            await pool.query(
+                'UPDATE decks SET cards = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2',
+                [cardsJson, existingResult.rows[0].id]
+            );
+            return { success: true, deckId: existingResult.rows[0].id, updated: true };
         } else {
             // Create new deck
-            const result = db.prepare('INSERT INTO decks (user_id, name, cards) VALUES (?, ?, ?)')
-                .run(userId, deckName, cardsJson);
-            return { success: true, deckId: result.lastInsertRowid, updated: false };
+            const result = await pool.query(
+                `INSERT INTO decks (user_id, name, cards) 
+                 VALUES ($1, $2, $3) 
+                 RETURNING id`,
+                [userId, deckName, cardsJson]
+            );
+            return { success: true, deckId: result.rows[0].id, updated: false };
         }
     } catch (error) {
         console.error('Error saving deck:', error);
@@ -188,12 +231,14 @@ function saveDeck(userId, deckName, cards) {
     }
 }
 
-function getUserDecks(userId) {
+async function getUserDecks(userId) {
     try {
-        const decks = db.prepare('SELECT id, name, cards, created_at, updated_at FROM decks WHERE user_id = ?')
-            .all(userId);
+        const result = await pool.query(
+            'SELECT id, name, cards, created_at, updated_at FROM decks WHERE user_id = $1',
+            [userId]
+        );
         
-        return decks.map(deck => ({
+        return result.rows.map(deck => ({
             id: deck.id,
             name: deck.name,
             cards: JSON.parse(deck.cards),
@@ -206,23 +251,28 @@ function getUserDecks(userId) {
     }
 }
 
-function deleteDeck(userId, deckId) {
+async function deleteDeck(userId, deckId) {
     try {
-        const result = db.prepare('DELETE FROM decks WHERE id = ? AND user_id = ?')
-            .run(deckId, userId);
-        return { success: result.changes > 0 };
+        const result = await pool.query(
+            'DELETE FROM decks WHERE id = $1 AND user_id = $2',
+            [deckId, userId]
+        );
+        return { success: result.rowCount > 0 };
     } catch (error) {
         console.error('Error deleting deck:', error);
         return { success: false, error: 'Lỗi xóa deck' };
     }
 }
 
-function getDeckById(deckId, userId) {
+async function getDeckById(deckId, userId) {
     try {
-        const deck = db.prepare('SELECT * FROM decks WHERE id = ? AND user_id = ?')
-            .get(deckId, userId);
+        const result = await pool.query(
+            'SELECT * FROM decks WHERE id = $1 AND user_id = $2',
+            [deckId, userId]
+        );
         
-        if (deck) {
+        if (result.rows.length > 0) {
+            const deck = result.rows[0];
             return {
                 id: deck.id,
                 name: deck.name,
@@ -236,8 +286,11 @@ function getDeckById(deckId, userId) {
     }
 }
 
-// Initialize database on module load
-initializeDatabase();
+// Initialize database on module load (async)
+initializeDatabase().catch(err => {
+    console.error('Failed to initialize database:', err);
+    process.exit(1);
+});
 
 module.exports = {
     createUser,
@@ -247,6 +300,6 @@ module.exports = {
     saveDeck,
     getUserDecks,
     deleteDeck,
-    getDeckById
+    getDeckById,
+    pool // Export pool for direct queries if needed
 };
-

@@ -763,6 +763,28 @@ body {
     gap: 3px;
     align-items: center;
     justify-content: center;
+    min-height: 78px;
+}
+
+.action-cards .card {
+    width: 56px;
+    height: 78px;
+    transform: rotate(90deg);
+    transform-origin: center;
+}
+
+.action-cards .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Action card in preview - vertical */
+.preview-full-card .action-card-preview {
+    transform: rotate(90deg);
+    transform-origin: center;
+    width: 100%;
+    height: 100%;
 }
 
 /* Play Zones */
@@ -1155,19 +1177,6 @@ body {
     color: #ffd700;
 }
 
-.preview-skill {
-    font-size: 0.8rem;
-    color: #eee;
-    margin-top: 8px;
-    padding: 8px;
-    background: rgba(255, 215, 0, 0.15);
-    border-radius: 6px;
-    border-left: 3px solid #ffd700;
-    line-height: 1.5;
-    width: 100%;
-    max-height: 120px;
-    overflow-y: auto;
-}
 
 /* Stats panel removed - using zone labels instead */
 .stats-panel {
@@ -1762,6 +1771,99 @@ body {
 .card.dragging {
     opacity: 0.5;
     transform: scale(0.95);
+}
+
+/* ============================================
+   CHAT/LOG BOX
+   ============================================ */
+.chat-log-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    height: 400px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.chat-log-header {
+    background: #4ecdc4;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.chat-log-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 0.85rem;
+    color: #333;
+    background: #f9f9f9;
+}
+
+.chat-log-message {
+    margin-bottom: 8px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.chat-log-message .log-tag {
+    color: #666;
+    font-weight: bold;
+}
+
+.chat-log-message .player-tag {
+    color: #4ecdc4;
+    font-weight: bold;
+}
+
+.chat-log-input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background: white;
+    border-radius: 0 0 8px 8px;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.chat-input:focus {
+    border-color: #4ecdc4;
+}
+
+.chat-send-btn {
+    margin-left: 8px;
+    padding: 8px 16px;
+    background: #4ecdc4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.chat-send-btn:hover {
+    background: #3ab5ad;
+}
+
+.chat-send-btn:active {
+    background: #2a9d96;
 }
 
 /* Drop zone highlights */

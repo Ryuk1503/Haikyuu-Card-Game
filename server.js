@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname)));
 // ============================================
 
 // Register
-app.post('/api/register', (req, res) => {
+app.post('/api/register', async (req, res) => {
     const { username, password, displayName } = req.body;
     
     if (!username || !password) {
@@ -43,26 +43,26 @@ app.post('/api/register', (req, res) => {
         return res.status(400).json({ success: false, error: 'Password phải ít nhất 4 ký tự' });
     }
     
-    const result = db.createUser(username, password, displayName);
+    const result = await db.createUser(username, password, displayName);
     res.json(result);
 });
 
 // Login
-app.post('/api/login', (req, res) => {
+app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     
     if (!username || !password) {
         return res.status(400).json({ success: false, error: 'Username và password là bắt buộc' });
     }
     
-    const result = db.loginUser(username, password);
+    const result = await db.loginUser(username, password);
     res.json(result);
 });
 
 // Validate session (for remember me)
-app.post('/api/validate-session', (req, res) => {
+app.post('/api/validate-session', async (req, res) => {
     const { sessionToken } = req.body;
-    const user = db.validateSession(sessionToken);
+    const user = await db.validateSession(sessionToken);
     
     if (user) {
         res.json({ success: true, user });
@@ -72,9 +72,9 @@ app.post('/api/validate-session', (req, res) => {
 });
 
 // Logout
-app.post('/api/logout', (req, res) => {
+app.post('/api/logout', async (req, res) => {
     const { userId } = req.body;
-    const result = db.logoutUser(userId);
+    const result = await db.logoutUser(userId);
     res.json(result);
 });
 
@@ -83,41 +83,41 @@ app.post('/api/logout', (req, res) => {
 // ============================================
 
 // Save deck
-app.post('/api/decks', (req, res) => {
+app.post('/api/decks', async (req, res) => {
     const { sessionToken, deckName, cards } = req.body;
-    const user = db.validateSession(sessionToken);
+    const user = await db.validateSession(sessionToken);
     
     if (!user) {
         return res.status(401).json({ success: false, error: 'Chưa đăng nhập' });
     }
     
-    const result = db.saveDeck(user.id, deckName, cards);
+    const result = await db.saveDeck(user.id, deckName, cards);
     res.json(result);
 });
 
 // Get user's decks
-app.get('/api/decks', (req, res) => {
+app.get('/api/decks', async (req, res) => {
     const sessionToken = req.headers['x-session-token'];
-    const user = db.validateSession(sessionToken);
+    const user = await db.validateSession(sessionToken);
     
     if (!user) {
         return res.status(401).json({ success: false, error: 'Chưa đăng nhập' });
     }
     
-    const decks = db.getUserDecks(user.id);
+    const decks = await db.getUserDecks(user.id);
     res.json({ success: true, decks });
 });
 
 // Delete deck
-app.delete('/api/decks/:id', (req, res) => {
+app.delete('/api/decks/:id', async (req, res) => {
     const sessionToken = req.headers['x-session-token'];
-    const user = db.validateSession(sessionToken);
+    const user = await db.validateSession(sessionToken);
     
     if (!user) {
         return res.status(401).json({ success: false, error: 'Chưa đăng nhập' });
     }
     
-    const result = db.deleteDeck(user.id, parseInt(req.params.id));
+    const result = await db.deleteDeck(user.id, parseInt(req.params.id));
     res.json(result);
 });
 
@@ -421,11 +421,11 @@ io.on('connection', (socket) => {
 
     // Set score
     socket.on('setScore', (data) => {
-        const playerInfo = playerSockets.get(socket.id);
-        if (!playerInfo) return;
-        const room = rooms.get(playerInfo.roomId);
-        if (!room || !room.gameStarted) return;
-        const state = room.gameState;
+            const playerInfo = playerSockets.get(socket.id);
+            if (!playerInfo) return;
+            const room = rooms.get(playerInfo.roomId);
+            if (!room || !room.gameStarted) return;
+            const state = room.gameState;
         const player = parseInt(data.player);
         const value = parseInt(data.value) || 0;
         
@@ -458,7 +458,7 @@ io.on('connection', (socket) => {
         
         // Find and remove card from all locations
         let card = findAndRemoveCard(state, cardUniqueId);
-        if (!card) return;
+            if (!card) return;
         
         // Place card at target
         switch (targetType) {
@@ -486,8 +486,14 @@ io.on('connection', (socket) => {
                     state.playedCards[p][targetZone] = card;
                 }
                 break;
+            case 'action':
+                state.actionCards[p].push(card);
+                break;
             case 'spirit':
                 state.spiritCards[p][targetZone].push(card);
+                break;
+            case 'action':
+                state.actionCards[p].push(card);
                 break;
         }
         
@@ -497,7 +503,7 @@ io.on('connection', (socket) => {
     // ============================================
     // ROOM MANAGEMENT HANDLERS
     // ============================================
-    
+
     // Create a new room
     socket.on('createRoom', (data) => {
         const roomId = uuidv4().substring(0, 6).toUpperCase();
@@ -714,6 +720,15 @@ function findAndRemoveCard(state, cardUniqueId) {
                 card = state.spiritCards[p][zone].splice(idx, 1)[0];
             }
         });
+    });
+    if (card) return card;
+    
+    // Check action area
+    [1, 2].forEach(p => {
+        const idx = state.actionCards[p].findIndex(c => c.uniqueId === cardUniqueId);
+        if (idx !== -1) {
+            card = state.actionCards[p].splice(idx, 1)[0];
+        }
     });
     if (card) return card;
     

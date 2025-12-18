@@ -600,6 +600,10 @@ class GameState {
         
         // Action area cards
         this.actionCards = { 1: [], 2: [] };
+        this.actionAreaEls = {
+            1: document.getElementById('p1-action-cards'),
+            2: document.getElementById('p2-action-cards')
+        };
         
         // Played cards - each player has zones
         this.playedCards = {
@@ -641,6 +645,66 @@ class HaikyuuCardGame {
         
         this.initElements();
         this.bindEvents();
+        this.initChatLog();
+    }
+    
+    initChatLog() {
+        this.chatLogMessages = document.getElementById('chat-log-messages');
+        this.chatInput = document.getElementById('chat-input');
+        this.chatSendBtn = document.getElementById('chat-send-btn');
+        
+        if (this.chatSendBtn) {
+            this.chatSendBtn.addEventListener('click', () => this.sendChatMessage());
+        }
+        
+        if (this.chatInput) {
+            this.chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.sendChatMessage();
+                }
+            });
+        }
+    }
+    
+    addLogMessage(message, type = 'log') {
+        if (!this.chatLogMessages) return;
+        
+        const messageEl = document.createElement('div');
+        messageEl.className = 'chat-log-message';
+        
+        if (type === 'log') {
+            messageEl.innerHTML = `<span class="log-tag">[Log]:</span> ${message}`;
+        } else if (type === 'chat') {
+            // Message format: "PlayerName: message text"
+            const colonIndex = message.indexOf(':');
+            if (colonIndex !== -1) {
+                const playerName = message.substring(0, colonIndex);
+                const messageText = message.substring(colonIndex + 1).trim();
+                messageEl.innerHTML = `<span class="player-tag">[${playerName}]:</span> ${messageText}`;
+            } else {
+                messageEl.textContent = message;
+            }
+        } else {
+            messageEl.textContent = message;
+        }
+        
+        this.chatLogMessages.appendChild(messageEl);
+        this.chatLogMessages.scrollTop = this.chatLogMessages.scrollHeight;
+    }
+    
+    sendChatMessage() {
+        if (!this.chatInput || !this.chatInput.value.trim()) return;
+        
+        const message = this.chatInput.value.trim();
+        this.chatInput.value = '';
+        
+        if (this.isOnline && this.onlineManager) {
+            this.onlineManager.socket.emit('chatMessage', { message });
+        } else {
+            // Offline mode - just show locally
+            const playerName = this.getPlayerName(this.state.viewingPlayer || 1);
+            this.addLogMessage(`${playerName}: ${message}`, 'chat');
+        }
     }
 
     initElements() {
@@ -658,11 +722,8 @@ class HaikyuuCardGame {
                     el.textContent = val;
                     this.state.sets[idx + 1] = val;
                     
-                    // Trigger serve phase - scorer serves next
-                    this.triggerServePhase(idx + 1);
-                    
                     if (this.isOnline && this.onlineManager) {
-                        this.onlineManager.socket.emit('setScore', { player: idx + 1, value: val, triggerServe: true });
+                        this.onlineManager.socket.emit('setScore', { player: idx + 1, value: val });
                     }
                 });
                 el.addEventListener('contextmenu', (e) => {
@@ -821,6 +882,55 @@ class HaikyuuCardGame {
         
         // Setup drag-drop for zones
         this.setupZoneDragDrop();
+        
+        // Setup drag-drop for action areas
+        this.setupActionAreaDragDrop();
+    }
+    
+    setupActionAreaDragDrop() {
+        [1, 2].forEach(player => {
+            const actionEl = this.actionAreaEls[player];
+            if (!actionEl) return;
+            
+            actionEl.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                actionEl.classList.add('drag-over');
+            });
+            
+            actionEl.addEventListener('dragleave', (e) => {
+                actionEl.classList.remove('drag-over');
+            });
+            
+            actionEl.addEventListener('drop', (e) => {
+                e.preventDefault();
+                actionEl.classList.remove('drag-over');
+                
+                const cardUniqueId = e.dataTransfer.getData('card-id');
+                const sourcePlayer = parseInt(e.dataTransfer.getData('card-player'));
+                
+                if (!cardUniqueId) return;
+                
+                const card = this.findCardByUniqueId(cardUniqueId, sourcePlayer);
+                if (!card) return;
+                
+                // Only allow action cards in action area
+                if (card.type !== 'action') return;
+                
+                this.removeCardFromSource(card, sourcePlayer, 'any');
+                this.placeCardAtTarget(card, player, 'action', null);
+                
+                if (this.isOnline && this.onlineManager) {
+                    this.onlineManager.socket.emit('moveCard', {
+                        cardUniqueId: card.uniqueId,
+                        player: String(player),
+                        targetType: 'action',
+                        targetZone: null
+                    });
+                }
+                
+                this.updateUI();
+            });
+        });
     }
     
     setupZoneDragDrop() {
@@ -967,6 +1077,10 @@ class HaikyuuCardGame {
         card = this.state.playedCards[player]?.block?.find(c => c.uniqueId === uniqueId);
         if (card) return card;
         
+        // Search in action area
+        card = this.state.actionCards[player]?.find(c => c.uniqueId === uniqueId);
+        if (card) return card;
+        
         // Search in spirit zones
         for (const zone of ['serve', 'receive', 'toss', 'attack', 'block']) {
             card = this.state.spiritCards[player]?.[zone]?.find(c => c.uniqueId === uniqueId);
@@ -1096,6 +1210,7 @@ class HaikyuuCardGame {
         if (this.state.decks[player].length > 0) {
             const card = this.state.decks[player].pop();
             this.state.hands[player].push(card);
+            // Don't log draw card - it's visible
             return card;
         }
         return null;
@@ -1106,6 +1221,7 @@ class HaikyuuCardGame {
             this.onlineManager.socket.emit('shuffleDeck', { player: String(player) });
         } else {
             this.state.decks[player] = this.shuffleArray(this.state.decks[player]);
+            this.addLogMessage(`${this.getPlayerName(player)} đã xáo bộ bài`);
             this.updateUI();
         }
     }
@@ -1143,6 +1259,7 @@ class HaikyuuCardGame {
             container.innerHTML = '<div class="empty-message">Deck trống</div>';
         }
         
+        this.addLogMessage(`${this.getPlayerName(player)} đã mở tìm kiếm bộ bài`);
         modal.classList.add('show');
     }
 
@@ -1419,23 +1536,32 @@ class HaikyuuCardGame {
         }
     }
 
-    placeCardAtTarget(card, player, targetType, targetZone) {
+    placeCardAtTarget(card, player, targetType, targetZone, sourceInfo = null) {
+        const cardName = card.name || 'Thẻ';
+        const playerName = this.getPlayerName(player);
+        let logMessage = '';
+        
         switch (targetType) {
             case 'hand':
                 this.state.hands[player].push(card);
+                logMessage = `${playerName} đã di chuyển "${cardName}" vào tay`;
                 break;
             case 'discard':
                 this.state.discards[player].push(card);
+                logMessage = `${playerName} đã di chuyển "${cardName}" vào Drop`;
                 break;
             case 'deck-top':
                 this.state.decks[player].push(card);
+                logMessage = `${playerName} đã đặt "${cardName}" lên đầu bộ bài`;
                 break;
             case 'deck-bottom':
                 this.state.decks[player].unshift(card);
+                logMessage = `${playerName} đã đặt "${cardName}" xuống cuối bộ bài`;
                 break;
             case 'zone':
                 if (targetZone === 'block') {
                     this.state.playedCards[player].block.push(card);
+                    logMessage = `${playerName} đã đặt "${cardName}" vào khu vực Chặn`;
                 } else {
                     // Move existing card to spirit - reset its stat modifications
                     const existing = this.state.playedCards[player][targetZone];
@@ -1444,13 +1570,27 @@ class HaikyuuCardGame {
                         this.state.spiritCards[player][targetZone].push(existing);
                     }
                     this.state.playedCards[player][targetZone] = card;
+                    const zoneNames = { serve: 'Giao', receive: 'Đỡ', toss: 'Chuyền', attack: 'Đập' };
+                    logMessage = `${playerName} đã đặt "${cardName}" vào khu vực ${zoneNames[targetZone]}`;
                 }
                 break;
             case 'spirit':
                 // Reset stat modifications when becoming spirit
                 this.resetCardModifications(card);
                 this.state.spiritCards[player][targetZone].push(card);
+                const zoneNames = { serve: 'Giao', receive: 'Đỡ', toss: 'Chuyền', attack: 'Đập', block: 'Chặn' };
+                logMessage = `${playerName} đã đặt "${cardName}" vào Ý chí khu vực ${zoneNames[targetZone]}`;
                 break;
+            case 'action':
+                // Add to action area
+                this.state.actionCards[player].push(card);
+                logMessage = `${playerName} đã đặt "${cardName}" vào khu vực Hành động`;
+                break;
+        }
+        
+        // Log only if it's not a visible action (like placing on zone is visible, so don't log)
+        if (logMessage && targetType !== 'zone') {
+            this.addLogMessage(logMessage);
         }
     }
 
@@ -1465,8 +1605,9 @@ class HaikyuuCardGame {
     // ============================================
     startGame() {
         this.state.reset();
-        this.createDecks();
-        this.shuffleDecks();
+        // Decks are created by players, not auto-generated
+        // this.createDecks();
+        // this.shuffleDecks();
         this.drawInitialHands();
         this.decideFirstServer();
         this.state.phase = GamePhase.SERVE;
@@ -1538,6 +1679,7 @@ class HaikyuuCardGame {
         this.state.spiritCards = JSON.parse(JSON.stringify(serverState.spiritCards));
         this.state.discards = JSON.parse(JSON.stringify(serverState.discards));
         this.state.hands = JSON.parse(JSON.stringify(serverState.hands));
+        this.state.actionCards = JSON.parse(JSON.stringify(serverState.actionCards || { 1: [], 2: [] }));
         
         // Enrich cards with local data
         this.enrichCardsWithLocalData();
@@ -1604,6 +1746,7 @@ class HaikyuuCardGame {
     updateUI() {
         this.renderHands();
         this.renderZones();
+        this.renderActionCards();
         this.updateDeckCounts();
         this.updatePhaseDisplay();
         this.updateScores();
@@ -1699,9 +1842,39 @@ class HaikyuuCardGame {
                     
                     blockEl.appendChild(cardEl);
                 });
-                    });
-                }
-            }
+            });
+        }
+    }
+    
+    renderActionCards() {
+        [1, 2].forEach(player => {
+            const actionEl = this.actionAreaEls[player];
+            if (!actionEl) return;
+            
+            actionEl.innerHTML = '';
+            const actionCards = this.state.actionCards[player] || [];
+            
+            actionCards.forEach((card, index) => {
+                const cardEl = this.createCardElement(card, player, true);
+                cardEl.classList.add('action-card');
+                
+                cardEl.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    this.showContextMenu(e, card, player, 'action', index);
+                });
+                
+                // Allow dragging from action area
+                cardEl.draggable = true;
+                cardEl.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('card-id', card.uniqueId);
+                    e.dataTransfer.setData('card-player', player);
+                    e.dataTransfer.setData('card-source', 'action');
+                });
+                
+                actionEl.appendChild(cardEl);
+            });
+        });
+    }
             
     createCardElement(card, player, showFront = true) {
         const cardEl = document.createElement('div');
@@ -1728,24 +1901,59 @@ class HaikyuuCardGame {
         return cardEl;
     }
 
-    showCardPreview(card) {
+    async showCardPreview(card) {
         this.currentPreviewCard = card;
         
         const previewFullCard = document.getElementById('preview-full-card');
         const previewName = document.getElementById('preview-name');
         const previewStats = document.getElementById('preview-stats');
-        const previewSkill = document.getElementById('preview-skill');
+        
+        // Load JSON data for this card
+        let jsonData = null;
+        if (card.cardId) {
+            try {
+                // Determine JSON path based on cardId
+                let jsonPath = '';
+                if (card.type === 'action') {
+                    jsonPath = `Card/${card.school}/Hanh dong/${card.cardId}.json`;
+                } else {
+                    jsonPath = `Card/${card.school}/Nhan vat/${card.cardId}.json`;
+                }
+                
+                const response = await fetch(jsonPath);
+                if (response.ok) {
+                    jsonData = await response.json();
+                }
+            } catch (error) {
+                console.warn('Could not load JSON for card:', card.cardId, error);
+            }
+        }
+        
+        // Use JSON data if available, otherwise fallback to card data
+        const displayName = jsonData?.name || card.name;
+        const displayStats = jsonData?.stats || {
+            serve: card.serve || 0,
+            receive: card.receive || 0,
+            toss: card.toss || 0,
+            attack: card.attack || 0,
+            block: card.block || 0
+        };
+        const displaySkill = jsonData?.skill?.description || card.skill || '';
+        const artworkPath = jsonData?.artwork || card.artwork;
         
         if (previewFullCard) {
-            if (card.artwork) {
-                previewFullCard.innerHTML = `<img src="${card.artwork}" alt="${card.name}">`;
-                            } else {
+            if (artworkPath) {
+                // For action cards, add rotation class
+                const isAction = card.type === 'action';
+                const imgClass = isAction ? 'action-card-preview' : '';
+                previewFullCard.innerHTML = `<img src="${artworkPath}" alt="${displayName}" class="${imgClass}">`;
+            } else {
                 previewFullCard.innerHTML = '<div class="card-placeholder">🏐</div>';
             }
         }
         
         if (previewName) {
-            previewName.textContent = card.name;
+            previewName.textContent = displayName;
         }
         
         // Get current stats (with modifications)
@@ -1782,11 +1990,6 @@ class HaikyuuCardGame {
                     });
                 });
             }
-        }
-        
-        if (previewSkill) {
-            previewSkill.textContent = card.skill || '';
-            previewSkill.style.display = card.skill ? 'block' : 'none';
         }
     }
     
