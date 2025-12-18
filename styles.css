@@ -767,24 +767,31 @@ body {
 }
 
 .action-cards .card {
-    width: 56px;
-    height: 78px;
+    width: 78px;
+    height: 56px;
     transform: rotate(90deg);
     transform-origin: center;
+    overflow: visible;
 }
 
 .action-cards .card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
-/* Action card in preview - vertical */
+/* Action card in preview - use original horizontal PNG */
 .preview-full-card .action-card-preview {
-    transform: rotate(90deg);
-    transform-origin: center;
+    /* No rotation - use original horizontal PNG */
     width: 100%;
     height: 100%;
+    object-fit: contain;
+}
+
+/* Action card in hand - rotate vertical */
+.hand-cards .card[data-card-type="action"] {
+    transform: rotate(90deg);
+    transform-origin: center;
 }
 
 /* Play Zones */

@@ -1001,38 +1001,85 @@ class OnlineGameManager {
         return item;
     }
     
-    showDeckCardPreview(card) {
+    async showDeckCardPreview(card) {
         const previewFullCard = document.getElementById('preview-full-card');
         const previewName = document.getElementById('preview-name');
         const previewStats = document.getElementById('preview-stats');
-        const previewSkill = document.getElementById('preview-skill');
+        
+        // Load JSON data for this card (same as showCardPreview)
+        let jsonData = null;
+        if (card.cardId) {
+            try {
+                let jsonPath = '';
+                if (card.type === 'action') {
+                    jsonPath = `Card/${card.school}/Hanh dong/${card.cardId}.json`;
+                } else {
+                    jsonPath = `Card/${card.school}/Nhan vat/${card.cardId}.json`;
+                }
+                
+                const response = await fetch(jsonPath);
+                if (response.ok) {
+                    jsonData = await response.json();
+                }
+            } catch (error) {
+                console.warn('Could not load JSON for card:', card.cardId, error);
+            }
+        }
+        
+        // Use JSON data if available, otherwise fallback to card data
+        const displayName = jsonData?.name || card.name;
+        const displayStats = jsonData?.stats || {
+            serve: card.serve || 0,
+            receive: card.receive || 0,
+            toss: card.toss || 0,
+            attack: card.attack || 0,
+            block: card.block || 0
+        };
+        const displaySkill = jsonData?.skill?.description || card.skill || '';
+        
+        // Convert JSON path to PNG - replace .json with .png
+        let artworkPath = jsonData?.artwork || card.artwork;
+        if (artworkPath && artworkPath.endsWith('.json')) {
+            artworkPath = artworkPath.replace('.json', '.png');
+        }
         
         if (previewFullCard) {
-            if (card.artwork) {
-                previewFullCard.innerHTML = `<img src="${card.artwork}" alt="${card.name}">`;
+            if (artworkPath) {
+                const isAction = card.type === 'action';
+                const imgClass = isAction ? 'action-card-preview' : '';
+                previewFullCard.innerHTML = `<img src="${artworkPath}" alt="${displayName}" class="${imgClass}">`;
             } else {
                 previewFullCard.innerHTML = '<div class="card-placeholder">🏐</div>';
             }
         }
         
         if (previewName) {
-            previewName.textContent = card.name;
+            previewName.textContent = displayName;
         }
         
         if (previewStats) {
             previewStats.innerHTML = `
-                <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${card.serve}</span></div>
-                <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${card.receive}</span></div>
-                <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${card.toss}</span></div>
-                <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${card.attack}</span></div>
-                <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${card.block}</span></div>
+                <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${displayStats.serve}</span></div>
+                <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${displayStats.receive}</span></div>
+                <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${displayStats.toss}</span></div>
+                <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${displayStats.attack}</span></div>
+                <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${displayStats.block}</span></div>
             `;
             // No click handlers for stat modification in deck builder
         }
         
-        if (previewSkill) {
-            previewSkill.textContent = card.skill || '';
-            previewSkill.style.display = card.skill ? 'block' : 'none';
+        // Show skill in preview (if exists)
+        if (displaySkill) {
+            const skillEl = document.createElement('div');
+            skillEl.className = 'preview-skill-text';
+            skillEl.textContent = displaySkill;
+            skillEl.style.cssText = 'font-size: 0.85rem; color: #ffd700; margin-top: 8px; padding: 8px; background: rgba(255, 215, 0, 0.1); border-radius: 4px; line-height: 1.4;';
+            if (previewFullCard && previewFullCard.parentElement) {
+                // Remove existing skill if any
+                const existingSkill = previewFullCard.parentElement.querySelector('.preview-skill-text');
+                if (existingSkill) existingSkill.remove();
+                previewFullCard.parentElement.appendChild(skillEl);
+            }
         }
     }
     
