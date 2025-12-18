@@ -442,10 +442,10 @@ class OnlineGameManager {
         if (this.roomId) {
             navigator.clipboard.writeText(this.roomId).then(() => {
                 if (this.btnCopyCode) {
-                    this.btnCopyCode.textContent = '✓ Đã copy!';
-                    setTimeout(() => {
-                        this.btnCopyCode.textContent = '📋 Copy';
-                    }, 2000);
+                this.btnCopyCode.textContent = '✓ Đã copy!';
+                setTimeout(() => {
+                    this.btnCopyCode.textContent = '📋 Copy';
+                }, 2000);
                 }
             });
         }
@@ -573,14 +573,14 @@ class OnlineGameManager {
             if (closeStartModalBtn) {
                 closeStartModalBtn.onclick = () => {
                     startModal.classList.remove('show');
-                    // Hide lobby, show game
+        // Hide lobby, show game
                     if (this.lobbyScreen) this.lobbyScreen.classList.add('hidden');
                     if (this.gameScreen) this.gameScreen.classList.remove('hidden');
-                    
-                    // Initialize game with online state
-                    if (window.game) {
-                        window.game.initOnlineGame(data.state, data.playerNumber, data.playerNames, this);
-                    }
+        
+        // Initialize game with online state
+        if (window.game) {
+            window.game.initOnlineGame(data.state, data.playerNumber, data.playerNames, this);
+        }
                 };
             }
         } else {
@@ -741,31 +741,70 @@ class OnlineGameManager {
             'default': {
                 name: 'Deck Karasuno',
                 cards: [
-                    { cardId: 'hinata-shouyo-1', count: 4 },
-                    { cardId: 'hinata-shouyo-2', count: 4 },
-                    { cardId: 'kageyama-tobio-1', count: 4 },
-                    { cardId: 'kageyama-tobio-2', count: 4 },
-                    { cardId: 'sawamura-daichi-1', count: 4 },
-                    { cardId: 'sugawara-koshi-1', count: 4 },
-                    { cardId: 'tanaka-ryunosuke-1', count: 4 },
-                    { cardId: 'tsukishima-kei-1', count: 4 },
-                    { cardId: 'yamaguchi-tadashi-1', count: 4 },
-                    { cardId: 'nishinoya-yu-1', count: 4 }
+                    // Đỡ (8 cards) - 8 slots
+                    { cardId: 'sawamura-daichi-1', count: 2 },      // receive: 4
+                    { cardId: 'yamaguchi-tadashi-1', count: 2 },    // receive: 4
+                    { cardId: 'nishinoya-yu-1', count: 2 },         // receive: 4
+                    { cardId: 'nishinoya-yu-2', count: 2 },         // receive: 6
+                    
+                    // Chuyền (8 cards) - 8 slots
+                    { cardId: 'kageyama-tobio-1', count: 2 },      // toss: 1
+                    { cardId: 'kageyama-tobio-2', count: 2 },      // toss: 1
+                    { cardId: 'sugawara-koshi-1', count: 2 },      // toss: 1
+                    { cardId: 'hinata-shouyo-1', count: 2 },       // toss: 0 (attack focus)
+                    
+                    // Đập (8 cards) - 8 slots
+                    { cardId: 'hinata-shouyo-1', count: 2 },       // attack: 3
+                    { cardId: 'hinata-shouyo-2', count: 2 },       // attack: 3
+                    { cardId: 'tanaka-ryunosuke-1', count: 2 },    // attack: 3
+                    { cardId: 'azumane-asahi-1', count: 2 },       // attack: 3
+                    
+                    // Chặn (8 cards) - 8 slots
+                    { cardId: 'tsukishima-kei-1', count: 2 },      // block: 3
+                    { cardId: 'tsukishima-kei-2', count: 2 },      // block: 3
+                    { cardId: 'azumane-asahi-1', count: 2 },       // block: 3
+                    { cardId: 'hinata-shouyo-2', count: 2 },      // block: 3
+                    
+                    // Hành động (8 cards) - 8 slots
+                    { cardId: 'chuyen-toi-day-cho-toi', count: 2 },
+                    { cardId: 'chu-may-cung-co-mau-an-thua-day', count: 2 },
+                    { cardId: 'phong-thu-tuyet-doi', count: 2 },
+                    { cardId: 'du-chi-la-sinh-hoat-clb', count: 1 },
+                    { cardId: '1-diem-bang-100-diem-phai-hon', count: 1 }
                 ]
             },
             'shiratorizawa': {
                 name: 'Deck Shiratorizawa',
                 cards: [
-                    { cardId: 'ushijima-wakatoshi-1', count: 4 },
-                    { cardId: 'ushijima-wakatoshi-2', count: 4 },
-                    { cardId: 'chuyen-het-bong-cho-anh', count: 4 },
-                    { cardId: 'hinata-shouyo-1', count: 4 },
-                    { cardId: 'kageyama-tobio-1', count: 4 },
-                    { cardId: 'sawamura-daichi-1', count: 4 },
-                    { cardId: 'sugawara-koshi-1', count: 4 },
-                    { cardId: 'tanaka-ryunosuke-1', count: 4 },
-                    { cardId: 'tsukishima-kei-1', count: 4 },
-                    { cardId: 'yamaguchi-tadashi-1', count: 4 }
+                    // Đỡ (8 cards) - 8 slots
+                    { cardId: 'yamagata-hayato', count: 2 },       // receive: 5
+                    { cardId: 'ushijima-wakatoshi-3', count: 2 },  // receive: 3
+                    { cardId: 'goshiki-tsutomu-3', count: 2 },    // receive: 4
+                    { cardId: 'shirabu-kenjiro-1', count: 2 },    // receive: 3
+                    
+                    // Chuyền (8 cards) - 8 slots
+                    { cardId: 'shirabu-kenjiro-1', count: 2 },    // toss: 1
+                    { cardId: 'shirabu-kenjiro-2', count: 2 },    // toss: 1
+                    { cardId: 'shirabu-kenjiro-3', count: 2 },    // toss: 1
+                    { cardId: 'semi-eita', count: 2 },            // toss: 1
+                    
+                    // Đập (8 cards) - 8 slots
+                    { cardId: 'ushijima-wakatoshi-1', count: 2 }, // attack: 3
+                    { cardId: 'ushijima-wakatoshi-2', count: 2 }, // attack: 3
+                    { cardId: 'goshiki-tsutomu-1', count: 2 },    // attack: 3
+                    { cardId: 'ohira-reon-1', count: 2 },         // attack: 3
+                    
+                    // Chặn (8 cards) - 8 slots
+                    { cardId: 'tendo-satori-1', count: 2 },       // block: 4
+                    { cardId: 'tendo-satori-3', count: 2 },      // block: 4
+                    { cardId: 'kawanishi-taichi', count: 2 },     // block: 3
+                    { cardId: 'shirabu-kenjiro-2', count: 2 },    // block: 3
+                    
+                    // Hành động (8 cards) - 8 slots
+                    { cardId: 'chuyen-het-bong-cho-anh', count: 2 },
+                    { cardId: 'ma-la-nghe-thuat-dap-bong-thang-xuong-san', count: 2 },
+                    { cardId: 'la-mot-doi-thu-vuot-qua-tam-hieu-biet', count: 2 },
+                    { cardId: 'thay-chua-ha-cu-bong-than-toc-cua-em-do', count: 2 }
                 ]
             }
         };
@@ -1040,13 +1079,13 @@ class OnlineGameManager {
             
             // Select the new deck
             const newDeckId = result.deckId ? 'saved_' + result.deckId : 'default';
-            if (this.deckSelect) {
+        if (this.deckSelect) {
                 this.deckSelect.value = newDeckId;
             }
             this.selectedDeck = newDeckId;
-            this.updateDeckInfo(deckName, 40);
-            
-            this.closeDeckBuilder();
+        this.updateDeckInfo(deckName, 40);
+        
+        this.closeDeckBuilder();
             this.showSuccess(result.updated ? 'Đã cập nhật deck!' : 'Đã lưu deck thành công!');
         } else {
             this.showError(result.error || 'Lỗi lưu deck');

@@ -1383,9 +1383,11 @@ class HaikyuuCardGame {
             return;
         }
         
-        // Remove from zones
+        // Remove from zones - reset stat modifications when removing from zone
         ['serve', 'receive', 'toss', 'attack'].forEach(zone => {
             if (this.state.playedCards[player][zone]?.uniqueId === card.uniqueId) {
+                // Reset stat modifications when card leaves zone
+                this.resetCardModifications(card);
                 this.state.playedCards[player][zone] = null;
             }
         });
@@ -1656,6 +1658,16 @@ class HaikyuuCardGame {
                         e.preventDefault();
                         this.showContextMenu(e, card, player, zone, 0);
                     });
+                    
+                    // Allow dragging card from zone to replace it
+                    cardEl.draggable = true;
+                    cardEl.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('card-id', card.uniqueId);
+                        e.dataTransfer.setData('card-player', player);
+                        e.dataTransfer.setData('card-source', 'zone');
+                        e.dataTransfer.setData('card-zone', zone);
+                    });
+                    
                     zoneEl.appendChild(cardEl);
                 }
             });
@@ -1675,6 +1687,16 @@ class HaikyuuCardGame {
                         e.preventDefault();
                         this.showContextMenu(e, card, player, 'block', index);
                     });
+                    
+                    // Allow dragging card from block zone
+                    cardEl.draggable = true;
+                    cardEl.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('card-id', card.uniqueId);
+                        e.dataTransfer.setData('card-player', player);
+                        e.dataTransfer.setData('card-source', 'block');
+                        e.dataTransfer.setData('card-index', index);
+                    });
+                    
                     blockEl.appendChild(cardEl);
                 });
                     });
