@@ -600,10 +600,7 @@ class GameState {
         
         // Action area cards
         this.actionCards = { 1: [], 2: [] };
-        this.actionAreaEls = {
-            1: document.getElementById('p1-action-cards'),
-            2: document.getElementById('p2-action-cards')
-        };
+        // actionAreaEls is initialized in constructor, don't reset here
         
         // Played cards - each player has zones
         this.playedCards = {
@@ -643,8 +640,14 @@ class HaikyuuCardGame {
         this.myPlayerNumber = null;
         this.playerNames = { 1: 'Player 1', 2: 'Player 2' };
         
-            this.initElements();
-            this.bindEvents();
+        // Initialize action area elements (needed before bindEvents)
+        this.actionAreaEls = {
+            1: document.getElementById('p1-action-cards'),
+            2: document.getElementById('p2-action-cards')
+        };
+        
+        this.initElements();
+        this.bindEvents();
         this.initChatLog();
     }
     
@@ -888,9 +891,20 @@ class HaikyuuCardGame {
     }
     
     setupActionAreaDragDrop() {
+        // Ensure actionAreaEls exists
+        if (!this.actionAreaEls) {
+            this.actionAreaEls = {
+                1: document.getElementById('p1-action-cards'),
+                2: document.getElementById('p2-action-cards')
+            };
+        }
+        
         [1, 2].forEach(player => {
             const actionEl = this.actionAreaEls[player];
-            if (!actionEl) return;
+            if (!actionEl) {
+                console.warn(`⚠️ Action area element not found for player ${player}`);
+                return;
+            }
             
             actionEl.addEventListener('dragover', (e) => {
                 e.preventDefault();
@@ -1862,9 +1876,20 @@ class HaikyuuCardGame {
             }
             
     renderActionCards() {
+        // Ensure actionAreaEls exists
+        if (!this.actionAreaEls) {
+            this.actionAreaEls = {
+                1: document.getElementById('p1-action-cards'),
+                2: document.getElementById('p2-action-cards')
+            };
+        }
+        
         [1, 2].forEach(player => {
             const actionEl = this.actionAreaEls[player];
-            if (!actionEl) return;
+            if (!actionEl) {
+                console.warn(`⚠️ Action area element not found for player ${player}`);
+                return;
+            }
             
             actionEl.innerHTML = '';
             const actionCards = this.state.actionCards[player] || [];
