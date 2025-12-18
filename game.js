@@ -298,7 +298,7 @@ class HaikyuuCardGame {
         this.p1SetsEl = document.getElementById('p1-sets');
         this.p2SetsEl = document.getElementById('p2-sets');
         
-        // Score click to increment
+        // Score click to increment - triggers SERVE phase
         [this.p1SetsEl, this.p2SetsEl].forEach((el, idx) => {
             if (el) {
                 el.addEventListener('click', (e) => {
@@ -307,8 +307,12 @@ class HaikyuuCardGame {
                     val++;
                     el.textContent = val;
                     this.state.sets[idx + 1] = val;
+                    
+                    // Trigger serve phase - scorer serves next
+                    this.triggerServePhase(idx + 1);
+                    
                     if (this.isOnline && this.onlineManager) {
-                        this.onlineManager.socket.emit('setScore', { player: idx + 1, value: val });
+                        this.onlineManager.socket.emit('setScore', { player: idx + 1, value: val, triggerServe: true });
                     }
                 });
                 el.addEventListener('contextmenu', (e) => {
@@ -323,6 +327,9 @@ class HaikyuuCardGame {
                 });
             }
         });
+        
+        // Current preview card reference for stat modification
+        this.currentPreviewCard = null;
         
         // Phase & Turn
         this.phaseEl = document.getElementById('current-phase');
@@ -657,27 +664,41 @@ class HaikyuuCardGame {
     // PHASE MANAGEMENT
     // ============================================
     advancePhase() {
-        const phases = [GamePhase.SERVE, GamePhase.RECEIVE, GamePhase.TOSS, GamePhase.ATTACK, GamePhase.BLOCK];
-        const currentIndex = phases.indexOf(this.state.phase);
+        // Phase cycle: SERVE (only at start/score change) → RECEIVE → TOSS → ATTACK → BLOCK → RECEIVE → TOSS → ...
+        const rallyPhases = [GamePhase.RECEIVE, GamePhase.TOSS, GamePhase.ATTACK, GamePhase.BLOCK];
         
-        if (currentIndex === -1 || this.state.phase === GamePhase.WAITING || this.state.phase === GamePhase.GAME_END) {
+        if (this.state.phase === GamePhase.WAITING || this.state.phase === GamePhase.GAME_END) {
             return;
         }
         
-        let nextIndex = (currentIndex + 1) % phases.length;
-        const nextPhase = phases[nextIndex];
+        let nextPhase;
         
-        // Switch player based on phase
-        if (nextPhase === GamePhase.SERVE) {
-            // New rally - switch server
-            this.state.servingPlayer = this.state.currentPlayer;
+        if (this.state.phase === GamePhase.SERVE) {
+            // After serve, go to receive
+            nextPhase = GamePhase.RECEIVE;
+            // Receiver is opponent of server
+            this.state.currentPlayer = this.getOpponent(this.state.servingPlayer);
             this.state.attackingPlayer = this.state.currentPlayer;
-        } else if (nextPhase === GamePhase.RECEIVE || nextPhase === GamePhase.BLOCK) {
-            // Defending phase - switch to opponent
-            this.state.currentPlayer = this.getOpponent(this.state.attackingPlayer || this.state.servingPlayer);
-        } else if (nextPhase === GamePhase.TOSS || nextPhase === GamePhase.ATTACK) {
-            // Attacking phase - attacker's turn
-            this.state.currentPlayer = this.state.attackingPlayer || this.state.currentPlayer;
+        } else {
+            const currentIndex = rallyPhases.indexOf(this.state.phase);
+            if (currentIndex === -1) return;
+            
+            // Cycle through rally phases (no SERVE in cycle)
+            const nextIndex = (currentIndex + 1) % rallyPhases.length;
+            nextPhase = rallyPhases[nextIndex];
+            
+            // Switch player based on phase
+            if (nextPhase === GamePhase.RECEIVE) {
+                // After block, attacker switches
+                this.state.attackingPlayer = this.getOpponent(this.state.attackingPlayer);
+                this.state.currentPlayer = this.state.attackingPlayer;
+            } else if (nextPhase === GamePhase.BLOCK) {
+                // Block phase - defender's turn
+                this.state.currentPlayer = this.getOpponent(this.state.attackingPlayer);
+            } else if (nextPhase === GamePhase.TOSS || nextPhase === GamePhase.ATTACK) {
+                // Toss/Attack - attacker's turn
+                this.state.currentPlayer = this.state.attackingPlayer;
+            }
         }
         
         this.state.phase = nextPhase;
@@ -686,6 +707,15 @@ class HaikyuuCardGame {
             this.onlineManager.socket.emit('advancePhase', { phase: nextPhase, currentPlayer: this.state.currentPlayer });
         }
         
+        this.updateUI();
+    }
+    
+    // Reset to SERVE phase when score changes
+    triggerServePhase(servingPlayer) {
+        this.state.phase = GamePhase.SERVE;
+        this.state.servingPlayer = servingPlayer;
+        this.state.currentPlayer = servingPlayer;
+        this.state.attackingPlayer = servingPlayer;
         this.updateUI();
     }
 
@@ -1057,15 +1087,18 @@ class HaikyuuCardGame {
                 if (targetZone === 'block') {
                     this.state.playedCards[player].block.push(card);
                 } else {
-                    // Move existing card to spirit
+                    // Move existing card to spirit - reset its stat modifications
                     const existing = this.state.playedCards[player][targetZone];
                     if (existing) {
+                        this.resetCardModifications(existing);
                         this.state.spiritCards[player][targetZone].push(existing);
                     }
                     this.state.playedCards[player][targetZone] = card;
                 }
                 break;
             case 'spirit':
+                // Reset stat modifications when becoming spirit
+                this.resetCardModifications(card);
                 this.state.spiritCards[player][targetZone].push(card);
                 break;
         }
@@ -1225,6 +1258,8 @@ class HaikyuuCardGame {
         this.updatePhaseDisplay();
         this.updateScores();
         this.updateSpiritCounts();
+        this.updateZoneLabels();
+        this.updateZoneDimming();
     }
 
     renderHands() {
@@ -1324,33 +1359,112 @@ class HaikyuuCardGame {
     }
 
     showCardPreview(card) {
+        this.currentPreviewCard = card;
+        
         const previewFullCard = document.getElementById('preview-full-card');
         const previewName = document.getElementById('preview-name');
         const previewStats = document.getElementById('preview-stats');
         const previewSkill = document.getElementById('preview-skill');
         
-        if (previewFullCard && card.artwork) {
-            previewFullCard.innerHTML = `<img src="${card.artwork}" alt="${card.name}">`;
+        if (previewFullCard) {
+            if (card.artwork) {
+                previewFullCard.innerHTML = `<img src="${card.artwork}" alt="${card.name}">`;
+            } else {
+                previewFullCard.innerHTML = '<div class="card-placeholder">🏐</div>';
+            }
         }
         
         if (previewName) {
             previewName.textContent = card.name;
         }
         
+        // Get current stats (with modifications)
+        const stats = this.getCardStats(card);
+        
         if (previewStats) {
             previewStats.innerHTML = `
-                <div class="preview-stat"><span>SRV:</span><span>${card.serve}</span></div>
-                <div class="preview-stat"><span>RCV:</span><span>${card.receive}</span></div>
-                <div class="preview-stat"><span>TOS:</span><span>${card.toss}</span></div>
-                <div class="preview-stat"><span>ATK:</span><span>${card.attack}</span></div>
-                <div class="preview-stat"><span>BLK:</span><span>${card.block}</span></div>
+                <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${stats.serve}</span></div>
+                <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${stats.receive}</span></div>
+                <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${stats.toss}</span></div>
+                <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${stats.attack}</span></div>
+                <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${stats.block}</span></div>
             `;
+            
+            // Add click handlers for stat modification
+            previewStats.querySelectorAll('.stat-value').forEach(statEl => {
+                const statName = statEl.dataset.stat;
+                
+                // Left click to increase
+                statEl.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.modifyCardStat(card, statName, 1);
+                });
+                
+                // Right click to decrease
+                statEl.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.modifyCardStat(card, statName, -1);
+                });
+            });
         }
         
         if (previewSkill) {
             previewSkill.textContent = card.skill || '';
             previewSkill.style.display = card.skill ? 'block' : 'none';
         }
+    }
+    
+    getCardStats(card) {
+        // Return current stats including modifications
+        return {
+            serve: card.modifiedServe ?? card.serve,
+            receive: card.modifiedReceive ?? card.receive,
+            toss: card.modifiedToss ?? card.toss,
+            attack: card.modifiedAttack ?? card.attack,
+            block: card.modifiedBlock ?? card.block
+        };
+    }
+    
+    modifyCardStat(card, statName, delta) {
+        if (!card) return;
+        
+        const modKey = `modified${statName.charAt(0).toUpperCase() + statName.slice(1)}`;
+        const baseValue = typeof card[statName] === 'string' ? 
+            parseInt(card[statName]) || card[`${statName}Base`] || 0 : 
+            card[statName];
+        
+        // Initialize modified value if not set
+        if (card[modKey] === undefined) {
+            card[modKey] = baseValue;
+        }
+        
+        // Apply delta
+        card[modKey] = Math.max(0, card[modKey] + delta);
+        
+        // Update preview display
+        this.showCardPreview(card);
+        
+        // Update zone labels if card is in a zone
+        this.updateZoneLabels();
+        
+        // Sync with server if online
+        if (this.isOnline && this.onlineManager) {
+            this.onlineManager.socket.emit('modifyCardStat', {
+                cardUniqueId: card.uniqueId,
+                statName,
+                value: card[modKey]
+            });
+        }
+    }
+    
+    resetCardModifications(card) {
+        if (!card) return;
+        delete card.modifiedServe;
+        delete card.modifiedReceive;
+        delete card.modifiedToss;
+        delete card.modifiedAttack;
+        delete card.modifiedBlock;
     }
 
     hideCardPreview() {
@@ -1371,13 +1485,13 @@ class HaikyuuCardGame {
     updatePhaseDisplay() {
         if (this.phaseEl) {
             const phaseNames = {
-                [GamePhase.WAITING]: 'WAITING',
-                [GamePhase.SERVE]: 'SERVE',
-                [GamePhase.RECEIVE]: 'RECEIVE',
-                [GamePhase.TOSS]: 'TOSS',
-                [GamePhase.ATTACK]: 'ATTACK',
-                [GamePhase.BLOCK]: 'BLOCK',
-                [GamePhase.GAME_END]: 'GAME END'
+                [GamePhase.WAITING]: 'CHỜ',
+                [GamePhase.SERVE]: 'GIAO',
+                [GamePhase.RECEIVE]: 'ĐỠ',
+                [GamePhase.TOSS]: 'CHUYỀN',
+                [GamePhase.ATTACK]: 'ĐẬP',
+                [GamePhase.BLOCK]: 'CHẶN',
+                [GamePhase.GAME_END]: 'KẾT THÚC'
             };
             this.phaseEl.textContent = phaseNames[this.state.phase] || this.state.phase?.toUpperCase();
         }
@@ -1430,6 +1544,87 @@ class HaikyuuCardGame {
                 }
             });
         });
+    }
+    
+    updateZoneLabels() {
+        const zoneNames = {
+            serve: 'Giao',
+            receive: 'Đỡ',
+            toss: 'Chuyền',
+            attack: 'Đập'
+        };
+        
+        const statMap = {
+            serve: 'serve',
+            receive: 'receive',
+            toss: 'toss',
+            attack: 'attack'
+        };
+        
+        [1, 2].forEach(player => {
+            ['serve', 'receive', 'toss', 'attack'].forEach(zone => {
+                const labelEl = document.getElementById(`p${player}-${zone}-label`);
+                if (!labelEl) return;
+                
+                const card = this.state.playedCards[player][zone];
+                if (card) {
+                    const stats = this.getCardStats(card);
+                    const statValue = stats[statMap[zone]];
+                    labelEl.textContent = `${zoneNames[zone]} - ${statValue}`;
+                } else {
+                    labelEl.textContent = zoneNames[zone];
+                }
+            });
+        });
+    }
+    
+    updateZoneDimming() {
+        const phase = this.state.phase;
+        const currentPlayer = this.state.currentPlayer;
+        
+        // Define which zones are active for each phase
+        const activeZones = {
+            [GamePhase.SERVE]: { zone: 'serve', player: this.state.servingPlayer },
+            [GamePhase.RECEIVE]: { zone: 'receive', player: currentPlayer },
+            [GamePhase.TOSS]: { zone: 'toss', player: currentPlayer },
+            [GamePhase.ATTACK]: { zone: 'attack', player: currentPlayer },
+            [GamePhase.BLOCK]: { zone: 'block', player: currentPlayer }
+        };
+        
+        const activeConfig = activeZones[phase];
+        
+        // Get all zone elements
+        document.querySelectorAll('.zone').forEach(zoneEl => {
+            const zoneType = zoneEl.dataset.zone;
+            const zonePlayer = parseInt(zoneEl.dataset.player);
+            
+            // Skip if no phase config or during waiting
+            if (!activeConfig || phase === GamePhase.WAITING || phase === GamePhase.GAME_END) {
+                zoneEl.classList.remove('zone-dimmed');
+                return;
+            }
+            
+            // Check if this zone should be active
+            const isActiveZone = zoneType === activeConfig.zone && zonePlayer === activeConfig.player;
+            
+            if (isActiveZone) {
+                zoneEl.classList.remove('zone-dimmed');
+            } else {
+                zoneEl.classList.add('zone-dimmed');
+            }
+        });
+        
+        // Handle block zone specially (it's shared)
+        const blockZone = document.getElementById('p1-block-zone');
+        if (blockZone) {
+            if (phase === GamePhase.BLOCK) {
+                blockZone.classList.remove('zone-dimmed');
+            } else if (phase !== GamePhase.WAITING && phase !== GamePhase.GAME_END) {
+                blockZone.classList.add('zone-dimmed');
+            } else {
+                blockZone.classList.remove('zone-dimmed');
+            }
+        }
     }
 }
 

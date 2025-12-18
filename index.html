@@ -147,7 +147,7 @@
 
                         <div class="play-zones opponent-zones">
                             <div class="zone serve-zone" data-zone="serve" data-player="2">
-                                <div class="zone-label">SERVE</div>
+                                <div class="zone-label" id="p2-serve-label">Giao</div>
                                 <div class="zone-cards" id="p2-serve-cards"></div>
                                 <div class="zone-spirit" data-player="2" data-zone="serve" title="Click: Xem Ý chí">
                                     <span class="spirit-count" id="p2-serve-spirit">0</span>
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="zone receive-zone" data-zone="receive" data-player="2">
-                                <div class="zone-label">RECEIVE</div>
+                                <div class="zone-label" id="p2-receive-label">Đỡ</div>
                                 <div class="zone-cards" id="p2-receive-cards"></div>
                                 <div class="zone-spirit" data-player="2" data-zone="receive" title="Click: Xem Ý chí">
                                     <span class="spirit-count" id="p2-receive-spirit">0</span>
@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                             <div class="zone toss-zone" data-zone="toss" data-player="2">
-                                <div class="zone-label">TOSS</div>
+                                <div class="zone-label" id="p2-toss-label">Chuyền</div>
                                 <div class="zone-cards" id="p2-toss-cards"></div>
                                 <div class="zone-spirit" data-player="2" data-zone="toss" title="Click: Xem Ý chí">
                                     <span class="spirit-count" id="p2-toss-spirit">0</span>
@@ -171,7 +171,7 @@
                                 </div>
                             </div>
                             <div class="zone attack-zone" data-zone="attack" data-player="2">
-                                <div class="zone-label">ATTACK</div>
+                                <div class="zone-label" id="p2-attack-label">Đập</div>
                                 <div class="zone-cards" id="p2-attack-cards"></div>
                                 <div class="zone-spirit" data-player="2" data-zone="attack" title="Click: Xem Ý chí">
                                     <span class="spirit-count" id="p2-attack-spirit">0</span>
@@ -198,7 +198,7 @@
                             <!-- Center Group: Block Zone -->
                             <div class="block-center-group">
                                 <div class="block-zone-container multi-block">
-                                    <div class="block-label">BLOCK AREA</div>
+                                    <div class="block-label">CHẶN</div>
                                     <div class="block-zone" id="p1-block-zone" data-player="1" data-zone="block">
                                         <div class="zone-cards multi-cards" id="p1-block-cards"></div>
                                     </div>
@@ -233,7 +233,7 @@
 
                         <div class="play-zones my-zones">
                             <div class="zone serve-zone" data-zone="serve" data-player="1">
-                                <div class="zone-label">SERVE</div>
+                                <div class="zone-label" id="p1-serve-label">Giao</div>
                                 <div class="zone-cards" id="p1-serve-cards"></div>
                                 <div class="zone-spirit" data-player="1" data-zone="serve" title="Click: Xem Ý chí">
                                     <span class="spirit-count" id="p1-serve-spirit">0</span>
@@ -241,7 +241,7 @@
                                 </div>
                             </div>
                             <div class="zone receive-zone" data-zone="receive" data-player="1">
-                                <div class="zone-label">RECEIVE</div>
+                                <div class="zone-label" id="p1-receive-label">Đỡ</div>
                                 <div class="zone-cards" id="p1-receive-cards"></div>
                                 <div class="zone-spirit" data-player="1" data-zone="receive" title="Click: Xem Ý chí">
                                     <span class="spirit-count" id="p1-receive-spirit">0</span>
@@ -249,7 +249,7 @@
                                 </div>
                             </div>
                             <div class="zone toss-zone" data-zone="toss" data-player="1">
-                                <div class="zone-label">TOSS</div>
+                                <div class="zone-label" id="p1-toss-label">Chuyền</div>
                                 <div class="zone-cards" id="p1-toss-cards"></div>
                                 <div class="zone-spirit" data-player="1" data-zone="toss" title="Click: Xem Ý chí">
                                     <span class="spirit-count" id="p1-toss-spirit">0</span>
@@ -257,7 +257,7 @@
                                 </div>
                             </div>
                             <div class="zone attack-zone" data-zone="attack" data-player="1">
-                                <div class="zone-label">ATTACK</div>
+                                <div class="zone-label" id="p1-attack-label">Đập</div>
                                 <div class="zone-cards" id="p1-attack-cards"></div>
                                 <div class="zone-spirit" data-player="1" data-zone="attack" title="Click: Xem Ý chí">
                                     <span class="spirit-count" id="p1-attack-spirit">0</span>
@@ -270,35 +270,19 @@
 
                 <!-- Card Preview Panel -->
                 <div class="card-preview-panel" id="card-preview-panel">
-                    <div class="preview-title">Card Preview</div>
+                    <div class="preview-title">Xem trước thẻ</div>
                     <div class="preview-card" id="preview-card">
                         <div class="preview-full-card" id="preview-full-card"></div>
-                        <div class="preview-name" id="preview-name">Hover over a card</div>
+                        <div class="preview-name" id="preview-name">Rê chuột vào thẻ</div>
                         <div class="preview-stats" id="preview-stats">
-                            <div class="preview-stat"><span>SRV:</span><span>-</span></div>
-                            <div class="preview-stat"><span>RCV:</span><span>-</span></div>
-                            <div class="preview-stat"><span>TOS:</span><span>-</span></div>
-                            <div class="preview-stat"><span>ATK:</span><span>-</span></div>
-                            <div class="preview-stat"><span>BLK:</span><span>-</span></div>
+                            <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">-</span></div>
+                            <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">-</span></div>
+                            <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">-</span></div>
+                            <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">-</span></div>
+                            <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">-</span></div>
                         </div>
                         <div class="preview-skill" id="preview-skill"></div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Stats Panel -->
-            <div class="stats-panel">
-                <div class="stat-item">
-                    <span class="stat-label">Serve</span>
-                    <span class="stat-value" id="serve-power">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Receive</span>
-                    <span class="stat-value" id="receive-power">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Block</span>
-                    <span class="stat-value" id="block-power">0</span>
                 </div>
             </div>
 
