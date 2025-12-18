@@ -2040,16 +2040,21 @@ class HaikyuuCardGame {
             }
         }
         
-        // Get current stats (with modifications)
-        const stats = this.getCardStats(card);
+        // Use stats from JSON (not modified stats for preview)
+        // For character cards, handle stats that might be strings like "3+"
+        const serveValue = typeof displayStats.serve === 'string' ? displayStats.serve : (displayStats.serve || 0);
+        const receiveValue = typeof displayStats.receive === 'string' ? displayStats.receive : (displayStats.receive || 0);
+        const tossValue = typeof displayStats.toss === 'string' ? displayStats.toss : (displayStats.toss || 0);
+        const attackValue = typeof displayStats.attack === 'string' ? displayStats.attack : (displayStats.attack || 0);
+        const blockValue = typeof displayStats.block === 'string' ? displayStats.block : (displayStats.block || 0);
         
         if (previewStats) {
             previewStats.innerHTML = `
-                <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${stats.serve}</span></div>
-                <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${stats.receive}</span></div>
-                <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${stats.toss}</span></div>
-                <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${stats.attack}</span></div>
-                <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${stats.block}</span></div>
+                <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${serveValue}</span></div>
+                <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${receiveValue}</span></div>
+                <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${tossValue}</span></div>
+                <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${attackValue}</span></div>
+                <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${blockValue}</span></div>
             `;
             
             // Add click handlers for stat modification (only if not in deck builder)
