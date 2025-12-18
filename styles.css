@@ -766,10 +766,12 @@ body {
     min-height: 78px;
 }
 
+/* Action area - cards displayed horizontally (no rotation) */
 .action-cards .card {
     width: 78px;
     height: 56px;
-    transform: rotate(90deg);
+    /* No rotation - horizontal display */
+    transform: none;
     transform-origin: center;
     overflow: visible;
 }
@@ -780,9 +782,10 @@ body {
     object-fit: contain;
 }
 
-/* Action card in preview - use original horizontal PNG */
+/* Action card in preview - rotate vertical */
 .preview-full-card .action-card-preview {
-    /* No rotation - use original horizontal PNG */
+    transform: rotate(90deg);
+    transform-origin: center;
     width: 100%;
     height: 100%;
     object-fit: contain;
