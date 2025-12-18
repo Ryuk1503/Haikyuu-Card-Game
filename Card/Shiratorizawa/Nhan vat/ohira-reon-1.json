@@ -1,0 +1,19 @@
+{
+    "id": "HV10-052",
+    "name": "Ohira Reon",
+    "nameJP": "大平獅音",
+    "rarity": "R",
+    "school": "Shiratorizawa",
+    "stats": {
+        "serve": 1,
+        "receive": 3,
+        "toss": 0,
+        "attack": 3,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập bóng, hai người chơi bỏ 1 thẻ trên cùng bộ bài của mình vào Drop."
+    },
+    "artwork": "Card/Shiratorizawa/Nhan vat/ohira-reon-1.png"
+}
+

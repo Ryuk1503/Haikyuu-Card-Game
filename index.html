@@ -237,11 +237,11 @@
                             <!-- Far Left: Score -->
                             <div class="block-edge-panel left-edge">
                                 <div class="set-score-mini">
-                                    <span class="player-tag p1">P1</span>
+                                    <span class="player-tag p1" id="p1-name-tag">Player 1</span>
                                     <span class="score-box editable-score" id="p1-sets" contenteditable="true" title="Click để chỉnh điểm">0</span>
                                     <span class="score-dash">-</span>
                                     <span class="score-box editable-score" id="p2-sets" contenteditable="true" title="Click để chỉnh điểm">0</span>
-                                    <span class="player-tag p2">P2</span>
+                                    <span class="player-tag p2" id="p2-name-tag">Player 2</span>
                                 </div>
                             </div>
                             
@@ -336,6 +336,15 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Modal bắt đầu game -->
+    <div class="modal" id="game-start-modal">
+        <div class="modal-content">
+            <h2>🏐 Trận đấu bắt đầu! 🏐</h2>
+            <p id="first-player-text">Đang chờ...</p>
+            <button class="btn btn-start-game" id="btn-close-start-modal">Bắt đầu</button>
         </div>
     </div>
 

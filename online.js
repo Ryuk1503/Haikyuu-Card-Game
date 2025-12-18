@@ -559,13 +559,38 @@ class OnlineGameManager {
     onGameStarted(data) {
         console.log('Game started!', data);
         
-        // Hide lobby, show game
-        if (this.lobbyScreen) this.lobbyScreen.classList.add('hidden');
-        if (this.gameScreen) this.gameScreen.classList.remove('hidden');
+        // Show first player dialog
+        const startModal = document.getElementById('game-start-modal');
+        const firstPlayerText = document.getElementById('first-player-text');
+        const closeStartModalBtn = document.getElementById('btn-close-start-modal');
         
-        // Initialize game with online state
-        if (window.game) {
-            window.game.initOnlineGame(data.state, data.playerNumber, data.playerNames, this);
+        if (startModal && firstPlayerText && data.state) {
+            const firstPlayer = data.state.servingPlayer;
+            const firstPlayerName = data.playerNames[firstPlayer] || `Player ${firstPlayer}`;
+            firstPlayerText.textContent = `🎲 Người đi trước: ${firstPlayerName}`;
+            startModal.classList.add('show');
+            
+            if (closeStartModalBtn) {
+                closeStartModalBtn.onclick = () => {
+                    startModal.classList.remove('show');
+                    // Hide lobby, show game
+                    if (this.lobbyScreen) this.lobbyScreen.classList.add('hidden');
+                    if (this.gameScreen) this.gameScreen.classList.remove('hidden');
+                    
+                    // Initialize game with online state
+                    if (window.game) {
+                        window.game.initOnlineGame(data.state, data.playerNumber, data.playerNames, this);
+                    }
+                };
+            }
+        } else {
+            // Fallback if modal not found
+            if (this.lobbyScreen) this.lobbyScreen.classList.add('hidden');
+            if (this.gameScreen) this.gameScreen.classList.remove('hidden');
+            
+            if (window.game) {
+                window.game.initOnlineGame(data.state, data.playerNumber, data.playerNames, this);
+            }
         }
     }
     
@@ -689,8 +714,25 @@ class OnlineGameManager {
             { id: 39, name: "Goshiki Tsutomu", cardId: "goshiki-tsutomu-1", school: "Shiratorizawa", type: "character", serve: 2, receive: 2, toss: 0, attack: 3, block: 0, skill: "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập. Nếu trên sân mình có nhân vật \"Ushijima Wakatoshi\", có thể loại bỏ 1 Ý Chí của 1 nhân vật trên sân đối phương.", artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-1.png" },
             { id: 40, name: "Goshiki Tsutomu", cardId: "goshiki-tsutomu-2", school: "Shiratorizawa", type: "character", serve: 4, receive: 1, toss: 0, attack: 3, block: 0, skill: "Khi thẻ này xuất hiện ở khu vực Giao Bóng, có thể bỏ 1 thẻ trên tay để đặt 2 thẻ trên cùng bộ bài đối phương vào Drop.", artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-2.png" },
             { id: 41, name: "Goshiki Tsutomu", cardId: "goshiki-tsutomu-3", school: "Shiratorizawa", type: "character", serve: 3, receive: 4, toss: 0, attack: 3, block: 2, artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-3.png" },
+            { id: 42, name: "Shirabu Kenjiro", cardId: "shirabu-kenjiro-1", school: "Shiratorizawa", type: "character", serve: 2, receive: 3, toss: 1, attack: 0, block: 1, skill: "Khi nhân vật Đập Bóng xuất hiện trên sân mình, nếu nhân vật này (Shirabu Kenjiro) có 3+ Ý Chí, tự +1 điểm Chuyền. Nếu nhân vật Đập Bóng là \"Ushijima Wakatoshi\", có thể loại bỏ tối đa 1 Ý Chí của 1 nhân vật trên sân đối phương.", artwork: "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-1.png" },
+            { id: 43, name: "Shirabu Kenjiro", cardId: "shirabu-kenjiro-2", school: "Shiratorizawa", type: "character", serve: 3, receive: 0, toss: 1, attack: 0, block: 3, skill: "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ Nhân Vật trường Shiratorizawa từ trên tay để thực hiện Bỏ nhỏ. (Kết thúc lượt mà không cần triển khai nhân vật Đập bóng. Ở lượt tiếp theo, đối phương không thể Chặn Bóng và chỉ Đỡ Bóng thành công với điểm Đỡ từ 3 trở lên).", artwork: "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-2.png" },
+            { id: 44, name: "Shirabu Kenjiro", cardId: "shirabu-kenjiro-3", school: "Shiratorizawa", type: "character", serve: 4, receive: 4, toss: 1, attack: 1, block: 2, artwork: "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-3.png" },
+            { id: 45, name: "Ohira Reon", cardId: "ohira-reon-1", school: "Shiratorizawa", type: "character", serve: 1, receive: 3, toss: 0, attack: 3, block: 1, skill: "Khi thẻ này xuất hiện ở khu vực Đập bóng, hai người chơi bỏ 1 thẻ trên cùng bộ bài của mình vào Drop.", artwork: "Card/Shiratorizawa/Nhan vat/ohira-reon-1.png" },
+            { id: 46, name: "Ohira Reon", cardId: "ohira-reon-2", school: "Shiratorizawa", type: "character", serve: 1, receive: 4, toss: 0, attack: 1, block: 1, skill: "[2 Ý chí] Khi nhân vật \"Ushijima Wakatoshi\" xuất hiện ở khu vực Đập Bóng trên sân mình, có thể dùng 2 Ý Chí của nhân vật này để +1 điểm Đập cho nhân vật \"Ushijima Wakatoshi\" đó.", artwork: "Card/Shiratorizawa/Nhan vat/ohira-reon-2.png" },
+            { id: 47, name: "Kawanishi Taichi", cardId: "kawanishi-taichi", school: "Shiratorizawa", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, skill: "Khi thẻ này ra sân, có thể bỏ 1 thẻ trên tay để đặt 1 thẻ trên cùng bộ bài đối phương vào Drop và rút 1 thẻ từ bộ bài.", artwork: "Card/Shiratorizawa/Nhan vat/kawanishi-taichi.png" },
+            { id: 48, name: "Yamagata Hayato", cardId: "yamagata-hayato", school: "Shiratorizawa", type: "character", serve: 0, receive: 5, toss: 0, attack: 0, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/yamagata-hayato.png" },
+            { id: 49, name: "Semi Eita", cardId: "semi-eita", school: "Shiratorizawa", type: "character", serve: 4, receive: 2, toss: 1, attack: 0, block: 0, skill: "[2 Ý chí] Khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có 3+ Ý Chí, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Shiratorizawa từ Drop.", artwork: "Card/Shiratorizawa/Nhan vat/semi-eita.png" },
+            // KARASUNO - HÀNH ĐỘNG
+            { id: 100, name: "Chuyền tới đây cho tôi!!", cardId: "chuyen-toi-day-cho-toi", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đỡ] +2 điểm Đỡ cho nhân vật Đỡ Bóng trường Karasuno trên sân mình. Sau đó, nếu nhân vật đó là \"Nishinoya Yu\", có thể chọn tối đa 1 thẻ \"Nishinoya Yu\" từ bộ bài rồi thêm vào Ý Chí của nhân vật đó. Xáo lại bộ bài.", artwork: "Card/Karasuno/Hanh dong/chuyen-toi-day-cho-toi.png" },
+            { id: 101, name: "Chú mày cũng có máu ăn thua đấy…!!", cardId: "chu-may-cung-co-mau-an-thua-day", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đập] [3 Ý chí] +1 điểm Chuyền cho nhân vật Chuyền Bóng trường Karasuno trên sân mình. Hoặc nếu nhân vật đó và nhân vật Đập Bóng có từ 3 Ý Chí trở lên, +3 điểm Chuyền.", artwork: "Card/Karasuno/Hanh dong/chu-may-cung-co-mau-an-thua-day.png" },
+            { id: 102, name: "Phòng thủ tuyệt đối!!", cardId: "phong-thu-tuyet-doi", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đỡ][Chặn] +2 điểm Đỡ hoặc Chặn cho 1 nhân vật trường Karasuno trên sân mình. Nếu nhân vật đó là nhân vật Chặn Bóng, rút 2 thẻ từ bộ bài. Sau đó, trong lượt này không được phép sử dụng thẻ \"Phòng thủ tuyệt đối!!\" nữa.", artwork: "Card/Karasuno/Hanh dong/phong-thu-tuyet-doi.png" },
+            { id: 103, name: "Dù chỉ là sinh hoạt CLB…", cardId: "du-chi-la-sinh-hoat-clb", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Chặn] [3 Ý chí] +2 điểm Chặn cho 1 nhân vật \"Tsukishima Kei\" trên sân mình. Nếu trên sân mình có nhân vật Đỡ Bóng trường Karasuno với 3 Ý Chí trở lên, ở lượt tiếp theo của đối phương, đối phương chỉ Đỡ Bóng thành công với điểm Đỡ từ 8 trở lên.", artwork: "Card/Karasuno/Hanh dong/du-chi-la-sinh-hoat-clb.png" },
+            { id: 104, name: "\"1 điểm bằng 100 điểm\" phải hôn!?", cardId: "1-diem-bang-100-diem-phai-hon", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đỡ][Chuyền][Đập][Chặn] [2 Ý chí] +1 điểm bất kì cho 1 nhân vật trường Karasuno trên sân mình. Sau đó, có thể sử dụng 2 Ý Chí của 1 nhân vật trường Karasuno khác để thu hồi lên tay 1 thẻ nhân vật từ khu vực Loại Bỏ.", artwork: "Card/Karasuno/Hanh dong/1-diem-bang-100-diem-phai-hon.png" },
             // SHIRATORIZAWA - HÀNH ĐỘNG
-            { id: 100, name: "Chuyền hết bóng cho anh.", cardId: "chuyen-het-bong-cho-anh", school: "Shiratorizawa", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Chuyền][Đập] [3 ý chí] +1 điểm cho nhân vật Shiratorizawa.", artwork: "Card/Shiratorizawa/Hanh dong/chuyen-het-bong-cho-anh.png" }
+            { id: 105, name: "Chuyền hết bóng cho anh.", cardId: "chuyen-het-bong-cho-anh", school: "Shiratorizawa", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Chuyền][Đập] [3 ý chí] +1 điểm cho nhân vật Shiratorizawa.", artwork: "Card/Shiratorizawa/Hanh dong/chuyen-het-bong-cho-anh.png" },
+            { id: 106, name: "Mà là nghệ thuật đập bóng thẳng xuống sân.", cardId: "ma-la-nghe-thuat-dap-bong-thang-xuong-san", school: "Shiratorizawa", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Chặn] Rút 1 thẻ từ bộ bài. Sau đó, +2 điểm Chặn cho 1 nhân vật trường Shiratorizawa trên sân mình. Nếu nhân vật đó là \"Tendo Satori\", đặt 1 thẻ trên cùng bộ bài của đối phương vào khu vực Loại Bỏ.", artwork: "Card/Shiratorizawa/Hanh dong/ma-la-nghe-thuat-dap-bong-thang-xuong-san.png" },
+            { id: 107, name: "Là một đối thủ \"vượt quá tầm hiểu biết\"…", cardId: "la-mot-doi-thu-vuot-qua-tam-hieu-biet", school: "Shiratorizawa", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đỡ][Chuyền][Đập][Chặn] [3 Ý chí] +1 điểm bất kì cho 1 nhân vật trường Shiratorizawa trên sân mình. Nếu nhân vật đó có từ 3 Ý Chí trở lên, và trên sân đối phương, trừ nhân vật Giao Bóng, có nhân vật có từ 2 Ý Chí trở xuống, rút 2 thẻ từ bộ bài. Sau đó, trong lượt này không được sử dụng thẻ \"Là một đối thủ 'vượt quá tầm hiểu biết'…\" nữa.", artwork: "Card/Shiratorizawa/Hanh dong/la-mot-doi-thu-vuot-qua-tam-hieu-biet.png" },
+            { id: 108, name: "Thấy chưa hả? Cú bóng thần tốc của em đó!", cardId: "thay-chua-ha-cu-bong-than-toc-cua-em-do", school: "Shiratorizawa", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đập] +1 điểm Đập cho 1 nhân vật trên sân mình. Sau đó, nếu nhân vật đó là \"Goshiki Tsutomu\", ở lượt tiếp theo của đối phương, đối phương không được đưa ra nhân vật Chặn Bóng.", artwork: "Card/Shiratorizawa/Hanh dong/thay-chua-ha-cu-bong-than-toc-cua-em-do.png" }
         ];
     }
     
@@ -900,7 +942,51 @@ class OnlineGameManager {
             this.changeCardCount(card.cardId, 1);
         });
         
+        // Add hover preview for deck builder
+        item.addEventListener('mouseenter', () => this.showDeckCardPreview(card));
+        item.addEventListener('mouseleave', () => this.hideDeckCardPreview());
+        
         return item;
+    }
+    
+    showDeckCardPreview(card) {
+        const previewFullCard = document.getElementById('preview-full-card');
+        const previewName = document.getElementById('preview-name');
+        const previewStats = document.getElementById('preview-stats');
+        const previewSkill = document.getElementById('preview-skill');
+        
+        if (previewFullCard) {
+            if (card.artwork) {
+                previewFullCard.innerHTML = `<img src="${card.artwork}" alt="${card.name}">`;
+            } else {
+                previewFullCard.innerHTML = '<div class="card-placeholder">🏐</div>';
+            }
+        }
+        
+        if (previewName) {
+            previewName.textContent = card.name;
+        }
+        
+        if (previewStats) {
+            previewStats.innerHTML = `
+                <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${card.serve}</span></div>
+                <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${card.receive}</span></div>
+                <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${card.toss}</span></div>
+                <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${card.attack}</span></div>
+                <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${card.block}</span></div>
+            `;
+            // No click handlers for stat modification in deck builder
+        }
+        
+        if (previewSkill) {
+            previewSkill.textContent = card.skill || '';
+            previewSkill.style.display = card.skill ? 'block' : 'none';
+        }
+    }
+    
+    hideDeckCardPreview() {
+        // Optional: clear preview when leaving deck builder cards
+        // Or keep last card preview visible
     }
     
     changeCardCount(cardId, delta) {

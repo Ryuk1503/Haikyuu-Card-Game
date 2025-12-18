@@ -1,0 +1,14 @@
+{
+    "id": "HV10-ACTION-002",
+    "name": "Chuyền tới đây cho tôi!!",
+    "nameJP": "ここにトスしてくれ!!",
+    "rarity": "R",
+    "type": "action",
+    "phases": ["receive"],
+    "spiritCost": 0,
+    "skill": {
+        "description": "[Đỡ] +2 điểm Đỡ cho nhân vật Đỡ Bóng trường Karasuno trên sân mình. Sau đó, nếu nhân vật đó là \"Nishinoya Yu\", có thể chọn tối đa 1 thẻ \"Nishinoya Yu\" từ bộ bài rồi thêm vào Ý Chí của nhân vật đó. Xáo lại bộ bài."
+    },
+    "artwork": "Card/Karasuno/Hanh dong/chuyen-toi-day-cho-toi.png"
+}
+

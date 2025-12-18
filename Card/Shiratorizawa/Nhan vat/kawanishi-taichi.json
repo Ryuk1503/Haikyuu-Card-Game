@@ -1,0 +1,19 @@
+{
+    "id": "HV10-054",
+    "name": "Kawanishi Taichi",
+    "nameJP": "川西太一",
+    "rarity": "R",
+    "school": "Shiratorizawa",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này ra sân, có thể bỏ 1 thẻ trên tay để đặt 1 thẻ trên cùng bộ bài đối phương vào Drop và rút 1 thẻ từ bộ bài."
+    },
+    "artwork": "Card/Shiratorizawa/Nhan vat/kawanishi-taichi.png"
+}
+

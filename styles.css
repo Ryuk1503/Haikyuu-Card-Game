@@ -773,7 +773,7 @@ body {
 }
 
 .zone {
-    width: 70px;
+    width: 95px;
     min-height: 100px;
     border-radius: 6px;
     padding: 2px;
@@ -798,6 +798,8 @@ body {
     border-radius: 8px;
     margin-bottom: 3px;
     color: white;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .serve-zone { background: rgba(231, 76, 60, 0.3); border: 2px solid #e74c3c; }

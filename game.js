@@ -320,9 +320,200 @@ const cardDatabase = [
         block: 2,
         artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-3.png"
     },
-    // ============ SHIRATORIZAWA - HÀNH ĐỘNG ============
+    { 
+        id: 42, 
+        name: "Shirabu Kenjiro", 
+        cardId: "shirabu-kenjiro-1",
+        school: "Shiratorizawa",
+        type: "character",
+        serve: 2, 
+        receive: 3, 
+        toss: 1, 
+        attack: 0, 
+        block: 1,
+        skill: "Khi nhân vật Đập Bóng xuất hiện trên sân mình, nếu nhân vật này (Shirabu Kenjiro) có 3+ Ý Chí, tự +1 điểm Chuyền. Nếu nhân vật Đập Bóng là \"Ushijima Wakatoshi\", có thể loại bỏ tối đa 1 Ý Chí của 1 nhân vật trên sân đối phương.",
+        artwork: "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-1.png"
+    },
+    { 
+        id: 43, 
+        name: "Shirabu Kenjiro", 
+        cardId: "shirabu-kenjiro-2",
+        school: "Shiratorizawa",
+        type: "character",
+        serve: 3, 
+        receive: 0, 
+        toss: 1, 
+        attack: 0, 
+        block: 3,
+        skill: "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ Nhân Vật trường Shiratorizawa từ trên tay để thực hiện Bỏ nhỏ. (Kết thúc lượt mà không cần triển khai nhân vật Đập bóng. Ở lượt tiếp theo, đối phương không thể Chặn Bóng và chỉ Đỡ Bóng thành công với điểm Đỡ từ 3 trở lên).",
+        artwork: "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-2.png"
+    },
+    { 
+        id: 44, 
+        name: "Shirabu Kenjiro", 
+        cardId: "shirabu-kenjiro-3",
+        school: "Shiratorizawa",
+        type: "character",
+        serve: 4, 
+        receive: 4, 
+        toss: 1, 
+        attack: 1, 
+        block: 2,
+        artwork: "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-3.png"
+    },
+    { 
+        id: 45, 
+        name: "Ohira Reon", 
+        cardId: "ohira-reon-1",
+        school: "Shiratorizawa",
+        type: "character",
+        serve: 1, 
+        receive: 3, 
+        toss: 0, 
+        attack: 3, 
+        block: 1,
+        skill: "Khi thẻ này xuất hiện ở khu vực Đập bóng, hai người chơi bỏ 1 thẻ trên cùng bộ bài của mình vào Drop.",
+        artwork: "Card/Shiratorizawa/Nhan vat/ohira-reon-1.png"
+    },
+    { 
+        id: 46, 
+        name: "Ohira Reon", 
+        cardId: "ohira-reon-2",
+        school: "Shiratorizawa",
+        type: "character",
+        serve: 1, 
+        receive: 4, 
+        toss: 0, 
+        attack: 1, 
+        block: 1,
+        skill: "[2 Ý chí] Khi nhân vật \"Ushijima Wakatoshi\" xuất hiện ở khu vực Đập Bóng trên sân mình, có thể dùng 2 Ý Chí của nhân vật này để +1 điểm Đập cho nhân vật \"Ushijima Wakatoshi\" đó.",
+        artwork: "Card/Shiratorizawa/Nhan vat/ohira-reon-2.png"
+    },
+    { 
+        id: 47, 
+        name: "Kawanishi Taichi", 
+        cardId: "kawanishi-taichi",
+        school: "Shiratorizawa",
+        type: "character",
+        serve: 1, 
+        receive: 0, 
+        toss: 0, 
+        attack: 3, 
+        block: 3,
+        skill: "Khi thẻ này ra sân, có thể bỏ 1 thẻ trên tay để đặt 1 thẻ trên cùng bộ bài đối phương vào Drop và rút 1 thẻ từ bộ bài.",
+        artwork: "Card/Shiratorizawa/Nhan vat/kawanishi-taichi.png"
+    },
+    { 
+        id: 48, 
+        name: "Yamagata Hayato", 
+        cardId: "yamagata-hayato",
+        school: "Shiratorizawa",
+        type: "character",
+        serve: 0, 
+        receive: 5, 
+        toss: 0, 
+        attack: 0, 
+        block: 0,
+        artwork: "Card/Shiratorizawa/Nhan vat/yamagata-hayato.png"
+    },
+    { 
+        id: 49, 
+        name: "Semi Eita", 
+        cardId: "semi-eita",
+        school: "Shiratorizawa",
+        type: "character",
+        serve: 4, 
+        receive: 2, 
+        toss: 1, 
+        attack: 0, 
+        block: 0,
+        skill: "[2 Ý chí] Khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có 3+ Ý Chí, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Shiratorizawa từ Drop.",
+        artwork: "Card/Shiratorizawa/Nhan vat/semi-eita.png"
+    },
+    // ============ KARASUNO - HÀNH ĐỘNG ============
     { 
         id: 100, 
+        name: "Chuyền tới đây cho tôi!!", 
+        cardId: "chuyen-toi-day-cho-toi",
+        school: "Karasuno",
+        type: "action",
+        phases: ["receive"],
+        spiritCost: 0,
+        serve: 0, 
+        receive: 0, 
+        toss: 0, 
+        attack: 0, 
+        block: 0,
+        skill: "[Đỡ] +2 điểm Đỡ cho nhân vật Đỡ Bóng trường Karasuno trên sân mình. Sau đó, nếu nhân vật đó là \"Nishinoya Yu\", có thể chọn tối đa 1 thẻ \"Nishinoya Yu\" từ bộ bài rồi thêm vào Ý Chí của nhân vật đó. Xáo lại bộ bài.",
+        artwork: "Card/Karasuno/Hanh dong/chuyen-toi-day-cho-toi.png"
+    },
+    { 
+        id: 101, 
+        name: "Chú mày cũng có máu ăn thua đấy…!!", 
+        cardId: "chu-may-cung-co-mau-an-thua-day",
+        school: "Karasuno",
+        type: "action",
+        phases: ["attack"],
+        spiritCost: 3,
+        serve: 0, 
+        receive: 0, 
+        toss: 0, 
+        attack: 0, 
+        block: 0,
+        skill: "[Đập] [3 Ý chí] +1 điểm Chuyền cho nhân vật Chuyền Bóng trường Karasuno trên sân mình. Hoặc nếu nhân vật đó và nhân vật Đập Bóng có từ 3 Ý Chí trở lên, +3 điểm Chuyền.",
+        artwork: "Card/Karasuno/Hanh dong/chu-may-cung-co-mau-an-thua-day.png"
+    },
+    { 
+        id: 102, 
+        name: "Phòng thủ tuyệt đối!!", 
+        cardId: "phong-thu-tuyet-doi",
+        school: "Karasuno",
+        type: "action",
+        phases: ["receive", "block"],
+        spiritCost: 0,
+        serve: 0, 
+        receive: 0, 
+        toss: 0, 
+        attack: 0, 
+        block: 0,
+        skill: "[Đỡ][Chặn] +2 điểm Đỡ hoặc Chặn cho 1 nhân vật trường Karasuno trên sân mình. Nếu nhân vật đó là nhân vật Chặn Bóng, rút 2 thẻ từ bộ bài. Sau đó, trong lượt này không được phép sử dụng thẻ \"Phòng thủ tuyệt đối!!\" nữa.",
+        artwork: "Card/Karasuno/Hanh dong/phong-thu-tuyet-doi.png"
+    },
+    { 
+        id: 103, 
+        name: "Dù chỉ là sinh hoạt CLB…", 
+        cardId: "du-chi-la-sinh-hoat-clb",
+        school: "Karasuno",
+        type: "action",
+        phases: ["block"],
+        spiritCost: 3,
+        serve: 0, 
+        receive: 0, 
+        toss: 0, 
+        attack: 0, 
+        block: 0,
+        skill: "[Chặn] [3 Ý chí] +2 điểm Chặn cho 1 nhân vật \"Tsukishima Kei\" trên sân mình. Nếu trên sân mình có nhân vật Đỡ Bóng trường Karasuno với 3 Ý Chí trở lên, ở lượt tiếp theo của đối phương, đối phương chỉ Đỡ Bóng thành công với điểm Đỡ từ 8 trở lên.",
+        artwork: "Card/Karasuno/Hanh dong/du-chi-la-sinh-hoat-clb.png"
+    },
+    { 
+        id: 104, 
+        name: "\"1 điểm bằng 100 điểm\" phải hôn!?", 
+        cardId: "1-diem-bang-100-diem-phai-hon",
+        school: "Karasuno",
+        type: "action",
+        phases: ["receive", "toss", "attack", "block"],
+        spiritCost: 2,
+        serve: 0, 
+        receive: 0, 
+        toss: 0, 
+        attack: 0, 
+        block: 0,
+        skill: "[Đỡ][Chuyền][Đập][Chặn] [2 Ý chí] +1 điểm bất kì cho 1 nhân vật trường Karasuno trên sân mình. Sau đó, có thể sử dụng 2 Ý Chí của 1 nhân vật trường Karasuno khác để thu hồi lên tay 1 thẻ nhân vật từ khu vực Loại Bỏ.",
+        artwork: "Card/Karasuno/Hanh dong/1-diem-bang-100-diem-phai-hon.png"
+    },
+    // ============ SHIRATORIZAWA - HÀNH ĐỘNG ============
+    { 
+        id: 105, 
         name: "Chuyền hết bóng cho anh.", 
         cardId: "chuyen-het-bong-cho-anh",
         school: "Shiratorizawa",
@@ -336,6 +527,54 @@ const cardDatabase = [
         block: 0,
         skill: "[Chuyền][Đập] [3 ý chí] +1 điểm cho nhân vật Shiratorizawa.",
         artwork: "Card/Shiratorizawa/Hanh dong/chuyen-het-bong-cho-anh.png"
+    },
+    { 
+        id: 106, 
+        name: "Mà là nghệ thuật đập bóng thẳng xuống sân.", 
+        cardId: "ma-la-nghe-thuat-dap-bong-thang-xuong-san",
+        school: "Shiratorizawa",
+        type: "action",
+        phases: ["block"],
+        spiritCost: 0,
+        serve: 0, 
+        receive: 0, 
+        toss: 0, 
+        attack: 0, 
+        block: 0,
+        skill: "[Chặn] Rút 1 thẻ từ bộ bài. Sau đó, +2 điểm Chặn cho 1 nhân vật trường Shiratorizawa trên sân mình. Nếu nhân vật đó là \"Tendo Satori\", đặt 1 thẻ trên cùng bộ bài của đối phương vào khu vực Loại Bỏ.",
+        artwork: "Card/Shiratorizawa/Hanh dong/ma-la-nghe-thuat-dap-bong-thang-xuong-san.png"
+    },
+    { 
+        id: 107, 
+        name: "Là một đối thủ \"vượt quá tầm hiểu biết\"…", 
+        cardId: "la-mot-doi-thu-vuot-qua-tam-hieu-biet",
+        school: "Shiratorizawa",
+        type: "action",
+        phases: ["receive", "toss", "attack", "block"],
+        spiritCost: 3,
+        serve: 0, 
+        receive: 0, 
+        toss: 0, 
+        attack: 0, 
+        block: 0,
+        skill: "[Đỡ][Chuyền][Đập][Chặn] [3 Ý chí] +1 điểm bất kì cho 1 nhân vật trường Shiratorizawa trên sân mình. Nếu nhân vật đó có từ 3 Ý Chí trở lên, và trên sân đối phương, trừ nhân vật Giao Bóng, có nhân vật có từ 2 Ý Chí trở xuống, rút 2 thẻ từ bộ bài. Sau đó, trong lượt này không được sử dụng thẻ \"Là một đối thủ 'vượt quá tầm hiểu biết'…\" nữa.",
+        artwork: "Card/Shiratorizawa/Hanh dong/la-mot-doi-thu-vuot-qua-tam-hieu-biet.png"
+    },
+    { 
+        id: 108, 
+        name: "Thấy chưa hả? Cú bóng thần tốc của em đó!", 
+        cardId: "thay-chua-ha-cu-bong-than-toc-cua-em-do",
+        school: "Shiratorizawa",
+        type: "action",
+        phases: ["attack"],
+        spiritCost: 0,
+        serve: 0, 
+        receive: 0, 
+        toss: 0, 
+        attack: 0, 
+        block: 0,
+        skill: "[Đập] +1 điểm Đập cho 1 nhân vật trên sân mình. Sau đó, nếu nhân vật đó là \"Goshiki Tsutomu\", ở lượt tiếp theo của đối phương, đối phương không được đưa ra nhân vật Chặn Bóng.",
+        artwork: "Card/Shiratorizawa/Hanh dong/thay-chua-ha-cu-bong-than-toc-cua-em-do.png"
     }
 ];
 
@@ -427,7 +666,7 @@ class HaikyuuCardGame {
                     }
                 });
                 el.addEventListener('contextmenu', (e) => {
-                    e.preventDefault();
+                        e.preventDefault();
                     let val = parseInt(el.textContent.trim()) || 0;
                     val = Math.max(0, val - 1);
                     el.textContent = val;
@@ -625,7 +864,7 @@ class HaikyuuCardGame {
                     });
                 }
                 
-                this.updateUI();
+        this.updateUI();
             });
         });
         
@@ -704,9 +943,9 @@ class HaikyuuCardGame {
                             targetType: 'discard',
                             targetZone: null
                         });
-                    }
-                    
-                    this.updateUI();
+        }
+
+        this.updateUI();
                 });
             }
         });
@@ -775,44 +1014,42 @@ class HaikyuuCardGame {
     // PHASE MANAGEMENT
     // ============================================
     advancePhase() {
-        // Phase cycle: SERVE (only at start/score change) → RECEIVE → TOSS → ATTACK → BLOCK → RECEIVE → TOSS → ...
-        const rallyPhases = [GamePhase.RECEIVE, GamePhase.TOSS, GamePhase.ATTACK, GamePhase.BLOCK];
+        // New phase cycle:
+        // Giao A → Đỡ B → Chuyền B → Đập B → Chặn A → Đỡ A → Chuyền A → Đập A → Chặn B → lặp lại
         
         if (this.state.phase === GamePhase.WAITING || this.state.phase === GamePhase.GAME_END) {
             return;
         }
         
         let nextPhase;
+        let nextPlayer;
         
         if (this.state.phase === GamePhase.SERVE) {
-            // After serve, go to receive
+            // After serve, go to receive of opponent
             nextPhase = GamePhase.RECEIVE;
-            // Receiver is opponent of server
-            this.state.currentPlayer = this.getOpponent(this.state.servingPlayer);
-            this.state.attackingPlayer = this.state.currentPlayer;
-        } else {
-            const currentIndex = rallyPhases.indexOf(this.state.phase);
-            if (currentIndex === -1) return;
-            
-            // Cycle through rally phases (no SERVE in cycle)
-            const nextIndex = (currentIndex + 1) % rallyPhases.length;
-            nextPhase = rallyPhases[nextIndex];
-            
-            // Switch player based on phase
-            if (nextPhase === GamePhase.RECEIVE) {
-                // After block, attacker switches
-                this.state.attackingPlayer = this.getOpponent(this.state.attackingPlayer);
-                this.state.currentPlayer = this.state.attackingPlayer;
-            } else if (nextPhase === GamePhase.BLOCK) {
-                // Block phase - defender's turn
-                this.state.currentPlayer = this.getOpponent(this.state.attackingPlayer);
-            } else if (nextPhase === GamePhase.TOSS || nextPhase === GamePhase.ATTACK) {
-                // Toss/Attack - attacker's turn
-                this.state.currentPlayer = this.state.attackingPlayer;
-            }
+            nextPlayer = this.getOpponent(this.state.servingPlayer);
+            this.state.attackingPlayer = nextPlayer;
+        } else if (this.state.phase === GamePhase.RECEIVE) {
+            // After receive, go to toss (same player)
+            nextPhase = GamePhase.TOSS;
+            nextPlayer = this.state.currentPlayer;
+        } else if (this.state.phase === GamePhase.TOSS) {
+            // After toss, go to attack (same player)
+            nextPhase = GamePhase.ATTACK;
+            nextPlayer = this.state.currentPlayer;
+        } else if (this.state.phase === GamePhase.ATTACK) {
+            // After attack, go to block (opponent blocks)
+            nextPhase = GamePhase.BLOCK;
+            nextPlayer = this.getOpponent(this.state.currentPlayer);
+        } else if (this.state.phase === GamePhase.BLOCK) {
+            // After block, go to receive (attacker becomes receiver)
+            nextPhase = GamePhase.RECEIVE;
+            nextPlayer = this.getOpponent(this.state.currentPlayer);
+            this.state.attackingPlayer = nextPlayer;
         }
         
         this.state.phase = nextPhase;
+        this.state.currentPlayer = nextPlayer;
         
         if (this.isOnline && this.onlineManager) {
             this.onlineManager.socket.emit('advancePhase', { phase: nextPhase, currentPlayer: this.state.currentPlayer });
@@ -838,7 +1075,7 @@ class HaikyuuCardGame {
     getOpponent(player) {
         return player === 1 ? 2 : 1;
     }
-
+    
     getPlayerName(player) {
         return this.playerNames[player] || `Player ${player}`;
     }
@@ -974,7 +1211,7 @@ class HaikyuuCardGame {
         
         modal.classList.add('show');
     }
-
+    
     // ============================================
     // CONTEXT MENU
     // ============================================
@@ -1220,7 +1457,7 @@ class HaikyuuCardGame {
             modal.classList.remove('show');
         });
     }
-
+    
     // ============================================
     // GAME INITIALIZATION
     // ============================================
@@ -1264,7 +1501,7 @@ class HaikyuuCardGame {
         this.state.currentPlayer = this.state.servingPlayer;
         this.state.attackingPlayer = this.state.servingPlayer;
     }
-
+    
     // ============================================
     // ONLINE MODE
     // ============================================
@@ -1440,10 +1677,10 @@ class HaikyuuCardGame {
                     });
                     blockEl.appendChild(cardEl);
                 });
-            });
-        }
-    }
-
+                    });
+                }
+            }
+            
     createCardElement(card, player, showFront = true) {
         const cardEl = document.createElement('div');
         cardEl.className = 'card';
@@ -1462,7 +1699,7 @@ class HaikyuuCardGame {
             // Hover preview
             cardEl.addEventListener('mouseenter', () => this.showCardPreview(card));
             cardEl.addEventListener('mouseleave', () => this.hideCardPreview());
-        } else {
+                            } else {
             cardEl.innerHTML = `<div class="card-back">🏐</div>`;
         }
         
@@ -1480,7 +1717,7 @@ class HaikyuuCardGame {
         if (previewFullCard) {
             if (card.artwork) {
                 previewFullCard.innerHTML = `<img src="${card.artwork}" alt="${card.name}">`;
-            } else {
+                            } else {
                 previewFullCard.innerHTML = '<div class="card-placeholder">🏐</div>';
             }
         }
@@ -1501,23 +1738,28 @@ class HaikyuuCardGame {
                 <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${stats.block}</span></div>
             `;
             
-            // Add click handlers for stat modification
-            previewStats.querySelectorAll('.stat-value').forEach(statEl => {
-                const statName = statEl.dataset.stat;
-                
-                // Left click to increase
-                statEl.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    this.modifyCardStat(card, statName, 1);
+            // Add click handlers for stat modification (only if not in deck builder)
+            const deckBuilderModal = document.getElementById('deck-builder-modal');
+            const isDeckBuilderOpen = deckBuilderModal && deckBuilderModal.classList.contains('show');
+            
+            if (!isDeckBuilderOpen) {
+                previewStats.querySelectorAll('.stat-value').forEach(statEl => {
+                    const statName = statEl.dataset.stat;
+                    
+                    // Left click to increase
+                    statEl.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.modifyCardStat(card, statName, 1);
+                    });
+                    
+                    // Right click to decrease
+                    statEl.addEventListener('contextmenu', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.modifyCardStat(card, statName, -1);
+                    });
                 });
-                
-                // Right click to decrease
-                statEl.addEventListener('contextmenu', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.modifyCardStat(card, statName, -1);
-                });
-            });
+            }
         }
         
         if (previewSkill) {
@@ -1643,6 +1885,16 @@ class HaikyuuCardGame {
         if (this.p2SetsEl) {
             this.p2SetsEl.textContent = this.state.sets[2];
         }
+        
+        // Update player name tags
+        const p1NameTag = document.getElementById('p1-name-tag');
+        const p2NameTag = document.getElementById('p2-name-tag');
+        if (p1NameTag) {
+            p1NameTag.textContent = this.getPlayerName(1);
+        }
+        if (p2NameTag) {
+            p2NameTag.textContent = this.getPlayerName(2);
+        }
     }
 
     updateSpiritCounts() {
@@ -1682,7 +1934,7 @@ class HaikyuuCardGame {
                     const stats = this.getCardStats(card);
                     const statValue = stats[statMap[zone]];
                     labelEl.textContent = `${zoneNames[zone]} - ${statValue}`;
-                } else {
+        } else {
                     labelEl.textContent = zoneNames[zone];
                 }
             });
@@ -1720,7 +1972,7 @@ class HaikyuuCardGame {
             
             if (isActiveZone) {
                 zoneEl.classList.remove('zone-dimmed');
-            } else {
+        } else {
                 zoneEl.classList.add('zone-dimmed');
             }
         });
@@ -1728,11 +1980,12 @@ class HaikyuuCardGame {
         // Handle block zone specially (it's shared)
         const blockZone = document.getElementById('p1-block-zone');
         if (blockZone) {
-            if (phase === GamePhase.BLOCK) {
+            if (phase === GamePhase.BLOCK && currentPlayer) {
+                // Only highlight if it's the blocking player's turn
                 blockZone.classList.remove('zone-dimmed');
             } else if (phase !== GamePhase.WAITING && phase !== GamePhase.GAME_END) {
                 blockZone.classList.add('zone-dimmed');
-            } else {
+        } else {
                 blockZone.classList.remove('zone-dimmed');
             }
         }

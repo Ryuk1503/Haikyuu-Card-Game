@@ -1,0 +1,14 @@
+{
+    "id": "HV10-ACTION-003",
+    "name": "Chú mày cũng có máu ăn thua đấy…!!",
+    "nameJP": "お前も負けず嫌いだな…!!",
+    "rarity": "R",
+    "type": "action",
+    "phases": ["attack"],
+    "spiritCost": 3,
+    "skill": {
+        "description": "[Đập] [3 Ý chí] +1 điểm Chuyền cho nhân vật Chuyền Bóng trường Karasuno trên sân mình. Hoặc nếu nhân vật đó và nhân vật Đập Bóng có từ 3 Ý Chí trở lên, +3 điểm Chuyền."
+    },
+    "artwork": "Card/Karasuno/Hanh dong/chu-may-cung-co-mau-an-thua-day.png"
+}
+
