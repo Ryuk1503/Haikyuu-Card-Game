@@ -1059,13 +1059,20 @@ class OnlineGameManager {
             previewName.textContent = displayName;
         }
         
+        // Use stats from JSON (handle string values like "3+")
+        const serveValue = typeof displayStats.serve === 'string' ? displayStats.serve : (displayStats.serve || 0);
+        const receiveValue = typeof displayStats.receive === 'string' ? displayStats.receive : (displayStats.receive || 0);
+        const tossValue = typeof displayStats.toss === 'string' ? displayStats.toss : (displayStats.toss || 0);
+        const attackValue = typeof displayStats.attack === 'string' ? displayStats.attack : (displayStats.attack || 0);
+        const blockValue = typeof displayStats.block === 'string' ? displayStats.block : (displayStats.block || 0);
+        
         if (previewStats) {
             previewStats.innerHTML = `
-                <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${displayStats.serve}</span></div>
-                <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${displayStats.receive}</span></div>
-                <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${displayStats.toss}</span></div>
-                <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${displayStats.attack}</span></div>
-                <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${displayStats.block}</span></div>
+                <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${serveValue}</span></div>
+                <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${receiveValue}</span></div>
+                <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${tossValue}</span></div>
+                <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${attackValue}</span></div>
+                <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${blockValue}</span></div>
             `;
             // No click handlers for stat modification in deck builder
         }
