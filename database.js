@@ -288,8 +288,10 @@ async function getDeckById(deckId, userId) {
 
 // Initialize database on module load (async)
 initializeDatabase().catch(err => {
-    console.error('Failed to initialize database:', err);
-    process.exit(1);
+    console.error('⚠️ Failed to initialize database:', err.message);
+    console.log('⚠️ Server will continue but database features will not work.');
+    console.log('⚠️ Set DATABASE_URL environment variable to enable database features.');
+    // Don't exit - allow server to run without database for testing
 });
 
 module.exports = {

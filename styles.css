@@ -1779,7 +1779,7 @@ body {
 .chat-log-box {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     width: 350px;
     height: 400px;
     background: white;

@@ -643,8 +643,8 @@ class HaikyuuCardGame {
         this.myPlayerNumber = null;
         this.playerNames = { 1: 'Player 1', 2: 'Player 2' };
         
-        this.initElements();
-        this.bindEvents();
+            this.initElements();
+            this.bindEvents();
         this.initChatLog();
     }
     
@@ -681,7 +681,7 @@ class HaikyuuCardGame {
                 const playerName = message.substring(0, colonIndex);
                 const messageText = message.substring(colonIndex + 1).trim();
                 messageEl.innerHTML = `<span class="player-tag">[${playerName}]:</span> ${messageText}`;
-            } else {
+        } else {
                 messageEl.textContent = message;
             }
         } else {
@@ -972,8 +972,8 @@ class HaikyuuCardGame {
                         targetType: 'zone',
                         targetZone: zone
                     });
-                }
-                
+        }
+
         this.updateUI();
             });
         });
@@ -1605,9 +1605,14 @@ class HaikyuuCardGame {
     // ============================================
     startGame() {
         this.state.reset();
-        // Decks are created by players, not auto-generated
-        // this.createDecks();
-        // this.shuffleDecks();
+        // Decks are created by players in online mode
+        // For offline mode, create default decks if empty
+        if (!this.isOnline) {
+            if (this.state.decks[1].length === 0 && this.state.decks[2].length === 0) {
+                this.createDecks();
+                this.shuffleDecks();
+            }
+        }
         this.drawInitialHands();
         this.decideFirstServer();
         this.state.phase = GamePhase.SERVE;
@@ -1652,7 +1657,7 @@ class HaikyuuCardGame {
         this.isOnline = true;
         this.myPlayerNumber = playerNumber;
         this.onlineManager = onlineManager;
-        this.playerNames = playerNames;
+        this.playerNames = playerNames || { 1: 'Player 1', 2: 'Player 2' };
         
         this.applyServerState(serverState);
         this.updateUI();
@@ -1667,7 +1672,17 @@ class HaikyuuCardGame {
     applyServerState(serverState) {
         if (!serverState) return;
         
-        this.state.phase = serverState.phase;
+        // Map phase string to GamePhase constant
+        const phaseMap = {
+            'waiting': GamePhase.WAITING,
+            'serve': GamePhase.SERVE,
+            'receive': GamePhase.RECEIVE,
+            'toss': GamePhase.TOSS,
+            'attack': GamePhase.ATTACK,
+            'block': GamePhase.BLOCK,
+            'game_end': GamePhase.GAME_END
+        };
+        this.state.phase = phaseMap[serverState.phase] || serverState.phase || GamePhase.WAITING;
         this.state.currentPlayer = serverState.currentPlayer;
         this.state.servingPlayer = serverState.servingPlayer;
         this.state.attackingPlayer = serverState.attackingPlayer;
@@ -1842,10 +1857,10 @@ class HaikyuuCardGame {
                     
                     blockEl.appendChild(cardEl);
                 });
-            });
-        }
-    }
-    
+                    });
+                }
+            }
+            
     renderActionCards() {
         [1, 2].forEach(player => {
             const actionEl = this.actionAreaEls[player];
@@ -1987,8 +2002,8 @@ class HaikyuuCardGame {
                         e.preventDefault();
                         e.stopPropagation();
                         this.modifyCardStat(card, statName, -1);
-                    });
-                });
+            });
+        });
             }
         }
     }
