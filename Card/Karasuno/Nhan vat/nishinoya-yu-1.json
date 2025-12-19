@@ -1,0 +1,17 @@
+{
+    "id": "HV10-029",
+    "name": "Nishinoya Yu",
+    "rarity": "R",
+    "stats": {
+    "serve": 0,
+    "receive": 4,
+    "toss": 0,
+    "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "[Libero] Không thể Giao bóng. [1 Ý chí] Tự + điểm Đỡ bằng điểm Chặn của Ý chí."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-1.png"
+}

@@ -1,0 +1,17 @@
+{
+    "id": "HV10-026",
+  "name": "Tanaka Ryunosuke",
+    "rarity": "R",
+    "stats": {
+  "serve": 1,
+  "receive": 3,
+  "toss": 0,
+  "attack": 3,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, đối phương -2 điểm Chặn."
+    },
+    "school": "Karasuno",
+  "artwork": "Card/Karasuno/Nhan vat/tanaka-ryunosuke-1.png"
+}

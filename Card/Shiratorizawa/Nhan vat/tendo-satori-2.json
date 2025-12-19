@@ -1,0 +1,17 @@
+{
+    "id": "HV10-044",
+    "name": "Tendo Satori",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 2
+    },
+    "skill": {
+        "description": "[Bỏ thẻ này từ trên tay] : +2 điểm Đỡ hoặc Chặn cho 1 nhân vật trường Shiratorizawa trên sân mình."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/tendo-satori-2.png"
+}

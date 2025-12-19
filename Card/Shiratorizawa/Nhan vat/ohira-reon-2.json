@@ -1,0 +1,17 @@
+{
+    "id": "HV10-053",
+    "name": "Ohira Reon",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 1,
+        "block": 1
+    },
+    "skill": {
+        "description": "[2 Ý chí] Khi nhân vật \"Ushijima Wakatoshi\" xuất hiện ở khu vực Đập Bóng trên sân mình, có thể dùng 2 Ý Chí của nhân vật này để +1 điểm Đập cho nhân vật \"Ushijima Wakatoshi\" đó."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/ohira-reon-2.png"
+}

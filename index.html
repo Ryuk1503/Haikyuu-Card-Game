@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haikyuu!! Volleyball Card Game - Sandbox</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- LOGIN SCREEN -->
+    <!-- ============================================ -->
+    <div class="screen login-screen" id="login-screen">
+        <div class="login-container">
+            <h1 class="login-title">🏐 Haikyuu!! Card Game 🏐</h1>
+            <p class="login-subtitle">Online Sandbox Mode</p>
+            
+            <!-- Login Form -->
+            <div class="auth-form" id="login-form">
+                <h2>Đăng nhập</h2>
+                <input type="text" id="login-username" placeholder="Tên đăng nhập" class="auth-input" autocomplete="username">
+                <input type="password" id="login-password" placeholder="Mật khẩu" class="auth-input" autocomplete="current-password">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember-me" checked>
+                    <label for="remember-me">Nhớ tài khoản</label>
+                </div>
+                <button class="btn btn-login" id="btn-login">Đăng nhập</button>
+                <p class="auth-switch">Chưa có tài khoản? <a href="#" id="show-register">Đăng ký</a></p>
+                <div class="auth-error hidden" id="login-error"></div>
+            </div>
+            
+            <!-- Register Form -->
+            <div class="auth-form hidden" id="register-form">
+                <h2>Đăng ký</h2>
+                <input type="text" id="register-username" placeholder="Tên đăng nhập (3-20 ký tự)" class="auth-input" autocomplete="username">
+                <input type="text" id="register-displayname" placeholder="Tên hiển thị (tùy chọn)" class="auth-input">
+                <input type="password" id="register-password" placeholder="Mật khẩu (ít nhất 4 ký tự)" class="auth-input" autocomplete="new-password">
+                <input type="password" id="register-password-confirm" placeholder="Xác nhận mật khẩu" class="auth-input" autocomplete="new-password">
+                <button class="btn btn-register" id="btn-register">Đăng ký</button>
+                <p class="auth-switch">Đã có tài khoản? <a href="#" id="show-login">Đăng nhập</a></p>
+                <div class="auth-error hidden" id="register-error"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ONLINE LOBBY SCREEN -->
+    <!-- ============================================ -->
+    <div class="screen lobby-screen hidden" id="lobby-screen">
+        <div class="lobby-container">
+            <div class="lobby-header">
+            <h1 class="lobby-title">🏐 Haikyuu!! Card Game 🏐</h1>
+                <div class="user-info">
+                    <span class="user-name" id="logged-user-name">Player</span>
+                    <button class="btn btn-logout" id="btn-logout">Đăng xuất</button>
+                </div>
+            </div>
+            <p class="online-badge">🌐 Online Sandbox Mode</p>
+            
+            <!-- Deck Selection -->
+            <div class="deck-selection-section" id="deck-selection-section">
+                <div class="deck-label">📦 Deck của bạn:</div>
+                <div class="deck-select-buttons">
+                    <select id="deck-select" class="deck-select">
+                        <option value="default">Deck Karasuno (Mặc định)</option>
+                        <option value="shiratorizawa">Deck Shiratorizawa</option>
+                    </select>
+                    <button class="btn btn-build-deck" id="btn-build-deck">🔧 Xây deck</button>
+                </div>
+                <div class="deck-info" id="deck-info">40 lá | Karasuno</div>
+            </div>
+            
+            <!-- Room Actions -->
+            <div class="room-actions" id="room-actions">
+                <button class="btn btn-create-room" id="btn-create-room">🏠 Tạo phòng mới</button>
+                <button class="btn btn-show-rooms" id="btn-show-rooms">📋 Danh sách phòng</button>
+            </div>
+            
+            <!-- Room List -->
+            <div class="room-list-section hidden" id="room-list-section">
+                <h3>📋 Phòng đang chờ</h3>
+                <div class="room-list" id="room-list">
+                    <div class="room-list-loading">Đang tải...</div>
+                </div>
+                <button class="btn btn-refresh-rooms" id="btn-refresh-rooms">🔄 Làm mới</button>
+            </div>
+            
+            <!-- Waiting Room (shown after creating/joining) -->
+            <div class="waiting-room hidden" id="waiting-room">
+                <div class="room-code-display">
+                    <span>Mã phòng:</span>
+                    <span class="room-code" id="room-code-display">------</span>
+                    <button class="btn btn-copy-code" id="btn-copy-code">📋 Copy</button>
+                </div>
+                
+                <div class="player-slots">
+                    <div class="player-slot" id="slot-p1">
+                        <div class="slot-icon">👤</div>
+                        <div class="slot-label" id="slot-p1-name">Đang chờ...</div>
+                        <div class="slot-status" id="status-p1"></div>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="player-slot" id="slot-p2">
+                        <div class="slot-icon">👤</div>
+                        <div class="slot-label" id="slot-p2-name">Đang chờ...</div>
+                        <div class="slot-status" id="status-p2"></div>
+                    </div>
+                </div>
+                
+                <div class="lobby-actions">
+                    <button class="btn btn-start-game" id="btn-start-game" disabled>🏐 Bắt đầu trận đấu</button>
+                    <button class="btn btn-leave-room" id="btn-leave-room">🚪 Rời phòng</button>
+                </div>
+            </div>
+
+            <div class="lobby-info" id="lobby-info">Tạo phòng hoặc chọn từ danh sách!</div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- DECK BUILDER MODAL -->
+    <!-- ============================================ -->
+    <div class="modal" id="deck-builder-modal">
+        <div class="modal-content deck-builder-content">
+            <div class="deck-builder-header">
+                <h2>🔧 Xây dựng Deck</h2>
+                <div class="deck-counter">
+                    <span id="deck-card-count">0</span>/40 lá
+                </div>
+            </div>
+            
+            <div class="deck-builder-body">
+                <!-- Card Collection -->
+                <div class="card-collection">
+                    <h3>Bộ sưu tập thẻ</h3>
+                    <div class="collection-filters">
+                        <input type="text" id="filter-search" placeholder="🔍 Tìm tên thẻ..." class="filter-search">
+                        <select id="filter-school">
+                            <option value="all">Tất cả trường</option>
+                            <option value="Karasuno">Karasuno</option>
+                            <option value="Shiratorizawa">Shiratorizawa</option>
+                        </select>
+                        <select id="filter-type">
+                            <option value="all">Tất cả loại</option>
+                            <option value="character">Nhân vật</option>
+                            <option value="action">Hành động</option>
+                        </select>
+                    </div>
+                    <div class="collection-cards" id="collection-cards"></div>
+                </div>
+                
+                <!-- Current Deck -->
+                <div class="current-deck">
+                    <h3>Deck hiện tại</h3>
+                    <div class="saved-decks-list" id="saved-decks-list"></div>
+                    <div class="deck-cards" id="deck-cards"></div>
+                </div>
+                
+                <!-- Card Preview Panel for Deck Builder -->
+                <div class="card-preview-panel deck-builder-preview" id="deck-builder-preview-panel">
+                    <div class="preview-title">Xem trước thẻ</div>
+                    <div class="preview-card" id="deck-builder-preview-card">
+                        <div class="preview-full-card" id="deck-builder-preview-full-card"></div>
+                        <div class="preview-name" id="deck-builder-preview-name">Rê chuột vào thẻ</div>
+                        <div class="preview-stats" id="deck-builder-preview-stats">
+                            <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">-</span></div>
+                            <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">-</span></div>
+                            <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">-</span></div>
+                            <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">-</span></div>
+                            <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">-</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="deck-builder-footer">
+                <input type="text" id="deck-name-input" placeholder="Tên deck..." class="deck-name-input">
+                <div class="deck-builder-buttons">
+                    <button class="btn btn-cancel" id="btn-cancel-deck">Hủy</button>
+                    <button class="btn btn-confirm" id="btn-save-deck">Lưu Deck</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- GAME SCREEN -->
+    <!-- ============================================ -->
+    <div class="screen game-screen hidden" id="game-screen">
+        <div class="game-container">
+
+            <!-- Main Play Area -->
+            <div class="play-area-wrapper">
+                <div class="play-area">
+                    <!-- Opponent Side (P2) -->
+                    <div class="player-side opponent-side">
+                        <div class="hand-section">
+                            <div class="deck-wrapper">
+                                <div class="deck-pile" id="p2-deck" tabindex="0" title="Click: Rút 1 lá | Chuột phải: Search/Shuffle">
+                                    <span class="deck-count" id="p2-deck-count">40</span>
+                                    <span class="deck-label">DECK</span>
+                                </div>
+                                <div class="action-area" id="p2-action-area">
+                                    <div class="action-cards" id="p2-action-cards"></div>
+                                </div>
+                            </div>
+                            <div class="hand-cards" id="p2-hand"></div>
+                            <div class="discard-pile" id="p2-discard" title="Click: Xem Drop">
+                                <span class="discard-label">DROP</span>
+                            </div>
+                        </div>
+
+                        <div class="play-zones opponent-zones">
+                            <div class="zone serve-zone" data-zone="serve" data-player="2">
+                                <div class="zone-label" id="p2-serve-label">Giao</div>
+                                <div class="zone-cards" id="p2-serve-cards"></div>
+                                <div class="zone-spirit" data-player="2" data-zone="serve" title="Click: Xem Ý chí">
+                                    <span class="spirit-count" id="p2-serve-spirit">0</span>
+                                    <span class="spirit-label">Ý chí</span>
+                                </div>
+                            </div>
+                            <div class="zone receive-zone" data-zone="receive" data-player="2">
+                                <div class="zone-label" id="p2-receive-label">Đỡ</div>
+                                <div class="zone-cards" id="p2-receive-cards"></div>
+                                <div class="zone-spirit" data-player="2" data-zone="receive" title="Click: Xem Ý chí">
+                                    <span class="spirit-count" id="p2-receive-spirit">0</span>
+                                    <span class="spirit-label">Ý chí</span>
+                                </div>
+                            </div>
+                            <div class="zone toss-zone" data-zone="toss" data-player="2">
+                                <div class="zone-label" id="p2-toss-label">Chuyền</div>
+                                <div class="zone-cards" id="p2-toss-cards"></div>
+                                <div class="zone-spirit" data-player="2" data-zone="toss" title="Click: Xem Ý chí">
+                                    <span class="spirit-count" id="p2-toss-spirit">0</span>
+                                    <span class="spirit-label">Ý chí</span>
+                                </div>
+                            </div>
+                            <div class="zone attack-zone" data-zone="attack" data-player="2">
+                                <div class="zone-label" id="p2-attack-label">Đập</div>
+                                <div class="zone-cards" id="p2-attack-cards"></div>
+                                <div class="zone-spirit" data-player="2" data-zone="attack" title="Click: Xem Ý chí">
+                                    <span class="spirit-count" id="p2-attack-spirit">0</span>
+                                    <span class="spirit-label">Ý chí</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Block Area (Center) -->
+                    <div class="block-area">
+                        <div class="block-controls">
+                            <!-- Far Left: Score -->
+                            <div class="block-edge-panel left-edge">
+                                <div class="set-score-mini">
+                                    <span class="player-tag p1" id="p1-name-tag">Player 1</span>
+                                    <span class="score-box editable-score" id="p1-sets" contenteditable="true" title="Click để chỉnh điểm">0</span>
+                                    <span class="score-dash">-</span>
+                                    <span class="score-box editable-score" id="p2-sets" contenteditable="true" title="Click để chỉnh điểm">0</span>
+                                    <span class="player-tag p2" id="p2-name-tag">Player 2</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Center Group: Block Zone -->
+                            <div class="block-center-group">
+                                <div class="block-zone-container multi-block">
+                                    <div class="block-label">CHẶN</div>
+                                    <div class="block-zone" id="p1-block-zone" data-player="1" data-zone="block">
+                                        <div class="zone-cards multi-cards" id="p1-block-cards"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Far Right: Phase and Turn (clickable to advance) -->
+                            <div class="block-edge-panel right-edge">
+                                <div class="phase-display phase-clickable" id="current-phase" title="Click để chuyển phase">SERVE</div>
+                                <div class="turn-indicator" id="turn-indicator">Lượt: P1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- My Side (P1) -->
+                    <div class="player-side my-side">
+                        <div class="hand-section">
+                            <div class="deck-wrapper">
+                                <div class="action-area" id="p1-action-area">
+                                    <div class="action-cards" id="p1-action-cards"></div>
+                                </div>
+                                <div class="deck-pile" id="p1-deck" tabindex="0" title="Click: Rút 1 lá | Chuột phải: Search/Shuffle">
+                                    <span class="deck-count" id="p1-deck-count">40</span>
+                                    <span class="deck-label">DECK</span>
+                                </div>
+                            </div>
+                            <div class="hand-cards" id="p1-hand"></div>
+                            <div class="discard-pile" id="p1-discard" title="Click: Xem Drop">
+                                <span class="discard-label">DROP</span>
+                            </div>
+                        </div>
+
+                        <div class="play-zones my-zones">
+                            <div class="zone serve-zone" data-zone="serve" data-player="1">
+                                <div class="zone-label" id="p1-serve-label">Giao</div>
+                                <div class="zone-cards" id="p1-serve-cards"></div>
+                                <div class="zone-spirit" data-player="1" data-zone="serve" title="Click: Xem Ý chí">
+                                    <span class="spirit-count" id="p1-serve-spirit">0</span>
+                                    <span class="spirit-label">Ý chí</span>
+                                </div>
+                            </div>
+                            <div class="zone receive-zone" data-zone="receive" data-player="1">
+                                <div class="zone-label" id="p1-receive-label">Đỡ</div>
+                                <div class="zone-cards" id="p1-receive-cards"></div>
+                                <div class="zone-spirit" data-player="1" data-zone="receive" title="Click: Xem Ý chí">
+                                    <span class="spirit-count" id="p1-receive-spirit">0</span>
+                                    <span class="spirit-label">Ý chí</span>
+                                </div>
+                            </div>
+                            <div class="zone toss-zone" data-zone="toss" data-player="1">
+                                <div class="zone-label" id="p1-toss-label">Chuyền</div>
+                                <div class="zone-cards" id="p1-toss-cards"></div>
+                                <div class="zone-spirit" data-player="1" data-zone="toss" title="Click: Xem Ý chí">
+                                    <span class="spirit-count" id="p1-toss-spirit">0</span>
+                                    <span class="spirit-label">Ý chí</span>
+                                </div>
+                            </div>
+                            <div class="zone attack-zone" data-zone="attack" data-player="1">
+                                <div class="zone-label" id="p1-attack-label">Đập</div>
+                                <div class="zone-cards" id="p1-attack-cards"></div>
+                                <div class="zone-spirit" data-player="1" data-zone="attack" title="Click: Xem Ý chí">
+                                    <span class="spirit-count" id="p1-attack-spirit">0</span>
+                                    <span class="spirit-label">Ý chí</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Preview Panel -->
+                <div class="card-preview-panel" id="card-preview-panel">
+                    <div class="preview-title">Xem trước thẻ</div>
+                    <div class="preview-card" id="preview-card">
+                        <div class="preview-full-card" id="preview-full-card"></div>
+                        <div class="preview-name" id="preview-name">Rê chuột vào thẻ</div>
+                        <div class="preview-stats" id="preview-stats">
+                            <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">-</span></div>
+                            <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">-</span></div>
+                            <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">-</span></div>
+                            <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">-</span></div>
+                            <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">-</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat/Log Box -->
+            <div class="chat-log-box" id="chat-log-box">
+                <div class="chat-log-header">
+                    <span>Chat & Log</span>
+                </div>
+                <div class="chat-log-messages" id="chat-log-messages"></div>
+                <div class="chat-log-input-container">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="Nhập tin nhắn..." maxlength="200">
+                    <button id="chat-send-btn" class="chat-send-btn">Gửi</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal bắt đầu game -->
+    <div class="modal" id="game-start-modal">
+        <div class="modal-content">
+            <h2>🏐 Trận đấu bắt đầu! 🏐</h2>
+            <p id="first-player-text">Đang chờ...</p>
+            <button class="btn btn-start-game" id="btn-close-start-modal">Bắt đầu</button>
+        </div>
+    </div>
+
+    <!-- Modal kết thúc game -->
+    <div class="modal" id="game-over-modal">
+        <div class="modal-content">
+            <h2 id="winner-text">🎉 Chúc mừng! 🎉</h2>
+            <p id="final-score"></p>
+            <button class="btn btn-start-game" onclick="location.reload()">Chơi lại</button>
+        </div>
+    </div>
+
+    <!-- Spirit Cards Modal -->
+    <div class="modal" id="spirit-modal">
+        <div class="modal-content spirit-modal-content">
+            <h2 id="spirit-title">Danh sách Ý chí</h2>
+            <div class="spirit-card-list" id="spirit-card-list"></div>
+            <button class="btn btn-confirm" id="btn-close-spirit">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Deck Search Modal -->
+    <div class="modal" id="deck-search-modal">
+        <div class="modal-content deck-search-content">
+            <h2 id="deck-search-title">🔍 Tìm kiếm trong Deck</h2>
+            <div class="deck-search-cards" id="deck-search-cards"></div>
+            <div class="deck-search-buttons">
+                <button class="btn btn-cancel" id="btn-shuffle-deck">🔀 Xáo bài</button>
+                <button class="btn btn-confirm" id="btn-close-deck-search">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Discard View Modal -->
+    <div class="modal" id="discard-modal">
+        <div class="modal-content discard-modal-content">
+            <h2 id="discard-title">📤 Drop Zone</h2>
+            <div class="discard-card-list" id="discard-card-list"></div>
+            <button class="btn btn-confirm" id="btn-close-discard">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Context Menu for Cards -->
+    <div class="context-menu hidden" id="card-context-menu">
+        <div class="context-menu-title" id="context-menu-title">Di chuyển thẻ</div>
+        <div class="context-menu-section">
+            <div class="context-menu-item has-submenu" data-action="spirit-parent">
+                <span>📍 Vào Ý chí</span>
+                <span class="submenu-arrow">▶</span>
+                <div class="context-submenu">
+                    <div class="context-menu-item" data-action="spirit-serve">Ý chí Giao</div>
+                    <div class="context-menu-item" data-action="spirit-receive">Ý chí Đỡ</div>
+                    <div class="context-menu-item" data-action="spirit-toss">Ý chí Chuyền</div>
+                    <div class="context-menu-item" data-action="spirit-attack">Ý chí Đập</div>
+                    <div class="context-menu-item" data-action="spirit-block">Ý chí Chắn</div>
+                </div>
+            </div>
+            <div class="context-menu-item" data-action="to-hand">✋ Về tay</div>
+            <div class="context-menu-item" data-action="to-drop">📤 Vào Drop</div>
+            <div class="context-menu-item" data-action="to-action" id="context-to-action" style="display: none;">⚡ Vào khu Hành động</div>
+            <div class="context-menu-item" data-action="to-deck-top">📚 Lên đầu Deck</div>
+            <div class="context-menu-item" data-action="to-deck-bottom">📚 Xuống cuối Deck</div>
+        </div>
+    </div>
+    
+    <!-- Online Game Manager -->
+    <script src="online.js"></script>
+    
+    <!-- Main Game Logic -->
+    <script src="game.js"></script>
+</body>
+</html>

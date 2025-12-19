@@ -1,0 +1,17 @@
+{
+    "id": "HV10-042",
+    "name": "Ushijima Wakatoshi",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 3,
+        "toss": 0,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ trên tay để tự +1 điểm Đỡ, sau đó đặt 1 thẻ trên cùng bộ bài đối phương vào Drop."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-3.png"
+}

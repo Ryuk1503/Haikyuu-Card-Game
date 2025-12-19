@@ -1,0 +1,17 @@
+{
+    "id": "HV10-051",
+    "name": "Shirabu Kenjiro",
+    "rarity": "R",
+    "stats": {
+        "serve": 4,
+        "receive": 4,
+        "toss": 1,
+        "attack": 1,
+        "block": 2
+    },
+    "skill": {
+        "description": ""
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-3.png"
+}

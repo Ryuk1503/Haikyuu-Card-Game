@@ -1,0 +1,17 @@
+{
+    "id": "HV10-022",
+    "name": "Kageyama Tobio",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 1,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể tìm 1 thẻ từ Deck và thêm vào tay."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-1.png"
+}

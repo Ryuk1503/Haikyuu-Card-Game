@@ -1,0 +1,17 @@
+{
+    "id": "HV10-041",
+    "name": "Ushijima Wakatoshi",
+    "rarity": "R",
+    "stats": {
+    "serve": 4,
+    "receive": 0,
+    "toss": 0,
+    "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Giao Bóng, có thể sử dụng tổng cộng 3 Ý Chí từ các nhân vật trường Shiratorizawa trên sân mình để tự +2 điểm Giao."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-2.png"
+}

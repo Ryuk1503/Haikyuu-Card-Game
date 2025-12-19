@@ -1,0 +1,18 @@
+{
+    "id": "HV10-012",
+    "name": "Azumane Asahi",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": "3+",
+        "blockBase": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có 2+ nhân vật Chặn Bóng (kể cả nhân vật này), tự +2 điểm Chặn."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-1.png"
+}

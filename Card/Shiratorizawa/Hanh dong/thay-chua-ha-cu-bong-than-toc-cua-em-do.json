@@ -1,0 +1,9 @@
+{
+    "name": "Thấy chưa hả? Cú bóng thần tốc của em đó!",
+    "rarity": "R",
+    "type": "action",
+    "skill": {
+        "description": "[Đập] +1 điểm Đập cho 1 nhân vật trên sân mình. Sau đó, nếu nhân vật đó là \"Goshiki Tsutomu\", ở lượt tiếp theo của đối phương, đối phương không được đưa ra nhân vật Chặn Bóng."
+    },
+    "artwork": "Card/Shiratorizawa/Hanh dong/thay-chua-ha-cu-bong-than-toc-cua-em-do.png"
+}

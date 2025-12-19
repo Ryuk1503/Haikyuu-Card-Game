@@ -1,0 +1,17 @@
+{
+    "id": "HV10-025",
+    "name": "Sugawara Koshi",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 2,
+        "toss": 1,
+        "attack": 0,
+        "block": 1
+    },
+    "skill": {
+        "description": "[Đỡ][Chặn][Kích hoạt] +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-1.png"
+}

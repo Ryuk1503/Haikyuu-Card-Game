@@ -1,0 +1,17 @@
+{
+    "id": "HV10-031",
+    "name": "Nishinoya Yu",
+    "rarity": "SR",
+    "stats": {
+    "serve": 0,
+    "receive": 6,
+    "toss": 0,
+    "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "[Libero] Không thể Giao bóng."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-2.png"
+}

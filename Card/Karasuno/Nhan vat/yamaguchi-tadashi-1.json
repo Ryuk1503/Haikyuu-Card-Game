@@ -1,0 +1,17 @@
+{
+    "id": "HV10-032",
+    "name": "Yamaguchi Tadashi",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 4,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "[2 Ý chí] Khi thẻ này ra sân, lấy 1 thẻ Karasuno từ Drop về tay."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/yamaguchi-tadashi-1.png"
+}
