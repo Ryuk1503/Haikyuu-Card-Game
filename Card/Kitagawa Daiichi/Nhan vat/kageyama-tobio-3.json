@@ -1,0 +1,18 @@
+{
+    "id": "HV10-023",
+    "name": "Kageyama Tobio",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 1,
+        "toss": 1,
+        "attack": 1,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, nếu trên tay còn từ 3 thẻ trở xuống, tự +1 điểm Chuyền."
+    },
+    "school": "Kitagawa Daiichi",
+    "artwork": "Card/Kitagawa Daiichi/Nhan vat/kageyama-tobio-3.png"
+}
+

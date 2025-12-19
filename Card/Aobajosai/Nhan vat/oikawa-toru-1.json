@@ -1,0 +1,18 @@
+{
+    "id": "HV10-072",
+    "name": "Oikawa Toru",
+    "rarity": "R",
+    "stats": {
+        "serve": 4,
+        "receive": 0,
+        "toss": 1,
+        "attack": 0,
+        "block": 2
+    },
+    "skill": {
+        "description": "Khi thẻ này được triển khai, đối phương phải cho mình xem toàn bộ thẻ trên tay. Nếu trong số đó có thẻ Hành Động, rút 1 thẻ từ bộ bài của mình."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/oikawa-toru-1.png"
+}
+

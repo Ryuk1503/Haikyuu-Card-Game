@@ -1,0 +1,18 @@
+{
+    "id": "HV10-062",
+    "name": "Kozume Kenma",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 2,
+        "toss": 1,
+        "attack": 1,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ trên tay để thu hồi 1 thẻ từ Ý Chí của nhân vật này lên tay."
+    },
+    "school": "Nekoma",
+    "artwork": "Card/Nekoma/Nhan vat/kozume-kenma-1.png"
+}
+

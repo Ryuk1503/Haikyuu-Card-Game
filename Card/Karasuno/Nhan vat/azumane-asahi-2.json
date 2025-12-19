@@ -1,0 +1,18 @@
+{
+    "id": "HV10-014",
+    "name": "Azumane Asahi",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 1,
+        "toss": 0,
+        "attack": 3,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ trên tay để tự +1 điểm Đập. Hoặc nếu thẻ vừa bỏ là thẻ Hành Động, tự +3 điểm Đập."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-2.png"
+}
+

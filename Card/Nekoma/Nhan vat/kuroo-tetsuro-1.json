@@ -1,0 +1,18 @@
+{
+    "id": "HV10-061",
+    "name": "Kuroo Tetsuro",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 1,
+        "toss": 0,
+        "attack": 3,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện từ trên tay và nằm trên nhân vật Đập Bóng trường Nekoma, có thể chọn tối đa 1 thẻ \"Kozume Kenma\" từ bộ bài cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
+    },
+    "school": "Nekoma",
+    "artwork": "Card/Nekoma/Nhan vat/kuroo-tetsuro-1.png"
+}
+

@@ -1,0 +1,18 @@
+{
+    "id": "HV10-013",
+    "name": "Sawamura Daichi",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 2,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ Nhân Vật trên tay để tự +2 điểm Đỡ."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/sawamura-daichi-2.png"
+}
+

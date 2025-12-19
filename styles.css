@@ -1469,7 +1469,7 @@ body {
 
 .deck-builder-preview {
     position: fixed;
-    right: 40px;
+    right: 28px;
     top: 50%;
     transform: translateY(-50%);
     width: 220px;

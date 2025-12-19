@@ -1,0 +1,18 @@
+{
+    "id": "HV10-081",
+    "name": "Aone Takanobu",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 2,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu ở khu vực Loại bỏ của mình có từ 4 thẻ Nhân Vật trường Công Nghệ Date trở lên, tự +2 điểm Chặn."
+    },
+    "school": "Date Tech",
+    "artwork": "Card/Date Tech/Nhan vat/aone-takanobu-1.png"
+}
+

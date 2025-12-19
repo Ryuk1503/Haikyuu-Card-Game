@@ -431,6 +431,11 @@ io.on('connection', (socket) => {
         
         if (state.decks[player]) {
             state.decks[player] = shuffleArray(state.decks[player]);
+            // Broadcast log message
+            io.to(room.roomId).emit('logMessage', {
+                message: `${room.playerNames[player]} đã xáo bộ bài`,
+                type: 'log'
+            });
             broadcastGameState(room);
         }
     });

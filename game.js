@@ -1686,6 +1686,7 @@ class HaikyuuCardGame {
     shuffleDecks() {
         for (let player = 1; player <= 2; player++) {
             this.state.decks[player] = this.shuffleArray(this.state.decks[player]);
+            this.addLogMessage(`${this.getPlayerName(player)} đã xáo bộ bài`);
         }
     }
 

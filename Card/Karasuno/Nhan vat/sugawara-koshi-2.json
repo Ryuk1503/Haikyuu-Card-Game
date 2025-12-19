@@ -1,0 +1,18 @@
+{
+    "id": "HV10-011",
+    "name": "Sugawara Koshi",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 3,
+        "toss": 1,
+        "attack": 0,
+        "block": 2
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ trên tay để thu hồi tối đa 1 thẻ Nhân Vật từ khu vực Loại bỏ lên tay."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-2.png"
+}
+

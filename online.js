@@ -231,6 +231,7 @@ class OnlineGameManager {
         this.socket.on('gameStarted', (data) => this.onGameStarted(data));
         this.socket.on('gameStateUpdate', (data) => this.onGameStateUpdate(data));
         this.socket.on('chatMessage', (data) => this.onChatMessage(data));
+        this.socket.on('logMessage', (data) => this.onLogMessage(data));
     }
     
     initElements() {
@@ -611,6 +612,12 @@ class OnlineGameManager {
         }
     }
     
+    onLogMessage(data) {
+        if (window.game && window.game.addLogMessage) {
+            window.game.addLogMessage(data.message, data.type || 'log');
+        }
+    }
+    
     // ============================================
     // USER DECKS (FROM DATABASE)
     // ============================================
@@ -871,12 +878,39 @@ class OnlineGameManager {
         
         this.buildingDeck = {};
         
+        // Populate school filter dynamically
+        this.populateSchoolFilter();
+        
         this.renderSavedDecksList();
         this.renderCollectionCards();
         this.renderDeckCards();
         this.updateDeckCount();
         
         this.deckBuilderModal.classList.add('show');
+    }
+    
+    populateSchoolFilter() {
+        if (!this.filterSchool) return;
+        
+        // Get all unique schools from database
+        const cards = this.getCardDatabase();
+        const schools = new Set();
+        cards.forEach(card => {
+            if (card.school) {
+                schools.add(card.school);
+            }
+        });
+        
+        // Clear existing options except "all"
+        this.filterSchool.innerHTML = '<option value="all">Tất cả trường</option>';
+        
+        // Add school options sorted alphabetically
+        Array.from(schools).sort().forEach(school => {
+            const option = document.createElement('option');
+            option.value = school;
+            option.textContent = school;
+            this.filterSchool.appendChild(option);
+        });
     }
     
     closeDeckBuilder() {

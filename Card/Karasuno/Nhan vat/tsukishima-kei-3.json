@@ -1,0 +1,18 @@
+{
+    "id": "HV10-033",
+    "name": "Tsukishima Kei",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 1,
+        "toss": 0,
+        "attack": 2,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, rút 1 thẻ từ bộ bài."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-3.png"
+}
+
