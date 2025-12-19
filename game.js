@@ -804,6 +804,26 @@ class HaikyuuCardGame {
             this.phaseEl.addEventListener('click', () => this.advancePhase());
         }
         
+        // Player name tags - click to start serve phase
+        const p1NameTag = document.getElementById('p1-name-tag');
+        const p2NameTag = document.getElementById('p2-name-tag');
+        if (p1NameTag) {
+            p1NameTag.style.cursor = 'pointer';
+            p1NameTag.title = 'Click để bắt đầu Serve phase';
+            p1NameTag.addEventListener('click', () => {
+                this.triggerServePhase(1);
+                this.addLogMessage(`${this.getPlayerName(1)} bắt đầu Serve phase`);
+            });
+        }
+        if (p2NameTag) {
+            p2NameTag.style.cursor = 'pointer';
+            p2NameTag.title = 'Click để bắt đầu Serve phase';
+            p2NameTag.addEventListener('click', () => {
+                this.triggerServePhase(2);
+                this.addLogMessage(`${this.getPlayerName(2)} bắt đầu Serve phase`);
+            });
+        }
+        
         // Deck clicks
         const p1Deck = document.getElementById('p1-deck');
         const p2Deck = document.getElementById('p2-deck');

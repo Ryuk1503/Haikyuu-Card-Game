@@ -1461,16 +1461,25 @@ body {
     gap: 20px;
     flex: 1;
     overflow: hidden;
+}
+
+.deck-builder-content {
     position: relative;
 }
 
 .deck-builder-preview {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 220px;
-    max-height: 100%;
+    z-index: 10001; /* Higher than modal */
+    display: none; /* Hidden by default */
+}
+
+/* Show preview panel when deck builder modal is open */
+#deck-builder-modal.show ~ #deck-builder-preview-panel {
+    display: flex;
 }
 
 .card-collection, .current-deck {
