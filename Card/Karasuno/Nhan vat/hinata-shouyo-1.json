@@ -10,7 +10,7 @@
         "block": 2
     },
     "skill": {
-        "description": "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/hinata-shouyo-1.png"

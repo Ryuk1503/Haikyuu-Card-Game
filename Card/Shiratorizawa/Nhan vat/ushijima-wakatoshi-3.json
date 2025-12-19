@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ trên tay để tự +1 điểm Đỡ, sau đó đặt 1 thẻ trên cùng bộ bài đối phương vào Drop."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ trên tay để tự +1 điểm Đỡ, sau đó đặt 1 thẻ trên cùng bộ bài đối phương vào khu vực Loại bỏ."
     },
     "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-3.png"

@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể tìm 1 thẻ từ Deck và thêm vào tay."
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có 3+ Ý Chí, chọn 1 thẻ Nhân Vật trường Karasuno (ngoài \"Kageyama Tobio\") từ bộ bài, cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-1.png"

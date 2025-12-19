@@ -1469,12 +1469,18 @@ body {
 
 .deck-builder-preview {
     position: fixed;
-    right: 20px;
+    right: 40px;
     top: 50%;
     transform: translateY(-50%);
     width: 220px;
     z-index: 10001; /* Higher than modal */
     display: none; /* Hidden by default */
+    margin-left: 30px; /* Add space from left (modal) */
+}
+
+/* Extra padding for deck builder preview panel */
+.deck-builder-preview.card-preview-panel {
+    padding: 20px 15px;
 }
 
 /* Show preview panel when deck builder modal is open */

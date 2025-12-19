@@ -10,7 +10,7 @@
         "block": 1
     },
     "skill": {
-        "description": "[Đỡ][Chặn][Kích hoạt] +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình."
+        "description": "[Đỡ][Chặn] (Bỏ thẻ này từ trên tay) : +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-1.png"
