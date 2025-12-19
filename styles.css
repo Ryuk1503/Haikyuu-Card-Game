@@ -727,7 +727,7 @@ body {
 .hand-cards {
     display: flex;
     gap: 6px;
-    min-height: 90px;
+    min-height: 72px;
     padding: 6px;
     background: rgba(0, 0, 0, 0.2);
     align-items: center;
@@ -783,19 +783,28 @@ body {
     object-fit: contain;
 }
 
-/* Action card in preview - rotate vertical and scale 1.25x */
+/* Action card in preview - rotate vertical and scale 1.5x */
 .preview-full-card .action-card-preview {
-    transform: rotate(90deg) scale(1.25);
+    transform: rotate(90deg) scale(1.5);
     transform-origin: center;
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-/* Action card in hand - rotate vertical and scale 1.25x */
+/* Action card in hand - keep card element upright, only rotate artwork inside */
 .hand-cards .card[data-card-type="action"] {
-    transform: rotate(90deg) scale(1.25);
+    /* Card element stays upright (52px x 72px) */
+    transform: none;
+}
+
+/* Rotate and scale artwork inside action card in hand */
+.hand-cards .card[data-card-type="action"] .card-artwork {
+    transform: rotate(90deg) scale(1.5);
     transform-origin: center;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 /* Play Zones */
@@ -1038,6 +1047,11 @@ body {
 }
 
 .card:hover {
+    transform: translateY(-5px);
+}
+
+/* Override hover for action cards in hand - keep upright */
+.hand-cards .card[data-card-type="action"]:hover {
     transform: translateY(-5px);
 }
 
