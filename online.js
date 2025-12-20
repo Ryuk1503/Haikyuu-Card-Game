@@ -16,7 +16,7 @@ class OnlineGameManager {
         this.sessionToken = null;
         
         // Deck management
-        this.selectedDeck = 'default';
+        this.selectedDeck = null;
         this.customDeck = [];
         this.savedDecks = [];
         
@@ -252,6 +252,7 @@ class OnlineGameManager {
         this.deckNameSelect = document.getElementById('deck-name-select');
         this.btnCancelDeck = document.getElementById('btn-cancel-deck');
         this.btnSaveDeck = document.getElementById('btn-save-deck');
+        this.btnDeleteDeck = document.getElementById('btn-delete-deck');
         this.savedDecksList = document.getElementById('saved-decks-list');
         
         // Room elements
@@ -643,18 +644,24 @@ class OnlineGameManager {
     updateDeckSelect() {
         if (!this.deckSelect) return;
         
-        // Remove existing saved deck options
-        const existingOptions = this.deckSelect.querySelectorAll('option[data-saved]');
-        existingOptions.forEach(opt => opt.remove());
+        // Clear all options
+        this.deckSelect.innerHTML = '';
         
-        // Add saved decks
-        this.savedDecks.forEach(deck => {
+        // Add saved decks only (no preset decks)
+        if (this.savedDecks.length === 0) {
             const option = document.createElement('option');
-            option.value = 'saved_' + deck.id;
-            option.textContent = deck.name;
-            option.dataset.saved = 'true';
+            option.value = 'new';
+            option.textContent = 'Chưa có deck - Tạo deck mới';
             this.deckSelect.appendChild(option);
-        });
+        } else {
+            this.savedDecks.forEach(deck => {
+                const option = document.createElement('option');
+                option.value = 'saved_' + deck.id;
+                option.textContent = deck.name;
+                option.dataset.saved = 'true';
+                this.deckSelect.appendChild(option);
+            });
+        }
     }
     
     async saveDeckToServer(deckName, cards) {
@@ -683,18 +690,62 @@ class OnlineGameManager {
         }
     }
     
+    async deleteDeck() {
+        const selectedValue = this.deckNameSelect ? this.deckNameSelect.value : null;
+        
+        if (!selectedValue || !selectedValue.startsWith('saved_')) {
+            this.showError('Vui lòng chọn deck cần xóa!');
+            return;
+        }
+        
+        const id = parseInt(selectedValue.replace('saved_', ''));
+        const deck = this.savedDecks.find(d => d.id === id);
+        
+        if (!deck) {
+            this.showError('Không tìm thấy deck!');
+            return;
+        }
+        
+        // Confirm deletion
+        if (!confirm(`Bạn có chắc chắn muốn xóa deck "${deck.name}"?`)) {
+            return;
+        }
+        
+        const result = await this.deleteDeckFromServer(id);
+        
+        if (result && result.success !== false) {
+            await this.loadUserDecks();
+            this.updateDeckSelect();
+            this.populateDeckSelector();
+            
+            // Reset to "New deck"
+            if (this.deckNameSelect) {
+                this.deckNameSelect.value = 'new';
+            }
+            this.onDeckSelectorChange();
+            
+            this.showSuccess('Đã xóa deck thành công!');
+        } else {
+            this.showError(result?.error || 'Lỗi xóa deck');
+        }
+    }
+
     async deleteDeckFromServer(deckId) {
-        if (!this.sessionToken) return;
+        if (!this.sessionToken) {
+            this.showError('Vui lòng đăng nhập để xóa deck!');
+            return { success: false, error: 'Not logged in' };
+        }
         
         try {
-            await fetch(`/api/decks/${deckId}`, {
+            const response = await fetch(`/api/decks/${deckId}`, {
                 method: 'DELETE',
                 headers: { 'X-Session-Token': this.sessionToken }
             });
-            await this.loadUserDecks();
-            this.renderSavedDecksList();
+            const result = await response.json();
+            return result;
         } catch (error) {
             console.error('Error deleting deck:', error);
+            return { success: false, error: 'Network error' };
         }
     }
     
@@ -839,10 +890,22 @@ class OnlineGameManager {
         if (this.btnSaveDeck) {
             this.btnSaveDeck.addEventListener('click', () => this.saveDeck());
         }
+        if (this.btnDeleteDeck) {
+            this.btnDeleteDeck.addEventListener('click', () => this.deleteDeck());
+        }
     }
     
     onDeckSelectorChange() {
         const selectedValue = this.deckNameSelect.value;
+        
+        // Show/hide delete button
+        if (this.btnDeleteDeck) {
+            if (selectedValue.startsWith('saved_')) {
+                this.btnDeleteDeck.style.display = 'inline-block';
+            } else {
+                this.btnDeleteDeck.style.display = 'none';
+            }
+        }
         
         if (selectedValue === 'new') {
             // Reset to new deck
@@ -872,11 +935,8 @@ class OnlineGameManager {
             if (deck) {
                 this.updateDeckInfo(deck.name, Object.values(deck.cards).reduce((a, b) => a + b, 0));
             }
-        } else {
-            const presets = this.getPresetDecks();
-            if (presets[deckId]) {
-                this.updateDeckInfo(presets[deckId].name, 40);
-            }
+        } else if (deckId === 'new') {
+            this.updateDeckInfo('New deck', 0);
         }
         
         // Auto-send deck selection when in room
@@ -1331,16 +1391,7 @@ class OnlineGameManager {
             }
         }
         
-        const presets = this.getPresetDecks();
-        if (presets[this.selectedDeck]) {
-            const deck = {};
-            presets[this.selectedDeck].cards.forEach(c => {
-                deck[c.cardId] = c.count;
-            });
-            console.log('📦 Using preset deck:', presets[this.selectedDeck].name, 'with', Object.keys(deck).length, 'card types');
-            return deck;
-        }
-        
+        // No preset decks - only saved decks
         console.warn('⚠️ No deck found for selectedDeck:', this.selectedDeck);
         return null;
     }

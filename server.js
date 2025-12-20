@@ -387,7 +387,12 @@ function createInitialGameState() {
 
 function createDeck() {
     const deck = [];
-    CARD_DATABASE.forEach(cardData => {
+    const cardDatabase = getCardDatabase();
+    
+    // Fallback to CARD_DATABASE if cardDatabase is empty
+    const source = cardDatabase.length > 0 ? cardDatabase : CARD_DATABASE;
+    
+    source.forEach(cardData => {
         const copies = Math.random() < 0.5 ? 2 : 3;
         for (let i = 0; i < copies; i++) {
             deck.push({
@@ -399,6 +404,90 @@ function createDeck() {
     return shuffleArray(deck);
 }
 
+// Load card database from Card folder (same logic as /api/cards endpoint)
+function loadCardDatabase() {
+    try {
+        const cards = [];
+        const cardDir = path.join(__dirname, 'Card');
+        
+        // Check if Card directory exists
+        if (!fs.existsSync(cardDir)) {
+            console.warn('⚠️ Card directory not found');
+            return [];
+        }
+        
+        // Get all school directories
+        const schools = fs.readdirSync(cardDir, { withFileTypes: true })
+            .filter(dirent => dirent.isDirectory())
+            .map(dirent => dirent.name);
+        
+        // For each school, scan for card types
+        schools.forEach(school => {
+            const schoolPath = path.join(cardDir, school);
+            const typeFolders = ['Nhan vat', 'Hanh dong'];
+            
+            typeFolders.forEach(typeFolder => {
+                const typePath = path.join(schoolPath, typeFolder);
+                
+                // Check if type folder exists
+                if (!fs.existsSync(typePath)) return;
+                
+                // Get all JSON files in this folder
+                const files = fs.readdirSync(typePath)
+                    .filter(file => file.endsWith('.json'));
+                
+                files.forEach(file => {
+                    try {
+                        const jsonPath = path.join(typePath, file);
+                        const jsonData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+                        
+                        // Extract cardId from filename (remove .json)
+                        const cardId = file.replace('.json', '');
+                        
+                        // Determine card type
+                        const cardType = typeFolder === 'Nhan vat' ? 'character' : 'action';
+                        
+                        // Build card object
+                        const card = {
+                            id: jsonData.id || cardId,
+                            name: jsonData.name || '',
+                            cardId: cardId,
+                            school: jsonData.school || school,
+                            type: jsonData.type || cardType,
+                            serve: jsonData.stats?.serve || 0,
+                            receive: jsonData.stats?.receive || 0,
+                            toss: jsonData.stats?.toss || 0,
+                            attack: jsonData.stats?.attack || 0,
+                            block: jsonData.stats?.block || 0,
+                            skill: jsonData.skill?.description || '',
+                            artwork: jsonData.artwork || `Card/${school}/${typeFolder}/${cardId}.png`
+                        };
+                        
+                        cards.push(card);
+                    } catch (error) {
+                        console.error(`Error reading card file ${file}:`, error);
+                    }
+                });
+            });
+        });
+        
+        return cards;
+    } catch (error) {
+        console.error('Error loading card database:', error);
+        return [];
+    }
+}
+
+// Cache card database
+let cardDatabaseCache = null;
+
+function getCardDatabase() {
+    if (!cardDatabaseCache) {
+        cardDatabaseCache = loadCardDatabase();
+    }
+    return cardDatabaseCache;
+}
+
 function createDeckFromSelection(deckData) {
     if (!deckData || Object.keys(deckData).length === 0) {
         console.log('⚠️ No deck data provided, creating random deck');
@@ -407,11 +496,13 @@ function createDeckFromSelection(deckData) {
     
     const deck = [];
     const missingCards = [];
+    const cardDatabase = getCardDatabase();
     
     console.log(`📦 Creating deck from selection with ${Object.keys(deckData).length} card types`);
+    console.log(`📦 Card database has ${cardDatabase.length} cards`);
     
     Object.entries(deckData).forEach(([cardId, count]) => {
-        const cardData = CARD_DATABASE.find(c => c.cardId === cardId);
+        const cardData = cardDatabase.find(c => c.cardId === cardId);
         if (cardData && count > 0) {
             for (let i = 0; i < count; i++) {
                 deck.push({
@@ -433,12 +524,10 @@ function createDeckFromSelection(deckData) {
     
     console.log(`📦 Created ${deck.length} cards from selection`);
     
-    while (deck.length < 40) {
-        const randomCard = CARD_DATABASE[Math.floor(Math.random() * CARD_DATABASE.length)];
-        deck.push({
-            ...randomCard,
-            uniqueId: uuidv4()
-        });
+    // Don't fill with random cards if deck is incomplete - just return what we have
+    // This ensures we use the exact deck the player selected
+    if (deck.length < 40) {
+        console.warn(`⚠️ Deck only has ${deck.length} cards, expected 40`);
     }
     
     console.log(`📦 Final deck size: ${deck.length} cards`);
