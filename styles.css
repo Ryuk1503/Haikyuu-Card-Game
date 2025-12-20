@@ -171,16 +171,16 @@ body {
 .lobby-container {
     text-align: center;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
     border-radius: 20px;
     border: 2px solid #ff6b35;
-    box-shadow: 0 0 40px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 0 40px rgba(255, 107, 53, 0.5);
     max-width: 600px;
     width: 95%;
 }
 
-/* Make content inside lobby-container semi-transparent, except buttons and selects */
+/* Make all text clear and readable with text shadows */
 .lobby-container .lobby-header,
 .lobby-container .lobby-title,
 .lobby-container .online-badge,
@@ -193,17 +193,21 @@ body {
 .lobby-container .player-slots,
 .lobby-container .slot-label,
 .lobby-container .slot-status,
-.lobby-container .room-code-display span:not(.room-code) {
-    opacity: 0.85;
+.lobby-container .room-code-display span:not(.room-code),
+.lobby-container .user-name,
+.lobby-container .user-info {
+    opacity: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Ensure buttons and selects remain fully opaque */
+/* Ensure buttons and selects remain fully opaque and clear */
 .lobby-container .btn,
 .lobby-container select,
 .lobby-container .deck-select,
 .lobby-container .room-code-input,
 .lobby-container .room-code {
     opacity: 1 !important;
+    text-shadow: none;
 }
 
 .lobby-header {
@@ -415,8 +419,9 @@ body {
 }
 
 .lobby-info {
-    color: #aaa;
+    color: #ddd;
     font-size: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* ============================================
@@ -625,9 +630,10 @@ body {
 }
 
 .deck-info {
-    color: #888;
+    color: #bbb;
     font-size: 0.85rem;
     margin-top: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .btn-build-deck {
