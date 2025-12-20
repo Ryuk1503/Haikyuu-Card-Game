@@ -518,6 +518,33 @@ io.on('connection', (socket) => {
         }
     });
 
+    // Mill deck (send top card to discard)
+    socket.on('millDeck', (data) => {
+        const playerInfo = playerSockets.get(socket.id);
+        if (!playerInfo) return;
+        const room = rooms.get(playerInfo.roomId);
+        if (!room || !room.gameStarted) return;
+        const state = room.gameState;
+        const player = parseInt(data.player);
+        
+        if (state.decks[player] && state.decks[player].length > 0) {
+            // Lấy thẻ từ đầu deck (shift = lấy từ đầu)
+            const card = state.decks[player].shift();
+            
+            if (card) {
+                // Đưa vào discard
+                state.discards[player].push(card);
+                
+                // Broadcast log message
+                io.to(room.roomId).emit('logMessage', {
+                    message: `${room.playerNames[player]} đã mill 1 thẻ "${card.name}" từ deck vào Drop`,
+                    type: 'log'
+                });
+                broadcastGameState(room);
+            }
+        }
+    });
+
     // Set score
     socket.on('setScore', (data) => {
             const playerInfo = playerSockets.get(socket.id);

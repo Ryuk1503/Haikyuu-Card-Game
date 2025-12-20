@@ -624,6 +624,7 @@ class GameState {
         // Context menu state
         this.contextCard = null;
         this.contextPlayer = null;
+        this.deckContextPlayer = null;
     }
 }
 
@@ -799,6 +800,8 @@ class HaikyuuCardGame {
         // Context menu
         this.contextMenu = document.getElementById('card-context-menu');
         this.contextMenuTitle = document.getElementById('context-menu-title');
+        this.deckContextMenu = document.getElementById('deck-context-menu');
+        this.deckContextMenuTitle = document.getElementById('deck-context-menu-title');
         
         // Card Preview Panel
         this.previewCard = document.getElementById('preview-card');
@@ -838,7 +841,7 @@ class HaikyuuCardGame {
             p1Deck.addEventListener('click', () => this.handleDeckClick(1));
             p1Deck.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
-                this.openDeckSearchModal(1);
+                this.showDeckContextMenu(e, 1);
             });
         }
         
@@ -846,7 +849,7 @@ class HaikyuuCardGame {
             p2Deck.addEventListener('click', () => this.handleDeckClick(2));
             p2Deck.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
-                this.openDeckSearchModal(2);
+                this.showDeckContextMenu(e, 2);
             });
         }
         
@@ -869,11 +872,15 @@ class HaikyuuCardGame {
         
         // Context menu events
         this.bindContextMenuEvents();
+        this.bindDeckContextMenuEvents();
         
         // Close context menu on click outside
         document.addEventListener('click', (e) => {
             if (this.contextMenu && !this.contextMenu.contains(e.target)) {
                 this.hideContextMenu();
+            }
+            if (this.deckContextMenu && !this.deckContextMenu.contains(e.target)) {
+                this.hideDeckContextMenu();
             }
         });
         
@@ -1422,6 +1429,123 @@ class HaikyuuCardGame {
         this.contextPlayer = null;
         this.contextSource = null;
         this.contextIndex = null;
+    }
+
+    showDeckContextMenu(e, player) {
+        this.deckContextPlayer = player;
+        
+        if (this.deckContextMenuTitle) {
+            this.deckContextMenuTitle.textContent = `Deck ${this.getPlayerName(player)}`;
+        }
+        
+        // Show menu first to get dimensions
+        this.deckContextMenu.classList.remove('hidden');
+        this.deckContextMenu.style.left = '-9999px';
+        this.deckContextMenu.style.top = '-9999px';
+        
+        // Get menu dimensions
+        const rect = this.deckContextMenu.getBoundingClientRect();
+        const menuHeight = rect.height;
+        const menuWidth = rect.width;
+        
+        // Calculate available space
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+        const spaceBelow = viewportHeight - e.clientY;
+        const spaceAbove = e.clientY;
+        const spaceRight = viewportWidth - e.clientX;
+        
+        // Position horizontally
+        let left = e.pageX;
+        if (spaceRight < menuWidth) {
+            left = e.pageX - menuWidth;
+        }
+        
+        // Position vertically - prefer above if not enough space below
+        let top;
+        if (spaceBelow >= menuHeight) {
+            // Enough space below - show below cursor
+            top = e.pageY;
+        } else if (spaceAbove >= menuHeight) {
+            // Not enough below, but enough above - show above cursor
+            top = e.pageY - menuHeight;
+        } else {
+            // Not enough space either way - fit to viewport
+            top = Math.max(10, viewportHeight - menuHeight - 10);
+        }
+        
+        this.deckContextMenu.style.left = Math.max(10, left) + 'px';
+        this.deckContextMenu.style.top = top + 'px';
+    }
+
+    hideDeckContextMenu() {
+        if (this.deckContextMenu) {
+            this.deckContextMenu.classList.add('hidden');
+        }
+        this.deckContextPlayer = null;
+    }
+
+    bindDeckContextMenuEvents() {
+        if (!this.deckContextMenu) return;
+        
+        this.deckContextMenu.querySelectorAll('.context-menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const action = e.target.closest('.context-menu-item').dataset.action;
+                if (action) {
+                    this.handleDeckContextMenuAction(action);
+                }
+            });
+        });
+    }
+
+    handleDeckContextMenuAction(action) {
+        if (!this.deckContextPlayer) {
+            this.hideDeckContextMenu();
+            return;
+        }
+        
+        const player = this.deckContextPlayer;
+        
+        switch (action) {
+            case 'search-deck':
+                this.openDeckSearchModal(player);
+                break;
+            case 'shuffle-deck':
+                this.shuffleDeck(player);
+                break;
+            case 'mill-deck':
+                this.millDeck(player);
+                break;
+        }
+        
+        this.hideDeckContextMenu();
+    }
+
+    millDeck(player) {
+        if (this.state.decks[player].length === 0) {
+            this.addLogMessage(`${this.getPlayerName(player)} không thể mill vì deck trống`, 'warning');
+            return;
+        }
+        
+        if (this.isOnline && this.onlineManager) {
+            // Online mode: emit to server, server will handle and broadcast
+            this.onlineManager.socket.emit('millDeck', { player: String(player) });
+        } else {
+            // Offline mode: handle locally
+            const card = this.state.decks[player].shift();
+            
+            if (card) {
+                // Đưa vào discard
+                this.state.discards[player].push(card);
+                
+                // Log message
+                const logMessage = `${this.getPlayerName(player)} đã mill 1 thẻ "${card.name}" từ deck vào Drop`;
+                this.addLogMessage(logMessage, 'log', false);
+                
+                this.updateUI();
+            }
+        }
     }
 
     handleContextMenuAction(action) {
