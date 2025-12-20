@@ -711,88 +711,23 @@ class OnlineGameManager {
             return this.cardDatabaseCache;
         }
         
-        const cards = [];
-        const schools = ['Aobajosai', 'Date Tech', 'Karasuno', 'Nekoma', 'Shiratorizawa', 'Trường khác'];
-        const types = [
-            { folder: 'Nhan vat', type: 'character' },
-            { folder: 'Hanh dong', type: 'action' }
-        ];
-        
-        // Load all JSON files from Card folder
-        for (const school of schools) {
-            for (const typeInfo of types) {
-                // Try to load common card files for each school/type combination
-                // We'll use a pattern matching approach - try common card IDs
-                const commonCardIds = this.getCommonCardIds(school, typeInfo.type);
-                
-                for (const cardId of commonCardIds) {
-                    try {
-                        const jsonPath = `Card/${school}/${typeInfo.folder}/${cardId}.json`;
-                        const response = await fetch(jsonPath);
-                        if (response.ok) {
-                            const jsonData = await response.json();
-                            
-                            // Extract cardId from filename
-                            const extractedCardId = cardId;
-                            
-                            // Build card object
-                            const card = {
-                                id: jsonData.id || extractedCardId,
-                                name: jsonData.name || '',
-                                cardId: extractedCardId,
-                                school: jsonData.school || school,
-                                type: jsonData.type || typeInfo.type,
-                                serve: jsonData.stats?.serve || 0,
-                                receive: jsonData.stats?.receive || 0,
-                                toss: jsonData.stats?.toss || 0,
-                                attack: jsonData.stats?.attack || 0,
-                                block: jsonData.stats?.block || 0,
-                                skill: jsonData.skill?.description || '',
-                                artwork: jsonData.artwork || `Card/${school}/${typeInfo.folder}/${cardId}.png`
-                            };
-                            
-                            cards.push(card);
-                        }
-                    } catch (error) {
-                        // Silently skip files that don't exist
-                    }
-                }
+        try {
+            // Fetch cards from server API (which scans Card folder)
+            const response = await fetch('/api/cards');
+            if (response.ok) {
+                const cards = await response.json();
+                this.cardDatabaseCache = cards;
+                return cards;
+            } else {
+                console.warn('Failed to fetch cards from server, falling back to empty array');
+                this.cardDatabaseCache = [];
+                return [];
             }
+        } catch (error) {
+            console.error('Error loading card database:', error);
+            this.cardDatabaseCache = [];
+            return [];
         }
-        
-        this.cardDatabaseCache = cards;
-        return cards;
-    }
-    
-    getCommonCardIds(school, type) {
-        // Return list of potential card IDs based on known files
-        // This is a fallback - ideally we'd scan the folder, but we'll use known patterns
-        const knownCards = {
-            'Karasuno': {
-                'character': ['hinata-shouyo-1', 'hinata-shouyo-2', 'kageyama-tobio-1', 'kageyama-tobio-2', 'sawamura-daichi-1', 'sawamura-daichi-2', 'sugawara-koshi-1', 'sugawara-koshi-2', 'tanaka-ryunosuke-1', 'tanaka-ryunosuke-2', 'tsukishima-kei-1', 'tsukishima-kei-2', 'tsukishima-kei-3', 'yamaguchi-tadashi-1', 'yamaguchi-tadashi-2', 'nishinoya-yu-1', 'nishinoya-yu-2', 'nishinoya-yu-3', 'azumane-asahi-1', 'azumane-asahi-2'],
-                'action': ['chuyen-toi-day-cho-toi', 'chu-may-cung-co-mau-an-thua-day', 'phong-thu-tuyet-doi', 'du-chi-la-sinh-hoat-clb', '1-diem-bang-100-diem-phai-hon', 'toi-se-la-nguoi-dung-vung-tren-san-lau-nhat']
-            },
-            'Shiratorizawa': {
-                'character': ['ushijima-wakatoshi-1', 'ushijima-wakatoshi-2', 'ushijima-wakatoshi-3', 'tendo-satori-1', 'tendo-satori-2', 'tendo-satori-3', 'goshiki-tsutomu-1', 'goshiki-tsutomu-2', 'goshiki-tsutomu-3', 'shirabu-kenjiro-1', 'shirabu-kenjiro-2', 'shirabu-kenjiro-3', 'ohira-reon-1', 'ohira-reon-2', 'kawanishi-taichi', 'yamagata-hayato', 'semi-eita'],
-                'action': ['chuyen-het-bong-cho-anh', 'ma-la-nghe-thuat-dap-bong-thang-xuong-san', 'la-mot-doi-thu-vuot-qua-tam-hieu-biet', 'thay-chua-ha-cu-bong-than-toc-cua-em-do']
-            },
-            'Aobajosai': {
-                'character': ['iwaizumi-hajime-1', 'oikawa-toru-1'],
-                'action': ['voi-6-nguoi-ke-manh-se-cang-manh-hon']
-            },
-            'Date Tech': {
-                'character': ['aone-takanobu-1', 'futakuchi-kenji-1']
-            },
-            'Nekoma': {
-                'character': ['kozume-kenma-1', 'kuroo-tetsuro-1'],
-                'action': ['doi-minh-chac-chan-se-manh-hon-nho-co-em']
-            },
-            'Trường khác': {
-                'character': ['hinata-shouyo-3', 'kageyama-tobio-3', 'kunimi-kindaichi-1']
-            }
-        };
-        
-        return knownCards[school]?.[type] || [];
     }
     
     async getCardDatabase() {
@@ -940,17 +875,20 @@ class OnlineGameManager {
         // Show modal immediately for better UX
         this.deckBuilderModal.classList.add('show');
         
-        // Load card database in background (non-blocking)
-        // Start loading immediately but don't wait
-        const loadPromise = this.loadCardDatabase();
+        // Show loading indicator
+        if (this.collectionCards) {
+            this.collectionCards.innerHTML = '<div class="loading-message">Đang tải thẻ...</div>';
+        }
         
-        // Populate school filter dynamically
+        // Load card database from server
+        await this.loadCardDatabase();
+        
+        // Populate school filter dynamically (will get schools from loaded cards)
         await this.populateSchoolFilter();
         
         this.renderSavedDecksList();
         
-        // Wait for database to be ready before rendering
-        await loadPromise;
+        // Render cards
         await this.renderCollectionCards();
         await this.renderDeckCards();
         this.updateDeckCount();
@@ -968,22 +906,10 @@ class OnlineGameManager {
             }
         });
         
-        // Add all schools from folder structure (even if not in database)
-        const allSchools = [
-            'Aobajosai',
-            'Date Tech',
-            'Karasuno',
-            'Nekoma',
-            'Shiratorizawa',
-            'Trường khác'
-        ];
-        
-        allSchools.forEach(school => schools.add(school));
-        
         // Clear existing options except "all"
         this.filterSchool.innerHTML = '<option value="all">Tất cả trường</option>';
         
-        // Add school options sorted alphabetically
+        // Add school options sorted alphabetically (only from loaded cards)
         Array.from(schools).sort().forEach(school => {
             const option = document.createElement('option');
             option.value = school;

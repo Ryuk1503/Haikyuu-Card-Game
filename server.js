@@ -6,6 +6,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
+const fs = require('fs');
 const db = require('./database');
 
 const app = express();
@@ -147,6 +148,83 @@ app.get('/api/rooms', (req, res) => {
 // Serve index.html for root path
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// ============================================
+// CARD DATABASE API - Scan Card folder
+// ============================================
+
+// Get all cards by scanning Card folder
+app.get('/api/cards', (req, res) => {
+    try {
+        const cards = [];
+        const cardDir = path.join(__dirname, 'Card');
+        
+        // Check if Card directory exists
+        if (!fs.existsSync(cardDir)) {
+            return res.json([]);
+        }
+        
+        // Get all school directories
+        const schools = fs.readdirSync(cardDir, { withFileTypes: true })
+            .filter(dirent => dirent.isDirectory())
+            .map(dirent => dirent.name);
+        
+        // For each school, scan for card types
+        schools.forEach(school => {
+            const schoolPath = path.join(cardDir, school);
+            const typeFolders = ['Nhan vat', 'Hanh dong'];
+            
+            typeFolders.forEach(typeFolder => {
+                const typePath = path.join(schoolPath, typeFolder);
+                
+                // Check if type folder exists
+                if (!fs.existsSync(typePath)) return;
+                
+                // Get all JSON files in this folder
+                const files = fs.readdirSync(typePath)
+                    .filter(file => file.endsWith('.json'));
+                
+                files.forEach(file => {
+                    try {
+                        const jsonPath = path.join(typePath, file);
+                        const jsonData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+                        
+                        // Extract cardId from filename (remove .json)
+                        const cardId = file.replace('.json', '');
+                        
+                        // Determine card type
+                        const cardType = typeFolder === 'Nhan vat' ? 'character' : 'action';
+                        
+                        // Build card object
+                        const card = {
+                            id: jsonData.id || cardId,
+                            name: jsonData.name || '',
+                            cardId: cardId,
+                            school: jsonData.school || school,
+                            type: jsonData.type || cardType,
+                            serve: jsonData.stats?.serve || 0,
+                            receive: jsonData.stats?.receive || 0,
+                            toss: jsonData.stats?.toss || 0,
+                            attack: jsonData.stats?.attack || 0,
+                            block: jsonData.stats?.block || 0,
+                            skill: jsonData.skill?.description || '',
+                            artwork: jsonData.artwork || `Card/${school}/${typeFolder}/${cardId}.png`
+                        };
+                        
+                        cards.push(card);
+                    } catch (error) {
+                        console.warn(`Error reading card file ${file}:`, error.message);
+                    }
+                });
+            });
+        });
+        
+        res.json(cards);
+    } catch (error) {
+        console.error('Error scanning Card folder:', error);
+        res.status(500).json({ error: 'Failed to load cards' });
+    }
 });
 
 // ============================================

@@ -1443,6 +1443,14 @@ body {
     padding: 20px;
 }
 
+.loading-message {
+    color: #4ecdc4;
+    font-style: italic;
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
 /* Action cards in discard modal - same style as in hand */
 .discard-card-list .card[data-card-type="action"] {
     /* Card element stays upright (52px x 72px) */
