@@ -5,6 +5,5 @@
     "skill": {
         "description": "[Rút] Cho đối phương xem toàn bộ thẻ trên tay mình. Nếu trên sân mình và trên tay mình có từ 6 thẻ khác tên nhau trở lên, rút 3 thẻ từ bộ bài. Sau đó, trong lượt này không được phép dùng thẻ \"Với \\\"6 người\\\", kẻ mạnh sẽ càng mạnh hơn\" nữa."
     },
-    "artwork": "Card/Aobajosai/Hanh dong/voi-6-nguoi-ke-manh-se-cang-manh-hon.png",
-    "class": null
+    "artwork": "Card/Aobajosai/Hanh dong/voi-6-nguoi-ke-manh-se-cang-manh-hon.png"
 }

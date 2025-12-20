@@ -5,6 +5,5 @@
     "skill": {
         "description": "[Rút] Rút 1 thẻ từ bộ bài. Sau đó, nếu trên sân mình có nhân vật \"Nakashima Takeru\" có 3+ Ý Chí, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Wakutani Minami từ khu vực Loại bỏ của mình."
     },
-    "artwork": "Card/Wakutani Minami/Hanh dong/chung-ta-khong-co-thoi-gian-de-u-ru-dau.png",
-    "class": null
+    "artwork": "Card/Wakutani Minami/Hanh dong/chung-ta-khong-co-thoi-gian-de-u-ru-dau.png"
 }
