@@ -1,0 +1,18 @@
+{
+    "id": "HV09-027",
+    "name": "Kyotani Kentaro",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 1,
+        "toss": 0,
+        "attack": 3,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu khu vực Hành Động có 4+ thẻ, tự +1 điểm Đập."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/kyotani-kentaro-2.png"
+}
+

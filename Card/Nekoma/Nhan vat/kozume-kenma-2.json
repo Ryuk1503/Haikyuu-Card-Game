@@ -1,0 +1,18 @@
+{
+    "id": "HV09-029",
+    "name": "Kozume Kenma",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 1,
+        "toss": 1,
+        "attack": 1,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, chọn tối đa 2 thẻ nhân vật trường Nekoma từ Ý Chí của nhân vật này và thêm vào Ý Chí của 1 nhân vật trường Nekoma trên sân mình."
+    },
+    "school": "Nekoma",
+    "artwork": "Card/Nekoma/Nhan vat/kozume-kenma-2.png"
+}
+

@@ -1,0 +1,18 @@
+{
+    "id": "HV09-020",
+    "name": "Matsukawa Issei",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 1,
+        "toss": 0,
+        "attack": 3,
+        "block": 2
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 5 thẻ trên cùng bộ bài của mình vào khu vực Loại bỏ để đối phương phải đặt 1 thẻ trên tay vào khu vực Loại bỏ."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/matsukawa-issei-1.png"
+}
+

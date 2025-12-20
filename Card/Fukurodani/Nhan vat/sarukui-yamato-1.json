@@ -1,0 +1,18 @@
+{
+    "id": "HV09-041",
+    "name": "Sarukui Yamato",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 1,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu khu vực Hành Động của đối phương có 1- thẻ, rút 1 thẻ từ bộ bài, tự +1 điểm Đỡ."
+    },
+    "school": "Fukurodani",
+    "artwork": "Card/Fukurodani/Nhan vat/sarukui-yamato-1.png"
+}
+

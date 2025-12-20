@@ -1,0 +1,18 @@
+{
+    "id": "HV09-017",
+    "name": "Oikawa Toru",
+    "rarity": "R",
+    "stats": {
+        "serve": 5,
+        "receive": 0,
+        "toss": 1,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện trên nhân vật trường Aobajosai ở khu vực Giao Bóng, có thể bỏ 1 thẻ Hành Động từ trên tay vào khu vực Hành Động để hai người chơi đặt toàn bộ thẻ trên tay vào bộ bài, xáo lại bộ bài và rút 6 thẻ từ bộ bài."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/oikawa-toru-3.png"
+}
+

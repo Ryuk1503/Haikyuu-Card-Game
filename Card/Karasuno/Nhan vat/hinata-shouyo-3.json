@@ -1,0 +1,18 @@
+{
+    "id": "HV09-004",
+    "name": "Hinata Shoyo",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 2
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3- thẻ trên tay, tự +1 điểm Đập. Hoặc nếu nhân vật này có 5+ Ý Chí, tự +3 điểm Đập."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/hinata-shouyo-3.png"
+}
+

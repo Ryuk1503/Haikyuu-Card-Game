@@ -1,0 +1,18 @@
+{
+    "id": "HV09-021",
+    "name": "Hanamaki Takahiro",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 2,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu có 2- thẻ trên tay, có thể chọn tối đa 1 thẻ \"Oikawa Toru\" từ bộ bài, cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/hanamaki-takahiro-1.png"
+}
+

@@ -1,0 +1,10 @@
+{
+    "name": "Tài năng là một thứ sẽ nở rộ",
+    "rarity": "R",
+    "type": "action",
+    "skill": {
+        "description": "[Chuyền] +1 điểm Chuyền cho nhân vật \"Oikawa Toru\" trên sân mình. Hoặc nếu nhân vật đó có 5+ Ý Chí, +2 điểm Chuyền, chọn 1 thẻ \"Iwaizumi Hajime\" từ bộ bài, cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
+    },
+    "artwork": "Card/Aobajosai/Hanh dong/tai-nang-la-mot-thu-se-no-ro.png"
+}
+

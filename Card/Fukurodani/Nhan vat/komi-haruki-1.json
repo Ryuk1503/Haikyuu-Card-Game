@@ -1,0 +1,18 @@
+{
+    "id": "HV09-040",
+    "name": "Komi Haruki",
+    "rarity": "R",
+    "stats": {
+        "serve": 0,
+        "receive": 4,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ Hành Động trên tay vào khu vực Loại bỏ để rút 1 thẻ từ bộ bài và tự +3 điểm Đỡ."
+    },
+    "school": "Fukurodani",
+    "artwork": "Card/Fukurodani/Nhan vat/komi-haruki-1.png"
+}
+

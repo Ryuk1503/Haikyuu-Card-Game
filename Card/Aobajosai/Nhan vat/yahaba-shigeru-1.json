@@ -1,0 +1,18 @@
+{
+    "id": "HV09-025",
+    "name": "Yahaba Shigeru",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 3,
+        "toss": 1,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi nhân vật này là nhân vật Chuyền Bóng, nếu trên sân mình xuất hiện nhân vật Đập Bóng trường Aobajosai, có thể bỏ 1 thẻ từ trên tay vào khu vực Loại bỏ để rút 1 thẻ từ bộ bài và +1 điểm Đập cho 1 nhân vật \"Kyotani Kentaro\" của mình."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/yahaba-shigeru-1.png"
+}
+

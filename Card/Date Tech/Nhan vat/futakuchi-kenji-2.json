@@ -1,0 +1,18 @@
+{
+    "id": "HV09-034",
+    "name": "Futakuchi Kenji",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu khu vực Loại bỏ có 6+ thẻ Nhân Vật trường Công Nghệ Date, tự +1 điểm Chặn. Ở lượt tiếp theo của đối phương, đối phương không được đưa nhân vật Li ra khu vực Đỡ Bóng."
+    },
+    "school": "Date Tech",
+    "artwork": "Card/Date Tech/Nhan vat/futakuchi-kenji-2.png"
+}
+

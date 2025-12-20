@@ -1,0 +1,18 @@
+{
+    "id": "HV09-052",
+    "name": "Kawatabi Shunki",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 2,
+        "toss": 0,
+        "attack": 3,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện trên nhân vật trường Wakutani Minami ở khu vực Đập Bóng (ngoài \"Kawatabi Shunki\"), ở lượt tiếp theo của đối phương, đối phương không được đưa ra nhân vật Chặn Bóng."
+    },
+    "school": "Wakutani Minami",
+    "artwork": "Card/Wakutani Minami/Nhan vat/kawatabi-shunki-1.png"
+}
+

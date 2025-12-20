@@ -1,0 +1,18 @@
+{
+    "id": "HV09-039",
+    "name": "Akaashi Keiji",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 0,
+        "toss": 1,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Kết thúc giai đoạn Đập Bóng của mình, nếu nhân vật này là nhân vật Chuyền Bóng và khu vực Hành Động của đối phương có 1- thẻ, tự +1 điểm Chuyền."
+    },
+    "school": "Fukurodani",
+    "artwork": "Card/Fukurodani/Nhan vat/akaashi-keiji-1.png"
+}
+

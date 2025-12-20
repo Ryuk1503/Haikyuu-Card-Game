@@ -1,0 +1,18 @@
+{
+    "id": "HV09-051",
+    "name": "Nakashima Takeru",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 2,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu có 4- thẻ trên tay, rút 1 thẻ từ bộ bài."
+    },
+    "school": "Wakutani Minami",
+    "artwork": "Card/Wakutani Minami/Nhan vat/nakashima-takeru-1.png"
+}
+

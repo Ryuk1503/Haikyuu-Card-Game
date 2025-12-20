@@ -872,6 +872,9 @@ class OnlineGameManager {
         
         this.buildingDeck = {};
         
+        // Clear cache to ensure fresh data
+        this.cardDatabaseCache = null;
+        
         // Show modal immediately for better UX
         this.deckBuilderModal.classList.add('show');
         
@@ -905,6 +908,10 @@ class OnlineGameManager {
                 schools.add(card.school);
             }
         });
+        
+        // Remove unwanted schools
+        schools.delete('Yukigaoka');
+        schools.delete('Kitagawa Daiichi');
         
         // Clear existing options except "all"
         this.filterSchool.innerHTML = '<option value="all">Tất cả trường</option>';

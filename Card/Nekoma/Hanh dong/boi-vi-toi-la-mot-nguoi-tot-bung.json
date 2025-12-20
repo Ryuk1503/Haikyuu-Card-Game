@@ -1,0 +1,10 @@
+{
+    "name": "Bởi vì tôi là một người tốt bụng.",
+    "rarity": "R",
+    "type": "action",
+    "skill": {
+        "description": "[Rút] Rút 1 thẻ từ bộ bài. Sau đó, +2 điểm bất kì cho 1 nhân vật \"Kuroo Tetsuro\" có 3+ Ý Chí trên sân mình."
+    },
+    "artwork": "Card/Nekoma/Hanh dong/boi-vi-toi-la-mot-nguoi-tot-bung.png"
+}
+

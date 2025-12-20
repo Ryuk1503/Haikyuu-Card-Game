@@ -1,0 +1,18 @@
+{
+    "id": "HV09-016",
+    "name": "Oikawa Toru",
+    "rarity": "R",
+    "stats": {
+        "serve": 4,
+        "receive": 1,
+        "toss": 1,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có 5+ Ý Chí, tự +2 điểm Chuyền. Sau đó, chọn tối đa 1 thẻ Hành Động từ bộ bài, cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/oikawa-toru-2.png"
+}
+

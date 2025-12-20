@@ -1,0 +1,18 @@
+{
+    "id": "HV09-049",
+    "name": "Bobata Kazuma",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 3,
+        "toss": 0,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "[Bỏ thẻ này và 1 thẻ Hành Động từ trên tay vào khu vực Loại bỏ] : Rút 2 thẻ từ bộ bài, +2 điểm Đỡ hoặc +1 điểm bất kì cho 1 nhân vật trường Jozenji trên sân mình."
+    },
+    "school": "Jozenji",
+    "artwork": "Card/Jozenji/Nhan vat/bobata-kazuma-1.png"
+}
+

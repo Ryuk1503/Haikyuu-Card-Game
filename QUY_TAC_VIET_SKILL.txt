@@ -1,0 +1,155 @@
+===========================================
+QUY TẮC VIẾT SKILL CHO THẺ BÀI
+===========================================
+
+1. CẤU TRÚC ĐIỀU KIỆN (TRIGGER)
+-------------------------------------------
+- "Khi thẻ này xuất hiện ở khu vực [X] từ trên tay"
+  → Khi triển khai từ tay vào khu vực cụ thể
+  
+- "Khi thẻ này xuất hiện ở khu vực [X]"
+  → Khi triển khai vào khu vực cụ thể (không cần từ tay)
+  
+- "Khi thẻ này được triển khai"
+  → Khi được triển khai (không chỉ định khu vực)
+  
+- "Khi nhân vật [Tên] xuất hiện ở khu vực [X] trên sân mình"
+  → Khi nhân vật khác xuất hiện
+  
+- "Khi nhân vật [Loại] xuất hiện trên sân mình"
+  → Khi nhân vật loại cụ thể xuất hiện
+
+
+2. CÁCH VIẾT SỐ LƯỢNG VÀ ĐIỀU KIỆN
+-------------------------------------------
+- "có X+ Ý Chí" hoặc "có X+ Ý Chí ở khu vực này"
+  → Có từ X Ý Chí trở lên
+  
+- "có X- Ý Chí" hoặc "có X- Ý Chí ở khu vực này"
+  → Có từ X Ý Chí trở xuống
+  
+- "có X+ thẻ" hoặc "có X+ thẻ trên tay"
+  → Có từ X thẻ trở lên
+  
+- "có X- thẻ" hoặc "có X- thẻ trên tay"
+  → Có từ X thẻ trở xuống
+  
+- "trên tay còn từ X thẻ trở xuống"
+  → Cách viết cũ, nên thay bằng "có X- thẻ trên tay"
+  
+- "có từ X Ý Chí trở lên"
+  → Cách viết cũ, nên thay bằng "có X+ Ý Chí"
+
+
+3. ĐIỀU KIỆN BỔ SUNG
+-------------------------------------------
+- "nếu trên sân mình có..."
+  → Điều kiện về nhân vật trên sân
+  
+- "nếu nhân vật đó là \"[Tên]\""
+  → Điều kiện về tên nhân vật cụ thể
+  
+- "nếu nhân vật đó có từ X Ý Chí trở lên"
+  → Nên viết: "nếu nhân vật đó có X+ Ý Chí"
+  
+- "nếu trong số đó có..."
+  → Điều kiện về nội dung đã liệt kê
+
+
+4. HÀNH ĐỘNG (EFFECTS)
+-------------------------------------------
+- "tự +X điểm [Y]"
+  → Tự động tăng điểm (không cần cost)
+  Ví dụ: "tự +1 điểm Đập", "tự +2 điểm Chặn"
+  
+- "có thể sử dụng X Ý Chí của nhân vật [Y] để +Z điểm [W]"
+  → Tăng điểm với cost Ý Chí
+  
+- "có thể bỏ X thẻ [Loại] từ [Nguồn] để..."
+  → Hành động với cost bỏ thẻ
+  
+- "rút X thẻ từ bộ bài"
+  → Rút thẻ
+  
+- "đặt X thẻ [Nguồn] vào khu vực Loại bỏ"
+  → Loại bỏ thẻ của đối phương
+  
+- "thu hồi lên tay tối đa X thẻ [Loại] từ [Nguồn]"
+  → Thu hồi thẻ từ discard/loại bỏ
+  
+- "chọn tối đa X thẻ [Loại] từ [Nguồn] cho đối phương xem rồi thêm lên tay"
+  → Tìm và thêm thẻ vào tay
+  
+- "Xáo lại bộ bài"
+  → Shuffle deck
+
+
+5. ĐIỀU KIỆN THAY THẾ (OR)
+-------------------------------------------
+- "Hoặc nếu [Điều kiện], [Hành động]"
+  → Điều kiện thay thế, chỉ thực hiện một trong hai
+  
+Ví dụ: "tự +1 điểm Đập. Hoặc nếu nhân vật này có 5+ Ý Chí, tự +3 điểm Đập."
+
+
+6. ĐIỀU KIỆN BỔ SUNG SAU ĐÓ (THEN)
+-------------------------------------------
+- "Sau đó, nếu [Điều kiện], [Hành động]"
+  → Hành động bổ sung sau khi thực hiện hành động chính
+  
+- "Sau đó, có thể [Hành động]"
+  → Hành động tùy chọn sau đó
+
+
+7. KHU VỰC VÀ THUẬT NGỮ
+-------------------------------------------
+- Khu vực: "Giao Bóng", "Đỡ Bóng", "Chuyền Bóng", "Đập Bóng", "Chặn Bóng"
+- "khu vực Loại bỏ" (discard zone)
+- "khu vực Hành Động" (action area)
+- "trên sân mình" / "trên sân đối phương"
+- "từ trên tay"
+- "từ bộ bài"
+- "từ khu vực Loại bỏ"
+
+
+8. ĐIỀU KIỆN ĐẶC BIỆT
+-------------------------------------------
+- "Ở lượt tiếp theo của đối phương, [Hiệu ứng]"
+  → Hiệu ứng kéo dài sang lượt sau
+  
+- "trong lượt này không được phép sử dụng thẻ \"[Tên]\" nữa"
+  → Giới hạn sử dụng trong lượt
+  
+- "ngay lập tức [Kết quả]"
+  → Hiệu ứng tức thì
+
+
+9. VÍ DỤ MINH HỌA
+-------------------------------------------
+✓ ĐÚNG:
+"Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập."
+
+"Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3- thẻ trên tay, tự +1 điểm Đập. Hoặc nếu nhân vật này có 5+ Ý Chí, tự +3 điểm Đập."
+
+"Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, nếu có 3+ Ý Chí, chọn 1 thẻ Nhân Vật trường Karasuno từ bộ bài, cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
+
+✗ SAI:
+"nếu có từ 3 Ý Chí trở lên" → Nên: "nếu có 3+ Ý Chí"
+"nếu trên tay còn từ 3 quân trở xuống" → Nên: "nếu có 3- thẻ trên tay"
+"nếu có từ 3 thẻ trở lên" → Nên: "nếu có 3+ thẻ"
+
+
+10. LƯU Ý
+-------------------------------------------
+- Luôn dùng "thẻ" thay vì "quân"
+- Dùng ký hiệu X+ và X- thay vì "từ X trở lên/trở xuống"
+- Tên nhân vật đặt trong dấu ngoặc kép: "\"Tên Nhân Vật\""
+- Tên thẻ hành động đặt trong dấu ngoặc kép: "\"Tên Thẻ\""
+- Viết hoa các khu vực: "Đập Bóng", "Chuyền Bóng", v.v.
+- Viết hoa các loại thẻ: "Nhân Vật", "Hành Động"
+- Viết hoa "Ý Chí"
+
+===========================================
+Cập nhật: 2025
+===========================================
+

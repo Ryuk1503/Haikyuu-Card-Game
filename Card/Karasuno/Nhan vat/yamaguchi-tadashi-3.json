@@ -1,0 +1,18 @@
+{
+    "id": "HV09-010",
+    "name": "Yamaguchi Tadashi",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 0,
+        "block": 2
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Giao Bóng, ở lượt tiếp theo của đối phương, khi đối phương thêm thẻ lên tay, rút từ bộ bài của mình số thẻ bằng với số thẻ đối phương đã thêm lên tay."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/yamaguchi-tadashi-3.png"
+}
+

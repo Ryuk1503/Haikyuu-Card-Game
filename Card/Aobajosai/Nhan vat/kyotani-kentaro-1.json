@@ -1,0 +1,18 @@
+{
+    "id": "HV09-026",
+    "name": "Kyotani Kentaro",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 2,
+        "toss": 0,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi nhân vật Chuyền Bóng trên sân mình là nhân vật Chuyền 2 trường Aobajosai và nhân vật này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu nhân vật này và nhân vật Chuyền Bóng có 3+ Ý Chí, tự +2 điểm Đập."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/kyotani-kentaro-1.png"
+}
+

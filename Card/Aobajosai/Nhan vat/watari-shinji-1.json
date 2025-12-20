@@ -1,0 +1,18 @@
+{
+    "id": "HV09-024",
+    "name": "Watari Shinji",
+    "rarity": "R",
+    "stats": {
+        "serve": 0,
+        "receive": 4,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng hoặc Chuyền Bóng từ trên tay, nếu có 3+ Ý Chí, tự +1 điểm Đỡ hoặc +1 điểm Chuyền. Hoặc nếu có 4+ thẻ ở khu vực Hành Động, tự +2 điểm Đỡ hoặc +2 điểm Chuyền."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/watari-shinji-1.png"
+}
+

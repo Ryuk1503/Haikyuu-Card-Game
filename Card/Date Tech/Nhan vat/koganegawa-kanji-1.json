@@ -1,0 +1,18 @@
+{
+    "id": "HV09-035",
+    "name": "Koganegawa Kanji",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 1,
+        "attack": 0,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu có 3 nhân vật trường Công Nghệ Date ở khu vực Chặn Bóng và 6+ thẻ Nhân Vật trường Công Nghệ Date ở khu vực Loại bỏ của mình, rút 2 thẻ từ bộ bài."
+    },
+    "school": "Date Tech",
+    "artwork": "Card/Date Tech/Nhan vat/koganegawa-kanji-1.png"
+}
+

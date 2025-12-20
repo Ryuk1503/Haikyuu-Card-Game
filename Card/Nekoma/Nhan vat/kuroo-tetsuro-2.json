@@ -1,0 +1,18 @@
+{
+    "id": "HV09-028",
+    "name": "Kuroo Tetsuro",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 1,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng từ trên tay, nếu có 3+ Ý Chí, chọn 2 nhân vật trên sân mình, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Nekoma (ngoại trừ \"Kuroo Tetsuro\") từ Ý Chí của mỗi nhân vật được chọn."
+    },
+    "school": "Nekoma",
+    "artwork": "Card/Nekoma/Nhan vat/kuroo-tetsuro-2.png"
+}
+

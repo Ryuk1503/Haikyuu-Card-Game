@@ -1,0 +1,18 @@
+{
+    "id": "HV09-009",
+    "name": "Tsukishima Kei",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi nhân vật trường Karasuno (ngoài \"Tsukishima Kei\") xuất hiện ở khu vực Chặn Bóng, có thể bỏ 1 nhân vật Chặn Bóng trên sân mình vào khu vực Loại bỏ để chuyển nhân vật này từ khu vực Đập Bóng sang khu vực Chặn Bóng và tự +3 điểm Chặn."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-4.png"
+}
+
