@@ -3,15 +3,16 @@
     "name": "Nishinoya Yu",
     "rarity": "R",
     "stats": {
-    "serve": 0,
-    "receive": 4,
-    "toss": 0,
-    "attack": 0,
+        "serve": 0,
+        "receive": 4,
+        "toss": 0,
+        "attack": 0,
         "block": 0
     },
     "skill": {
         "description": "[2 Ý chí] Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể sử dụng 1 Ý Chí trường Karasuno của 1 nhân vật trên sân mình để tự + điểm Đỡ bằng với điểm Chặn gốc của Ý chí đó."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-1.png"
+    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-1.png",
+    "class": 11
 }

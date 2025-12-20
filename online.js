@@ -1220,6 +1220,24 @@ class OnlineGameManager {
             // No click handlers for stat modification in deck builder
         }
         
+        // Show school and class
+        const previewSchoolClass = document.getElementById('deck-builder-preview-school-class') || document.getElementById('preview-school-class');
+        if (previewSchoolClass) {
+            const school = jsonData?.school || card.school || '';
+            const cardClass = jsonData?.class || jsonData?.grade || '';
+            if (school || cardClass) {
+                let schoolClassText = '';
+                if (school) schoolClassText += school;
+                if (cardClass) {
+                    if (schoolClassText) schoolClassText += ' → ';
+                    schoolClassText += `Lớp ${cardClass}`;
+                }
+                previewSchoolClass.textContent = schoolClassText;
+            } else {
+                previewSchoolClass.textContent = '';
+            }
+        }
+        
         // Show skill in preview (if exists)
         if (displaySkill) {
             const skillEl = document.createElement('div');

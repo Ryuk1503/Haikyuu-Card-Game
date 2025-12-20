@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ trên tay vào khu vực Loại bỏ để chọn tối đa 1 nhân vật Chuyền 2 từ bộ bài, cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-3.png"
+    "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-3.png",
+    "class": 12
 }
-

@@ -13,6 +13,6 @@
         "description": "Trên sân mình, khi nhân vật này là nhân vật Đỡ Bóng, nếu \"Ennoshita Chikara\" xuất hiện ở khu vực Đập Bóng, có thể bỏ nhân vật này vào khu vực Loại bỏ để +1 điểm Đập cho 1 nhân vật \"Ennoshita Chikara\" trên sân mình."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/kinoshita-hisashi-1.png"
+    "artwork": "Card/Karasuno/Nhan vat/kinoshita-hisashi-1.png",
+    "class": null
 }
-

@@ -13,5 +13,6 @@
         "description": "Khi nhân vật \"Ushijima Wakatoshi\" xuất hiện ở khu vực Đập Bóng trên sân mình, có thể sử dụng 2 Ý Chí của nhân vật này để +1 điểm Đập cho nhân vật \"Ushijima Wakatoshi\" đó."
     },
     "school": "Shiratorizawa",
-    "artwork": "Card/Shiratorizawa/Nhan vat/ohira-reon-2.png"
+    "artwork": "Card/Shiratorizawa/Nhan vat/ohira-reon-2.png",
+    "class": 12
 }

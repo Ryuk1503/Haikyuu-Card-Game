@@ -13,5 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập. Nếu trên sân mình có nhân vật \"Ushijima Wakatoshi\", có thể loại bỏ 1 Ý Chí của 1 nhân vật trên sân đối phương."
     },
     "school": "Shiratorizawa",
-    "artwork": "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-1.png"
+    "artwork": "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-1.png",
+    "class": 11
 }

@@ -13,5 +13,6 @@
         "description": "[Đỡ][Chặn] (Bỏ thẻ này từ trên tay) : +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-1.png"
+    "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-1.png",
+    "class": 12
 }

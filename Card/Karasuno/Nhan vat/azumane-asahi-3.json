@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí, tự +1 điểm Đập. Hoặc nếu trên tay đối phương có 7+ thẻ, tự +4 điểm Đập."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-3.png"
+    "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-3.png",
+    "class": 11
 }
-

@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu nhân vật này và nhân vật Chuyền Bóng \"Oikawa Toru\" trên sân mình có 3+ Ý Chí, tự +1 điểm Đập. Ở lượt tiếp theo của đối phương, đối phương không thể đưa ra nhân vật Chặn Bóng."
     },
     "school": "Aobajosai",
-    "artwork": "Card/Aobajosai/Nhan vat/kindaichi-yutaro-1.png"
+    "artwork": "Card/Aobajosai/Nhan vat/kindaichi-yutaro-1.png",
+    "class": 12
 }
-

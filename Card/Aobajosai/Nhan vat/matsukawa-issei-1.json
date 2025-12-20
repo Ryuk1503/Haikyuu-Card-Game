@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 5 thẻ trên cùng bộ bài của mình vào khu vực Loại bỏ để đối phương phải đặt 1 thẻ trên tay vào khu vực Loại bỏ."
     },
     "school": "Aobajosai",
-    "artwork": "Card/Aobajosai/Nhan vat/matsukawa-issei-1.png"
+    "artwork": "Card/Aobajosai/Nhan vat/matsukawa-issei-1.png",
+    "class": 12
 }
-

@@ -13,5 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ trên tay để thực hiện Bỏ nhỏ. (Kết thúc lượt mà không cần triển khai nhân vật Đập bóng. Ở lượt tiếp theo, đối phương không thể Chặn Bóng và chỉ Đỡ Bóng thành công với điểm Đỡ từ 2 trở lên)."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-2.png"
+    "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-2.png",
+    "class": 10
 }

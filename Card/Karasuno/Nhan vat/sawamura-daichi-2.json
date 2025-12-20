@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ Nhân Vật trên tay để tự +2 điểm Đỡ."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/sawamura-daichi-2.png"
+    "artwork": "Card/Karasuno/Nhan vat/sawamura-daichi-2.png",
+    "class": 12
 }
-

@@ -13,5 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 3 thẻ Nhân Vật trường Karasuno từ trên tay để thực hiện Cứu bóng. (Kết thúc lượt mà không cần triển khai nhân vật Chuyền và Đập bóng, dù có đủ điểm Đỡ hay không. Ở lượt tiếp theo, đối phương có thể Đỡ hoặc Chặn thành công khi có điểm Đỡ hoặc Chặn từ 1 trở lên)."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/sawamura-daichi-1.png"
+    "artwork": "Card/Karasuno/Nhan vat/sawamura-daichi-1.png",
+    "class": 12
 }

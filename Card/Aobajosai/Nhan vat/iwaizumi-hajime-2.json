@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, chọn 1 Ý Chí của nhân vật này và thêm vào Ý Chí của nhân vật Chuyền Bóng \"Oikawa Toru\" trên sân mình. Sau đó, nếu 1 nhân vật \"Oikawa Toru\" có 5+ Ý Chí, +2 điểm Chuyền cho nhân vật đó."
     },
     "school": "Aobajosai",
-    "artwork": "Card/Aobajosai/Nhan vat/iwaizumi-hajime-2.png"
+    "artwork": "Card/Aobajosai/Nhan vat/iwaizumi-hajime-2.png",
+    "class": 12
 }
-

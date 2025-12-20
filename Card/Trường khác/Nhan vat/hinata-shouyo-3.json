@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ Nhân Vật trên tay để thu hồi lên tay 1 thẻ Nhân Vật Chuyền 2 từ khu vực Loại bỏ, sau đó tự +1 điểm Đập."
     },
     "school": "Trường khác",
-    "artwork": "Card/Trường khác/Nhan vat/hinata-shouyo-3.png"
+    "artwork": "Card/Trường khác/Nhan vat/hinata-shouyo-3.png",
+    "class": 10
 }
-

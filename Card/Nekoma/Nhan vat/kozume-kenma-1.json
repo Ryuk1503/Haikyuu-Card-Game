@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ trên tay để thu hồi 1 thẻ từ Ý Chí của nhân vật này lên tay."
     },
     "school": "Nekoma",
-    "artwork": "Card/Nekoma/Nhan vat/kozume-kenma-1.png"
+    "artwork": "Card/Nekoma/Nhan vat/kozume-kenma-1.png",
+    "class": null
 }
-

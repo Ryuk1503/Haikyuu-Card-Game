@@ -13,6 +13,6 @@
         "description": "Khi nhân vật xuất hiện ở khu vực Đỡ Bóng từ trên tay, nếu có 3+ Ý Chí, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Nekoma từ khu vực Loại bỏ của mình."
     },
     "school": "Nekoma",
-    "artwork": "Card/Nekoma/Nhan vat/yaku-morisuke-1.png"
+    "artwork": "Card/Nekoma/Nhan vat/yaku-morisuke-1.png",
+    "class": null
 }
-

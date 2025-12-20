@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu có 4- thẻ trên tay, rút 1 thẻ từ bộ bài."
     },
     "school": "Wakutani Minami",
-    "artwork": "Card/Wakutani Minami/Nhan vat/nakashima-takeru-1.png"
+    "artwork": "Card/Wakutani Minami/Nhan vat/nakashima-takeru-1.png",
+    "class": null
 }
-

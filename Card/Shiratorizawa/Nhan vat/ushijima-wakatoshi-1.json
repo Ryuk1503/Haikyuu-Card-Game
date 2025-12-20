@@ -13,5 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí và khu vực Hành Động có quân \"Chuyền hết bóng cho anh.\", tự +3 điểm Đập."
     },
     "school": "Shiratorizawa",
-    "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-1.png"
+    "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-1.png",
+    "class": 12
 }

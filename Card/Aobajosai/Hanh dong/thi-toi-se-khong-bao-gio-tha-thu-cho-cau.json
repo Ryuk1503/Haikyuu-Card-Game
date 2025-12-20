@@ -5,6 +5,6 @@
     "skill": {
         "description": "[Đập] Trên sân mình, nếu nhân vật Chuyền Bóng \"Yahaba Shigeru\" và nhân vật Đập Bóng \"Kyotani Kentaro\" có 3+ Ý Chí, +3 điểm Đập cho 1 nhân vật \"Kyotani Kentaro\" của mình, rút 1 thẻ từ bộ bài."
     },
-    "artwork": "Card/Aobajosai/Hanh dong/thi-toi-se-khong-bao-gio-tha-thu-cho-cau.png"
+    "artwork": "Card/Aobajosai/Hanh dong/thi-toi-se-khong-bao-gio-tha-thu-cho-cau.png",
+    "class": null
 }
-

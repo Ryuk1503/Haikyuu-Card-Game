@@ -5,5 +5,6 @@
     "skill": {
         "description": "[Đập] +1 điểm Chuyền cho nhân vật Chuyền Bóng trường Karasuno trên sân mình. Hoặc nếu nhân vật đó và nhân vật Đập Bóng có từ 3 Ý Chí trở lên, +3 điểm Chuyền."
     },
-    "artwork": "Card/Karasuno/Hanh dong/chu-may-cung-co-mau-an-thua-day.png"
+    "artwork": "Card/Karasuno/Hanh dong/chu-may-cung-co-mau-an-thua-day.png",
+    "class": null
 }

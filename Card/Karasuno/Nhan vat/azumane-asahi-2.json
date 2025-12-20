@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ trên tay để tự +1 điểm Đập. Hoặc nếu thẻ vừa bỏ là thẻ Hành Động, tự +3 điểm Đập."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-2.png"
+    "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-2.png",
+    "class": 11
 }
-

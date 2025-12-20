@@ -5,6 +5,6 @@
     "skill": {
         "description": "[Đỡ][Đập] +2 điểm Đỡ hoặc +1 điểm Đập cho 1 nhân vật trường Fukurodani trên sân mình. Nếu nhân vật đó là \"Bokuto Kotaro\", đặt tối đa 1 thẻ Hành Động ở khu vực Hành Động của đối phương vào khu vực Loại bỏ."
     },
-    "artwork": "Card/Fukurodani/Hanh dong/va-phat-huy-120-suc-manh-cua-ban-than-moi-la-tat-ca.png"
+    "artwork": "Card/Fukurodani/Hanh dong/va-phat-huy-120-suc-manh-cua-ban-than-moi-la-tat-ca.png",
+    "class": null
 }
-

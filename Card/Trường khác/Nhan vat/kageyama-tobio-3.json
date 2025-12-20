@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, nếu trên tay còn từ 3 thẻ trở xuống, tự +1 điểm Chuyền."
     },
     "school": "Trường khác",
-    "artwork": "Card/Trường khác/Nhan vat/kageyama-tobio-3.png"
+    "artwork": "Card/Trường khác/Nhan vat/kageyama-tobio-3.png",
+    "class": 10
 }
-

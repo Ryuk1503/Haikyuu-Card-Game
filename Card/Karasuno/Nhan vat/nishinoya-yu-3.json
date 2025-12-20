@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu trên tay còn từ 3 thẻ trở xuống, rút 1 thẻ từ bộ bài."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-3.png"
+    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-3.png",
+    "class": 11
 }
-

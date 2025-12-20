@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Giao Bóng, có thể bỏ 1 thẻ Nhân Vật trường Karasuno trên tay để chọn tối đa 1 thẻ Hành Động từ bộ bài cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/yamaguchi-tadashi-2.png"
+    "artwork": "Card/Karasuno/Nhan vat/yamaguchi-tadashi-2.png",
+    "class": 10
 }
-

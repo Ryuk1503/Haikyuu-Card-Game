@@ -4,16 +4,15 @@
     "rarity": "R",
     "stats": {
         "serve": 3,
-        "receive": 4,
+        "receive": 0,
         "toss": 0,
         "attack": 3,
-        "block": 2
+        "block": 3
     },
     "skill": {
         "description": "Khi thẻ này ra sân, có thể bỏ 1 thẻ trên tay để đặt 1 thẻ trên cùng bộ bài đối phương vào khu vực Loại bỏ và rút 1 thẻ từ bộ bài."
     },
     "school": "Shiratorizawa",
-    "artwork": "Card/Shiratorizawa/Nhan vat/kawanishi-taichi-1.png"
+    "artwork": "Card/Shiratorizawa/Nhan vat/kawanishi-taichi-1.png",
+    "class": 11
 }
-
-

@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng hoặc khu vực Chặn Bóng, nếu có 4+ thẻ Nhân Vật trường Công Nghệ Date ở khu vực Loại bỏ, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Công Nghệ Date từ khu vực Loại bỏ của mình."
     },
     "school": "Date Tech",
-    "artwork": "Card/Date Tech/Nhan vat/obara-yutaka-1.png"
+    "artwork": "Card/Date Tech/Nhan vat/obara-yutaka-1.png",
+    "class": null
 }
-

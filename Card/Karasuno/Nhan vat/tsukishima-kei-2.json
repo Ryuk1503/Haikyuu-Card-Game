@@ -13,5 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng từ trên tay, có thể đặt thẻ này vào khu vực Ý Chí của nhân vật Đỡ Bóng để đưa 1 thẻ \"Tsukishima Kei\" từ khu vực Loại bỏ trở lại khu vực Chặn Bóng, +1 điểm Chặn cho nhân vật đó."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-2.png"
+    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-2.png",
+    "class": 10
 }

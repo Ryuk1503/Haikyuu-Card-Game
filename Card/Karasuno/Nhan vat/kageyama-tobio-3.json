@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, có thể bỏ 1 thẻ trên tay vào khu vực Loại bỏ để tự +1 điểm Chuyền. Hoặc nếu nhân vật này có 5+ Ý Chí, tự +3 điểm Chuyền."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-3.png"
+    "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-3.png",
+    "class": 10
 }
-

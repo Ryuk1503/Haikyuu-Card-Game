@@ -5,6 +5,6 @@
     "skill": {
         "description": "[Rút] Rút 1 thẻ từ bộ bài. Sau đó, nếu khu vực Loại bỏ của mình có 3+ thẻ Nhân Vật trường Công Nghệ Date, +2 điểm bất kì cho 1 nhân vật trường Công Nghệ Date trên sân mình."
     },
-    "artwork": "Card/Date Tech/Hanh dong/bay-gio-may-dua-bay-chi-co-the-no-luc-ma-thoi.png"
+    "artwork": "Card/Date Tech/Hanh dong/bay-gio-may-dua-bay-chi-co-the-no-luc-ma-thoi.png",
+    "class": null
 }
-

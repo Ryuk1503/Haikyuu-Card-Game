@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, có thể bỏ 2 thẻ từ trên tay vào khu vực Loại bỏ để đưa tối đa 2 thẻ Nhân Vật trường Công Nghệ Date từ khu vực Loại bỏ trở lại khu vực Chặn Bóng."
     },
     "school": "Date Tech",
-    "artwork": "Card/Date Tech/Nhan vat/aone-takanobu-2.png"
+    "artwork": "Card/Date Tech/Nhan vat/aone-takanobu-2.png",
+    "class": null
 }
-

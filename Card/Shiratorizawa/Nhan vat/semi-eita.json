@@ -13,5 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có 3+ Ý Chí, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Shiratorizawa từ khu vực Loại bỏ."
     },
     "school": "Shiratorizawa",
-    "artwork": "Card/Shiratorizawa/Nhan vat/semi-eita.png"
+    "artwork": "Card/Shiratorizawa/Nhan vat/semi-eita.png",
+    "class": null
 }

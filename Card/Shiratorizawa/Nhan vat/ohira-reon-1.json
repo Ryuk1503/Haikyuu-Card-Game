@@ -13,5 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập bóng, hai người chơi bỏ 1 thẻ trên cùng bộ bài của mình vào khu vực Loại bỏ."
     },
     "school": "Shiratorizawa",
-    "artwork": "Card/Shiratorizawa/Nhan vat/ohira-reon-1.png"
+    "artwork": "Card/Shiratorizawa/Nhan vat/ohira-reon-1.png",
+    "class": 12
 }

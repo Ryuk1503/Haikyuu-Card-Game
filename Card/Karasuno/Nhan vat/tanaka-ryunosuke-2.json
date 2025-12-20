@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu trên tay còn từ 3 thẻ trở xuống, tự +1 điểm Đập, rút 1 thẻ từ bộ bài."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/tanaka-ryunosuke-2.png"
+    "artwork": "Card/Karasuno/Nhan vat/tanaka-ryunosuke-2.png",
+    "class": 11
 }
-

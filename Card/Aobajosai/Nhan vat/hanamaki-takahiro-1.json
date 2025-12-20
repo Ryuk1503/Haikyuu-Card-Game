@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu có 2- thẻ trên tay, có thể chọn tối đa 1 thẻ \"Oikawa Toru\" từ bộ bài, cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
     },
     "school": "Aobajosai",
-    "artwork": "Card/Aobajosai/Nhan vat/hanamaki-takahiro-1.png"
+    "artwork": "Card/Aobajosai/Nhan vat/hanamaki-takahiro-1.png",
+    "class": 12
 }
-

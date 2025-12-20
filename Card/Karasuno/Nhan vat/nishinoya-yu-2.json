@@ -3,15 +3,16 @@
     "name": "Nishinoya Yu",
     "rarity": "SR",
     "stats": {
-    "serve": 0,
-    "receive": 6,
-    "toss": 0,
-    "attack": 0,
+        "serve": 0,
+        "receive": 6,
+        "toss": 0,
+        "attack": 0,
         "block": 0
     },
     "skill": {
         "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu Ý Chí của nhân vật này không có 2+ quân \"Nishinoya Yu\", tự -3 điểm Đỡ."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-2.png"
+    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-2.png",
+    "class": 11
 }

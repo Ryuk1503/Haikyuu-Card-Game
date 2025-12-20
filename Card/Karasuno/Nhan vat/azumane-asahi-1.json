@@ -14,5 +14,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có 2+ nhân vật Chặn Bóng (kể cả nhân vật này), tự +2 điểm Chặn."
     },
     "school": "Karasuno",
-    "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-1.png"
+    "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-1.png",
+    "class": 11
 }

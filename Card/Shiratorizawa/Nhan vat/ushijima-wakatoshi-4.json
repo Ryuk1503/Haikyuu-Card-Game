@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí, tự +1 điểm Đập, đặt 1 thẻ trên cùng bộ bài của đối phương vào khu vực Loại bỏ."
     },
     "school": "Shiratorizawa",
-    "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-4.png"
+    "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-4.png",
+    "class": 12
 }
-

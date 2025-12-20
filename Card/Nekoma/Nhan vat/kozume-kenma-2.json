@@ -13,6 +13,6 @@
         "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, chọn tối đa 2 thẻ nhân vật trường Nekoma từ Ý Chí của nhân vật này và thêm vào Ý Chí của 1 nhân vật trường Nekoma trên sân mình."
     },
     "school": "Nekoma",
-    "artwork": "Card/Nekoma/Nhan vat/kozume-kenma-2.png"
+    "artwork": "Card/Nekoma/Nhan vat/kozume-kenma-2.png",
+    "class": null
 }
-
