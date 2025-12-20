@@ -909,6 +909,13 @@ class HaikyuuCardGame {
             });
         }
         
+        const btnCloseActionCards = document.getElementById('btn-close-action-cards');
+        if (btnCloseActionCards) {
+            btnCloseActionCards.addEventListener('click', () => {
+                document.getElementById('action-cards-modal').classList.remove('show');
+            });
+        }
+        
         // Setup drag-drop for zones
         this.setupZoneDragDrop();
         
@@ -1936,15 +1943,29 @@ class HaikyuuCardGame {
                 return;
             }
             
+            // Get parent action-area element for click handler
+            const actionArea = actionEl.closest('.action-area');
+            
             actionEl.innerHTML = '';
             const actionCards = this.state.actionCards[player] || [];
             
+            // Only show the last (top) card, but render all for stacking effect
             actionCards.forEach((card, index) => {
                 const cardEl = this.createCardElement(card, player, true);
                 cardEl.classList.add('action-card');
+                cardEl.style.position = 'absolute';
+                cardEl.style.zIndex = index; // Later cards have higher z-index
+                // Transform is already set in CSS, but we need to override for positioning
+                cardEl.style.transform = 'translate(-50%, -50%)';
+                
+                // Only show the last card visually
+                if (index < actionCards.length - 1) {
+                    cardEl.style.opacity = '0';
+                }
                 
                 cardEl.addEventListener('contextmenu', (e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     this.showContextMenu(e, card, player, 'action', index);
                 });
                 
@@ -1958,7 +1979,60 @@ class HaikyuuCardGame {
                 
                 actionEl.appendChild(cardEl);
             });
+            
+            // Add click handler to action area to show modal
+            if (actionArea && !actionArea.dataset.clickHandlerAdded) {
+                actionArea.dataset.clickHandlerAdded = 'true';
+                actionArea.style.cursor = 'pointer';
+                actionArea.addEventListener('click', (e) => {
+                    // Don't trigger if clicking on a card
+                    if (e.target.closest('.card')) return;
+                    this.openActionCardsModal(player);
+                });
+            }
         });
+    }
+    
+    openActionCardsModal(player) {
+        const modal = document.getElementById('action-cards-modal');
+        const container = document.getElementById('action-cards-list');
+        const title = document.getElementById('action-cards-title');
+        
+        if (!modal || !container || !title) {
+            console.warn('Action cards modal elements not found');
+            return;
+        }
+        
+        title.textContent = `⚡ Khu hành động của ${this.getPlayerName(player)}`;
+        container.innerHTML = '';
+        
+        const actionCards = this.state.actionCards[player] || [];
+        
+        // Display cards like in hand (horizontal layout)
+        actionCards.forEach((card, index) => {
+            const cardEl = this.createCardElement(card, player, true);
+            cardEl.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.showContextMenu(e, card, player, 'action', index);
+            });
+            
+            // Allow dragging from modal
+            cardEl.draggable = true;
+            cardEl.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('card-id', card.uniqueId);
+                e.dataTransfer.setData('card-player', player);
+                e.dataTransfer.setData('card-source', 'action');
+            });
+            
+            container.appendChild(cardEl);
+        });
+        
+        if (actionCards.length === 0) {
+            container.innerHTML = '<div class="empty-message">Khu hành động trống</div>';
+        }
+        
+        modal.classList.add('show');
     }
             
     createCardElement(card, player, showFront = true) {

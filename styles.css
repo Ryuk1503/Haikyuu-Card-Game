@@ -760,21 +760,25 @@ body {
 }
 
 .action-cards {
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
-    gap: 3px;
     align-items: center;
     justify-content: center;
-    min-height: 78px;
 }
 
-/* Action area - cards displayed horizontally (no rotation) */
+/* Action area - cards displayed horizontally (no rotation) and stacked */
 .action-cards .card {
     width: 78px;
     height: 56px;
     /* No rotation - horizontal display */
-    transform: none;
     transform-origin: center;
     overflow: visible;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .action-cards .card img {
@@ -1437,6 +1441,22 @@ body {
     color: #888;
     font-style: italic;
     padding: 20px;
+}
+
+/* Action cards in discard modal - same style as in hand */
+.discard-card-list .card[data-card-type="action"] {
+    /* Card element stays upright (52px x 72px) */
+    transform: none;
+    overflow: visible;
+}
+
+/* Rotate and scale artwork inside action card in discard modal */
+.discard-card-list .card[data-card-type="action"] .card-artwork {
+    transform: rotate(90deg) scale(1.5);
+    transform-origin: center;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 /* ============================================

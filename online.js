@@ -937,18 +937,23 @@ class OnlineGameManager {
         
         this.buildingDeck = {};
         
-        // Load card database first
-        await this.loadCardDatabase();
+        // Show modal immediately for better UX
+        this.deckBuilderModal.classList.add('show');
+        
+        // Load card database in background (non-blocking)
+        // Start loading immediately but don't wait
+        const loadPromise = this.loadCardDatabase();
         
         // Populate school filter dynamically
         await this.populateSchoolFilter();
         
         this.renderSavedDecksList();
+        
+        // Wait for database to be ready before rendering
+        await loadPromise;
         await this.renderCollectionCards();
         await this.renderDeckCards();
         this.updateDeckCount();
-        
-        this.deckBuilderModal.classList.add('show');
     }
     
     async populateSchoolFilter() {
@@ -1085,7 +1090,6 @@ class OnlineGameManager {
             <div class="card-info">
                 <div class="name">${typeLabel} ${card.name}</div>
                 <div class="school">${card.school}</div>
-                <div class="stats">G:${card.serve} Đ:${card.receive} C:${card.toss} T:${card.attack} B:${card.block}</div>
             </div>
             <div class="count-controls">
                 <button class="btn-minus" ${count <= 0 ? 'disabled' : ''}>-</button>
