@@ -1511,8 +1511,21 @@ body {
     overflow: hidden;
 }
 
-.card-collection {
-    width: 100%;
+.card-collection, .current-deck {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #4ecdc4;
+    min-height: 0; /* Important for flex scrolling */
+}
+
+.card-collection h3, .current-deck h3 {
+    color: #4ecdc4;
+    margin: 0 0 10px 0;
+    font-size: 1rem;
 }
 
 .deck-builder-content {
@@ -1634,7 +1647,7 @@ body {
     color: #ff6b6b;
 }
 
-.collection-cards {
+.collection-cards, .deck-cards {
     flex: 1;
     overflow-y: auto;
     display: flex;
@@ -1642,6 +1655,8 @@ body {
     gap: 10px;
     align-content: flex-start;
     padding: 5px;
+    min-height: 0; /* Important for flex scrolling */
+    max-height: 100%; /* Ensure it respects parent height */
 }
 
 .deck-card-item {

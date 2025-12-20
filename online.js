@@ -244,6 +244,7 @@ class OnlineGameManager {
         // Deck builder modal
         this.deckBuilderModal = document.getElementById('deck-builder-modal');
         this.collectionCards = document.getElementById('collection-cards');
+        this.deckCards = document.getElementById('deck-cards');
         this.deckCardCount = document.getElementById('deck-card-count');
         this.filterSchool = document.getElementById('filter-school');
         this.filterType = document.getElementById('filter-type');
@@ -855,6 +856,7 @@ class OnlineGameManager {
             if (deck) {
                 this.buildingDeck = { ...deck.cards };
                 this.renderCollectionCards();
+                this.renderDeckCards();
                 this.updateDeckCount();
             }
         }
@@ -916,6 +918,7 @@ class OnlineGameManager {
         
         // Render cards
         await this.renderCollectionCards();
+        await this.renderDeckCards();
         this.updateDeckCount();
     }
     
@@ -969,6 +972,28 @@ class OnlineGameManager {
         
         // Set default to "New deck"
         this.deckNameSelect.value = 'new';
+    }
+    
+    async renderDeckCards() {
+        if (!this.deckCards) return;
+        
+        const cards = await this.getCardDatabase();
+        this.deckCards.innerHTML = '';
+        
+        Object.entries(this.buildingDeck).forEach(([cardId, count]) => {
+            if (count <= 0) return;
+            
+            const card = cards.find(c => c.cardId === cardId);
+            if (card) {
+                const item = this.createDeckCardItem(card, count);
+                this.deckCards.appendChild(item);
+            }
+        });
+        
+        if (Object.keys(this.buildingDeck).length === 0 || 
+            Object.values(this.buildingDeck).every(c => c <= 0)) {
+            this.deckCards.innerHTML = '<div class="empty-deck-message">Chưa có thẻ nào. Nhấn + để thêm thẻ!</div>';
+        }
     }
     
     renderSavedDecksList() {
@@ -1168,6 +1193,7 @@ class OnlineGameManager {
         this.buildingDeck[cardId] = newCount;
         
         await this.renderCollectionCards();
+        await this.renderDeckCards();
         this.updateDeckCount();
     }
     
