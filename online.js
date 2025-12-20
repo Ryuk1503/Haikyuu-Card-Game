@@ -697,6 +697,25 @@ class OnlineGameManager {
                 option.dataset.saved = 'true';
                 this.deckSelect.appendChild(option);
             });
+            
+            // Auto-select first deck if selectedDeck is null or invalid
+            if (!this.selectedDeck || (!this.selectedDeck.startsWith('saved_') && this.selectedDeck !== 'new')) {
+                const firstDeckId = 'saved_' + this.savedDecks[0].id;
+                this.deckSelect.value = firstDeckId;
+                this.onDeckChange(firstDeckId);
+            } else {
+                // Ensure the selected deck is still valid
+                const selectedOption = this.deckSelect.querySelector(`option[value="${this.selectedDeck}"]`);
+                if (!selectedOption) {
+                    // Selected deck no longer exists, select first deck
+                    const firstDeckId = 'saved_' + this.savedDecks[0].id;
+                    this.deckSelect.value = firstDeckId;
+                    this.onDeckChange(firstDeckId);
+                } else {
+                    // Keep current selection
+                    this.deckSelect.value = this.selectedDeck;
+                }
+            }
         }
     }
     
