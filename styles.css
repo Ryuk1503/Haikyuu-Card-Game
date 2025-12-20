@@ -443,6 +443,17 @@ body {
     color: white;
 }
 
+.btn-delete {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: linear-gradient(145deg, #c0392b, #a93226);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
 /* ============================================
    FORM ELEMENTS
    ============================================ */
