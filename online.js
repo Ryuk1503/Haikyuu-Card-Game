@@ -457,9 +457,23 @@ class OnlineGameManager {
         const deck = this.getCurrentDeck();
         console.log('📤 Sending deck selection:', deck);
         console.log('📤 Selected deck ID:', this.selectedDeck);
+        
         if (!deck || Object.keys(deck).length === 0) {
             console.warn('⚠️ No deck selected or deck is empty!');
+            // Don't send empty deck
+            return;
         }
+        
+        // Validate deck format before sending
+        if (typeof deck !== 'object' || Array.isArray(deck)) {
+            console.error('❌ Invalid deck format, cannot send:', deck);
+            return;
+        }
+        
+        // Calculate total to verify
+        const totalCards = Object.values(deck).reduce((sum, count) => sum + (parseInt(count) || 0), 0);
+        console.log('📤 Total cards to send:', totalCards);
+        
         this.socket.emit('setDeck', { deck: deck });
         console.log('✅ Sent deck selection');
     }
@@ -700,17 +714,20 @@ class OnlineGameManager {
     }
     
     async deleteDeckFromServer(deckId) {
-        if (!this.sessionToken) return;
+        if (!this.sessionToken) {
+            return { success: false, error: 'Chưa đăng nhập' };
+        }
         
         try {
-            await fetch(`/api/decks/${deckId}`, {
+            const response = await fetch(`/api/decks/${deckId}`, {
                 method: 'DELETE',
                 headers: { 'X-Session-Token': this.sessionToken }
             });
-            await this.loadUserDecks();
-            this.renderSavedDecksList();
+            const result = await response.json();
+            return result;
         } catch (error) {
             console.error('Error deleting deck:', error);
+            return { success: false, error: 'Lỗi kết nối' };
         }
     }
     
@@ -1289,7 +1306,7 @@ class OnlineGameManager {
         // Delete from server
         const result = await this.deleteDeckFromServer(id);
         
-        if (result && result.success !== false) {
+        if (result && result.success === true) {
             // Reload decks
             await this.loadUserDecks();
             this.updateDeckSelect();
@@ -1328,6 +1345,21 @@ class OnlineGameManager {
             const deck = this.savedDecks.find(d => d.id === id);
             if (deck) {
                 console.log('📦 Using saved deck:', deck.name, 'with', Object.keys(deck.cards || {}).length, 'card types');
+                
+                // Validate deck format
+                if (!deck.cards || typeof deck.cards !== 'object' || Array.isArray(deck.cards)) {
+                    console.error('❌ Invalid deck format:', deck.cards);
+                    return null;
+                }
+                
+                // Calculate total cards
+                const totalCards = Object.values(deck.cards).reduce((sum, count) => sum + (parseInt(count) || 0), 0);
+                console.log('📦 Total cards in deck:', totalCards);
+                
+                if (totalCards !== 40) {
+                    console.warn(`⚠️ Deck has ${totalCards} cards, expected 40`);
+                }
+                
                 return deck.cards;
             }
         }
