@@ -457,9 +457,45 @@ class OnlineGameManager {
         const deck = this.getCurrentDeck();
         console.log('📤 Sending deck selection:', deck);
         console.log('📤 Selected deck ID:', this.selectedDeck);
+        
         if (!deck || Object.keys(deck).length === 0) {
             console.warn('⚠️ No deck selected or deck is empty!');
+            return;
         }
+        
+        // Validate deck structure - should be { cardId: count, ... }
+        if (Array.isArray(deck)) {
+            console.error('❌ ERROR: Deck is an array instead of object!');
+            console.error('❌ Deck:', deck);
+            this.showError('Lỗi: Dữ liệu deck không hợp lệ');
+            return;
+        }
+        
+        // Check if deck has too many entries (suggests it contains entire database)
+        const deckSize = Object.keys(deck).length;
+        if (deckSize > 200) {
+            console.error(`❌ ERROR: Deck has ${deckSize} entries, which is way too many!`);
+            console.error('❌ This suggests the entire database is being sent instead of selected cards.');
+            this.showError('Lỗi: Deck chứa quá nhiều thẻ. Vui lòng chọn lại deck.');
+            return;
+        }
+        
+        // Validate deck structure - values should be numbers (counts)
+        const invalidEntries = Object.entries(deck).filter(([cardId, count]) => {
+            return typeof count !== 'number' || count < 0 || count > 4;
+        });
+        
+        if (invalidEntries.length > 0) {
+            console.error('❌ ERROR: Deck contains invalid entries:', invalidEntries);
+            this.showError('Lỗi: Dữ liệu deck không hợp lệ');
+            return;
+        }
+        
+        // Log sample for debugging
+        const sampleEntries = Object.entries(deck).slice(0, 5);
+        console.log(`📤 Sample deck entries (first 5):`, sampleEntries);
+        console.log(`📤 Total deck size: ${deckSize} card types`);
+        
         this.socket.emit('setDeck', { deck: deck });
         console.log('✅ Sent deck selection');
     }

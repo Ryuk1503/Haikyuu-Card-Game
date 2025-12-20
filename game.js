@@ -1588,10 +1588,6 @@ class HaikyuuCardGame {
                 targetZone = 'attack';
                 targetType = 'spirit';
                 break;
-            case 'spirit-block':
-                targetZone = 'block';
-                targetType = 'spirit';
-                break;
             case 'to-hand':
                 targetType = 'hand';
                 break;

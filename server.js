@@ -494,26 +494,59 @@ function createDeckFromSelection(deckData) {
         return createDeck();
     }
     
+    // Validate deckData is an object (not array)
+    if (Array.isArray(deckData)) {
+        console.error('❌ ERROR: deckData is an array, expected object! deckData:', deckData);
+        console.log('⚠️ Creating random deck instead');
+        return createDeck();
+    }
+    
+    // Validate deckData structure - should be { cardId: count, ... }
+    // If it looks like it contains full card objects instead of just counts, reject it
+    const firstEntry = Object.entries(deckData)[0];
+    if (firstEntry && firstEntry[1] && typeof firstEntry[1] === 'object' && !Array.isArray(firstEntry[1])) {
+        console.error('❌ ERROR: deckData appears to contain full card objects instead of counts!');
+        console.error('❌ First entry:', firstEntry);
+        console.log('⚠️ Creating random deck instead');
+        return createDeck();
+    }
+    
     const deck = [];
     const missingCards = [];
     const cardDatabase = getCardDatabase();
     
-    console.log(`📦 Creating deck from selection with ${Object.keys(deckData).length} card types`);
+    const cardTypeCount = Object.keys(deckData).length;
+    console.log(`📦 Creating deck from selection with ${cardTypeCount} card types`);
     console.log(`📦 Card database has ${cardDatabase.length} cards`);
     
+    // Limit deck size to prevent issues - if deckData has too many entries, something is wrong
+    if (cardTypeCount > 200) {
+        console.error(`❌ ERROR: deckData has ${cardTypeCount} entries, which is way too many!`);
+        console.error('❌ This suggests deckData contains the entire database instead of selected cards.');
+        console.log('⚠️ Creating random deck instead');
+        return createDeck();
+    }
+    
     Object.entries(deckData).forEach(([cardId, count]) => {
+        // Validate count is a number
+        const numCount = typeof count === 'number' ? count : parseInt(count);
+        if (isNaN(numCount) || numCount < 0) {
+            console.warn(`⚠️ Invalid count for ${cardId}: ${count}, skipping`);
+            return;
+        }
+        
         const cardData = cardDatabase.find(c => c.cardId === cardId);
-        if (cardData && count > 0) {
-            for (let i = 0; i < count; i++) {
+        if (cardData && numCount > 0) {
+            for (let i = 0; i < numCount; i++) {
                 deck.push({
                     ...cardData,
                     uniqueId: uuidv4()
                 });
             }
         } else {
-            if (count > 0) {
+            if (numCount > 0) {
                 missingCards.push(cardId);
-                console.warn(`⚠️ Card not found in database: ${cardId} (count: ${count})`);
+                console.warn(`⚠️ Card not found in database: ${cardId} (count: ${numCount})`);
             }
         }
     });
@@ -528,6 +561,14 @@ function createDeckFromSelection(deckData) {
     // This ensures we use the exact deck the player selected
     if (deck.length < 40) {
         console.warn(`⚠️ Deck only has ${deck.length} cards, expected 40`);
+    }
+    
+    // Safety check: if deck is way too large, something is wrong
+    if (deck.length > 200) {
+        console.error(`❌ ERROR: Created deck has ${deck.length} cards, which is way too many!`);
+        console.error('❌ This suggests deckData contained too many entries.');
+        console.log('⚠️ Limiting to first 40 cards');
+        return shuffleArray(deck.slice(0, 40));
     }
     
     console.log(`📦 Final deck size: ${deck.length} cards`);
@@ -814,8 +855,29 @@ io.on('connection', (socket) => {
         }
         
         console.log(`📥 Player ${playerInfo.playerNumber} set deck in room ${room.roomId}`);
-        console.log(`📥 Deck data:`, data.deck);
+        console.log(`📥 Deck data type:`, Array.isArray(data.deck) ? 'ARRAY (ERROR!)' : typeof data.deck);
         console.log(`📥 Deck keys count:`, data.deck ? Object.keys(data.deck).length : 0);
+        
+        // Validate deck data structure
+        if (Array.isArray(data.deck)) {
+            console.error('❌ ERROR: Received deck data as array instead of object!');
+            console.error('❌ Deck data:', data.deck);
+            socket.emit('error', { message: 'Lỗi: Dữ liệu deck không hợp lệ' });
+            return;
+        }
+        
+        if (data.deck && Object.keys(data.deck).length > 200) {
+            console.error(`❌ ERROR: Deck data has ${Object.keys(data.deck).length} entries, which is way too many!`);
+            console.error('❌ This suggests the entire database was sent instead of selected cards.');
+            socket.emit('error', { message: 'Lỗi: Deck chứa quá nhiều thẻ' });
+            return;
+        }
+        
+        // Log sample of deck data for debugging
+        if (data.deck && Object.keys(data.deck).length > 0) {
+            const sampleEntries = Object.entries(data.deck).slice(0, 5);
+            console.log(`📥 Sample deck entries (first 5):`, sampleEntries);
+        }
         
         room.setPlayerDeck(playerInfo.playerNumber, data.deck);
         console.log(`✅ Player ${playerInfo.playerNumber} deck saved. Room decks:`, {
