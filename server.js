@@ -688,6 +688,20 @@ io.on('connection', (socket) => {
         });
     });
 
+    // Log message (broadcast to all players in room)
+    socket.on('logMessage', (data) => {
+        const playerInfo = playerSockets.get(socket.id);
+        if (!playerInfo) return;
+        
+        const room = rooms.get(playerInfo.roomId);
+        if (!room || !room.gameStarted) return;
+        
+        io.to(room.roomId).emit('logMessage', {
+            message: data.message,
+            type: data.type || 'log'
+        });
+    });
+
     // Disconnect
     socket.on('disconnect', () => {
         const playerInfo = playerSockets.get(socket.id);

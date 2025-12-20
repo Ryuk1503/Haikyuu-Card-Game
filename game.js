@@ -669,8 +669,13 @@ class HaikyuuCardGame {
         }
     }
     
-    addLogMessage(message, type = 'log') {
+    addLogMessage(message, type = 'log', broadcast = false) {
         if (!this.chatLogMessages) return;
+        
+        // If online and should broadcast, emit to server
+        if (this.isOnline && this.onlineManager && broadcast) {
+            this.onlineManager.socket.emit('logMessage', { message, type });
+        }
         
         const messageEl = document.createElement('div');
         messageEl.className = 'chat-log-message';
@@ -812,7 +817,7 @@ class HaikyuuCardGame {
             p1NameTag.title = 'Click để bắt đầu Serve phase';
             p1NameTag.addEventListener('click', () => {
                 this.triggerServePhase(1);
-                this.addLogMessage(`${this.getPlayerName(1)} bắt đầu Serve phase`);
+                this.addLogMessage(`${this.getPlayerName(1)} bắt đầu Serve phase`, 'log', true);
             });
         }
         if (p2NameTag) {
@@ -820,7 +825,7 @@ class HaikyuuCardGame {
             p2NameTag.title = 'Click để bắt đầu Serve phase';
             p2NameTag.addEventListener('click', () => {
                 this.triggerServePhase(2);
-                this.addLogMessage(`${this.getPlayerName(2)} bắt đầu Serve phase`);
+                this.addLogMessage(`${this.getPlayerName(2)} bắt đầu Serve phase`, 'log', true);
             });
         }
         
@@ -1258,7 +1263,7 @@ class HaikyuuCardGame {
             container.innerHTML = '<div class="empty-message">Deck trống</div>';
         }
         
-        this.addLogMessage(`${this.getPlayerName(player)} đã mở tìm kiếm bộ bài`);
+        this.addLogMessage(`${this.getPlayerName(player)} đã mở tìm kiếm bộ bài`, 'log', true);
         modal.classList.add('show');
     }
 
@@ -1611,7 +1616,7 @@ class HaikyuuCardGame {
         
         // Log only if it's not a visible action (like placing on zone is visible, so don't log)
         if (logMessage && targetType !== 'zone') {
-            this.addLogMessage(logMessage);
+            this.addLogMessage(logMessage, 'log', true);
         }
     }
     
@@ -1686,7 +1691,7 @@ class HaikyuuCardGame {
     shuffleDecks() {
         for (let player = 1; player <= 2; player++) {
             this.state.decks[player] = this.shuffleArray(this.state.decks[player]);
-            this.addLogMessage(`${this.getPlayerName(player)} đã xáo bộ bài`);
+            this.addLogMessage(`${this.getPlayerName(player)} đã xáo bộ bài`, 'log', true);
         }
     }
 

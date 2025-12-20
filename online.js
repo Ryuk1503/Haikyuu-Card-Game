@@ -901,6 +901,20 @@ class OnlineGameManager {
             }
         });
         
+        // Add all schools from folder structure (even if not in database)
+        const allSchools = [
+            'Aobajosai',
+            'Date Tech',
+            'Karasuno',
+            'Kitagawa Daiichi',
+            'Nekoma',
+            'Shiratorizawa',
+            'Trường khác',
+            'Yukigaoka'
+        ];
+        
+        allSchools.forEach(school => schools.add(school));
+        
         // Clear existing options except "all"
         this.filterSchool.innerHTML = '<option value="all">Tất cả trường</option>';
         
