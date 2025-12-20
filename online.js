@@ -702,52 +702,111 @@ class OnlineGameManager {
     // DECK BUILDER
     // ============================================
     
-    getCardDatabase() {
-        return [
-            // KARASUNO - NHÂN VẬT
-            { id: 1, name: "Hinata Shoyo", cardId: "hinata-shouyo-1", school: "Karasuno", type: "character", serve: 2, receive: 0, toss: 0, attack: 3, block: 2, skill: "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập.", artwork: "Card/Karasuno/Nhan vat/hinata-shouyo-1.png" },
-            { id: 21, name: "Hinata Shoyo", cardId: "hinata-shouyo-2", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, artwork: "Card/Karasuno/Nhan vat/hinata-shouyo-2.png" },
-            { id: 22, name: "Kageyama Tobio", cardId: "kageyama-tobio-1", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 1, attack: 3, block: 0, skill: "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể tìm 1 thẻ từ Deck và thêm vào tay.", artwork: "Card/Karasuno/Nhan vat/kageyama-tobio-1.png" },
-            { id: 23, name: "Kageyama Tobio", cardId: "kageyama-tobio-2", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 1, attack: 2, block: 2, artwork: "Card/Karasuno/Nhan vat/kageyama-tobio-2.png" },
-            { id: 24, name: "Sawamura Daichi", cardId: "sawamura-daichi-1", school: "Karasuno", type: "character", serve: 2, receive: 4, toss: 0, attack: 0, block: 0, artwork: "Card/Karasuno/Nhan vat/sawamura-daichi-1.png" },
-            { id: 25, name: "Sugawara Koshi", cardId: "sugawara-koshi-1", school: "Karasuno", type: "character", serve: 2, receive: 2, toss: 1, attack: 0, block: 1, skill: "[Đỡ][Chặn][Kích hoạt] +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình.", artwork: "Card/Karasuno/Nhan vat/sugawara-koshi-1.png" },
-            { id: 26, name: "Tanaka Ryunosuke", cardId: "tanaka-ryunosuke-1", school: "Karasuno", type: "character", serve: 1, receive: 3, toss: 0, attack: 3, block: 1, skill: "Khi thẻ này xuất hiện ở khu vực Đập Bóng, đối phương -2 điểm Chặn.", artwork: "Card/Karasuno/Nhan vat/tanaka-ryunosuke-1.png" },
-            { id: 27, name: "Tsukishima Kei", cardId: "tsukishima-kei-1", school: "Karasuno", type: "character", serve: 1, receive: 2, toss: 0, attack: 2, block: 3, skill: "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu có 3+ Ý Chí, tự +1 điểm Chặn.", artwork: "Card/Karasuno/Nhan vat/tsukishima-kei-1.png" },
-            { id: 28, name: "Tsukishima Kei", cardId: "tsukishima-kei-2", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, artwork: "Card/Karasuno/Nhan vat/tsukishima-kei-2.png" },
-            { id: 29, name: "Yamaguchi Tadashi", cardId: "yamaguchi-tadashi-1", school: "Karasuno", type: "character", serve: 3, receive: 4, toss: 0, attack: 0, block: 0, skill: "[2 Ý chí] Khi thẻ này ra sân, lấy 1 thẻ Karasuno từ Drop về tay.", artwork: "Card/Karasuno/Nhan vat/yamaguchi-tadashi-1.png" },
-            { id: 30, name: "Nishinoya Yu", cardId: "nishinoya-yu-1", school: "Karasuno", type: "character", serve: 0, receive: 4, toss: 0, attack: 0, block: 0, skill: "[Libero] Không thể Giao bóng. [1 Ý chí] Tự + điểm Đỡ bằng điểm Chặn của Ý chí.", artwork: "Card/Karasuno/Nhan vat/nishinoya-yu-1.png" },
-            { id: 31, name: "Nishinoya Yu", cardId: "nishinoya-yu-2", school: "Karasuno", type: "character", serve: 0, receive: 6, toss: 0, attack: 0, block: 0, skill: "[Libero] Không thể Giao bóng.", artwork: "Card/Karasuno/Nhan vat/nishinoya-yu-2.png" },
-            { id: 32, name: "Azumane Asahi", cardId: "azumane-asahi-1", school: "Karasuno", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, skill: "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu có 2+ nhân vật Chặn, tự +2 điểm Chặn.", artwork: "Card/Karasuno/Nhan vat/azumane-asahi-1.png" },
-            // SHIRATORIZAWA - NHÂN VẬT
-            { id: 33, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-1", school: "Shiratorizawa", type: "character", serve: 3, receive: 0, toss: 0, attack: 3, block: 0, skill: "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu có 3+ Ý Chí và thẻ Action, tự +3 điểm Đập.", artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-1.png" },
-            { id: 34, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-2", school: "Shiratorizawa", type: "character", serve: 4, receive: 0, toss: 0, attack: 3, block: 0, skill: "Khi thẻ này xuất hiện ở khu vực Giao Bóng, có thể +2 điểm Giao.", artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-2.png" },
-            { id: 35, name: "Ushijima Wakatoshi", cardId: "ushijima-wakatoshi-3", school: "Shiratorizawa", type: "character", serve: 2, receive: 3, toss: 0, attack: 3, block: 0, skill: "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ trên tay để tự +1 điểm Đỡ, sau đó đặt 1 thẻ trên cùng bộ bài đối phương vào Drop.", artwork: "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-3.png" },
-            { id: 36, name: "Tendo Satori", cardId: "tendo-satori-1", school: "Shiratorizawa", type: "character", serve: 1, receive: 0, toss: 0, attack: 1, block: 4, skill: "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, đặt 1 thẻ trên cùng bộ bài đối phương vào Drop. Nếu thẻ đó trùng tên với nhân vật Đập Bóng của đối phương, ngay lập tức Chặn Bóng thành công, sau đó đặt 2 thẻ trên cùng bộ bài đối phương vào Drop.", artwork: "Card/Shiratorizawa/Nhan vat/tendo-satori-1.png" },
-            { id: 37, name: "Tendo Satori", cardId: "tendo-satori-2", school: "Shiratorizawa", type: "character", serve: 2, receive: 0, toss: 0, attack: 3, block: 2, skill: "[Bỏ thẻ này từ trên tay] : +2 điểm Đỡ hoặc Chặn cho 1 nhân vật trường Shiratorizawa trên sân mình.", artwork: "Card/Shiratorizawa/Nhan vat/tendo-satori-2.png" },
-            { id: 38, name: "Tendo Satori", cardId: "tendo-satori-3", school: "Shiratorizawa", type: "character", serve: 3, receive: 1, toss: 0, attack: 3, block: 4, artwork: "Card/Shiratorizawa/Nhan vat/tendo-satori-3.png" },
-            { id: 39, name: "Goshiki Tsutomu", cardId: "goshiki-tsutomu-1", school: "Shiratorizawa", type: "character", serve: 2, receive: 2, toss: 0, attack: 3, block: 0, skill: "[3 Ý chí] Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập. Nếu trên sân mình có nhân vật \"Ushijima Wakatoshi\", có thể loại bỏ 1 Ý Chí của 1 nhân vật trên sân đối phương.", artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-1.png" },
-            { id: 40, name: "Goshiki Tsutomu", cardId: "goshiki-tsutomu-2", school: "Shiratorizawa", type: "character", serve: 4, receive: 1, toss: 0, attack: 3, block: 0, skill: "Khi thẻ này xuất hiện ở khu vực Giao Bóng, có thể bỏ 1 thẻ trên tay để đặt 2 thẻ trên cùng bộ bài đối phương vào Drop.", artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-2.png" },
-            { id: 41, name: "Goshiki Tsutomu", cardId: "goshiki-tsutomu-3", school: "Shiratorizawa", type: "character", serve: 3, receive: 4, toss: 0, attack: 3, block: 2, artwork: "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-3.png" },
-            { id: 42, name: "Shirabu Kenjiro", cardId: "shirabu-kenjiro-1", school: "Shiratorizawa", type: "character", serve: 2, receive: 3, toss: 1, attack: 0, block: 1, skill: "Khi nhân vật Đập Bóng xuất hiện trên sân mình, nếu nhân vật này (Shirabu Kenjiro) có 3+ Ý Chí, tự +1 điểm Chuyền. Nếu nhân vật Đập Bóng là \"Ushijima Wakatoshi\", có thể loại bỏ tối đa 1 Ý Chí của 1 nhân vật trên sân đối phương.", artwork: "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-1.png" },
-            { id: 43, name: "Shirabu Kenjiro", cardId: "shirabu-kenjiro-2", school: "Shiratorizawa", type: "character", serve: 3, receive: 0, toss: 1, attack: 0, block: 3, skill: "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ Nhân Vật trường Shiratorizawa từ trên tay để thực hiện Bỏ nhỏ. (Kết thúc lượt mà không cần triển khai nhân vật Đập bóng. Ở lượt tiếp theo, đối phương không thể Chặn Bóng và chỉ Đỡ Bóng thành công với điểm Đỡ từ 3 trở lên).", artwork: "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-2.png" },
-            { id: 44, name: "Shirabu Kenjiro", cardId: "shirabu-kenjiro-3", school: "Shiratorizawa", type: "character", serve: 4, receive: 4, toss: 1, attack: 1, block: 2, artwork: "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-3.png" },
-            { id: 45, name: "Ohira Reon", cardId: "ohira-reon-1", school: "Shiratorizawa", type: "character", serve: 1, receive: 3, toss: 0, attack: 3, block: 1, skill: "Khi thẻ này xuất hiện ở khu vực Đập bóng, hai người chơi bỏ 1 thẻ trên cùng bộ bài của mình vào Drop.", artwork: "Card/Shiratorizawa/Nhan vat/ohira-reon-1.png" },
-            { id: 46, name: "Ohira Reon", cardId: "ohira-reon-2", school: "Shiratorizawa", type: "character", serve: 1, receive: 4, toss: 0, attack: 1, block: 1, skill: "[2 Ý chí] Khi nhân vật \"Ushijima Wakatoshi\" xuất hiện ở khu vực Đập Bóng trên sân mình, có thể dùng 2 Ý Chí của nhân vật này để +1 điểm Đập cho nhân vật \"Ushijima Wakatoshi\" đó.", artwork: "Card/Shiratorizawa/Nhan vat/ohira-reon-2.png" },
-            { id: 47, name: "Kawanishi Taichi", cardId: "kawanishi-taichi", school: "Shiratorizawa", type: "character", serve: 1, receive: 0, toss: 0, attack: 3, block: 3, skill: "Khi thẻ này ra sân, có thể bỏ 1 thẻ trên tay để đặt 1 thẻ trên cùng bộ bài đối phương vào Drop và rút 1 thẻ từ bộ bài.", artwork: "Card/Shiratorizawa/Nhan vat/kawanishi-taichi.png" },
-            { id: 48, name: "Yamagata Hayato", cardId: "yamagata-hayato", school: "Shiratorizawa", type: "character", serve: 0, receive: 5, toss: 0, attack: 0, block: 0, artwork: "Card/Shiratorizawa/Nhan vat/yamagata-hayato.png" },
-            { id: 49, name: "Semi Eita", cardId: "semi-eita", school: "Shiratorizawa", type: "character", serve: 4, receive: 2, toss: 1, attack: 0, block: 0, skill: "[2 Ý chí] Khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có 3+ Ý Chí, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Shiratorizawa từ Drop.", artwork: "Card/Shiratorizawa/Nhan vat/semi-eita.png" },
-            // KARASUNO - HÀNH ĐỘNG
-            { id: 100, name: "Chuyền tới đây cho tôi!!", cardId: "chuyen-toi-day-cho-toi", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đỡ] +2 điểm Đỡ cho nhân vật Đỡ Bóng trường Karasuno trên sân mình. Sau đó, nếu nhân vật đó là \"Nishinoya Yu\", có thể chọn tối đa 1 thẻ \"Nishinoya Yu\" từ bộ bài rồi thêm vào Ý Chí của nhân vật đó. Xáo lại bộ bài.", artwork: "Card/Karasuno/Hanh dong/chuyen-toi-day-cho-toi.png" },
-            { id: 101, name: "Chú mày cũng có máu ăn thua đấy…!!", cardId: "chu-may-cung-co-mau-an-thua-day", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đập] [3 Ý chí] +1 điểm Chuyền cho nhân vật Chuyền Bóng trường Karasuno trên sân mình. Hoặc nếu nhân vật đó và nhân vật Đập Bóng có từ 3 Ý Chí trở lên, +3 điểm Chuyền.", artwork: "Card/Karasuno/Hanh dong/chu-may-cung-co-mau-an-thua-day.png" },
-            { id: 102, name: "Phòng thủ tuyệt đối!!", cardId: "phong-thu-tuyet-doi", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đỡ][Chặn] +2 điểm Đỡ hoặc Chặn cho 1 nhân vật trường Karasuno trên sân mình. Nếu nhân vật đó là nhân vật Chặn Bóng, rút 2 thẻ từ bộ bài. Sau đó, trong lượt này không được phép sử dụng thẻ \"Phòng thủ tuyệt đối!!\" nữa.", artwork: "Card/Karasuno/Hanh dong/phong-thu-tuyet-doi.png" },
-            { id: 103, name: "Dù chỉ là sinh hoạt CLB…", cardId: "du-chi-la-sinh-hoat-clb", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Chặn] [3 Ý chí] +2 điểm Chặn cho 1 nhân vật \"Tsukishima Kei\" trên sân mình. Nếu trên sân mình có nhân vật Đỡ Bóng trường Karasuno với 3 Ý Chí trở lên, ở lượt tiếp theo của đối phương, đối phương chỉ Đỡ Bóng thành công với điểm Đỡ từ 8 trở lên.", artwork: "Card/Karasuno/Hanh dong/du-chi-la-sinh-hoat-clb.png" },
-            { id: 104, name: "\"1 điểm bằng 100 điểm\" phải hôn!?", cardId: "1-diem-bang-100-diem-phai-hon", school: "Karasuno", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đỡ][Chuyền][Đập][Chặn] [2 Ý chí] +1 điểm bất kì cho 1 nhân vật trường Karasuno trên sân mình. Sau đó, có thể sử dụng 2 Ý Chí của 1 nhân vật trường Karasuno khác để thu hồi lên tay 1 thẻ nhân vật từ khu vực Loại Bỏ.", artwork: "Card/Karasuno/Hanh dong/1-diem-bang-100-diem-phai-hon.png" },
-            // SHIRATORIZAWA - HÀNH ĐỘNG
-            { id: 105, name: "Chuyền hết bóng cho anh.", cardId: "chuyen-het-bong-cho-anh", school: "Shiratorizawa", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Chuyền][Đập] [3 ý chí] +1 điểm cho nhân vật Shiratorizawa.", artwork: "Card/Shiratorizawa/Hanh dong/chuyen-het-bong-cho-anh.png" },
-            { id: 106, name: "Mà là nghệ thuật đập bóng thẳng xuống sân.", cardId: "ma-la-nghe-thuat-dap-bong-thang-xuong-san", school: "Shiratorizawa", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Chặn] Rút 1 thẻ từ bộ bài. Sau đó, +2 điểm Chặn cho 1 nhân vật trường Shiratorizawa trên sân mình. Nếu nhân vật đó là \"Tendo Satori\", đặt 1 thẻ trên cùng bộ bài của đối phương vào khu vực Loại Bỏ.", artwork: "Card/Shiratorizawa/Hanh dong/ma-la-nghe-thuat-dap-bong-thang-xuong-san.png" },
-            { id: 107, name: "Là một đối thủ \"vượt quá tầm hiểu biết\"…", cardId: "la-mot-doi-thu-vuot-qua-tam-hieu-biet", school: "Shiratorizawa", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đỡ][Chuyền][Đập][Chặn] [3 Ý chí] +1 điểm bất kì cho 1 nhân vật trường Shiratorizawa trên sân mình. Nếu nhân vật đó có từ 3 Ý Chí trở lên, và trên sân đối phương, trừ nhân vật Giao Bóng, có nhân vật có từ 2 Ý Chí trở xuống, rút 2 thẻ từ bộ bài. Sau đó, trong lượt này không được sử dụng thẻ \"Là một đối thủ 'vượt quá tầm hiểu biết'…\" nữa.", artwork: "Card/Shiratorizawa/Hanh dong/la-mot-doi-thu-vuot-qua-tam-hieu-biet.png" },
-            { id: 108, name: "Thấy chưa hả? Cú bóng thần tốc của em đó!", cardId: "thay-chua-ha-cu-bong-than-toc-cua-em-do", school: "Shiratorizawa", type: "action", serve: 0, receive: 0, toss: 0, attack: 0, block: 0, skill: "[Đập] +1 điểm Đập cho 1 nhân vật trên sân mình. Sau đó, nếu nhân vật đó là \"Goshiki Tsutomu\", ở lượt tiếp theo của đối phương, đối phương không được đưa ra nhân vật Chặn Bóng.", artwork: "Card/Shiratorizawa/Hanh dong/thay-chua-ha-cu-bong-than-toc-cua-em-do.png" }
+    // Cache for loaded card database
+    cardDatabaseCache = null;
+    
+    async loadCardDatabase() {
+        // Return cache if already loaded
+        if (this.cardDatabaseCache) {
+            return this.cardDatabaseCache;
+        }
+        
+        const cards = [];
+        const schools = ['Aobajosai', 'Date Tech', 'Karasuno', 'Nekoma', 'Shiratorizawa', 'Trường khác'];
+        const types = [
+            { folder: 'Nhan vat', type: 'character' },
+            { folder: 'Hanh dong', type: 'action' }
         ];
+        
+        // Load all JSON files from Card folder
+        for (const school of schools) {
+            for (const typeInfo of types) {
+                // Try to load common card files for each school/type combination
+                // We'll use a pattern matching approach - try common card IDs
+                const commonCardIds = this.getCommonCardIds(school, typeInfo.type);
+                
+                for (const cardId of commonCardIds) {
+                    try {
+                        const jsonPath = `Card/${school}/${typeInfo.folder}/${cardId}.json`;
+                        const response = await fetch(jsonPath);
+                        if (response.ok) {
+                            const jsonData = await response.json();
+                            
+                            // Extract cardId from filename
+                            const extractedCardId = cardId;
+                            
+                            // Build card object
+                            const card = {
+                                id: jsonData.id || extractedCardId,
+                                name: jsonData.name || '',
+                                cardId: extractedCardId,
+                                school: jsonData.school || school,
+                                type: jsonData.type || typeInfo.type,
+                                serve: jsonData.stats?.serve || 0,
+                                receive: jsonData.stats?.receive || 0,
+                                toss: jsonData.stats?.toss || 0,
+                                attack: jsonData.stats?.attack || 0,
+                                block: jsonData.stats?.block || 0,
+                                skill: jsonData.skill?.description || '',
+                                artwork: jsonData.artwork || `Card/${school}/${typeInfo.folder}/${cardId}.png`
+                            };
+                            
+                            cards.push(card);
+                        }
+                    } catch (error) {
+                        // Silently skip files that don't exist
+                    }
+                }
+            }
+        }
+        
+        this.cardDatabaseCache = cards;
+        return cards;
+    }
+    
+    getCommonCardIds(school, type) {
+        // Return list of potential card IDs based on known files
+        // This is a fallback - ideally we'd scan the folder, but we'll use known patterns
+        const knownCards = {
+            'Karasuno': {
+                'character': ['hinata-shouyo-1', 'hinata-shouyo-2', 'kageyama-tobio-1', 'kageyama-tobio-2', 'sawamura-daichi-1', 'sawamura-daichi-2', 'sugawara-koshi-1', 'sugawara-koshi-2', 'tanaka-ryunosuke-1', 'tanaka-ryunosuke-2', 'tsukishima-kei-1', 'tsukishima-kei-2', 'tsukishima-kei-3', 'yamaguchi-tadashi-1', 'yamaguchi-tadashi-2', 'nishinoya-yu-1', 'nishinoya-yu-2', 'nishinoya-yu-3', 'azumane-asahi-1', 'azumane-asahi-2'],
+                'action': ['chuyen-toi-day-cho-toi', 'chu-may-cung-co-mau-an-thua-day', 'phong-thu-tuyet-doi', 'du-chi-la-sinh-hoat-clb', '1-diem-bang-100-diem-phai-hon', 'toi-se-la-nguoi-dung-vung-tren-san-lau-nhat']
+            },
+            'Shiratorizawa': {
+                'character': ['ushijima-wakatoshi-1', 'ushijima-wakatoshi-2', 'ushijima-wakatoshi-3', 'tendo-satori-1', 'tendo-satori-2', 'tendo-satori-3', 'goshiki-tsutomu-1', 'goshiki-tsutomu-2', 'goshiki-tsutomu-3', 'shirabu-kenjiro-1', 'shirabu-kenjiro-2', 'shirabu-kenjiro-3', 'ohira-reon-1', 'ohira-reon-2', 'kawanishi-taichi', 'yamagata-hayato', 'semi-eita'],
+                'action': ['chuyen-het-bong-cho-anh', 'ma-la-nghe-thuat-dap-bong-thang-xuong-san', 'la-mot-doi-thu-vuot-qua-tam-hieu-biet', 'thay-chua-ha-cu-bong-than-toc-cua-em-do']
+            },
+            'Aobajosai': {
+                'character': ['iwaizumi-hajime-1', 'oikawa-toru-1'],
+                'action': ['voi-6-nguoi-ke-manh-se-cang-manh-hon']
+            },
+            'Date Tech': {
+                'character': ['aone-takanobu-1', 'futakuchi-kenji-1']
+            },
+            'Nekoma': {
+                'character': ['kozume-kenma-1', 'kuroo-tetsuro-1'],
+                'action': ['doi-minh-chac-chan-se-manh-hon-nho-co-em']
+            },
+            'Trường khác': {
+                'character': ['hinata-shouyo-3', 'kageyama-tobio-3', 'kunimi-kindaichi-1']
+            }
+        };
+        
+        return knownCards[school]?.[type] || [];
+    }
+    
+    async getCardDatabase() {
+        // Load from folder if not cached
+        if (!this.cardDatabaseCache) {
+            await this.loadCardDatabase();
+        }
+        return this.cardDatabaseCache || [];
+    }
+    
+    // Legacy method for backward compatibility - now uses async load
+    getCardDatabaseSync() {
+        // Return empty array - should use async getCardDatabase instead
+        return [];
     }
     
     getPresetDecks() {
@@ -873,27 +932,30 @@ class OnlineGameManager {
         }
     }
     
-    openDeckBuilder() {
+    async openDeckBuilder() {
         if (!this.deckBuilderModal) return;
         
         this.buildingDeck = {};
         
+        // Load card database first
+        await this.loadCardDatabase();
+        
         // Populate school filter dynamically
-        this.populateSchoolFilter();
+        await this.populateSchoolFilter();
         
         this.renderSavedDecksList();
-        this.renderCollectionCards();
-        this.renderDeckCards();
+        await this.renderCollectionCards();
+        await this.renderDeckCards();
         this.updateDeckCount();
         
         this.deckBuilderModal.classList.add('show');
     }
     
-    populateSchoolFilter() {
+    async populateSchoolFilter() {
         if (!this.filterSchool) return;
         
-        // Get all unique schools from database
-        const cards = this.getCardDatabase();
+        // Load card database first
+        const cards = await this.getCardDatabase();
         const schools = new Set();
         cards.forEach(card => {
             if (card.school) {
@@ -906,11 +968,9 @@ class OnlineGameManager {
             'Aobajosai',
             'Date Tech',
             'Karasuno',
-            'Kitagawa Daiichi',
             'Nekoma',
             'Shiratorizawa',
-            'Trường khác',
-            'Yukigaoka'
+            'Trường khác'
         ];
         
         allSchools.forEach(school => schools.add(school));
@@ -964,13 +1024,13 @@ class OnlineGameManager {
         });
     }
     
-    renderCollectionCards() {
+    async renderCollectionCards() {
         if (!this.collectionCards) return;
         
         const schoolFilter = this.filterSchool ? this.filterSchool.value : 'all';
         const typeFilter = this.filterType ? this.filterType.value : 'all';
         const searchQuery = this.filterSearch ? this.filterSearch.value.toLowerCase().trim() : '';
-        const cards = this.getCardDatabase();
+        const cards = await this.getCardDatabase();
         
         this.collectionCards.innerHTML = '';
         
@@ -985,10 +1045,10 @@ class OnlineGameManager {
         });
     }
     
-    renderDeckCards() {
+    async renderDeckCards() {
         if (!this.deckCards) return;
         
-        const cards = this.getCardDatabase();
+        const cards = await this.getCardDatabase();
         this.deckCards.innerHTML = '';
         
         Object.entries(this.buildingDeck).forEach(([cardId, count]) => {
@@ -1151,7 +1211,7 @@ class OnlineGameManager {
         // This allows users to see the last hovered card
     }
     
-    changeCardCount(cardId, delta) {
+    async changeCardCount(cardId, delta) {
         const current = this.buildingDeck[cardId] || 0;
         const newCount = Math.max(0, Math.min(4, current + delta));
         
@@ -1163,8 +1223,8 @@ class OnlineGameManager {
         
         this.buildingDeck[cardId] = newCount;
         
-        this.renderCollectionCards();
-        this.renderDeckCards();
+        await this.renderCollectionCards();
+        await this.renderDeckCards();
         this.updateDeckCount();
     }
     

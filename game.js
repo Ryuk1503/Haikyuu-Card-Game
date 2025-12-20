@@ -672,9 +672,10 @@ class HaikyuuCardGame {
     addLogMessage(message, type = 'log', broadcast = false) {
         if (!this.chatLogMessages) return;
         
-        // If online and should broadcast, emit to server
+        // If online and should broadcast, emit to server and don't show local (will receive from server)
         if (this.isOnline && this.onlineManager && broadcast) {
             this.onlineManager.socket.emit('logMessage', { message, type });
+            return; // Don't show local, wait for server broadcast
         }
         
         const messageEl = document.createElement('div');
