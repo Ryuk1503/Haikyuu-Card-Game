@@ -149,17 +149,12 @@
                     </div>
                     <div class="collection-cards" id="collection-cards"></div>
                 </div>
-                
-                <!-- Current Deck -->
-                <div class="current-deck">
-                    <h3>Deck hiện tại</h3>
-                    <div class="saved-decks-list" id="saved-decks-list"></div>
-                    <div class="deck-cards" id="deck-cards"></div>
-                </div>
             </div>
             
             <div class="deck-builder-footer">
-                <input type="text" id="deck-name-input" placeholder="Tên deck..." class="deck-name-input">
+                <select id="deck-name-select" class="deck-name-select">
+                    <option value="new">New deck</option>
+                </select>
                 <div class="deck-builder-buttons">
                     <button class="btn btn-cancel" id="btn-cancel-deck">Hủy</button>
                     <button class="btn btn-confirm" id="btn-save-deck">Lưu Deck</button>

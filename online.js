@@ -244,12 +244,11 @@ class OnlineGameManager {
         // Deck builder modal
         this.deckBuilderModal = document.getElementById('deck-builder-modal');
         this.collectionCards = document.getElementById('collection-cards');
-        this.deckCards = document.getElementById('deck-cards');
         this.deckCardCount = document.getElementById('deck-card-count');
         this.filterSchool = document.getElementById('filter-school');
         this.filterType = document.getElementById('filter-type');
         this.filterSearch = document.getElementById('filter-search');
-        this.deckNameInput = document.getElementById('deck-name-input');
+        this.deckNameSelect = document.getElementById('deck-name-select');
         this.btnCancelDeck = document.getElementById('btn-cancel-deck');
         this.btnSaveDeck = document.getElementById('btn-save-deck');
         this.savedDecksList = document.getElementById('saved-decks-list');
@@ -830,11 +829,34 @@ class OnlineGameManager {
         if (this.filterSearch) {
             this.filterSearch.addEventListener('input', () => this.renderCollectionCards());
         }
+        if (this.deckNameSelect) {
+            this.deckNameSelect.addEventListener('change', () => this.onDeckSelectorChange());
+        }
         if (this.btnCancelDeck) {
             this.btnCancelDeck.addEventListener('click', () => this.closeDeckBuilder());
         }
         if (this.btnSaveDeck) {
             this.btnSaveDeck.addEventListener('click', () => this.saveDeck());
+        }
+    }
+    
+    onDeckSelectorChange() {
+        const selectedValue = this.deckNameSelect.value;
+        
+        if (selectedValue === 'new') {
+            // Reset to new deck
+            this.buildingDeck = {};
+            this.renderCollectionCards();
+            this.updateDeckCount();
+        } else if (selectedValue.startsWith('saved_')) {
+            // Load saved deck
+            const id = parseInt(selectedValue.replace('saved_', ''));
+            const deck = this.savedDecks.find(d => d.id === id);
+            if (deck) {
+                this.buildingDeck = { ...deck.cards };
+                this.renderCollectionCards();
+                this.updateDeckCount();
+            }
         }
     }
     
@@ -889,11 +911,11 @@ class OnlineGameManager {
         // Populate school filter dynamically (will get schools from loaded cards)
         await this.populateSchoolFilter();
         
-        this.renderSavedDecksList();
+        // Populate deck selector
+        this.populateDeckSelector();
         
         // Render cards
         await this.renderCollectionCards();
-        await this.renderDeckCards();
         this.updateDeckCount();
     }
     
@@ -931,35 +953,27 @@ class OnlineGameManager {
         }
     }
     
-    renderSavedDecksList() {
-        if (!this.savedDecksList) return;
+    populateDeckSelector() {
+        if (!this.deckNameSelect) return;
         
-        this.savedDecksList.innerHTML = '';
+        // Clear existing options except "New deck"
+        this.deckNameSelect.innerHTML = '<option value="new">New deck</option>';
         
+        // Add saved decks
         this.savedDecks.forEach(deck => {
-            const item = document.createElement('div');
-            item.className = 'saved-deck-item';
-            item.innerHTML = `
-                <span class="saved-deck-name">${deck.name}</span>
-                <span class="saved-deck-delete" data-id="${deck.id}">×</span>
-            `;
-            
-            item.addEventListener('click', (e) => {
-                if (e.target.classList.contains('saved-deck-delete')) {
-                    e.stopPropagation();
-                    this.deleteDeckFromServer(e.target.dataset.id);
-                    return;
-                }
-                // Load deck into builder
-                this.buildingDeck = { ...deck.cards };
-                this.deckNameInput.value = deck.name;
-                this.renderCollectionCards();
-                this.renderDeckCards();
-                this.updateDeckCount();
-            });
-            
-            this.savedDecksList.appendChild(item);
+            const option = document.createElement('option');
+            option.value = 'saved_' + deck.id;
+            option.textContent = deck.name;
+            this.deckNameSelect.appendChild(option);
         });
+        
+        // Set default to "New deck"
+        this.deckNameSelect.value = 'new';
+    }
+    
+    renderSavedDecksList() {
+        // This function is kept for compatibility but no longer used
+        // Deck selection is now handled by populateDeckSelector
     }
     
     async renderCollectionCards() {
@@ -972,38 +986,31 @@ class OnlineGameManager {
         
         this.collectionCards.innerHTML = '';
         
-        cards.forEach(card => {
-            if (schoolFilter !== 'all' && card.school !== schoolFilter) return;
-            if (typeFilter !== 'all' && card.type !== typeFilter) return;
-            if (searchQuery && !card.name.toLowerCase().includes(searchQuery)) return;
-            
+        // Filter cards first
+        const filteredCards = cards.filter(card => {
+            if (schoolFilter !== 'all' && card.school !== schoolFilter) return false;
+            if (typeFilter !== 'all' && card.type !== typeFilter) return false;
+            if (searchQuery && !card.name.toLowerCase().includes(searchQuery)) return false;
+            return true;
+        });
+        
+        // Sort cards alphabetically by name
+        filteredCards.sort((a, b) => {
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+        });
+        
+        // Render sorted cards
+        filteredCards.forEach(card => {
             const count = this.buildingDeck[card.cardId] || 0;
             const item = this.createDeckCardItem(card, count);
             this.collectionCards.appendChild(item);
         });
     }
     
-    async renderDeckCards() {
-        if (!this.deckCards) return;
-        
-        const cards = await this.getCardDatabase();
-        this.deckCards.innerHTML = '';
-        
-        Object.entries(this.buildingDeck).forEach(([cardId, count]) => {
-            if (count <= 0) return;
-            
-            const card = cards.find(c => c.cardId === cardId);
-            if (card) {
-                const item = this.createDeckCardItem(card, count);
-                this.deckCards.appendChild(item);
-            }
-        });
-        
-        if (Object.keys(this.buildingDeck).length === 0 || 
-            Object.values(this.buildingDeck).every(c => c <= 0)) {
-            this.deckCards.innerHTML = '<div class="empty-deck-message">Chưa có thẻ nào. Nhấn + để thêm thẻ!</div>';
-        }
-    }
     
     createDeckCardItem(card, count) {
         const item = document.createElement('div');
@@ -1161,7 +1168,6 @@ class OnlineGameManager {
         this.buildingDeck[cardId] = newCount;
         
         await this.renderCollectionCards();
-        await this.renderDeckCards();
         this.updateDeckCount();
     }
     
@@ -1185,30 +1191,87 @@ class OnlineGameManager {
             return;
         }
         
-        const deckName = this.deckNameInput ? this.deckNameInput.value.trim() : '';
-        if (!deckName) {
-            this.showError('Vui lòng nhập tên deck!');
-            return;
+        const selectedValue = this.deckNameSelect ? this.deckNameSelect.value : 'new';
+        
+        if (selectedValue === 'new') {
+            // For new deck, prompt for name
+            const deckName = prompt('Nhập tên deck mới:');
+            if (!deckName || !deckName.trim()) {
+                return;
+            }
+            
+            const result = await this.saveDeckToServer(deckName.trim(), this.buildingDeck);
+            
+            if (result.success) {
+                await this.loadUserDecks();
+                this.updateDeckSelect();
+                this.populateDeckSelector();
+                
+                // Select the new deck
+                const newDeckId = result.deckId ? 'saved_' + result.deckId : 'default';
+                if (this.deckSelect) {
+                    this.deckSelect.value = newDeckId;
+                }
+                this.selectedDeck = newDeckId;
+                this.updateDeckInfo(deckName.trim(), 40);
+                
+                this.closeDeckBuilder();
+                this.showSuccess('Đã lưu deck thành công!');
+            } else {
+                this.showError(result.error || 'Lỗi lưu deck');
+            }
+        } else if (selectedValue.startsWith('saved_')) {
+            // Update existing deck
+            const id = parseInt(selectedValue.replace('saved_', ''));
+            const deck = this.savedDecks.find(d => d.id === id);
+            if (!deck) {
+                this.showError('Không tìm thấy deck!');
+                return;
+            }
+            
+            const result = await this.updateDeckOnServer(id, this.buildingDeck);
+            
+            if (result.success) {
+                await this.loadUserDecks();
+                this.updateDeckSelect();
+                this.populateDeckSelector();
+                this.updateDeckInfo(deck.name, 40);
+                
+                this.closeDeckBuilder();
+                this.showSuccess('Đã cập nhật deck!');
+            } else {
+                this.showError(result.error || 'Lỗi cập nhật deck');
+            }
+        }
+    }
+    
+    async updateDeckOnServer(deckId, cards) {
+        if (!this.sessionToken) {
+            // Update locally if not logged in
+            const localDecks = JSON.parse(localStorage.getItem('haikyuu_local_decks') || '[]');
+            const deckIndex = localDecks.findIndex(d => d.id === deckId);
+            if (deckIndex >= 0) {
+                localDecks[deckIndex].cards = cards;
+                localStorage.setItem('haikyuu_local_decks', JSON.stringify(localDecks));
+            }
+            return { success: true };
         }
         
-        const result = await this.saveDeckToServer(deckName, this.buildingDeck);
-        
-        if (result.success) {
-            await this.loadUserDecks();
-            this.updateDeckSelect();
+        try {
+            const response = await fetch(`/api/decks/${deckId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.sessionToken}`
+                },
+                body: JSON.stringify({ cards })
+            });
             
-            // Select the new deck
-            const newDeckId = result.deckId ? 'saved_' + result.deckId : 'default';
-        if (this.deckSelect) {
-                this.deckSelect.value = newDeckId;
-            }
-            this.selectedDeck = newDeckId;
-        this.updateDeckInfo(deckName, 40);
-        
-        this.closeDeckBuilder();
-            this.showSuccess(result.updated ? 'Đã cập nhật deck!' : 'Đã lưu deck thành công!');
-        } else {
-            this.showError(result.error || 'Lỗi lưu deck');
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error('Error updating deck:', error);
+            return { success: false, error: 'Lỗi kết nối' };
         }
     }
     
