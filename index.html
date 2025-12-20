@@ -63,12 +63,10 @@
                 <div class="deck-label">📦 Deck của bạn:</div>
                 <div class="deck-select-buttons">
                     <select id="deck-select" class="deck-select">
-                        <option value="default">Deck Karasuno (Mặc định)</option>
-                        <option value="shiratorizawa">Deck Shiratorizawa</option>
                     </select>
                     <button class="btn btn-build-deck" id="btn-build-deck">🔧 Xây deck</button>
                 </div>
-                <div class="deck-info" id="deck-info">40 lá | Karasuno</div>
+                <div class="deck-info" id="deck-info">Chưa chọn deck</div>
             </div>
             
             <!-- Room Actions -->
@@ -162,6 +160,7 @@
                     <option value="new">New deck</option>
                 </select>
                 <div class="deck-builder-buttons">
+                    <button class="btn btn-delete" id="btn-delete-deck" style="display: none;">🗑️ Xóa</button>
                     <button class="btn btn-cancel" id="btn-cancel-deck">Hủy</button>
                     <button class="btn btn-confirm" id="btn-save-deck">Lưu Deck</button>
                 </div>
