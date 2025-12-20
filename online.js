@@ -997,6 +997,11 @@ class OnlineGameManager {
         const item = document.createElement('div');
         item.className = 'deck-card-item' + (count > 0 ? ' in-deck' : '');
         
+        // Add data attribute for action cards (for CSS styling)
+        if (card.type === 'action') {
+            item.dataset.cardType = 'action';
+        }
+        
         const typeLabel = card.type === 'action' ? '⚡' : '👤';
         
         item.innerHTML = `
