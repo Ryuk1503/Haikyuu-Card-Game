@@ -1,33 +1,19 @@
 {
     "id": "HV10-053",
     "name": "Kawanishi Taichi",
-    "nameJP": "川西太一",
     "rarity": "R",
     "stats": {
-        "serve": 1,
-        "receive": 0,
+        "serve": 3,
+        "receive": 4,
         "toss": 0,
         "attack": 3,
-        "block": 3
+        "block": 2
     },
     "skill": {
-        "cost": 0,
-        "costType": "none",
-        "trigger": "onPlay",
-        "zone": "any",
-        "type": "millAndDraw",
-        "description": "Khi thẻ này được triển khai, có thể bỏ 1 thẻ trên tay để đặt 1 thẻ trên cùng bộ bài đối phương vào khu vực Loại bỏ, sau đó rút 1 thẻ từ bộ bài.",
-        "effects": [
-            {
-                "type": "optionalMill",
-                "cost": "discard1Hand",
-                "millOpponent": 1,
-                "draw": 1
-            }
-        ]
+        "description": "Khi thẻ này ra sân, có thể bỏ 1 thẻ trên tay để đặt 1 thẻ trên cùng bộ bài đối phương vào khu vực Loại bỏ và rút 1 thẻ từ bộ bài."
     },
     "school": "Shiratorizawa",
-    "artwork": "Card/Shiratorizawa/Nhan vat/kawanishi-taichi-1.png",
-    "flavorText": ""
+    "artwork": "Card/Shiratorizawa/Nhan vat/kawanishi-taichi-1.png"
 }
+
 
