@@ -409,30 +409,21 @@ function createDeckFromSelection(deckData) {
     const missingCards = [];
     
     console.log(`📦 Creating deck from selection with ${Object.keys(deckData).length} card types`);
-    console.log(`📦 Deck data:`, JSON.stringify(deckData));
-    
-    // Validate deckData is an object
-    if (typeof deckData !== 'object' || Array.isArray(deckData)) {
-        console.error('❌ Invalid deck data format, expected object but got:', typeof deckData);
-        return createDeck();
-    }
     
     Object.entries(deckData).forEach(([cardId, count]) => {
-        // Ensure count is a number
-        const cardCount = parseInt(count) || 0;
-        if (cardCount <= 0) return;
-        
         const cardData = CARD_DATABASE.find(c => c.cardId === cardId);
-        if (cardData) {
-            for (let i = 0; i < cardCount; i++) {
+        if (cardData && count > 0) {
+            for (let i = 0; i < count; i++) {
                 deck.push({
                     ...cardData,
                     uniqueId: uuidv4()
                 });
             }
         } else {
-            missingCards.push(cardId);
-            console.warn(`⚠️ Card not found in database: ${cardId} (count: ${cardCount})`);
+            if (count > 0) {
+                missingCards.push(cardId);
+                console.warn(`⚠️ Card not found in database: ${cardId} (count: ${count})`);
+            }
         }
     });
     
@@ -442,19 +433,12 @@ function createDeckFromSelection(deckData) {
     
     console.log(`📦 Created ${deck.length} cards from selection`);
     
-    // Only add random cards if deck is less than 40 (shouldn't happen if deck is built correctly)
-    if (deck.length < 40) {
-        console.warn(`⚠️ Deck has only ${deck.length} cards, adding ${40 - deck.length} random cards to reach 40`);
-        while (deck.length < 40) {
-            const randomCard = CARD_DATABASE[Math.floor(Math.random() * CARD_DATABASE.length)];
-            deck.push({
-                ...randomCard,
-                uniqueId: uuidv4()
-            });
-        }
-    } else if (deck.length > 40) {
-        console.warn(`⚠️ Deck has ${deck.length} cards, trimming to 40`);
-        deck.splice(40);
+    while (deck.length < 40) {
+        const randomCard = CARD_DATABASE[Math.floor(Math.random() * CARD_DATABASE.length)];
+        deck.push({
+            ...randomCard,
+            uniqueId: uuidv4()
+        });
     }
     
     console.log(`📦 Final deck size: ${deck.length} cards`);
@@ -744,27 +728,10 @@ io.on('connection', (socket) => {
         console.log(`📥 Deck data:`, data.deck);
         console.log(`📥 Deck keys count:`, data.deck ? Object.keys(data.deck).length : 0);
         
-        // Validate deck data
-        if (!data.deck || typeof data.deck !== 'object' || Array.isArray(data.deck)) {
-            console.error('❌ Invalid deck data format:', data.deck);
-            return;
-        }
-        
-        // Calculate total cards to verify
-        const totalCards = Object.values(data.deck).reduce((sum, count) => sum + (parseInt(count) || 0), 0);
-        console.log(`📥 Total cards in deck: ${totalCards}`);
-        
-        if (totalCards !== 40) {
-            console.warn(`⚠️ Deck has ${totalCards} cards, expected 40`);
-        }
-        
-        // Deep clone to avoid reference issues
-        const deckData = JSON.parse(JSON.stringify(data.deck));
-        
-        room.setPlayerDeck(playerInfo.playerNumber, deckData);
+        room.setPlayerDeck(playerInfo.playerNumber, data.deck);
         console.log(`✅ Player ${playerInfo.playerNumber} deck saved. Room decks:`, {
-            p1: room.playerDecks[1] ? Object.keys(room.playerDecks[1]).length + ' card types' : 'null',
-            p2: room.playerDecks[2] ? Object.keys(room.playerDecks[2]).length + ' card types' : 'null'
+            p1: room.playerDecks[1] ? Object.keys(room.playerDecks[1]).length + ' cards' : 'null',
+            p2: room.playerDecks[2] ? Object.keys(room.playerDecks[2]).length + ' cards' : 'null'
         });
     });
 

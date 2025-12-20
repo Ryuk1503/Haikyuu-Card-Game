@@ -252,7 +252,6 @@ class OnlineGameManager {
         this.deckNameSelect = document.getElementById('deck-name-select');
         this.btnCancelDeck = document.getElementById('btn-cancel-deck');
         this.btnSaveDeck = document.getElementById('btn-save-deck');
-        this.btnDeleteDeck = document.getElementById('btn-delete-deck');
         this.savedDecksList = document.getElementById('saved-decks-list');
         
         // Room elements
@@ -457,23 +456,9 @@ class OnlineGameManager {
         const deck = this.getCurrentDeck();
         console.log('📤 Sending deck selection:', deck);
         console.log('📤 Selected deck ID:', this.selectedDeck);
-        
         if (!deck || Object.keys(deck).length === 0) {
             console.warn('⚠️ No deck selected or deck is empty!');
-            // Don't send empty deck
-            return;
         }
-        
-        // Validate deck format before sending
-        if (typeof deck !== 'object' || Array.isArray(deck)) {
-            console.error('❌ Invalid deck format, cannot send:', deck);
-            return;
-        }
-        
-        // Calculate total to verify
-        const totalCards = Object.values(deck).reduce((sum, count) => sum + (parseInt(count) || 0), 0);
-        console.log('📤 Total cards to send:', totalCards);
-        
         this.socket.emit('setDeck', { deck: deck });
         console.log('✅ Sent deck selection');
     }
@@ -658,8 +643,9 @@ class OnlineGameManager {
     updateDeckSelect() {
         if (!this.deckSelect) return;
         
-        // Clear all options
-        this.deckSelect.innerHTML = '';
+        // Remove existing saved deck options
+        const existingOptions = this.deckSelect.querySelectorAll('option[data-saved]');
+        existingOptions.forEach(opt => opt.remove());
         
         // Add saved decks
         this.savedDecks.forEach(deck => {
@@ -669,22 +655,6 @@ class OnlineGameManager {
             option.dataset.saved = 'true';
             this.deckSelect.appendChild(option);
         });
-        
-        // If no decks, show placeholder
-        if (this.savedDecks.length === 0) {
-            const placeholder = document.createElement('option');
-            placeholder.value = '';
-            placeholder.textContent = 'Chưa có deck - Tạo deck mới';
-            placeholder.disabled = true;
-            this.deckSelect.appendChild(placeholder);
-            this.deckSelect.value = '';
-            this.selectedDeck = '';
-            this.updateDeckInfo('Chưa chọn deck', 0);
-        } else {
-            // Select first deck by default
-            this.deckSelect.value = 'saved_' + this.savedDecks[0].id;
-            this.onDeckChange('saved_' + this.savedDecks[0].id);
-        }
     }
     
     async saveDeckToServer(deckName, cards) {
@@ -714,20 +684,17 @@ class OnlineGameManager {
     }
     
     async deleteDeckFromServer(deckId) {
-        if (!this.sessionToken) {
-            return { success: false, error: 'Chưa đăng nhập' };
-        }
+        if (!this.sessionToken) return;
         
         try {
-            const response = await fetch(`/api/decks/${deckId}`, {
+            await fetch(`/api/decks/${deckId}`, {
                 method: 'DELETE',
                 headers: { 'X-Session-Token': this.sessionToken }
             });
-            const result = await response.json();
-            return result;
+            await this.loadUserDecks();
+            this.renderSavedDecksList();
         } catch (error) {
             console.error('Error deleting deck:', error);
-            return { success: false, error: 'Lỗi kết nối' };
         }
     }
     
@@ -777,6 +744,79 @@ class OnlineGameManager {
         return [];
     }
     
+    getPresetDecks() {
+        return {
+            'default': {
+                name: 'Deck Karasuno',
+                cards: [
+                    // Đỡ (8 cards) - 8 slots
+                    { cardId: 'sawamura-daichi-1', count: 2 },      // receive: 4
+                    { cardId: 'yamaguchi-tadashi-1', count: 2 },    // receive: 4
+                    { cardId: 'nishinoya-yu-1', count: 2 },         // receive: 4
+                    { cardId: 'nishinoya-yu-2', count: 2 },         // receive: 6
+                    
+                    // Chuyền (8 cards) - 8 slots
+                    { cardId: 'kageyama-tobio-1', count: 2 },      // toss: 1
+                    { cardId: 'kageyama-tobio-2', count: 2 },      // toss: 1
+                    { cardId: 'sugawara-koshi-1', count: 2 },      // toss: 1
+                    { cardId: 'hinata-shouyo-1', count: 2 },       // toss: 0 (attack focus)
+                    
+                    // Đập (8 cards) - 8 slots
+                    { cardId: 'hinata-shouyo-1', count: 2 },       // attack: 3
+                    { cardId: 'hinata-shouyo-2', count: 2 },       // attack: 3
+                    { cardId: 'tanaka-ryunosuke-1', count: 2 },    // attack: 3
+                    { cardId: 'azumane-asahi-1', count: 2 },       // attack: 3
+                    
+                    // Chặn (8 cards) - 8 slots
+                    { cardId: 'tsukishima-kei-1', count: 2 },      // block: 3
+                    { cardId: 'tsukishima-kei-2', count: 2 },      // block: 3
+                    { cardId: 'azumane-asahi-1', count: 2 },       // block: 3
+                    { cardId: 'hinata-shouyo-2', count: 2 },      // block: 3
+                    
+                    // Hành động (8 cards) - 8 slots
+                    { cardId: 'chuyen-toi-day-cho-toi', count: 2 },
+                    { cardId: 'chu-may-cung-co-mau-an-thua-day', count: 2 },
+                    { cardId: 'phong-thu-tuyet-doi', count: 2 },
+                    { cardId: 'du-chi-la-sinh-hoat-clb', count: 1 },
+                    { cardId: '1-diem-bang-100-diem-phai-hon', count: 1 }
+                ]
+            },
+            'shiratorizawa': {
+                name: 'Deck Shiratorizawa',
+                cards: [
+                    // Đỡ (8 cards) - 8 slots
+                    { cardId: 'yamagata-hayato', count: 2 },       // receive: 5
+                    { cardId: 'ushijima-wakatoshi-3', count: 2 },  // receive: 3
+                    { cardId: 'goshiki-tsutomu-3', count: 2 },    // receive: 4
+                    { cardId: 'shirabu-kenjiro-1', count: 2 },    // receive: 3
+                    
+                    // Chuyền (8 cards) - 8 slots
+                    { cardId: 'shirabu-kenjiro-1', count: 2 },    // toss: 1
+                    { cardId: 'shirabu-kenjiro-2', count: 2 },    // toss: 1
+                    { cardId: 'shirabu-kenjiro-3', count: 2 },    // toss: 1
+                    { cardId: 'semi-eita', count: 2 },            // toss: 1
+                    
+                    // Đập (8 cards) - 8 slots
+                    { cardId: 'ushijima-wakatoshi-1', count: 2 }, // attack: 3
+                    { cardId: 'ushijima-wakatoshi-2', count: 2 }, // attack: 3
+                    { cardId: 'goshiki-tsutomu-1', count: 2 },    // attack: 3
+                    { cardId: 'ohira-reon-1', count: 2 },         // attack: 3
+                    
+                    // Chặn (8 cards) - 8 slots
+                    { cardId: 'tendo-satori-1', count: 2 },       // block: 4
+                    { cardId: 'tendo-satori-3', count: 2 },      // block: 4
+                    { cardId: 'kawanishi-taichi', count: 2 },     // block: 3
+                    { cardId: 'shirabu-kenjiro-2', count: 2 },    // block: 3
+                    
+                    // Hành động (8 cards) - 8 slots
+                    { cardId: 'chuyen-het-bong-cho-anh', count: 2 },
+                    { cardId: 'ma-la-nghe-thuat-dap-bong-thang-xuong-san', count: 2 },
+                    { cardId: 'la-mot-doi-thu-vuot-qua-tam-hieu-biet', count: 2 },
+                    { cardId: 'thay-chua-ha-cu-bong-than-toc-cua-em-do', count: 2 }
+                ]
+            }
+        };
+    }
     
     initDeckBuilder() {
         this.buildingDeck = {};
@@ -799,9 +839,6 @@ class OnlineGameManager {
         if (this.btnSaveDeck) {
             this.btnSaveDeck.addEventListener('click', () => this.saveDeck());
         }
-        if (this.btnDeleteDeck) {
-            this.btnDeleteDeck.addEventListener('click', () => this.deleteDeck());
-        }
     }
     
     onDeckSelectorChange() {
@@ -812,10 +849,6 @@ class OnlineGameManager {
             this.buildingDeck = {};
             this.renderCollectionCards();
             this.updateDeckCount();
-            // Hide delete button for new deck
-            if (this.btnDeleteDeck) {
-                this.btnDeleteDeck.style.display = 'none';
-            }
         } else if (selectedValue.startsWith('saved_')) {
             // Load saved deck
             const id = parseInt(selectedValue.replace('saved_', ''));
@@ -825,10 +858,6 @@ class OnlineGameManager {
                 this.renderCollectionCards();
                 this.renderDeckCards();
                 this.updateDeckCount();
-                // Show delete button for saved deck
-                if (this.btnDeleteDeck) {
-                    this.btnDeleteDeck.style.display = 'inline-block';
-                }
             }
         }
     }
@@ -844,7 +873,10 @@ class OnlineGameManager {
                 this.updateDeckInfo(deck.name, Object.values(deck.cards).reduce((a, b) => a + b, 0));
             }
         } else {
-            this.updateDeckInfo('Chưa chọn deck', 0);
+            const presets = this.getPresetDecks();
+            if (presets[deckId]) {
+                this.updateDeckInfo(presets[deckId].name, 40);
+            }
         }
         
         // Auto-send deck selection when in room
@@ -940,11 +972,6 @@ class OnlineGameManager {
         
         // Set default to "New deck"
         this.deckNameSelect.value = 'new';
-        
-        // Hide delete button initially
-        if (this.btnDeleteDeck) {
-            this.btnDeleteDeck.style.display = 'none';
-        }
     }
     
     async renderDeckCards() {
@@ -1199,7 +1226,9 @@ class OnlineGameManager {
                 return;
             }
             
-            const result = await this.saveDeckToServer(deckName.trim(), this.buildingDeck);
+            // Create a deep copy of buildingDeck to avoid reference issues
+            const deckData = JSON.parse(JSON.stringify(this.buildingDeck));
+            const result = await this.saveDeckToServer(deckName.trim(), deckData);
             
             if (result.success) {
                 await this.loadUserDecks();
@@ -1229,7 +1258,9 @@ class OnlineGameManager {
                 return;
             }
             
-            const result = await this.updateDeckOnServer(id, this.buildingDeck);
+            // Create a deep copy of buildingDeck to avoid reference issues
+            const deckData = JSON.parse(JSON.stringify(this.buildingDeck));
+            const result = await this.updateDeckOnServer(id, deckData);
             
             if (result.success) {
                 await this.loadUserDecks();
@@ -1282,55 +1313,6 @@ class OnlineGameManager {
         }
     }
     
-    async deleteDeck() {
-        const selectedValue = this.deckNameSelect ? this.deckNameSelect.value : 'new';
-        
-        if (selectedValue === 'new' || !selectedValue.startsWith('saved_')) {
-            this.showError('Không thể xóa deck mới!');
-            return;
-        }
-        
-        const id = parseInt(selectedValue.replace('saved_', ''));
-        const deck = this.savedDecks.find(d => d.id === id);
-        
-        if (!deck) {
-            this.showError('Không tìm thấy deck!');
-            return;
-        }
-        
-        // Confirm deletion
-        if (!confirm(`Bạn có chắc chắn muốn xóa deck "${deck.name}"?`)) {
-            return;
-        }
-        
-        // Delete from server
-        const result = await this.deleteDeckFromServer(id);
-        
-        if (result && result.success === true) {
-            // Reload decks
-            await this.loadUserDecks();
-            this.updateDeckSelect();
-            this.populateDeckSelector();
-            
-            // Reset to new deck
-            this.buildingDeck = {};
-            if (this.deckNameSelect) {
-                this.deckNameSelect.value = 'new';
-            }
-            if (this.btnDeleteDeck) {
-                this.btnDeleteDeck.style.display = 'none';
-            }
-            
-            this.renderCollectionCards();
-            this.renderDeckCards();
-            this.updateDeckCount();
-            
-            this.showSuccess('Đã xóa deck thành công!');
-        } else {
-            this.showError(result?.error || 'Lỗi xóa deck');
-        }
-    }
-    
     saveLocally(deckName, cards) {
         const localDecks = JSON.parse(localStorage.getItem('haikyuu_local_decks') || '[]');
         localDecks.push({ name: deckName, cards, id: Date.now() });
@@ -1345,23 +1327,18 @@ class OnlineGameManager {
             const deck = this.savedDecks.find(d => d.id === id);
             if (deck) {
                 console.log('📦 Using saved deck:', deck.name, 'with', Object.keys(deck.cards || {}).length, 'card types');
-                
-                // Validate deck format
-                if (!deck.cards || typeof deck.cards !== 'object' || Array.isArray(deck.cards)) {
-                    console.error('❌ Invalid deck format:', deck.cards);
-                    return null;
-                }
-                
-                // Calculate total cards
-                const totalCards = Object.values(deck.cards).reduce((sum, count) => sum + (parseInt(count) || 0), 0);
-                console.log('📦 Total cards in deck:', totalCards);
-                
-                if (totalCards !== 40) {
-                    console.warn(`⚠️ Deck has ${totalCards} cards, expected 40`);
-                }
-                
                 return deck.cards;
             }
+        }
+        
+        const presets = this.getPresetDecks();
+        if (presets[this.selectedDeck]) {
+            const deck = {};
+            presets[this.selectedDeck].cards.forEach(c => {
+                deck[c.cardId] = c.count;
+            });
+            console.log('📦 Using preset deck:', presets[this.selectedDeck].name, 'with', Object.keys(deck).length, 'card types');
+            return deck;
         }
         
         console.warn('⚠️ No deck found for selectedDeck:', this.selectedDeck);
