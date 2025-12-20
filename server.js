@@ -109,6 +109,20 @@ app.get('/api/decks', async (req, res) => {
     res.json({ success: true, decks });
 });
 
+// Update deck
+app.put('/api/decks/:id', async (req, res) => {
+    const sessionToken = req.headers['x-session-token'];
+    const user = await db.validateSession(sessionToken);
+    
+    if (!user) {
+        return res.status(401).json({ success: false, error: 'Chưa đăng nhập' });
+    }
+    
+    const { cards } = req.body;
+    const result = await db.updateDeck(user.id, parseInt(req.params.id), cards);
+    res.json(result);
+});
+
 // Delete deck
 app.delete('/api/decks/:id', async (req, res) => {
     const sessionToken = req.headers['x-session-token'];

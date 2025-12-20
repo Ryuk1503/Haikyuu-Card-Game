@@ -1238,8 +1238,9 @@ class OnlineGameManager {
                 if (this.deckSelect) {
                     this.deckSelect.value = newDeckId;
                 }
-                this.selectedDeck = newDeckId;
-                this.updateDeckInfo(deckName.trim(), 40);
+                // Use onDeckChange to properly sync selectedDeck and update UI
+                // This will also call sendDeckSelection() if in a room
+                this.onDeckChange(newDeckId);
                 
                 this.closeDeckBuilder();
                 this.showSuccess('Đã lưu deck thành công!');
@@ -1261,7 +1262,14 @@ class OnlineGameManager {
                 await this.loadUserDecks();
                 this.updateDeckSelect();
                 this.populateDeckSelector();
-                this.updateDeckInfo(deck.name, 40);
+                
+                // Ensure the updated deck is still selected
+                const currentDeckId = 'saved_' + id;
+                if (this.deckSelect) {
+                    this.deckSelect.value = currentDeckId;
+                }
+                // Use onDeckChange to properly sync selectedDeck and update UI
+                this.onDeckChange(currentDeckId);
                 
                 this.closeDeckBuilder();
                 this.showSuccess('Đã cập nhật deck!');
@@ -1288,7 +1296,7 @@ class OnlineGameManager {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.sessionToken}`
+                    'X-Session-Token': this.sessionToken
                 },
                 body: JSON.stringify({ cards })
             });

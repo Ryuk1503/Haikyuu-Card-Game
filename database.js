@@ -251,6 +251,25 @@ async function getUserDecks(userId) {
     }
 }
 
+async function updateDeck(userId, deckId, cards) {
+    try {
+        const cardsJson = JSON.stringify(cards);
+        const result = await pool.query(
+            'UPDATE decks SET cards = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2 AND user_id = $3',
+            [cardsJson, deckId, userId]
+        );
+        
+        if (result.rowCount === 0) {
+            return { success: false, error: 'Không tìm thấy deck hoặc không có quyền' };
+        }
+        
+        return { success: true, deckId };
+    } catch (error) {
+        console.error('Error updating deck:', error);
+        return { success: false, error: 'Lỗi cập nhật deck' };
+    }
+}
+
 async function deleteDeck(userId, deckId) {
     try {
         const result = await pool.query(
@@ -301,6 +320,7 @@ module.exports = {
     logoutUser,
     saveDeck,
     getUserDecks,
+    updateDeck,
     deleteDeck,
     getDeckById,
     pool // Export pool for direct queries if needed
