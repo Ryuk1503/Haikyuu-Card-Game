@@ -10,7 +10,7 @@
         "block": 1
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ trên tay để chọn tối đa 1 nhân vật Lớp 12 hoặc Lớp 9 từ bộ bài cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ trên tay: chọn tối đa 1 nhân vật Lớp 12 hoặc Lớp 9 từ bộ bài cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
     },
     "school": "Aobajosai",
     "artwork": "Card/Aobajosai/Nhan vat/iwaizumi-hajime-1.png",

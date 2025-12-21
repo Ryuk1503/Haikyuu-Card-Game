@@ -10,7 +10,7 @@
         "block": 2
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ trên tay để thu hồi tối đa 1 thẻ Nhân Vật từ khu vực Loại bỏ lên tay."
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ trên tay: thu hồi lên tay tối đa 1 thẻ Nhân Vật từ khu vực Loại bỏ."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-2.png",

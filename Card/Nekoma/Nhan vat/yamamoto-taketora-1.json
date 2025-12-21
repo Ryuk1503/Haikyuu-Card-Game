@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi nhân vật trường Nekoma xuất hiện ở khu vực Đỡ Bóng trên sân mình, có thể chuyển nhân vật này từ khu vực Đập Bóng sang khu vực Đỡ Bóng để tự +1 điểm Đỡ."
+        "description": "Khi nhân vật trường Nekoma xuất hiện ở khu vực Đỡ Bóng trên sân mình: có thể chuyển nhân vật này từ khu vực Đập Bóng sang khu vực Đỡ Bóng và tự +1 điểm Đỡ."
     },
     "school": "Nekoma",
     "artwork": "Card/Nekoma/Nhan vat/yamamoto-taketora-1.png",

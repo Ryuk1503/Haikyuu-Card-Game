@@ -10,7 +10,7 @@
         "block": 1
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu khu vực Hành Động có 4+ thẻ, tự +1 điểm Đập."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu khu vực Hành Động có 4+ thẻ: tự +1 điểm Đập."
     },
     "school": "Aobajosai",
     "artwork": "Card/Aobajosai/Nhan vat/kyotani-kentaro-2.png",

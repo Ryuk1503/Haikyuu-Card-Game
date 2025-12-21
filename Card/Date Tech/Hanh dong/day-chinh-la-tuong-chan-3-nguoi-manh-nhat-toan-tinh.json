@@ -3,7 +3,7 @@
     "rarity": "R",
     "type": "action",
     "skill": {
-        "description": "[Chặn]: Rút 1 thẻ từ bộ bài. Sau đó, nếu khu vực Chặn Bóng trên sân mình có \"Aone Takanobu\", \"Futakuchi Kenji\" và \"Koganegawa Kanji\", ở lượt tiếp theo của đối phương, mỗi nhân vật Đỡ Bóng của đối phương đều bị -4 điểm Đỡ khi ra sân."
+        "description": "[Chặn] Rút 1 thẻ từ bộ bài. Sau đó, nếu khu vực Chặn Bóng trên sân mình có \"Aone Takanobu\", \"Futakuchi Kenji\" và \"Koganegawa Kanji\": ở lượt tiếp theo của đối phương, mỗi nhân vật Đỡ Bóng của đối phương đều bị -4 điểm Đỡ khi ra sân."
     },
     "artwork": "Card/Date Tech/Hanh dong/day-chinh-la-tuong-chan-3-nguoi-manh-nhat-toan-tinh.png"
 }

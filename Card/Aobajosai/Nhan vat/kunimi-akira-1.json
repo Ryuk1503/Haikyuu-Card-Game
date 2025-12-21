@@ -10,7 +10,7 @@
         "block": 3
     },
     "skill": {
-        "description": "Khi nhân vật này được đưa từ khu vực Chặn Bóng vào khu vực Loại bỏ, có thể đặt nhân vật này vào Ý Chí của 1 nhân vật trường Aobajosai trên sân mình."
+        "description": "Khi nhân vật này được đưa từ khu vực Chặn Bóng vào khu vực Loại bỏ: có thể đặt nhân vật này vào Ý Chí của 1 nhân vật trường Aobajosai trên sân mình."
     },
     "school": "Aobajosai",
     "artwork": "Card/Aobajosai/Nhan vat/kunimi-akira-1.png",

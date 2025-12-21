@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, có thể bỏ 1 thẻ trên tay vào khu vực Loại bỏ để tự +1 điểm Đập và đặt tối đa 1 thẻ Hành Động ở khu vực Hành Động của đối phương vào khu vực Loại bỏ."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, có thể bỏ 1 thẻ trên tay: tự +1 điểm Đập và đặt tối đa 1 thẻ Hành Động ở khu vực Hành Động của đối phương vào khu vực Loại bỏ."
     },
     "school": "Fukurodani",
     "artwork": "Card/Fukurodani/Nhan vat/bokuto-kotaro-1.png",

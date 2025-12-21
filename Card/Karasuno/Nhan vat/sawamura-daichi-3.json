@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ Hành Động trên tay vào khu vực Hành Động để rút 1 thẻ từ bộ bài và tự +2 điểm Đỡ."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ Hành Động trên tay vào khu vực Hành Động: rút 1 thẻ từ bộ bài và tự +2 điểm Đỡ."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/sawamura-daichi-3.png",

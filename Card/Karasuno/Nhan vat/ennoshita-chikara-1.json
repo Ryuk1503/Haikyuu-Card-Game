@@ -10,7 +10,7 @@
         "block": 2
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ trên tay vào khu vực Loại bỏ để thu hồi lên tay tối đa 1 thẻ \"Kinoshita Hisashi\" và 1 thẻ \"Narita Kazuhito\" từ khu vực Loại bỏ."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ trên tay vào khu vực Loại bỏ: thu hồi lên tay tối đa 1 thẻ \"Kinoshita Hisashi\" và 1 thẻ \"Narita Kazuhito\" từ khu vực Loại bỏ."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/ennoshita-chikara-1.png",

@@ -3,7 +3,7 @@
     "rarity": "R",
     "type": "action",
     "skill": {
-        "description": "[Đỡ]: Nếu khu vực Hành Động có 2- thẻ, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Jozenji từ khu vực Loại bỏ của mình, +2 điểm Đỡ cho nhân vật Đỡ Bóng trên sân mình. Sau đó, có thể đưa thẻ này từ khu vực Hành Động lên trên cùng bộ bài của mình."
+        "description": "[Đỡ] Nếu khu vực Hành Động có 2- thẻ: thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Jozenji từ khu vực Loại bỏ: +2 điểm Đỡ cho nhân vật Đỡ Bóng trên sân mình. Sau đó, có thể đưa thẻ này từ khu vực Hành Động lên trên cùng bộ bài."
     },
     "artwork": "Card/Jozenji/Hanh dong/va-that-su-vui-choi-cho-toi-phut-cuoi-cung.png"
 }

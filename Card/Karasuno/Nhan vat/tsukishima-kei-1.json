@@ -10,7 +10,7 @@
         "block": 3
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có nhân vật với 3+ Ý Chí, tự +1 điểm Chặn. Ở lượt tiếp theo của đối phương, nhân vật Đỡ Bóng của đối phương bị -6 điểm Đỡ khi được triển khai."
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có nhân vật với 3+ Ý Chí: tự +1 điểm Chặn. Ở lượt tiếp theo của đối phương, nhân vật Đỡ Bóng của đối phương bị -6 điểm Đỡ."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-1.png",

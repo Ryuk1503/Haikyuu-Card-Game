@@ -10,7 +10,7 @@
         "block": 3
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có nhân vật \"Ennoshita Chikara\" hoặc \"Kinoshita Hisashi\", thu hồi lên tay tối đa 1 thẻ \"Ennoshita Chikara\" từ khu vực Đập Bóng."
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu trên sân mình có nhân vật \"Ennoshita Chikara\" hoặc \"Kinoshita Hisashi\": thu hồi lên tay tối đa 1 thẻ \"Ennoshita Chikara\" từ khu vực Đập Bóng."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/narita-kazuhito-1.png",

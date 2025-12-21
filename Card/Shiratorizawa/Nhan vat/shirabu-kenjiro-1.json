@@ -10,7 +10,7 @@
         "block": 1
     },
     "skill": {
-        "description": "Khi nhân vật Đập Bóng xuất hiện trên sân mình, nếu nhân vật này (Shirabu Kenjiro) có 3+ Ý Chí, tự +1 điểm Chuyền. Nếu nhân vật Đập Bóng là \"Ushijima Wakatoshi\", có thể loại bỏ tối đa 1 Ý Chí của 1 nhân vật trên sân đối phương."
+        "description": "Khi nhân vật Đập Bóng xuất hiện trên sân mình, nếu nhân vật này có 3+ Ý Chí: tự +1 điểm Chuyền. Nếu nhân vật Đập Bóng là \"Ushijima Wakatoshi\": có thể loại bỏ tối đa 1 Ý Chí của 1 nhân vật trên sân đối phương."
     },
     "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-1.png",

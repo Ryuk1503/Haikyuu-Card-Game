@@ -10,7 +10,7 @@
         "block": 2
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể thu hồi lên tay 2 Ý Chí của nhân vật này để đặt 1 thẻ trên tay vào khu vực Loại bỏ."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng: có thể thu hồi lên tay 2 Ý Chí của nhân vật này, sau đó bỏ 1 thẻ trên tay"
     },
     "school": "Nekoma",
     "artwork": "Card/Nekoma/Nhan vat/haiba-lev-1.png",

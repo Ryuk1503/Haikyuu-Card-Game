@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ Nhân Vật trên tay để tự +2 điểm Đỡ."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, có thể bỏ 1 thẻ Nhân Vật trên tay: tự +2 điểm Đỡ."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/sawamura-daichi-2.png",

@@ -10,7 +10,7 @@
         "block": 2
     },
     "skill": {
-        "description": "Khi thẻ này được triển khai, đối phương phải cho mình xem toàn bộ thẻ trên tay. Nếu trong số đó có thẻ Hành Động, rút 1 thẻ từ bộ bài của mình."
+        "description": "Khi thẻ này ra sân: đối phương phải cho mình xem toàn bộ thẻ trên tay. Nếu trong số đó có thẻ Hành Động: rút 1 thẻ từ bộ bài."
     },
     "school": "Aobajosai",
     "artwork": "Card/Aobajosai/Nhan vat/oikawa-toru-1.png",

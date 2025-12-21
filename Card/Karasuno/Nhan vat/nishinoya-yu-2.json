@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu Ý Chí của nhân vật này không có 2+ quân \"Nishinoya Yu\", tự -3 điểm Đỡ."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu Ý Chí của nhân vật này không có 2+ thẻ \"Nishinoya Yu\": tự -3 điểm Đỡ."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-2.png",

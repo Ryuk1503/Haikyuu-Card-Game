@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu có thẻ \"Và thật sự vui chơi cho tới phút cuối cùng.\" ở khu vực Hành Động, có thể bỏ tổng cộng 2 thẻ Hành Động từ trên tay hoặc khu vực Hành Động vào khu vực Loại bỏ để tự +2 điểm Đập."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu có thẻ \"Và thật sự vui chơi cho tới phút cuối cùng.\" ở khu vực Hành Động, có thể bỏ tổng cộng 2 thẻ Hành Động từ trên tay hoặc khu vực Hành Động: tự +2 điểm Đập."
     },
     "school": "Jozenji",
     "artwork": "Card/Jozenji/Nhan vat/terushima-yuji-1.png",

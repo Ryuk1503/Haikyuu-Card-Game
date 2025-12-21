@@ -10,7 +10,7 @@
         "block": 3
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ Nhân Vật trường Shiratorizawa từ trên tay để thực hiện Bỏ nhỏ. (Kết thúc lượt mà không cần triển khai nhân vật Đập bóng. Ở lượt tiếp theo, đối phương không thể Chặn Bóng và chỉ Đỡ Bóng thành công với điểm Đỡ từ 3 trở lên)."
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, có thể bỏ 1 thẻ Nhân Vật trường Shiratorizawa từ trên tay: thực hiện Bỏ nhỏ. (Kết thúc lượt. Ở lượt tiếp theo, đối phương không thể Chặn Bóng và chỉ Đỡ Bóng thành công với 3+ điểm Đỡ)."
     },
     "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-2.png",

@@ -3,7 +3,7 @@
     "rarity": "R",
     "type": "action",
     "skill": {
-        "description": "[Chuyền]: +1 điểm Chuyền cho nhân vật Chuyền Bóng trên sân mình. Sau đó, nếu nhân vật đó là \"Kozume Kenma\", có thể chọn tối đa 1 thẻ \"Kuroo Tetsuro\" từ bộ bài cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
+        "description": "[Chuyền] +1 điểm Chuyền cho nhân vật Chuyền Bóng trên sân mình. Sau đó, nếu nhân vật đó là \"Kozume Kenma\": có thể chọn tối đa 1 thẻ \"Kuroo Tetsuro\" từ bộ bài, cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
     },
     "artwork": "Card/Nekoma/Hanh dong/doi-minh-chac-chan-se-manh-hon-nho-co-em.png"
 }

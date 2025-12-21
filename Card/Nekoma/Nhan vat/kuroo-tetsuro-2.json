@@ -10,7 +10,7 @@
         "block": 1
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng từ trên tay, nếu có 3+ Ý Chí, chọn 2 nhân vật trên sân mình, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Nekoma (ngoại trừ \"Kuroo Tetsuro\") từ Ý Chí của mỗi nhân vật được chọn."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng từ trên tay, nếu có 3+ Ý Chí: chọn 2 nhân vật trên sân mình. Với mỗi nhân vật được chọn, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Nekoma (ngoại trừ \"Kuroo Tetsuro\") từ Ý Chí của nhân vật đó."
     },
     "school": "Nekoma",
     "artwork": "Card/Nekoma/Nhan vat/kuroo-tetsuro-2.png",

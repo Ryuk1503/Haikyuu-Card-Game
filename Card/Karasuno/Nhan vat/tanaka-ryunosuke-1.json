@@ -10,7 +10,7 @@
         "block": 1
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, ở lượt tiếp theo của đối phương, mỗi nhân vật Chặn Bóng của đối phương đều bị -2 điểm Chặn khi được triển khai."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng: ở lượt tiếp theo của đối phương, mỗi nhân vật Chặn Bóng của đối phương đều bị -2 điểm Chặn."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/tanaka-ryunosuke-1.png",

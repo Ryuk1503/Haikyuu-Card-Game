@@ -10,7 +10,7 @@
         "block": 1
     },
     "skill": {
-        "description": "[Bỏ thẻ này từ trên tay]: Nếu khu vực Hành Động của đối phương có 1- thẻ, rút 1 thẻ từ bộ bài, +1 điểm bất kì cho 1 nhân vật trường Fukurodani của mình. Sau đó không được kích hoạt năng lực [Kích hoạt] của \"Konoha Akinori\" ở lượt này nữa."
+        "description": "Nếu khu vực Hành Động của đối phương có 1- thẻ, bỏ thẻ này từ trên tay: rút 1 thẻ từ bộ bài, +1 điểm bất kì cho 1 nhân vật trường Fukurodani của mình. Sau đó không được kích hoạt năng lực [Kích hoạt] của \"Konoha Akinori\" ở lượt này nữa."
     },
     "school": "Fukurodani",
     "artwork": "Card/Fukurodani/Nhan vat/konoha-akinori-1.png",

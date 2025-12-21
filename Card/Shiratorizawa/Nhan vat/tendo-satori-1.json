@@ -10,7 +10,7 @@
         "block": 4
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, đặt 1 thẻ trên cùng bộ bài đối phương vào khu vực Loại bỏ. Nếu thẻ đó trùng tên với nhân vật Đập Bóng của đối phương, ngay lập tức Chặn Bóng thành công, sau đó đặt 2 thẻ trên cùng bộ bài đối phương vào khu vực Loại bỏ."
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng: bỏ 1 thẻ trên cùng bộ bài đối phương. Nếu thẻ đó trùng tên với nhân vật Đập Bóng của đối phương: ngay lập tức Chặn Bóng thành công, sau đó bỏ 2 thẻ trên cùng bộ bài đối phương."
     },
     "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/tendo-satori-1.png",

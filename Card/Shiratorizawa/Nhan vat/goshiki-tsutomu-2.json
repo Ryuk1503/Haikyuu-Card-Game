@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Giao Bóng, có thể bỏ 1 thẻ trên tay để đặt 2 thẻ trên cùng bộ bài đối phương vào khu vực Loại bỏ."
+        "description": "Khi thẻ này xuất hiện ở khu vực Giao Bóng, có thể bỏ 1 thẻ trên tay: bỏ 2 thẻ trên cùng bộ bài đối phương."
     },
     "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-2.png",

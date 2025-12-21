@@ -10,7 +10,7 @@
         "block": 3
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ thẻ \"Hyakuzawa Yudai\" không có năng lực ở Ý Chí của nhân vật này, tự +2 điểm Đập."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ thẻ \"Hyakuzawa Yudai\" không có kĩ năng ở Ý Chí của nhân vật này: tự +2 điểm Đập."
     },
     "school": "Kakugawa",
     "artwork": "Card/Kakugawa/Nhan vat/hyakuzawa-yudai-1.png",

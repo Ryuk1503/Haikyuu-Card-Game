@@ -10,7 +10,7 @@
         "block": 3
     },
     "skill": {
-        "description": "Khi thẻ này được triển khai, có thể đặt 1 thẻ Nhân Vật trường Công nghệ Date từ bộ bài vào khu vực Loại bỏ. Xáo lại bộ bài."
+        "description": "Khi thẻ này ra sân: có thể đặt 1 thẻ Nhân Vật trường Công nghệ Date từ bộ bài vào khu vực Loại bỏ. Xáo lại bộ bài."
     },
     "school": "Date Tech",
     "artwork": "Card/Date Tech/Nhan vat/futakuchi-kenji-1.png",

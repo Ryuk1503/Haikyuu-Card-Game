@@ -10,7 +10,7 @@
         "block": 1
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ trên tay để tự +1 điểm Đập. Hoặc nếu thẻ vừa bỏ là thẻ Hành Động, tự +3 điểm Đập."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ trên tay: tự +1 điểm Đập. Hoặc nếu thẻ vừa bỏ là thẻ Hành Động: tự +3 điểm Đập."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/azumane-asahi-2.png",

@@ -10,7 +10,7 @@
         "block": 2
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Giao Bóng, ở lượt tiếp theo của đối phương, khi đối phương thêm thẻ lên tay, rút từ bộ bài của mình số thẻ bằng với số thẻ đối phương đã thêm lên tay."
+        "description": "Khi thẻ này xuất hiện ở khu vực Giao Bóng: ở lượt tiếp theo của đối phương, mỗi khi đối phương thêm thẻ lên tay, rút số thẻ tương ứng từ bộ bài."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/yamaguchi-tadashi-3.png",

@@ -10,7 +10,7 @@
         "block": 1
     },
     "skill": {
-        "description": "Khi thẻ này xuất hiện ở khu vực Đập bóng, hai người chơi bỏ 1 thẻ trên cùng bộ bài của mình vào khu vực Loại bỏ."
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập bóng: hai người chơi bỏ 1 thẻ trên cùng bộ bài của mình."
     },
     "school": "Shiratorizawa",
     "artwork": "Card/Shiratorizawa/Nhan vat/ohira-reon-1.png",
