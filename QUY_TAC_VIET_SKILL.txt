@@ -2,6 +2,27 @@
 QUY TẮC VIẾT SKILL CHO THẺ BÀI
 ===========================================
 
+0. FORMAT COST VÀ HIỆU ỨNG
+-------------------------------------------
+- Nếu có nhiều cost trong ngoặc vuông, viết liền nhau KHÔNG có dấu phẩy:
+  ✓ "[Đỡ][Chặn] +2 điểm..."
+  ✓ "[Đỡ][Chuyền][Đập] Rút 1 thẻ..."
+  ✓ "[Giao][Đỡ][Chuyền][Đập][Chặn] +1 điểm..."
+  ✗ "[Đỡ], [Chặn] +2 điểm..." (sai - có dấu phẩy)
+  
+- Sau cost trong ngoặc vuông, chỉ có khoảng trắng, KHÔNG có dấu hai chấm:
+  ✓ "[Đỡ] +2 điểm Đỡ cho nhân vật..."
+  ✓ "[Chuyền][Đập] +1 điểm bất kì..."
+  ✓ "[Rút] Rút 1 thẻ từ bộ bài..."
+  ✗ "[Đỡ]: +2 điểm Đỡ..." (sai - có dấu hai chấm sau cost trong ngoặc vuông)
+  
+- "Bỏ thẻ này từ trên tay" là một cost đặc biệt, viết không có ngoặc đơn và CÓ dấu hai chấm:
+  ✓ "Bỏ thẻ này từ trên tay: +1 điểm Đỡ..."
+  ✓ "Bỏ thẻ này và 1 thẻ Hành Động từ trên tay: rút 2 thẻ..."
+  ✗ "(Bỏ thẻ này từ trên tay): +1 điểm..." (sai - có ngoặc đơn)
+  ✗ "Bỏ thẻ này từ trên tay +1 điểm..." (sai - thiếu dấu hai chấm)
+
+
 1. CẤU TRÚC ĐIỀU KIỆN (TRIGGER)
 -------------------------------------------
 - "Khi thẻ này xuất hiện ở khu vực [X] từ trên tay"
@@ -55,6 +76,12 @@ QUY TẮC VIẾT SKILL CHO THẺ BÀI
 - "nếu trong số đó có..."
   → Điều kiện về nội dung đã liệt kê
 
+- Sau điều kiện "nếu"/"Nếu" thường có dấu hai chấm ":" trước hành động:
+  ✓ "nếu nhân vật đó là \"Nishinoya Yu\": có thể chọn..."
+  ✓ "Nếu khu vực Hành Động có 2- thẻ: thu hồi..."
+  ✓ "nếu có 3+ Ý Chí: tự +1 điểm Đập"
+  ✓ "nếu nhân vật đó có 3+ Ý Chí: đặt tối đa 1 Ý Chí..."
+
 
 4. HÀNH ĐỘNG (EFFECTS)
 -------------------------------------------
@@ -67,6 +94,22 @@ QUY TẮC VIẾT SKILL CHO THẺ BÀI
   
 - "có thể bỏ X thẻ [Loại] từ [Nguồn] để..."
   → Hành động với cost bỏ thẻ
+  
+- "có thể bỏ X Ý Chí của nhân vật [Y]: [Hành động]"
+  → Hành động với cost Ý Chí, có dấu hai chấm sau cost
+  Ví dụ: "có thể bỏ 2 Ý Chí của 1 nhân vật trường Karasuno khác: thu hồi..."
+  
+- "có thể bỏ X thẻ [Loại] từ trên tay: [Hành động]"
+  → Hành động với cost bỏ thẻ, có dấu hai chấm sau cost
+  Ví dụ: "có thể bỏ 1 thẻ Nhân Vật từ trên tay: thu hồi..."
+  
+- "có thể thu hồi...: [Hành động]"
+  → Hành động với cost thu hồi, có dấu hai chấm sau cost
+  Ví dụ: "có thể thu hồi lên tay tối đa 1 thẻ \"Hinata Shoyo\" từ khu vực Loại bỏ: đưa..."
+  
+- Lưu ý: Cost trong ngoặc vuông [X] KHÔNG có dấu hai chấm sau đó, chỉ có khoảng trắng
+  ✓ "[Đỡ] +2 điểm..."
+  ✗ "[Đỡ]: +2 điểm..." (sai)
   
 - "rút X thẻ từ bộ bài"
   → Rút thẻ
@@ -126,14 +169,39 @@ Ví dụ: "tự +1 điểm Đập. Hoặc nếu nhân vật này có 5+ Ý Chí,
 
 9. VÍ DỤ MINH HỌA
 -------------------------------------------
-✓ ĐÚNG:
-"Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí ở khu vực này, tự +1 điểm Đập."
+✓ ĐÚNG - Format cost trong ngoặc vuông (liền nhau, không dấu phẩy, không dấu hai chấm):
+"[Đỡ] +2 điểm Đỡ cho nhân vật Đỡ Bóng trường Karasuno trên sân mình."
+"[Đỡ][Chặn] +2 điểm Đỡ hoặc Chặn cho 1 nhân vật trường Karasuno trên sân mình."
+"[Đỡ][Chuyền][Đập] Rút 1 thẻ từ bộ bài. Sau đó, +2 điểm bất kì..."
+"[Giao][Đỡ][Chuyền][Đập][Chặn] +1 điểm bất kì cho 1 nhân vật..."
+"[Chuyền][Đập] +1 điểm bất kì cho 1 nhân vật trường Shiratorizawa trên sân mình."
+"[Rút][Đỡ] Rút 1 thẻ từ bộ bài. Nếu trên sân mình có nhân vật..."
 
-"Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3- thẻ trên tay, tự +1 điểm Đập. Hoặc nếu nhân vật này có 5+ Ý Chí, tự +3 điểm Đập."
+✓ ĐÚNG - "Bỏ thẻ này từ trên tay" (có dấu hai chấm):
+"Bỏ thẻ này từ trên tay: +1 điểm Đỡ hoặc Chặn cho một nhân vật trên sân mình."
+"Bỏ thẻ này và 1 thẻ Hành Động từ trên tay: rút 2 thẻ từ bộ bài, +2 điểm Đỡ..."
 
-"Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, nếu có 3+ Ý Chí, chọn 1 thẻ Nhân Vật trường Karasuno từ bộ bài, cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
+✓ ĐÚNG - Điều kiện với dấu hai chấm:
+"Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí: tự +1 điểm Đập."
+"Sau đó, nếu nhân vật đó là \"Nishinoya Yu\": có thể chọn tối đa 1 thẻ..."
+"Nếu khu vực Hành Động có 2- thẻ: thu hồi lên tay tối đa 1 thẻ..."
+"Nếu trên sân mình có nhân vật trường Karasuno hoặc Aobajosai với 3+ Ý Chí: thu hồi..."
+
+✓ ĐÚNG - Hành động với cost (có dấu hai chấm):
+"có thể bỏ 2 Ý Chí của 1 nhân vật trường Karasuno khác: thu hồi lên tay 1 thẻ nhân vật..."
+"có thể bỏ 1 thẻ Nhân Vật từ trên tay: thu hồi lên tay 1 thẻ Nhân Vật Chuyền 2..."
+"có thể thu hồi lên tay tối đa 1 thẻ \"Hinata Shoyo\" từ khu vực Loại bỏ: đưa 1 thẻ..."
+
+✓ ĐÚNG - Trigger và điều kiện:
+"Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí: tự +1 điểm Đập."
+"Khi thẻ này xuất hiện ở khu vực Đập Bóng, có thể bỏ 1 thẻ Nhân Vật từ trên tay: thu hồi..."
+"Khi nhân vật xuất hiện ở khu vực Đỡ Bóng từ trên tay, nếu có 3+ Ý Chí: thu hồi..."
 
 ✗ SAI:
+"[Đỡ], [Chặn] +2 điểm..." → Nên: "[Đỡ][Chặn] +2 điểm..." (có dấu phẩy - sai)
+"[Đỡ]: +2 điểm..." → Nên: "[Đỡ] +2 điểm..." (có dấu hai chấm sau cost trong ngoặc vuông - sai)
+"(Bỏ thẻ này từ trên tay): +1 điểm..." → Nên: "Bỏ thẻ này từ trên tay: +1 điểm..." (có ngoặc đơn - sai)
+"Bỏ thẻ này từ trên tay +1 điểm..." → Nên: "Bỏ thẻ này từ trên tay: +1 điểm..." (thiếu dấu hai chấm - sai)
 "nếu có từ 3 Ý Chí trở lên" → Nên: "nếu có 3+ Ý Chí"
 "nếu trên tay còn từ 3 quân trở xuống" → Nên: "nếu có 3- thẻ trên tay"
 "nếu có từ 3 thẻ trở lên" → Nên: "nếu có 3+ thẻ"
@@ -149,7 +217,14 @@ Ví dụ: "tự +1 điểm Đập. Hoặc nếu nhân vật này có 5+ Ý Chí,
 - Viết hoa các loại thẻ: "Nhân Vật", "Hành Động"
 - Viết hoa "Ý Chí"
 
+- **QUAN TRỌNG - Format cost:**
+  + Nhiều cost trong ngoặc vuông viết LIỀN NHAU, KHÔNG có dấu phẩy: [Đỡ][Chặn]
+  + Sau cost trong ngoặc vuông chỉ có KHOẢNG TRẮNG, KHÔNG có dấu hai chấm: [Đỡ] +2 điểm...
+  + "Bỏ thẻ này từ trên tay" KHÔNG có ngoặc đơn và CÓ dấu hai chấm sau đó: Bỏ thẻ này từ trên tay: +1 điểm...
+  + Điều kiện "nếu"/"Nếu" thường có dấu hai chấm trước hành động: nếu có 3+ Ý Chí: tự +1 điểm...
+  + Hành động với cost "có thể bỏ..." có dấu hai chấm sau cost: có thể bỏ 2 Ý Chí: thu hồi...
+
 ===========================================
-Cập nhật: 2025
+Cập nhật: 2025 - Big Update Format Cost
 ===========================================
 
