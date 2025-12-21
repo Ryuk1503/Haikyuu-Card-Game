@@ -3,7 +3,7 @@
     "rarity": "R",
     "type": "action",
     "skill": {
-        "description": "[Đỡ][Chuyền][Chặn] Rút 1 thẻ từ bộ bài. Sau đó, +2 điểm Đỡ hoặc +2 điểm Chặn cho 1 nhân vật trường Kakugawa trên sân mình, hoặc +1 điểm Chuyền cho nhân vật Chuyền Bóng trường Kakugawa trên sân mình."
+        "description": "[Đỡ], [Chuyền], [Chặn]: Rút 1 thẻ từ bộ bài. Sau đó, +2 điểm Đỡ hoặc +2 điểm Chặn cho 1 nhân vật trường Kakugawa trên sân mình, hoặc +1 điểm Chuyền cho nhân vật Chuyền Bóng trường Kakugawa trên sân mình."
     },
     "artwork": "Card/Kakugawa/Hanh dong/thi-day-cung-la-phong-cach-chien-thang-cua-chung-ta.png"
 }

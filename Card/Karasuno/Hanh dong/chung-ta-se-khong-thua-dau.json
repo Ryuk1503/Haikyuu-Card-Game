@@ -3,7 +3,7 @@
     "rarity": "R",
     "type": "action",
     "skill": {
-        "description": "[Đỡ][Chuyền][Đập] +2 điểm Đỡ hoặc +1 điểm Chuyền hoặc +1 điểm Đập cho 1 nhân vật lớp 12 trường Karasuno trên sân mình. Sau đó, nếu có 1- thẻ Hiệp Đấu, rút 1 thẻ từ bộ bài."
+        "description": "[Đỡ], [Chuyền], [Đập]: +2 điểm Đỡ hoặc +1 điểm Chuyền hoặc +1 điểm Đập cho 1 nhân vật lớp 12 trường Karasuno trên sân mình. Sau đó, nếu có 1- thẻ Hiệp Đấu, rút 1 thẻ từ bộ bài."
     },
     "artwork": "Card/Karasuno/Hanh dong/chung-ta-se-khong-thua-dau.png"
 }

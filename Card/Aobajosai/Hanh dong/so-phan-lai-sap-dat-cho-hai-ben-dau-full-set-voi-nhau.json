@@ -3,7 +3,7 @@
     "rarity": "R",
     "type": "action",
     "skill": {
-        "description": "[Rút][Đỡ] Rút 1 thẻ từ bộ bài. Sau đó, nếu trên sân mình có nhân vật trường Karasuno hoặc Aobajosai với 3+ Ý Chí, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Karasuno hoặc Aobajosai từ khu vực Loại bỏ của mình."
+        "description": "[Rút], [Đỡ]: Rút 1 thẻ từ bộ bài. Sau đó, nếu trên sân mình có nhân vật trường Karasuno hoặc Aobajosai với 3+ Ý Chí, thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Karasuno hoặc Aobajosai từ khu vực Loại bỏ của mình."
     },
     "artwork": "Card/Aobajosai/Hanh dong/so-phan-lai-sap-dat-cho-hai-ben-dau-full-set-voi-nhau.png"
 }
