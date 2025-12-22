@@ -1757,6 +1757,7 @@ body {
 .collection-cards, .deck-cards {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -1764,6 +1765,7 @@ body {
     padding: 5px;
     min-height: 0; /* Important for flex scrolling */
     max-height: 100%; /* Ensure it respects parent height */
+    box-sizing: border-box;
 }
 
 .deck-card-item {
@@ -1779,6 +1781,7 @@ body {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .deck-card-item:hover {
