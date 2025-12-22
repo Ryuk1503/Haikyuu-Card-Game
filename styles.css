@@ -1552,12 +1552,12 @@ body {
    DECK BUILDER MODAL
    ============================================ */
 .deck-builder-content {
-    width: calc(100% - 260px); /* Leave space for preview panel (220px + 40px margin) */
-    max-width: calc(100vw - 260px);
-    max-height: 95vh;
+    width: 1540px;
+    height: 915px;
     display: flex;
     flex-direction: column;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .deck-builder-header {
@@ -1747,8 +1747,8 @@ body {
     gap: 10px;
     cursor: pointer;
     transition: all 0.2s;
-    width: 100%;
-    max-width: 100%;
+    width: calc(100% - 250px);
+    max-width: calc(100% - 250px);
     box-sizing: border-box;
 }
 
