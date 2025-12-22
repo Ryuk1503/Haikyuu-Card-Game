@@ -1590,7 +1590,7 @@ body {
 }
 
 .card-collection {
-    flex: 1;
+    flex: 0 0 50%;
     display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.3);
@@ -1598,10 +1598,13 @@ body {
     padding: 15px;
     border: 1px solid #4ecdc4;
     min-height: 0; /* Important for flex scrolling */
+    min-width: 0; /* Allow flexbox to shrink */
+    max-width: 50%; /* Prevent expansion */
+    box-sizing: border-box;
 }
 
 .current-deck {
-    flex: 1;
+    flex: 0 0 50%;
     display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.3);
@@ -1609,6 +1612,9 @@ body {
     padding: 15px;
     border: 1px solid #4ecdc4;
     min-height: 0; /* Important for flex scrolling */
+    min-width: 0; /* Allow flexbox to shrink */
+    max-width: 50%; /* Prevent expansion */
+    box-sizing: border-box;
 }
 
 .card-collection h3, .current-deck h3 {
