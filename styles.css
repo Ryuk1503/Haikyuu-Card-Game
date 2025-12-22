@@ -1530,6 +1530,8 @@ body {
     padding: 40px 20px;
     text-align: center;
     font-size: 1.1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Action cards in discard modal - same style as in hand */
@@ -1761,7 +1763,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-content: flex-start;
+    align-items: stretch;
     padding: 5px;
     min-height: 0; /* Important for flex scrolling */
     max-height: 100%; /* Ensure it respects parent height */
