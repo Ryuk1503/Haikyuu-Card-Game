@@ -1776,8 +1776,8 @@ body {
     gap: 10px;
     cursor: pointer;
     transition: all 0.2s;
-    width: calc(100% - 250px);
-    max-width: calc(100% - 250px);
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
 }
 
