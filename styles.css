@@ -1552,7 +1552,7 @@ body {
    DECK BUILDER MODAL
    ============================================ */
 .deck-builder-content {
-    width: 1540px;
+    width: 1740px;
     height: 915px;
     display: flex;
     flex-direction: column;
@@ -1587,8 +1587,19 @@ body {
     overflow: hidden;
 }
 
-.card-collection, .current-deck {
-    flex: 1;
+.card-collection {
+    flex: 0 0 calc(50% - 250px);
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #4ecdc4;
+    min-height: 0; /* Important for flex scrolling */
+}
+
+.current-deck {
+    flex: 0 0 calc(50% + 250px);
     display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.3);
@@ -1638,9 +1649,9 @@ body {
 .collection-filters {
     margin-bottom: 15px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .filter-search {
