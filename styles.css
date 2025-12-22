@@ -1588,7 +1588,7 @@ body {
 }
 
 .card-collection {
-    flex: 0 0 calc(50% - 250px);
+    flex: 0 0 calc(50% - 100px);
     display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.3);
@@ -1599,7 +1599,7 @@ body {
 }
 
 .current-deck {
-    flex: 0 0 calc(50% + 250px);
+    flex: 0 0 calc(50% + 100px);
     display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.3);
@@ -1651,18 +1651,37 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .filter-search {
-    flex: 1;
-    min-width: 150px;
+    width: 100%;
     padding: 8px 12px;
     border: 1px solid #4ecdc4;
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.filter-filters-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+
+.collection-filters select {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px;
+    border: 1px solid #4ecdc4;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 0.9rem;
+    box-sizing: border-box;
 }
 
 .filter-search:focus {
@@ -1674,14 +1693,13 @@ body {
     color: #888;
 }
 
-.collection-filters select {
+.filter-filters-row select {
     padding: 8px 12px;
     border: 1px solid #4ecdc4;
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     cursor: pointer;
-    width: auto;
 }
 
 .collection-filters select:focus {
