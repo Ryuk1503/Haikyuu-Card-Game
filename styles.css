@@ -1251,6 +1251,12 @@ body {
     gap: 4px;
 }
 
+/* Hide stats in deck builder preview when action card */
+#deck-builder-preview-panel.preview-action-card .preview-stats,
+.preview-action-card #deck-builder-preview-stats {
+    display: none !important;
+}
+
 .preview-stat {
     display: flex;
     justify-content: space-between;
@@ -1555,7 +1561,7 @@ body {
    ============================================ */
 .deck-builder-content {
     width: 1740px;
-    height: 915px;
+    height: 1115px;
     display: flex;
     flex-direction: column;
     padding: 20px;

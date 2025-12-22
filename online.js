@@ -1213,9 +1213,21 @@ class OnlineGameManager {
             artworkPath = artworkPath.replace('.json', '.png');
         }
         
+        // Get preview panel container
+        const previewPanel = document.getElementById('deck-builder-preview-panel') || document.getElementById('preview-panel');
+        const isAction = card.type === 'action';
+        
+        // Add/remove class to preview panel based on card type
+        if (previewPanel) {
+            if (isAction) {
+                previewPanel.classList.add('preview-action-card');
+            } else {
+                previewPanel.classList.remove('preview-action-card');
+            }
+        }
+        
         if (previewFullCard) {
             if (artworkPath) {
-                const isAction = card.type === 'action';
                 const imgClass = isAction ? 'action-card-preview' : '';
                 previewFullCard.innerHTML = `<img src="${artworkPath}" alt="${displayName}" class="${imgClass}">`;
             } else {
@@ -1235,13 +1247,19 @@ class OnlineGameManager {
         const blockValue = typeof displayStats.block === 'string' ? displayStats.block : (displayStats.block || 0);
         
         if (previewStats) {
-            previewStats.innerHTML = `
-                <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${serveValue}</span></div>
-                <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${receiveValue}</span></div>
-                <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${tossValue}</span></div>
-                <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${attackValue}</span></div>
-                <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${blockValue}</span></div>
-            `;
+            // Hide stats for action cards in deck builder
+            if (isAction && previewStats.id === 'deck-builder-preview-stats') {
+                previewStats.style.display = 'none';
+            } else {
+                previewStats.style.display = 'flex';
+                previewStats.innerHTML = `
+                    <div class="preview-stat" data-stat="serve"><span>Giao:</span><span class="stat-value" data-stat="serve">${serveValue}</span></div>
+                    <div class="preview-stat" data-stat="receive"><span>Đỡ:</span><span class="stat-value" data-stat="receive">${receiveValue}</span></div>
+                    <div class="preview-stat" data-stat="toss"><span>Chuyền:</span><span class="stat-value" data-stat="toss">${tossValue}</span></div>
+                    <div class="preview-stat" data-stat="attack"><span>Đập:</span><span class="stat-value" data-stat="attack">${attackValue}</span></div>
+                    <div class="preview-stat" data-stat="block"><span>Chặn:</span><span class="stat-value" data-stat="block">${blockValue}</span></div>
+                `;
+            }
             // No click handlers for stat modification in deck builder
         }
         
