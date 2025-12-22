@@ -1417,9 +1417,11 @@ body {
     z-index: 4000;
 }
 
-/* Deck builder modal - leave space for preview panel */
+/* Deck builder modal - fill full screen but leave space for preview panel */
 #deck-builder-modal {
-    width: calc(100% - 260px); /* 220px preview + 40px margin */
+    width: 100%;
+    padding-right: 260px; /* 220px preview + 40px margin */
+    box-sizing: border-box;
 }
 
 .modal.show {
@@ -1550,8 +1552,8 @@ body {
    DECK BUILDER MODAL
    ============================================ */
 .deck-builder-content {
-    width: calc(100% - 280px); /* Leave space for preview panel (220px + 60px margin) */
-    max-width: calc(100vw - 280px);
+    width: calc(100% - 260px); /* Leave space for preview panel (220px + 40px margin) */
+    max-width: calc(100vw - 260px);
     max-height: 95vh;
     display: flex;
     flex-direction: column;
@@ -1594,11 +1596,6 @@ body {
     padding: 15px;
     border: 1px solid #4ecdc4;
     min-height: 0; /* Important for flex scrolling */
-}
-
-.current-deck {
-    min-width: 0;
-    overflow: visible;
 }
 
 .card-collection h3, .current-deck h3 {
@@ -1728,25 +1725,13 @@ body {
     color: #ff6b6b;
 }
 
-.collection-cards {
+.collection-cards, .deck-cards {
     flex: 1;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-content: flex-start;
-    padding: 5px;
-    min-height: 0; /* Important for flex scrolling */
-    max-height: 100%; /* Ensure it respects parent height */
-}
-
-.deck-cards {
-    flex: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
     padding: 5px;
     min-height: 0; /* Important for flex scrolling */
     max-height: 100%; /* Ensure it respects parent height */
