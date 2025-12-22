@@ -1663,13 +1663,16 @@ body {
 .collection-filters {
     margin-bottom: 15px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
-    align-items: stretch;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .filter-search {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     padding: 8px 12px;
     border: 1px solid #4ecdc4;
     border-radius: 5px;
@@ -1683,18 +1686,19 @@ body {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    width: 100%;
+    flex-shrink: 0;
 }
 
 .collection-filters select {
-    flex: 1;
-    min-width: 0;
+    width: auto;
+    min-width: 120px;
     padding: 8px 12px;
     border: 1px solid #4ecdc4;
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     font-size: 0.9rem;
+    cursor: pointer;
     box-sizing: border-box;
 }
 
@@ -1708,12 +1712,16 @@ body {
 }
 
 .filter-filters-row select {
+    width: auto;
+    min-width: 120px;
     padding: 8px 12px;
     border: 1px solid #4ecdc4;
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     cursor: pointer;
+    font-size: 0.9rem;
+    box-sizing: border-box;
 }
 
 .collection-filters select:focus {
