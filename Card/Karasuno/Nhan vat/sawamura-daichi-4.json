@@ -1,0 +1,20 @@
+{
+    "id": "HV11-005",
+    "name": "Sawamura Daichi",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 1,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đỡ Bóng, nếu khu vực Loại bỏ của mình có 5+ thẻ Nhân Vật trường Karasuno khác tên nhau: tự +2 điểm Đỡ."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/sawamura-daichi-4.png",
+    "class": 12,
+    "position": "Libero"
+}
+

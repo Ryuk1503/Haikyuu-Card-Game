@@ -1,0 +1,20 @@
+{
+    "id": "HV11-006",
+    "name": "Sugawara Koshi",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 0,
+        "toss": 1,
+        "attack": 2,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu có 3+ Ý Chí: ở lượt tiếp theo, đối phương không được phép đưa ra nhân vật Đỡ Bóng có điểm Đỡ gốc 4+. Nếu có 5+ Ý Chí: tự +2 điểm Đập."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-4.png",
+    "class": 12,
+    "position": "Chuyền 2"
+}
+

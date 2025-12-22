@@ -1,0 +1,20 @@
+{
+    "id": "HV11-008",
+    "name": "Tsukishima Kei",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, nếu khu vực Loại bỏ của mình có 5+ thẻ Nhân Vật trường Karasuno khác tên nhau: tự +2 điểm Chặn."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-5.png",
+    "class": 10,
+    "position": "Chặn Giữa"
+}
+

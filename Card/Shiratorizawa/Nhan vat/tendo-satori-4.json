@@ -1,0 +1,20 @@
+{
+    "id": "HV11-021",
+    "name": "Tendo Satori",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 2,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi nhân vật \"Ushijima Wakatoshi\" xuất hiện trên thẻ này ở khu vực Đập Bóng: chọn 1 thẻ Nhân Vật ở khu vực Loại bỏ của mình và thêm vào Ý Chí của nhân vật Đập Bóng."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/tendo-satori-4.png",
+    "class": 12,
+    "position": "Chặn Giữa"
+}
+

@@ -1,0 +1,20 @@
+{
+    "id": "HV11-020",
+    "name": "Goshiki Tsutomu",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu trên sân mình có nhân vật \"Ushijima Wakatoshi\" hoặc \"Ohira Reon\": hai người chơi đặt 1 thẻ trên cùng bộ bài của mình vào khu vực Loại bỏ, ở lượt tiếp theo của đối phương, đối phương không được phép đưa ra nhân vật Đỡ Bóng có điểm Đỡ gốc 5+."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/goshiki-tsutomu-5.png",
+    "class": 10,
+    "position": "Đập Biên"
+}
+

@@ -1,0 +1,20 @@
+{
+    "id": "HV11-007",
+    "name": "Tanaka Ryunosuke",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 2,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi nhân vật Đập Bóng trường Karasuno xuất hiện trên sân mình, có thể đặt 2 thẻ từ khu vực Hành Động vào khu vực Loại bỏ: chuyển thẻ này từ khu vực Đỡ Bóng sang khu vực Đập Bóng và tự +2 điểm Đập."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/tanaka-ryunosuke-4.png",
+    "class": 11,
+    "position": "Đập Biên"
+}
+

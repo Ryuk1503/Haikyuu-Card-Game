@@ -1,0 +1,20 @@
+{
+    "id": "HV11-017",
+    "name": "Semi Eita",
+    "rarity": "R",
+    "stats": {
+        "serve": 5,
+        "receive": 0,
+        "toss": 1,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Giao Bóng từ trên tay: đặt tối đa 1 Ý Chí của 1 nhân vật trên sân đối phương vào khu vực Loại bỏ."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/semi-eita-2.png",
+    "class": 12,
+    "position": "Giao Bóng"
+}
+

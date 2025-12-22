@@ -1,0 +1,20 @@
+{
+    "id": "HV11-002",
+    "name": "Hinata Shoyo",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, có thể đặt thẻ \"Anh đây sẽ yểm trợ cho chú mày!!!\" từ khu vực Hành Động vào khu vực Loại bỏ: rút 1 thẻ từ bộ bài, tự +1 điểm Chặn."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/hinata-shouyo-5.png",
+    "class": 10,
+    "position": "Đập Biên"
+}
+

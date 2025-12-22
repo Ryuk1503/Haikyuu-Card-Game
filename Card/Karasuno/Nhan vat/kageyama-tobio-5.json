@@ -1,0 +1,20 @@
+{
+    "id": "HV11-004",
+    "name": "Kageyama Tobio",
+    "rarity": "R",
+    "stats": {
+        "serve": 4,
+        "receive": 1,
+        "toss": 1,
+        "attack": 0,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi nhân vật Chuyền Bóng trường Karasuno xuất hiện trên sân mình: có thể chuyển nhân vật này từ khu vực Giao Bóng sang khu vực Chuyền Bóng và tự +1 điểm Chuyền."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-5.png",
+    "class": 10,
+    "position": "Chuyền 2"
+}
+

@@ -1,0 +1,20 @@
+{
+    "id": "HV11-015",
+    "name": "Shirabu Kenjiro",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 2,
+        "toss": 1,
+        "attack": 0,
+        "block": 1
+    },
+    "skill": {
+        "description": "Trên sân mình, khi thẻ này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có nhân vật Đỡ Bóng trường Shiratorizawa: có thể thu hồi lên tay tối đa 2 Ý Chí của 1 nhân vật trên sân đối phương."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/shirabu-kenjiro-4.png",
+    "class": 11,
+    "position": "Chuyền 2"
+}
+

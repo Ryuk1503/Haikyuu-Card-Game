@@ -1,0 +1,20 @@
+{
+    "id": "HV11-022",
+    "name": "Tendo Satori",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 1,
+        "toss": 0,
+        "attack": 1,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chặn Bóng, có thể đặt 2 thẻ từ khu vực Hành Động vào khu vực Loại bỏ: tự +2 điểm Chặn. Nếu khu vực Loại bỏ của đối phương có 10+ thẻ: trong lượt tiếp theo của đối phương, đối phương chỉ Đỡ Bóng thành công với điểm Đỡ từ 7 trở lên."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/tendo-satori-5.png",
+    "class": 12,
+    "position": "Chặn Giữa"
+}
+

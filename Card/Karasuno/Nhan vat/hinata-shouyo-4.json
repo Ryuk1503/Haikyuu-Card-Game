@@ -1,0 +1,20 @@
+{
+    "id": "HV11-001",
+    "name": "Hinata Shoyo",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 1,
+        "toss": 0,
+        "attack": 3,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu khu vực Loại bỏ của mình có 5+ thẻ Nhân Vật trường Karasuno khác tên nhau: có thể sử dụng tổng cộng 5 Ý Chí của các nhân vật trên sân mình để tự +3 điểm Đập."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/hinata-shouyo-4.png",
+    "class": 10,
+    "position": "Đập Biên"
+}
+

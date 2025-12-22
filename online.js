@@ -207,7 +207,6 @@ class OnlineGameManager {
         this.socket.on('connect', () => {
             console.log('Connected to server');
             this.isConnected = true;
-            this.updateLobbyInfo('Đã kết nối! Tạo phòng hoặc chọn từ danh sách.');
         });
         
         this.socket.on('disconnect', () => {
@@ -265,8 +264,6 @@ class OnlineGameManager {
         
         // Waiting room
         this.waitingRoomEl = document.getElementById('waiting-room');
-        this.roomCodeDisplay = document.getElementById('room-code-display');
-        this.btnCopyCode = document.getElementById('btn-copy-code');
         this.slotP1Name = document.getElementById('slot-p1-name');
         this.slotP2Name = document.getElementById('slot-p2-name');
         this.statusP1 = document.getElementById('status-p1');
@@ -314,9 +311,6 @@ class OnlineGameManager {
         }
         if (this.btnRefreshRooms) {
             this.btnRefreshRooms.addEventListener('click', () => this.refreshRoomList());
-        }
-        if (this.btnCopyCode) {
-            this.btnCopyCode.addEventListener('click', () => this.copyRoomCode());
         }
         if (this.btnStartGame) {
             this.btnStartGame.addEventListener('click', () => this.startGame());
@@ -437,21 +431,8 @@ class OnlineGameManager {
         
         // Reconnect
         this.initSocket();
-        this.updateLobbyInfo('Đã rời phòng. Tạo phòng mới hoặc tham gia!');
     }
     
-    copyRoomCode() {
-        if (this.roomId) {
-            navigator.clipboard.writeText(this.roomId).then(() => {
-                if (this.btnCopyCode) {
-                this.btnCopyCode.textContent = '✓ Đã copy!';
-                setTimeout(() => {
-                    this.btnCopyCode.textContent = '📋 Copy';
-                }, 2000);
-                }
-            });
-        }
-    }
     
     sendDeckSelection() {
         const deck = this.getCurrentDeck();
@@ -521,12 +502,9 @@ class OnlineGameManager {
         if (this.deckSelectionSection) this.deckSelectionSection.classList.add('hidden');
         if (this.waitingRoomEl) this.waitingRoomEl.classList.remove('hidden');
         
-        if (this.roomCodeDisplay) this.roomCodeDisplay.textContent = this.roomId;
         if (this.slotP1Name) this.slotP1Name.textContent = data.playerName;
         if (this.statusP1) this.statusP1.textContent = '✓ Đã vào';
         document.getElementById('slot-p1')?.classList.add('joined');
-        
-        this.updateLobbyInfo('Đang chờ đối thủ... Chia sẻ mã phòng cho bạn bè!');
     }
     
     onRoomJoined(data) {
@@ -541,8 +519,6 @@ class OnlineGameManager {
         if (this.deckSelectionSection) this.deckSelectionSection.classList.add('hidden');
         if (this.waitingRoomEl) this.waitingRoomEl.classList.remove('hidden');
         
-        if (this.roomCodeDisplay) this.roomCodeDisplay.textContent = this.roomId;
-        
         if (this.playerNumber === 2) {
             if (this.slotP1Name) this.slotP1Name.textContent = data.opponentName;
             if (this.statusP1) this.statusP1.textContent = '✓ Đã vào';
@@ -553,15 +529,12 @@ class OnlineGameManager {
             document.getElementById('slot-p2')?.classList.add('joined');
         }
         
-        this.updateLobbyInfo('Đã vào phòng! Đang chờ bắt đầu...');
     }
     
     onOpponentJoined(data) {
         if (this.slotP2Name) this.slotP2Name.textContent = data.opponentName;
         if (this.statusP2) this.statusP2.textContent = '✓ Đã vào';
         document.getElementById('slot-p2')?.classList.add('joined');
-        
-        this.updateLobbyInfo('Đối thủ đã vào! Sẵn sàng bắt đầu.');
     }
     
     onRoomReady(data) {
@@ -575,9 +548,6 @@ class OnlineGameManager {
         // Only player 1 can start
         if (this.playerNumber === 1) {
             if (this.btnStartGame) this.btnStartGame.disabled = false;
-            this.updateLobbyInfo('Sẵn sàng! Nhấn "Bắt đầu trận đấu" để chơi.');
-        } else {
-            this.updateLobbyInfo('Sẵn sàng! Đợi Player 1 bắt đầu trận đấu.');
         }
     }
     
@@ -1275,7 +1245,7 @@ class OnlineGameManager {
             // No click handlers for stat modification in deck builder
         }
         
-        // Show school and class (only for character cards, not action cards)
+        // Show school, class, and position (only for character cards, not action cards)
         const previewSchoolClass = document.getElementById('deck-builder-preview-school-class') || document.getElementById('preview-school-class');
         if (previewSchoolClass) {
             const isActionCard = card.type === 'action';
@@ -1284,17 +1254,17 @@ class OnlineGameManager {
                 const school = jsonData?.school || card.school || '';
                 previewSchoolClass.textContent = school || '';
             } else {
-                // For character cards, show school and class
+                // For character cards, show school, class, and position
                 const school = jsonData?.school || card.school || '';
                 const cardClass = jsonData?.class || jsonData?.grade || '';
-                if (school || cardClass) {
+                const position = jsonData?.position || card.position || '';
+                if (school || cardClass || position) {
                     let schoolClassText = '';
-                    if (school) schoolClassText += school;
-                    if (cardClass) {
-                        if (schoolClassText) schoolClassText += ' → ';
-                        schoolClassText += `Lớp ${cardClass}`;
-                    }
-                    previewSchoolClass.textContent = schoolClassText;
+                    const parts = [];
+                    if (school) parts.push(school);
+                    if (cardClass) parts.push(`Lớp ${cardClass}`);
+                    if (position) parts.push(position);
+                    previewSchoolClass.textContent = parts.join(', ');
                 } else {
                     previewSchoolClass.textContent = '';
                 }

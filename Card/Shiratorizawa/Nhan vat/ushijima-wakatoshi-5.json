@@ -1,0 +1,20 @@
+{
+    "id": "HV11-013",
+    "name": "Ushijima Wakatoshi",
+    "rarity": "R",
+    "stats": {
+        "serve": 4,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng, nếu có 3+ Ý Chí: nếu trên sân đối phương, trừ nhân vật Giao Bóng, có nhân vật có 2- Ý Chí: tự +2 điểm Đập. Hoặc nếu đối phương có ít nhất 2 nhân vật với 2- Ý Chí: tự +4 điểm Đập."
+    },
+    "school": "Shiratorizawa",
+    "artwork": "Card/Shiratorizawa/Nhan vat/ushijima-wakatoshi-5.png",
+    "class": 12,
+    "position": "Đập Biên"
+}
+

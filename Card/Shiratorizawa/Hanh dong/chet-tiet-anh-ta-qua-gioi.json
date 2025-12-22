@@ -1,0 +1,10 @@
+{
+    "name": "Chết tiệt! Anh ta quá giỏi…!!!",
+    "rarity": "R",
+    "type": "action",
+    "skill": {
+        "description": "[Đập] +1 điểm Đập cho nhân vật Đập Bóng trường Shiratorizawa trên sân mình. Sau đó, nếu nhân vật đó là \"Ushijima Wakatoshi\": ở lượt tiếp theo của đối phương, ngoại trừ khu vực Chuyền Bóng, đối phương không được phép đưa ra nhân vật Chặn Giữa từ trên tay."
+    },
+    "artwork": "Card/Shiratorizawa/Hanh dong/chet-tiet-anh-ta-qua-gioi.png"
+}
+

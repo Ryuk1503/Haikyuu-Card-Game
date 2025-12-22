@@ -2246,7 +2246,7 @@ class HaikyuuCardGame {
             previewName.textContent = displayName;
         }
         
-        // Show school and class (only for character cards, not action cards)
+        // Show school, class, and position (only for character cards, not action cards)
         const previewSchoolClass = document.getElementById('preview-school-class');
         if (previewSchoolClass) {
             const isActionCard = card.type === 'action';
@@ -2255,17 +2255,17 @@ class HaikyuuCardGame {
                 const school = jsonData?.school || card.school || '';
                 previewSchoolClass.textContent = school || '';
             } else {
-                // For character cards, show school and class
+                // For character cards, show school, class, and position
                 const school = jsonData?.school || card.school || '';
                 const cardClass = jsonData?.class || jsonData?.grade || '';
-                if (school || cardClass) {
+                const position = jsonData?.position || card.position || '';
+                if (school || cardClass || position) {
                     let schoolClassText = '';
-                    if (school) schoolClassText += school;
-                    if (cardClass) {
-                        if (schoolClassText) schoolClassText += ' → ';
-                        schoolClassText += `Lớp ${cardClass}`;
-                    }
-                    previewSchoolClass.textContent = schoolClassText;
+                    const parts = [];
+                    if (school) parts.push(school);
+                    if (cardClass) parts.push(`Lớp ${cardClass}`);
+                    if (position) parts.push(position);
+                    previewSchoolClass.textContent = parts.join(', ');
                 } else {
                     previewSchoolClass.textContent = '';
                 }

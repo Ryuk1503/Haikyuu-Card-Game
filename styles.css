@@ -525,9 +525,10 @@ body {
 
 .room-actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 15px;
     align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -1625,8 +1626,8 @@ body {
 .collection-filters {
     margin-bottom: 15px;
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    flex-wrap: wrap;
 }
 
 .filter-search {
@@ -1656,6 +1657,7 @@ body {
     background: rgba(0, 0, 0, 0.5);
     color: white;
     cursor: pointer;
+    width: 100%;
 }
 
 .collection-filters select:focus {
@@ -1714,7 +1716,7 @@ body {
     flex: 1;
     overflow-y: auto;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 10px;
     align-content: flex-start;
     padding: 5px;
@@ -1732,7 +1734,9 @@ body {
     gap: 10px;
     cursor: pointer;
     transition: all 0.2s;
-    min-width: 180px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .deck-card-item:hover {
@@ -1778,12 +1782,17 @@ body {
 .deck-card-item .card-info {
     flex: 1;
     text-align: left;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .deck-card-item .card-info .name {
     color: white;
     font-weight: bold;
     font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .deck-card-item .card-info .school {
@@ -1801,6 +1810,8 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .deck-card-item .count-controls button {
