@@ -1,0 +1,20 @@
+{
+    "id": "HV11-023",
+    "school": "Trường khác",
+    "class": null,
+    "position": null,
+    "name": "Tsukishima Kei",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 1,
+        "toss": 0,
+        "attack": 1,
+        "block": 1
+    },
+    "skill": {
+        "description": "Bỏ thẻ này từ trên tay: chọn tối đa 1 thẻ \"Tsukishima Kei\" hoặc \"Yamaguchi Tadashi\" từ bộ bài cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài. Sau đó, trong lượt này không được phép kích hoạt năng lực [Kích hoạt] của \"Tsukishima Kei\" nữa."
+    },
+    "artwork": "Card/Trường khác/Nhan vat/tsukishima-kei-1.png"
+}
+

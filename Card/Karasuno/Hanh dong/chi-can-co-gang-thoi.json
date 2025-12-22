@@ -1,0 +1,10 @@
+{
+    "name": "Chỉ cần cố gắng thôi.",
+    "rarity": "R",
+    "type": "action",
+    "skill": {
+        "description": "[Đập] +1 điểm Đập cho 1 nhân vật trường Karasuno trên sân mình. Sau đó, có thể đặt 4 thẻ từ khu vực Hành Động vào khu vực Loại bỏ: +3 điểm Đập cho nhân vật đó thay vì 1 điểm Đập."
+    },
+    "artwork": "Card/Karasuno/Hanh dong/chi-can-co-gang-thoi.png"
+}
+
