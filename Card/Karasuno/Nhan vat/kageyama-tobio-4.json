@@ -10,7 +10,7 @@
         "block": 0
     },
     "skill": {
-        "description": "Kết thúc giai đoạn Đập Bóng của mình, nếu nhân vật này đang ở khu vực Chuyền Bóng và khu vực Loại bỏ của mình có 5+ thẻ Nhân Vật trường Karasuno khác tên nhau: có thể đặt 1 thẻ trên tay vào khu vực Loại bỏ để tự +1 điểm Chuyền, ở lượt tiếp theo của đối phương, đối phương không được phép sử dụng năng lực."
+        "description": "Kết thúc giai đoạn Đập Bóng của mình, nếu nhân vật này đang ở khu vực Chuyền Bóng và khu vực Loại bỏ của mình có 5+ thẻ Nhân Vật trường Karasuno khác tên nhau: có thể đặt 1 thẻ trên tay vào khu vực Loại bỏ để tự +1 điểm Chuyền, ở lượt tiếp theo của đối phương, đối phương không được phép sử dụng kĩ năng [Kích hoạt]."
     },
     "school": "Karasuno",
     "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-4.png",
