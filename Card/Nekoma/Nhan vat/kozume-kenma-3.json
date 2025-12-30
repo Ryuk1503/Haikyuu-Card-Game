@@ -1,0 +1,20 @@
+{
+    "id": "HV11-026",
+    "name": "Kozume Kenma",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 2,
+        "toss": 1,
+        "attack": 0,
+        "block": 2
+    },
+    "skill": {
+        "description": "Trên sân mình, khi nhân vật Đập Bóng xuất hiện từ trên tay, nếu thẻ này là nhân vật Chuyền Bóng và có 3+ Ý Chí: có thể đưa 1 thẻ Nhân Vật trường Nekoma từ Ý Chí của nhân vật Đập Bóng trở lại khu vực Đập Bóng."
+    },
+    "school": "Nekoma",
+    "artwork": "Card/Nekoma/Nhan vat/kozume-kenma-3.png",
+    "class": 11,
+    "position": "Chuyền 2"
+}
+

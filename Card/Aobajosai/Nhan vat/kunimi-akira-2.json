@@ -1,0 +1,20 @@
+{
+    "id": "HV08-006",
+    "name": "Kunimi Akira",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 2,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi nhân vật này xuất hiện ở khu vực Đập Bóng, nếu trên tay đối phương có 2- thẻ: tự +2 điểm Đập."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/kunimi-akira-2.png",
+    "class": 11,
+    "position": "Đập Biên"
+}
+

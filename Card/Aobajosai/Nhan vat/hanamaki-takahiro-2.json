@@ -1,0 +1,20 @@
+{
+    "id": "HV08-008",
+    "name": "Hanamaki Takahiro",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 2,
+        "toss": 1,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi nhân vật này xuất hiện ở khu vực Chuyền Bóng hoặc Đập Bóng từ trên tay và có 3+ Ý Chí, nếu trên tay đối phương có 4+ thẻ: đối phương đặt 1 thẻ từ trên tay vào khu vực Loại bỏ."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/hanamaki-takahiro-2.png",
+    "class": 12,
+    "position": "Đập Biên"
+}
+

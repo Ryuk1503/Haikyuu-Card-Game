@@ -1,0 +1,12 @@
+{
+    "id": "HV08-005",
+    "name": "Anh cũng nghĩ vậy đấy☆",
+    "rarity": "R",
+    "skill": {
+        "description": "[Giao][Đập] Có thể chỉ định tên 1 thẻ. Ở lượt tiếp theo của đối phương, nếu đối phương đưa ra nhân vật Đập Bóng trùng với tên thẻ được chỉ định: nhân vật Đập Bóng này bị -3 điểm Đập và mình được phép rút 2 thẻ từ bộ bài."
+    },
+    "school": "Aobajosai",
+    "type": "action",
+    "artwork": "Card/Aobajosai/Hanh dong/anh-cung-nghi-vay-day.png"
+}
+

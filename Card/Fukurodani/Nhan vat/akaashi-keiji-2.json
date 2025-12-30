@@ -1,0 +1,20 @@
+{
+    "id": "HV11-027",
+    "name": "Akaashi Keiji",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 1,
+        "toss": 1,
+        "attack": 0,
+        "block": 2
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Chuyền Bóng, nếu khu vực Hành Động của đối phương có 1- thẻ: thu hồi lên tay tối đa 1 thẻ Nhân Vật trường Fukurodani từ khu vực Loại Bỏ."
+    },
+    "school": "Fukurodani",
+    "artwork": "Card/Fukurodani/Nhan vat/akaashi-keiji-2.png",
+    "class": 11,
+    "position": "Chuyền 2"
+}
+

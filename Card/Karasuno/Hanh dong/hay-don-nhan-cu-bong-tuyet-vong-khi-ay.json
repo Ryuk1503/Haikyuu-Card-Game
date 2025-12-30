@@ -1,0 +1,12 @@
+{
+    "id": "HV08-004",
+    "name": "Hãy đón nhận cú bóng tuyệt vọng khi ấy!!!",
+    "rarity": "R",
+    "skill": {
+        "description": "[Đập] +1 điểm Đập cho nhân vật Đập Bóng trường Karasuno trên sân mình. Nếu nhân vật Chuyền Bóng là \"Kageyama Tobio\" và nhân vật Đập Bóng là \"Hinata Shoyo\": ở lượt tiếp theo của đối phương, nếu thắng được hiệp đấu thì được phép rút 7 thẻ thay vì 6 ở giai đoạn chuẩn bị. Sau đó, trong lượt này, không được phép sử dụng thẻ \"Hãy đón nhận cú bóng tuyệt vọng khi ấy!!!\" nữa."
+    },
+    "school": "Karasuno",
+    "type": "action",
+    "artwork": "Card/Karasuno/Hanh dong/hay-don-nhan-cu-bong-tuyet-vong-khi-ay.png"
+}
+

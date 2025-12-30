@@ -1,0 +1,20 @@
+{
+    "id": "HV08-016",
+    "name": "Onagawa Taro",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 3,
+        "toss": 0,
+        "attack": 0,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi nhân vật này xuất hiện ở khu vực Đỡ Bóng, có thể đặt 1 thẻ Nhân Vật trường Date Tech từ trên tay vào khu vực Loại bỏ: tự cộng số điểm Đỡ bằng số điểm Chặn gốc của nhân vật đã đặt vào khu vực Loại bỏ."
+    },
+    "school": "Date Tech",
+    "artwork": "Card/Date Tech/Nhan vat/onagawa-taro-1.png",
+    "class": 11,
+    "position": "Đập Biên"
+}
+

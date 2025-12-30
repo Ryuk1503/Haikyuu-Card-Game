@@ -1,0 +1,12 @@
+{
+    "id": "HV11-035",
+    "name": "Cú giao đầu tiên nhờ cả vào cậu.",
+    "rarity": "R",
+    "skill": {
+        "description": "[Giao][Chuyền] Rút 1 thẻ từ bộ bài. Sau đó, nếu nhân vật Giao Bóng trên sân mình là \"Oikawa Toru\": rút 1 thẻ từ bộ bài. Sau đó, trong lượt này, không được phép sử dụng thẻ \"Cú giao đầu tiên nhờ cả vào cậu.\" nữa."
+    },
+    "school": "Aobajosai",
+    "type": "action",
+    "artwork": "Card/Aobajosai/Hanh dong/cu-giao-dau-tien-nho-ca-vao-cau.png"
+}
+

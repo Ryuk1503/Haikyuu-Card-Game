@@ -1,0 +1,20 @@
+{
+    "id": "HV11-034",
+    "name": "Koganegawa Kanji",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 0,
+        "toss": 1,
+        "attack": 3,
+        "block": 4
+    },
+    "skill": {
+        "description": ""
+    },
+    "school": "Date Tech",
+    "artwork": "Card/Date Tech/Nhan vat/koganegawa-kanji-2.png",
+    "class": 10,
+    "position": "Chuyền 2"
+}
+

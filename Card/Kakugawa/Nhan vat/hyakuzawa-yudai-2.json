@@ -1,0 +1,20 @@
+{
+    "id": "HV11-028",
+    "name": "Hyakuzawa Yudai",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu ở Ý Chí của nhân vật này có 5+ thẻ \"Hyakuzawa Yudai\": tự +3 điểm Đập. Sau đó, ở lượt tiếp theo của đối phương, đối phương chỉ được đưa ra tối đa 1 nhân vật Chặn Bóng."
+    },
+    "school": "Kakugawa",
+    "artwork": "Card/Kakugawa/Nhan vat/hyakuzawa-yudai-2.png",
+    "class": 10,
+    "position": "Đập Biên"
+}
+

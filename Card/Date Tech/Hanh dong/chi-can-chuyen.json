@@ -1,0 +1,12 @@
+{
+    "id": "HV08-009",
+    "name": "Chỉ cần chuyền",
+    "rarity": "R",
+    "skill": {
+        "description": "[Chuyền] +1 điểm Chuyền cho nhân vật Chuyền Bóng \"Koganegawa Kanji\" trên sân mình. Sau đó, nếu nhân vật Chuyền Bóng trên sân mình là \"Koganegawa Kanji\" và khu vực Loại bỏ của mình có 4+ thẻ Nhân Vật trường Date Tech: đối phương không được đưa ra nhân vật Chặn Bóng ở lượt tiếp theo."
+    },
+    "school": "Date Tech",
+    "type": "action",
+    "artwork": "Card/Date Tech/Hanh dong/chi-can-chuyen.png"
+}
+

@@ -1,0 +1,20 @@
+{
+    "id": "HV11-031",
+    "name": "Ennoshita Chikara",
+    "rarity": "R",
+    "stats": {
+        "serve": 0,
+        "receive": 0,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Bỏ thẻ này từ trên tay: Rút 1 thẻ từ bộ bài. Sau đó, ở lượt tiếp theo của đối phương, nếu họ đưa ra nhân vật Đập Bóng trùng tên với nhân vật Đập Bóng đang có sẵn trên sân thì không được phép kích hoạt kĩ năng của nhân vật đó."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/ennoshita-chikara-2.png",
+    "class": 11,
+    "position": "Đập Biên"
+}
+

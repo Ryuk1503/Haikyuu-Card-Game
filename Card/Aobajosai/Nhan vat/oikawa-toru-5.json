@@ -1,0 +1,20 @@
+{
+    "id": "HV08-012",
+    "name": "Oikawa Toru",
+    "rarity": "R",
+    "stats": {
+        "serve": 4,
+        "receive": 0,
+        "toss": 1,
+        "attack": 0,
+        "block": 2
+    },
+    "skill": {
+        "description": "Khi nhân vật này xuất hiện ở khu vực Chuyền Bóng, có thể đặt 1 thẻ Nhân Vật từ trên tay vào khu vực Loại bỏ: tấn công từ hàng sau. (Kết thúc lượt này. Ở lượt tiếp theo của đối phương, đối phương không thể đưa ra nhân vật Chặn Bóng và chỉ Đỡ Bóng thành công khi điểm Đỡ lớn hơn hoặc bằng 3.)"
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/oikawa-toru-5.png",
+    "class": 12,
+    "position": "Chuyền 2"
+}
+

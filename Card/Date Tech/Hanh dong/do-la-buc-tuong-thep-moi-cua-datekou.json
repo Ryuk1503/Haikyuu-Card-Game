@@ -1,0 +1,12 @@
+{
+    "id": "HV08-011",
+    "name": "Đó là bức tường thép mới của Datekou",
+    "rarity": "R",
+    "skill": {
+        "description": "[Rút][Chặn] Nếu khu vực Loại bỏ trên sân mình có 4+ thẻ Nhân Vật trường Date Tech: có thể đặt 2 thẻ từ trên tay vào khu vực Loại bỏ. Sau đó, chọn tối đa 3 thẻ Nhân Vật trường Date Tech khác tên nhau từ bộ bài cho đối phương xem rồi thêm lên tay, xáo lại bộ bài."
+    },
+    "school": "Date Tech",
+    "type": "action",
+    "artwork": "Card/Date Tech/Hanh dong/do-la-buc-tuong-thep-moi-cua-datekou.png"
+}
+

@@ -1,0 +1,20 @@
+{
+    "id": "HV11-037",
+    "name": "Kyotani Kentaro",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 1,
+        "toss": 0,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi nhân vật này xuất hiện ở khu vực Đập Bóng, được phép đặt 1 thẻ trên tay vào khu vực Loại Bỏ để thu hồi lên tay tối đa 2 thẻ Nhân Vật trường Aobajosai từ Ý Chí của 1 nhân vật trên sân mình."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/kyotani-kentaro-3.png",
+    "class": 12,
+    "position": "Đập Biên"
+}
+

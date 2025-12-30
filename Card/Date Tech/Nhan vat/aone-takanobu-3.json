@@ -1,0 +1,20 @@
+{
+    "id": "HV11-033",
+    "name": "Aone Takanobu",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 2,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng hoặc khu vực Chặn Bóng, nếu khu vực Loại Bỏ của mình có 5+ thẻ Nhân Vật trường Công Nghệ Date, có thể chọn tối đa 1 thẻ Nhân Vật trường Công Nghệ Date (ngoại trừ \"Aone Takanobu\") từ bộ bài cho đối phương xem rồi thêm lên tay. Xáo lại bộ bài."
+    },
+    "school": "Date Tech",
+    "artwork": "Card/Date Tech/Nhan vat/aone-takanobu-3.png",
+    "class": 11,
+    "position": "Chặn Giữa"
+}
+

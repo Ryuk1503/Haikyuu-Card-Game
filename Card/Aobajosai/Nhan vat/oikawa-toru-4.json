@@ -1,0 +1,20 @@
+{
+    "id": "HV11-038",
+    "name": "Oikawa Toru",
+    "rarity": "R",
+    "stats": {
+        "serve": 4,
+        "receive": 0,
+        "toss": 1,
+        "attack": 0,
+        "block": 1
+    },
+    "skill": {
+        "description": "Khi nhân vật này xuất hiện ở khu vực Chuyền Bóng từ trên tay, nếu có 3+ thẻ \"Oikawa Toru\" ở Ý Chí của nhân vật này: tự +1 điểm Chuyền. Nếu trên tay đối phương có 4+ thẻ: đối phương đặt 1 thẻ trên tay vào khu vực Loại Bỏ."
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/oikawa-toru-4.png",
+    "class": 12,
+    "position": "Chuyền 2"
+}
+

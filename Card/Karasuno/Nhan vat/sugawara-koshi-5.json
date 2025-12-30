@@ -1,0 +1,19 @@
+{
+    "id": null,
+    "name": "Sugawara Koshi",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 1,
+        "toss": 0,
+        "attack": 2,
+        "block": 3
+    },
+    "skill": {
+        "description": "Khi nhân vật này xuất hiện ở khu vực Đập Bóng, nếu nhân vật Chuyền Bóng trên sân mình là \"Nishinoya Yu\", tự +4 điểm Đập."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-5.png",
+    "class": 12,
+    "position": "Chuyền 2"
+}

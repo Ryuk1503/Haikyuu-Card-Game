@@ -1,0 +1,20 @@
+{
+    "id": "HV11-025",
+    "name": "Bokuto Kotaro",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 3,
+        "toss": 0,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Khi thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay, nếu có 3+ Ý Chí: tự +1 điểm Đập, sau đó đặt tối đa 1 thẻ từ khu vực Hành Động của đối phương vào dưới cùng bộ bài của họ."
+    },
+    "school": "Fukurodani",
+    "artwork": "Card/Fukurodani/Nhan vat/bokuto-kotaro-2.png",
+    "class": 12,
+    "position": "Đập Biên"
+}
+

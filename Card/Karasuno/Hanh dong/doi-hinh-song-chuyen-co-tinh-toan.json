@@ -1,0 +1,12 @@
+{
+    "id": "HV08-002",
+    "name": "Đội hình song chuyền có tính toán",
+    "rarity": "R",
+    "skill": {
+        "description": "[Chuyền] +2 điểm Chuyền cho 1 nhân vật Chuyền Bóng \"Kageyama Tobio\" hoặc \"Sugawara Koshi\" trên sân mình: thu hồi lên tay tối đa 1 thẻ \"Kageyama Tobio\" hoặc \"Sugawara Koshi\" từ Ý Chí của nhân vật Chuyền Bóng này. Sau đó, trong lượt này, không được phép sử dụng thẻ \"Đội hình song chuyền có tính toán\" nữa."
+    },
+    "school": "Karasuno",
+    "type": "action",
+    "artwork": "Card/Karasuno/Hanh dong/doi-hinh-song-chuyen-co-tinh-toan.png"
+}
+

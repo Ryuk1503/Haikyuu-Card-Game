@@ -1,0 +1,12 @@
+{
+    "id": "HV08-012",
+    "name": "Sự ngoan cường của Wakunan",
+    "rarity": "R",
+    "skill": {
+        "description": "[Đỡ][Đập] +1 điểm Đập hoặc +2 điểm Đỡ cho 1 nhân vật trường Wakutani Minami trên sân mình. Sau đó, nếu nhân vật này có 3+ Ý Chí: rút 1 thẻ từ bộ bài."
+    },
+    "school": "Wakutani Minami",
+    "type": "action",
+    "artwork": "Card/Wakutani Minami/Hanh dong/su-ngoan-cuong-cua-wakunan.png"
+}
+

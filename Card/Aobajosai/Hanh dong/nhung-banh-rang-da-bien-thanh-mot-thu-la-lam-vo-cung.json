@@ -1,0 +1,12 @@
+{
+    "id": "HV08-003",
+    "name": "Những bánh răng đã biến thành một thứ lạ lẫm vô cùng.",
+    "rarity": "R",
+    "skill": {
+        "description": "[Rút] Rút 1 thẻ từ bộ bài. Sau đó, có thể đặt 1 thẻ từ trên tay vào khu vực Loại bỏ: chọn tối đa 1 thẻ \"Kyotani Kentaro\" từ bộ bài cho đối phương xem rồi thêm lên tay, xáo lại bộ bài."
+    },
+    "school": "Aobajosai",
+    "type": "action",
+    "artwork": "Card/Aobajosai/Hanh dong/nhung-banh-rang-da-bien-thanh-mot-thu-la-lam-vo-cung.png"
+}
+

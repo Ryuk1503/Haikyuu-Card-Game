@@ -1,0 +1,20 @@
+{
+    "id": "HV08-004",
+    "name": "Watari Shinji",
+    "rarity": "R",
+    "stats": {
+        "serve": 0,
+        "receive": 5,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": ""
+    },
+    "school": "Aobajosai",
+    "artwork": "Card/Aobajosai/Nhan vat/watari-shinji-2.png",
+    "class": 11,
+    "position": "Libero"
+}
+

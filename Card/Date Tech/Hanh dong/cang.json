@@ -1,0 +1,12 @@
+{
+    "id": "HV08-010",
+    "name": "CANG!!",
+    "rarity": "R",
+    "skill": {
+        "description": "[Chặn] Đưa tối đa 1 thẻ từ khu vực Đập Bóng và 1 thẻ từ khu vực Chuyền Bóng trên sân mình ra khu vực Chặn Bóng. Sau đó, nếu ở khu vực Chặn Bóng trên sân mình có nhân vật \"Aone Takanobu\", \"Futakuchi Kenji\" và \"Koganegawa Kanji\": ở lượt tiếp theo của đối phương, đối phương chỉ Đỡ Bóng thành công khi điểm Đỡ lớn hơn hoặc bằng 7."
+    },
+    "school": "Date Tech",
+    "type": "action",
+    "artwork": "Card/Date Tech/Hanh dong/cang.png"
+}
+

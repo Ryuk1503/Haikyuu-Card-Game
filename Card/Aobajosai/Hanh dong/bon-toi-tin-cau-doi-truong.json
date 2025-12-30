@@ -1,0 +1,12 @@
+{
+    "id": "HV08-006",
+    "name": "Bọn tôi tin cậu, đội trưởng.",
+    "rarity": "R",
+    "skill": {
+        "description": "[Giao][Đỡ] +1 điểm Giao cho 1 nhân vật \"Oikawa Toru\" trên sân mình hoặc +2 điểm Đỡ cho 1 nhân vật trường Aobajosai. Sau đó, có thể đặt 1 thẻ Nhân Vật lớp 12 trường Aobajosai ngoại trừ \"Oikawa Toru\" từ trên tay vào khu vực Loại bỏ: rút 2 thẻ từ bộ bài."
+    },
+    "school": "Aobajosai",
+    "type": "action",
+    "artwork": "Card/Aobajosai/Hanh dong/bon-toi-tin-cau-doi-truong.png"
+}
+

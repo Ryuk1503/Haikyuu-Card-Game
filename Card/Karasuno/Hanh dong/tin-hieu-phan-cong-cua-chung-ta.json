@@ -1,0 +1,12 @@
+{
+    "id": "HV08-001",
+    "name": "Tín hiệu phản công của chúng ta",
+    "rarity": "R",
+    "skill": {
+        "description": "[Rút][Chuyền][Chặn] Rút 1 thẻ từ bộ bài. Sau đó, nếu nhân vật Giao Bóng trên sân mình là \"Yamaguchi Tadashi\": đối phương không thể sử dụng thẻ Hành Động ở lượt tiếp theo."
+    },
+    "school": "Karasuno",
+    "type": "action",
+    "artwork": "Card/Karasuno/Hanh dong/tin-hieu-phan-cong-cua-chung-ta.png"
+}
+

@@ -1,0 +1,12 @@
+{
+    "id": "HV08-014",
+    "name": "Người vượt qua \"Người khổng lồ tí hon\" sẽ là tôi.",
+    "rarity": "R",
+    "skill": {
+        "description": "[Đập] Nếu nhân vật Đập Bóng trên sân mình là \"Nakashima Takeru\": ở lượt tiếp theo của đối phương, đối phương không thể đưa ra nhân vật Chặn Bóng có 4+ điểm Chặn gốc và nhân vật Đỡ Bóng có 4+ điểm Đỡ gốc."
+    },
+    "school": "Wakutani Minami",
+    "type": "action",
+    "artwork": "Card/Wakutani Minami/Hanh dong/nguoi-vuot-qua-nguoi-khong-lo-ti-hon-se-la-toi.png"
+}
+

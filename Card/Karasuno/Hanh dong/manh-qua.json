@@ -1,0 +1,12 @@
+{
+    "id": "HV08-007",
+    "name": "Mạnh quá...!!!",
+    "rarity": "R",
+    "skill": {
+        "description": "[Rút] Rút 1 thẻ từ bộ bài. Sau đó, có thể đặt 1 thẻ Nhân Vật từ trên tay vào Ý Chí của nhân vật ở khu vực bất kỳ trên sân mình: thu hồi lên tay 1 Ý Chí của thẻ Nhân Vật này."
+    },
+    "school": "Karasuno",
+    "type": "action",
+    "artwork": "Card/Karasuno/Hanh dong/manh-qua.png"
+}
+

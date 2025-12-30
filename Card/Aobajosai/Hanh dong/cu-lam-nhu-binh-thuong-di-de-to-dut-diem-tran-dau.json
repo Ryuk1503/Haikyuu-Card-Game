@@ -1,0 +1,12 @@
+{
+    "id": "HV08-008",
+    "name": "Cứ làm như bình thường đi. Để tớ dứt điểm trận đấu.",
+    "rarity": "R",
+    "skill": {
+        "description": "[Chuyền] +1 điểm Chuyền cho nhân vật Chuyền Bóng \"Oikawa Toru\" trên sân mình. Sau đó, nếu khu vực Hành Động trên sân mình có 2+ thẻ: thu hồi lên tay tối đa 1 thẻ \"Iwaizumi Hajime\" từ khu vực Loại bỏ hoặc từ Ý Chí của nhân vật Đập Bóng trên sân mình."
+    },
+    "school": "Aobajosai",
+    "type": "action",
+    "artwork": "Card/Aobajosai/Hanh dong/cu-lam-nhu-binh-thuong-di-de-to-dut-diem-tran-dau.png"
+}
+

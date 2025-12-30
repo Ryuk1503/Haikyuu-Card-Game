@@ -1,0 +1,20 @@
+{
+    "id": "HV11-036",
+    "name": "Yamaguchi Tadashi",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 4,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Trên sân mình, khi xuất hiện nhân vật Giao Bóng trường Karasuno (ngoại trừ \"Yamaguchi Tadashi\"), được phép đưa thẻ này từ trên tay ra khu vực Giao Bóng để rút 2 thẻ từ bộ bài và đặt 1 thẻ trên tay vào khu vực Loại Bỏ."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/yamaguchi-tadashi-5.png",
+    "class": 10,
+    "position": "Chặn Giữa"
+}
+

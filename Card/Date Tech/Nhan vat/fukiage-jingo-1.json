@@ -1,0 +1,20 @@
+{
+    "id": "HV08-014",
+    "name": "Fukiage Jingo",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 1,
+        "toss": 0,
+        "attack": 2,
+        "block": 3
+    },
+    "skill": {
+        "description": "Bỏ thẻ này từ trên tay vào khu vực Loại bỏ: +2 điểm Chặn hoặc Đỡ cho 1 nhân vật trường Date Tech trên sân mình."
+    },
+    "school": "Date Tech",
+    "artwork": "Card/Date Tech/Nhan vat/fukiage-jingo-1.png",
+    "class": 10,
+    "position": "Chặn Giữa"
+}
+
