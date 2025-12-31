@@ -1,0 +1,19 @@
+{
+    "id": "HV08-010",
+    "name": "Ennoshita Chikara",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 3,
+        "toss": 0,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Nếu thẻ này xuất hiện ở khu vực Đỡ Bóng từ trên tay và có 3+ Ý Chí: có thể đặt 1 thẻ Nhân Vật trường Karasuno từ trên tay vào khu vực Loại bỏ để tự +4 điểm Đỡ."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/ennoshita-chikara-3.png",
+    "class": 11,
+    "position": "Đập Biên"
+}

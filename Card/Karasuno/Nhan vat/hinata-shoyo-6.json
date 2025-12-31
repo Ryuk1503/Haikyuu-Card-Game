@@ -1,0 +1,19 @@
+{
+    "id": "HV08-018",
+    "name": "Hinata Shoyo",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 2
+    },
+    "skill": {
+        "description": "Nếu thẻ này là nhân vật Đập Bóng và nhân vật Chuyền Bóng trên sân mình là \"Kageyama Tobio\", khi sử dụng thẻ \"Hãy đón nhận cú bóng tuyệt vọng khi ấy!!!\": tự +1 điểm Đập. Đối phương không được đưa ra nhân vật Chặn Bóng ở lượt tiếp theo."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/hinata-shoyo-6.png",
+    "class": 10,
+    "position": "Chặn Giữa"
+}

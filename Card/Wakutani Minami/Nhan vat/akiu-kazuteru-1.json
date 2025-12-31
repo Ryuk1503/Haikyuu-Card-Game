@@ -1,0 +1,19 @@
+{
+    "id": "HV08-005",
+    "name": "Akiu Kazuteru",
+    "rarity": "R",
+    "stats": {
+        "serve": 0,
+        "receive": 5,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": ""
+    },
+    "school": "Wakutani Minami",
+    "artwork": "Card/Wakutani Minami/Nhan vat/akiu-kazuteru-1.png",
+    "class": 11,
+    "position": "Libero"
+}

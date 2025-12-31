@@ -1,0 +1,19 @@
+{
+    "id": "HV08-003",
+    "name": "Futakuchi Kenji",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 2,
+        "toss": 0,
+        "attack": 2,
+        "block": 3
+    },
+    "skill": {
+        "description": "Nếu thẻ này xuất hiện ở khu vực Đập Bóng hoặc Đỡ Bóng: có thể đặt tối đa 2 thẻ trên cùng của bộ bài mình vào khu vực Loại bỏ. Nếu trong số đó có thẻ Nhân Vật trường Date Tech: tự +2 điểm Đập hoặc Chặn."
+    },
+    "school": "Date Tech",
+    "artwork": "Card/Date Tech/Nhan vat/futakuchi-kenji-3.png",
+    "class": 11,
+    "position": "Đập Biên"
+}

@@ -1,0 +1,19 @@
+{
+    "id": "HV08-012",
+    "name": "Nishinoya Yu",
+    "rarity": "R",
+    "stats": {
+        "serve": 0,
+        "receive": 4,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Nếu thẻ này xuất hiện ở khu vực Đỡ Bóng từ trên tay và có 3+ Ý Chí: tự +2 điểm Đỡ."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/nishinoya-yu-6.png",
+    "class": 11,
+    "position": "Libero"
+}

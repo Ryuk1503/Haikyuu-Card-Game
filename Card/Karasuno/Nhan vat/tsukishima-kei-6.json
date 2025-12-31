@@ -1,0 +1,19 @@
+{
+    "id": "HV08-014",
+    "name": "Tsukishima Kei",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 0,
+        "toss": 0,
+        "attack": 3,
+        "block": 3
+    },
+    "skill": {
+        "description": "Nếu thẻ này xuất hiện ở khu vực Đập Bóng: có thể thu hồi lên tay 1 thẻ \"Yamaguchi Tadashi\" từ khu vực Giao Bóng trên sân mình để tự +1 điểm Đập."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/tsukishima-kei-6.png",
+    "class": 10,
+    "position": "Chặn Giữa"
+}

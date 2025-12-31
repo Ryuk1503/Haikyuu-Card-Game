@@ -1,0 +1,19 @@
+{
+    "id": "HV08-006",
+    "name": "Shiroishi Yuki",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 4,
+        "toss": 0,
+        "attack": 3,
+        "block": 2
+    },
+    "skill": {
+        "description": ""
+    },
+    "school": "Wakutani Minami",
+    "artwork": "Card/Wakutani Minami/Nhan vat/shiroishi-yuki-1.png",
+    "class": 12,
+    "position": "Đập Biên"
+}

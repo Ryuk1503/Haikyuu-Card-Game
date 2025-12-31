@@ -1,0 +1,19 @@
+{
+    "id": "HV08-017",
+    "name": "Kageyama Tobio",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 0,
+        "toss": 1,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Nếu thẻ này là nhân vật Chuyền Bóng và nhân vật \"Sugawara Koshi\" xuất hiện và nằm trên thẻ này ở khu vực Chuyền Bóng: có thể chọn tối đa 1 thẻ \"Đội hình song chuyền có tính toán\" từ bộ bài cho đối phương xem rồi thêm lên tay, xáo lại bộ bài."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/kageyama-tobio-6.png",
+    "class": 10,
+    "position": "Chuyền 2"
+}

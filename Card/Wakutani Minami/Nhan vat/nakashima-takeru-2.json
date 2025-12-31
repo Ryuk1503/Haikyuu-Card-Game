@@ -1,0 +1,19 @@
+{
+    "id": "HV08-009",
+    "name": "Nakashima Takeru",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 2,
+        "toss": 0,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Nếu thẻ này xuất hiện ở khu vực Đập Bóng từ trên tay và có 3+ Ý Chí: rút 1 thẻ từ bộ bài. Ở lượt tiếp theo của đối phương, đối phương chỉ Chặn Bóng thành công nếu tổng điểm Chặn của nhân vật Chặn Bóng lớn hơn hoặc bằng 9."
+    },
+    "school": "Wakutani Minami",
+    "artwork": "Card/Wakutani Minami/Nhan vat/nakashima-takeru-2.png",
+    "class": 12,
+    "position": "Đập Biên"
+}

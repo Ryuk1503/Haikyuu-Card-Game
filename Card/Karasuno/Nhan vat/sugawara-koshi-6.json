@@ -1,0 +1,19 @@
+{
+    "id": "HV08-016",
+    "name": "Sugawara Koshi",
+    "rarity": "R",
+    "stats": {
+        "serve": 3,
+        "receive": 0,
+        "toss": 1,
+        "attack": 3,
+        "block": 0
+    },
+    "skill": {
+        "description": "Nếu thẻ này là nhân vật Chuyền Bóng và nhân vật \"Kageyama Tobio\" trên sân mình xuất hiện ở khu vực Đập Bóng: tự +1 điểm Chuyền."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/sugawara-koshi-6.png",
+    "class": 12,
+    "position": "Chuyền 2"
+}

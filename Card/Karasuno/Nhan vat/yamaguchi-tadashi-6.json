@@ -1,0 +1,19 @@
+{
+    "id": "HV08-013",
+    "name": "Yamaguchi Tadashi",
+    "rarity": "R",
+    "stats": {
+        "serve": 2,
+        "receive": 4,
+        "toss": 0,
+        "attack": 0,
+        "block": 0
+    },
+    "skill": {
+        "description": "Nếu thẻ này xuất hiện ở khu vực Giao Bóng: đối phương không thể kích hoạt kỹ năng của nhân vật ở lượt tiếp theo."
+    },
+    "school": "Karasuno",
+    "artwork": "Card/Karasuno/Nhan vat/yamaguchi-tadashi-6.png",
+    "class": 10,
+    "position": "Chặn Giữa"
+}

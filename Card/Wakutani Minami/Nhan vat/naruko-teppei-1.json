@@ -1,0 +1,19 @@
+{
+    "id": null,
+    "name": "Naruko Teppei",
+    "rarity": "R",
+    "stats": {
+        "serve": 1,
+        "receive": 3,
+        "toss": 0,
+        "attack": 0,
+        "block": 3
+    },
+    "skill": {
+        "description": "Bỏ thẻ này từ trên tay: +2 điểm Chặn hoặc Đỡ cho 1 nhân vật trường \"Wakutani Minami\" trên sân mình."
+    },
+    "school": "Wakutani Minami",
+    "artwork": "Card/Wakutani Minami/Nhan vat/naruko-teppei-1.png",
+    "class": 12,
+    "position": "Chặn Giữa"
+}
