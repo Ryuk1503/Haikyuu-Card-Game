@@ -3,11 +3,11 @@
     "name": "Oikawa Toru",
     "rarity": "R",
     "stats": {
-        "serve": 0,
+        "serve": 4,
         "receive": 0,
-        "toss": 0,
+        "toss": 1,
         "attack": 0,
-        "block": 0
+        "block": 2
     },
     "skill": {
         "description": "Khi nhân vật này xuất hiện ở khu vực Giao Bóng hoặc Chuyền Bóng, có thể đặt 1 thẻ từ trên tay vào khu vực Loại bỏ: tự +1 điểm Giao hoặc Chuyền. Ở lượt tiếp theo của đối phương, đối phương không thể thêm thẻ lên tay ở giai đoạn rút bài."
